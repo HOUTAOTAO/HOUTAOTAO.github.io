@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中药厂项目建设与GMP认证甘特图</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/frappe-gantt@0.6.1/dist/frappe-gantt.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/frappe-gantt@0.6.1/dist/frappe-gantt.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e7f1 100%);
+            color: #333;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(120deg, #2c7a5a, #1a5632);
+            color: white;
+            padding: 30px 40px;
+            text-align: center;
+            position: relative;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        .project-info {
+            display: flex;
+            justify-content: space-around;
+            background: #e8f5e9;
+            padding: 20px;
+            font-size: 1rem;
+            border-bottom: 1px solid #c8e6c9;
+            flex-wrap: wrap;
+        }
+        
+        .info-item {
+            text-align: center;
+            padding: 8px 15px;
+            min-width: 200px;
+        }
+        
+        .info-item strong {
+            color: #2c7a5a;
+            font-size: 1.2rem;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .content-wrapper {
+            display: flex;
+            padding: 25px;
+        }
+        
+        .gantt-container {
+            flex: 3;
+            min-height: 700px;
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 20px;
+            overflow: auto;
+        }
+        
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        
+        .view-options {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .btn {
+            padding: 8px 16px;
+            background: #2c7a5a;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            background: #1a5632;
+            transform: translateY(-2px);
+        }
+        
+        .btn.active {
+            background: #1a5632;
+            box-shadow: 0 0 0 2px white, 0 0 0 4px #2c7a5a;
+        }
+        
+        .gantt-chart {
+            height: 650px;
+            background: white;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .sidebar {
+            flex: 1;
+            margin-left: 25px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 25px;
+            height: fit-content;
+        }
+        
+        .sidebar h2 {
+            color: #2c7a5a;
+            border-bottom: 2px solid #c8e6c9;
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+        }
+        
+        .milestones {
+            margin-bottom: 30px;
+        }
+        
+        .milestone-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 12px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        
+        .milestone-icon {
+            width: 40px;
+            height: 40px;
+            background: #2c7a5a;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .milestone-info h3 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+        
+        .milestone-info p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+        
+        .key-tasks {
+            background: #fff8e1;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 25px;
+            border: 1px solid #ffecb3;
+        }
+        
+        .key-tasks h3 {
+            color: #ff8f00;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+        
+        .task-list {
+            list-style-type: none;
+        }
+        
+        .task-list li {
+            padding: 10px 0;
+            border-bottom: 1px dashed #ffd54f;
+            display: flex;
+            align-items: center;
+        }
+        
+        .task-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .task-list i {
+            color: #ff8f00;
+            margin-right: 10px;
+            font-size: 14px;
+        }
+        
+        .progress-container {
+            margin-top: 30px;
+        }
+        
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .progress-bar {
+            height: 12px;
+            background: #e0e0e0;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #2c7a5a, #4caf50);
+            width: 35%;
+            border-radius: 6px;
+            transition: width 1s ease;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 25px;
+            color: #666;
+            font-size: 1rem;
+            background: #f5f5f5;
+            border-top: 1px solid #eee;
+        }
+        
+        @media (max-width: 1100px) {
+            .content-wrapper {
+                flex-direction: column;
+            }
+            .sidebar {
+                margin-left: 0;
+                margin-top: 25px;
+            }
+            .gantt-container {
+                min-height: 500px;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            header {
+                padding: 20px 15px;
+            }
+            h1 {
+                font-size: 2rem;
+            }
+            .subtitle {
+                font-size: 1rem;
+            }
+            .project-info {
+                flex-direction: column;
+                align-items: center;
+            }
+            .info-item {
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-project-diagram"></i> 中药厂项目建设与GMP认证甘特图</h1>
+            <p class="subtitle">香港济岁堂中药厂有限公司 - 厂房购买、装修到GMP认证全流程进度规划</p>
+        </header>
+        
+        <div class="project-info">
+            <div class="info-item">
+                <strong>项目周期</strong>
+                240天 (8个月)
+            </div>
+            <div class="info-item">
+                <strong>关键路径</strong>
+                设计 → 施工 → 验证 → 认证
+            </div>
+            <div class="info-item">
+                <strong>资源投入</strong>
+                项目管理团队 + GMP顾问
+            </div>
+            <div class="info-item">
+                <strong>总预算</strong>
+                厂房+设备+GMP筹备
+            </div>
+        </div>
+        
+        <div class="content-wrapper">
+            <div class="gantt-container">
+                <div class="controls">
+                    <div class="view-options">
+                        <button class="btn" onclick="changeViewMode('Quarter Day')">1/4天</button>
+                        <button class="btn" onclick="changeViewMode('Half Day')">1/2天</button>
+                        <button class="btn active" onclick="changeViewMode('Day')">天</button>
+                        <button class="btn" onclick="changeViewMode('Week')">周</button>
+                        <button class="btn" onclick="changeViewMode('Month')">月</button>
+                    </div>
+                    <button class="btn" onclick="downloadImage()">
+                        <i class="fas fa-download"></i> 导出图片
+                    </button>
+                </div>
+                
+                <div class="gantt-chart" id="gantt"></div>
+            </div>
+            
+            <div class="sidebar">
+                <h2><i class="fas fa-tasks"></i> 项目里程碑</h2>
+                
+                <div class="milestones">
+                    <div class="milestone-item">
+                        <div class="milestone-icon">
+                            <i class="fas fa-search-location"></i>
+                        </div>
+                        <div class="milestone-info">
+                            <h3>厂房选址完成</h3>
+                            <p>第15天 - 完成评估与选址</p>
+                        </div>
+                    </div>
+                    
+                    <div class="milestone-item">
+                        <div class="milestone-icon">
+                            <i class="fas fa-file-contract"></i>
+                        </div>
+                        <div class="milestone-info">
+                            <h3>厂房购买签约</h3>
+                            <p>第30天 - 完成法律手续</p>
+                        </div>
+                    </div>
+                    
+                    <div class="milestone-item">
+                        <div class="milestone-icon">
+                            <i class="fas fa-drafting-compass"></i>
+                        </div>
+                        <div class="milestone-info">
+                            <h3>GMP设计批准</h3>
+                            <p>第75天 - 完成施工图设计</p>
+                        </div>
+                    </div>
+                    
+                    <div class="milestone-item">
+                        <div class="milestone-icon">
+                            <i class="fas fa-hard-hat"></i>
+                        </div>
+                        <div class="milestone-info">
+                            <h3>洁净车间完工</h3>
+                            <p>第150天 - 通过验收</p>
+                        </div>
+                    </div>
+                    
+                    <div class="milestone-item">
+                        <div class="milestone-icon">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <div class="milestone-info">
+                            <h3>设备安装完成</h3>
+                            <p>第180天 - 完成调试</p>
+                        </div>
+                    </div>
+                    
+                    <div class="milestone-item">
+                        <div class="milestone-icon">
+                            <i class="fas fa-vial"></i>
+                        </div>
+                        <div class="milestone-info">
+                            <h3>工艺验证完成</h3>
+                            <p>第210天 - 三批验证成功</p>
+                        </div>
+                    </div>
+                    
+                    <div class="milestone-item">
+                        <div class="milestone-icon">
+                            <i class="fas fa-file-medical"></i>
+                        </div>
+                        <div class="milestone-info">
+                            <h3>GMP认证申请</h3>
+                            <p>第220天 - 提交申请材料</p>
+                        </div>
+                    </div>
+                    
+                    <div class="milestone-item">
+                        <div class="milestone-icon">
+                            <i class="fas fa-award"></i>
+                        </div>
+                        <div class="milestone-info">
+                            <h3>获得GMP证书</h3>
+                            <p>第240天 - 项目完成</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="key-tasks">
+                    <h3><i class="fas fa-star"></i> 关键任务</h3>
+                    <ul class="task-list">
+                        <li><i class="fas fa-chevron-circle-right"></i> GMP车间设计与施工</li>
+                        <li><i class="fas fa-chevron-circle-right"></i> 空调净化系统安装与验证</li>
+                        <li><i class="fas fa-chevron-circle-right"></i> 关键设备采购与调试</li>
+                        <li><i class="fas fa-chevron-circle-right"></i> 工艺验证与清洁验证</li>
+                        <li><i class="fas fa-chevron-circle-right"></i> GMP文件体系建立</li>
+                        <li><i class="fas fa-chevron-circle-right"></i> 认证现场检查准备</li>
+                    </ul>
+                </div>
+                
+                <div class="progress-container">
+                    <div class="progress-header">
+                        <span>项目整体进度</span>
+                        <span>35%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progress-fill"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>香港济岁堂中药厂有限公司 | 中成药GMP建设项目管理甘特图 | 基于关键路径法(CPM)制定</p>
+            <p>注：此甘特图展示项目从启动到获得GMP证书的全过程，包含所有关键任务的时间规划</p>
+        </footer>
+    </div>
+
+    <script>
+        // 初始化甘特图数据
+        const tasks = [
+            {
+                id: 'phase1',
+                name: '项目启动与规划',
+                start: '2025-08-01',
+                end: '2025-08-15',
+                progress: 100,
+                dependencies: ''
+            },
+            {
+                id: 'task1',
+                name: '组建项目团队',
+                start: '2025-08-01',
+                end: '2025-08-05',
+                progress: 100,
+                dependencies: '',
+                custom_class: 'phase1'
+            },
+            {
+                id: 'task2',
+                name: '确定项目目标',
+                start: '2025-08-03',
+                end: '2025-08-07',
+                progress: 100,
+                dependencies: 'task1',
+                custom_class: 'phase1'
+            },
+            {
+                id: 'task3',
+                name: '编制项目预算',
+                start: '2025-08-05',
+                end: '2025-08-10',
+                progress: 100,
+                dependencies: 'task2',
+                custom_class: 'phase1'
+            },
+            {
+                id: 'task4',
+                name: '制定初步计划',
+                start: '2025-08-08',
+                end: '2025-08-15',
+                progress: 100,
+                dependencies: 'task3',
+                custom_class: 'phase1'
+            },
+            {
+                id: 'phase2',
+                name: '厂房购买',
+                start: '2025-08-10',
+                end: '2025-09-15',
+                progress: 30,
+                dependencies: 'phase1'
+            },
+            {
+                id: 'task5',
+                name: '厂房选址评估',
+                start: '2025-08-10',
+                end: '2025-08-20',
+                progress: 100,
+                dependencies: 'phase1',
+                custom_class: 'phase2'
+            },
+            {
+                id: 'task6',
+                name: '商业谈判',
+                start: '2025-08-18',
+                end: '2025-08-30',
+                progress: 80,
+                dependencies: 'task5',
+                custom_class: 'phase2'
+            },
+            {
+                id: 'task7',
+                name: '签约与付款',
+                start: '2025-08-28',
+                end: '2025-09-15',
+                progress: 20,
+                dependencies: 'task6',
+                custom_class: 'phase2'
+            },
+            {
+                id: 'phase3',
+                name: '设计阶段',
+                start: '2025-09-01',
+                end: '2025-10-15',
+                progress: 25,
+                dependencies: 'phase2'
+            },
+            {
+                id: 'task8',
+                name: '概念设计',
+                start: '2025-09-01',
+                end: '2025-09-15',
+                progress: 100,
+                dependencies: 'phase2',
+                custom_class: 'phase3'
+            },
+            {
+                id: 'task9',
+                name: 'GMP布局设计',
+                start: '2025-09-10',
+                end: '2025-09-30',
+                progress: 60,
+                dependencies: 'task8',
+                custom_class: 'critical'
+            },
+            {
+                id: 'task10',
+                name: '施工图设计',
+                start: '2025-09-25',
+                end: '2025-10-15',
+                progress: 10,
+                dependencies: 'task9',
+                custom_class: 'phase3'
+            },
+            {
+                id: 'phase4',
+                name: '施工阶段',
+                start: '2025-10-01',
+                end: '2026-01-15',
+                progress: 15,
+                dependencies: 'phase3'
+            },
+            {
+                id: 'task11',
+                name: '施工许可申请',
+                start: '2025-10-01',
+                end: '2025-10-10',
+                progress: 0,
+                dependencies: 'phase3',
+                custom_class: 'phase4'
+            },
+            {
+                id: 'task12',
+                name: '厂房基础建设',
+                start: '2025-10-05',
+                end: '2025-11-10',
+                progress: 0,
+                dependencies: 'task11',
+                custom_class: 'phase4'
+            },
+            {
+                id: 'task13',
+                name: '洁净车间施工',
+                start: '2025-11-01',
+                end: '2025-12-31',
+                progress: 0,
+                dependencies: 'task12',
+                custom_class: 'critical'
+            },
+            {
+                id: 'task14',
+                name: '水电安装',
+                start: '2025-11-20',
+                end: '2025-12-20',
+                progress: 0,
+                dependencies: 'task12',
+                custom_class: 'phase4'
+            },
+            {
+                id: 'task15',
+                name: '空调净化系统',
+                start: '2025-12-10',
+                end: '2026-01-15',
+                progress: 0,
+                dependencies: 'task13, task14',
+                custom_class: 'critical'
+            },
+            {
+                id: 'phase5',
+                name: '设备采购与安装',
+                start: '2025-09-15',
+                end: '2026-01-31',
+                progress: 20,
+                dependencies: 'phase3'
+            },
+            {
+                id: 'task16',
+                name: '设备需求规划',
+                start: '2025-09-15',
+                end: '2025-10-01',
+                progress: 100,
+                dependencies: 'phase3',
+                custom_class: 'phase5'
+            },
+            {
+                id: 'task17',
+                name: '设备招标采购',
+                start: '2025-10-01',
+                end: '2025-11-15',
+                progress: 40,
+                dependencies: 'task16',
+                custom_class: 'phase5'
+            },
+            {
+                id: 'task18',
+                name: '设备到货验收',
+                start: '2025-11-10',
+                end: '2026-01-10',
+                progress: 10,
+                dependencies: 'task17',
+                custom_class: 'phase5'
+            },
+            {
+                id: 'task19',
+                name: '设备安装调试',
+                start: '2025-12-01',
+                end: '2026-01-31',
+                progress: 0,
+                dependencies: 'task18',
+                custom_class: 'critical'
+            },
+            {
+                id: 'phase6',
+                name: 'GMP体系准备',
+                start: '2025-09-01',
+                end: '2026-02-15',
+                progress: 40,
+                dependencies: ''
+            },
+            {
+                id: 'task20',
+                name: 'GMP文件框架',
+                start: '2025-09-01',
+                end: '2025-09-30',
+                progress: 100,
+                dependencies: '',
+                custom_class: 'phase6'
+            },
+            {
+                id: 'task21',
+                name: '质量标准制定',
+                start: '2025-09-20',
+                end: '2025-10-20',
+                progress: 80,
+                dependencies: 'task20',
+                custom_class: 'phase6'
+            },
+            {
+                id: 'task22',
+                name: 'SOP编制',
+                start: '2025-10-10',
+                end: '2026-01-10',
+                progress: 30,
+                dependencies: 'task21',
+                custom_class: 'phase6'
+            },
+            {
+                id: 'task23',
+                name: '人员培训计划',
+                start: '2025-11-01',
+                end: '2026-02-15',
+                progress: 20,
+                dependencies: 'task21',
+                custom_class: 'phase6'
+            },
+            {
+                id: 'phase7',
+                name: '验证活动',
+                start: '2026-01-15',
+                end: '2026-03-15',
+                progress: 0,
+                dependencies: 'phase4, phase5, phase6'
+            },
+            {
+                id: 'task24',
+                name: '洁净区验证',
+                start: '2026-01-15',
+                end: '2026-02-05',
+                progress: 0,
+                dependencies: 'task15, task19',
+                custom_class: 'critical'
+            },
+            {
+                id: 'task25',
+                name: '工艺验证',
+                start: '2026-01-25',
+                end: '2026-02-28',
+                progress: 0,
+                dependencies: 'task24, task23',
+                custom_class: 'critical'
+            },
+            {
+                id: 'task26',
+                name: '清洁验证',
+                start: '2026-02-10',
+                end: '2026-03-15',
+                progress: 0,
+                dependencies: 'task25',
+                custom_class: 'phase7'
+            },
+            {
+                id: 'phase8',
+                name: '认证准备',
+                start: '2026-02-15',
+                end: '2026-03-20',
+                progress: 0,
+                dependencies: 'phase7'
+            },
+            {
+                id: 'task27',
+                name: '模拟生产',
+                start: '2026-02-15',
+                end: '2026-02-28',
+                progress: 0,
+                dependencies: 'task25',
+                custom_class: 'critical'
+            },
+            {
+                id: 'task28',
+                name: '内部审计',
+                start: '2026-03-01',
+                end: '2026-03-10',
+                progress: 0,
+                dependencies: 'task27',
+                custom_class: 'phase8'
+            },
+            {
+                id: 'task29',
+                name: '整改措施',
+                start: '2026-03-05',
+                end: '2026-03-20',
+                progress: 0,
+                dependencies: 'task28',
+                custom_class: 'phase8'
+            },
+            {
+                id: 'phase9',
+                name: 'GMP认证',
+                start: '2026-03-15',
+                end: '2026-03-31',
+                progress: 0,
+                dependencies: 'phase8'
+            },
+            {
+                id: 'task30',
+                name: '认证申请',
+                start: '2026-03-15',
+                end: '2026-03-20',
+                progress: 0,
+                dependencies: 'phase8',
+                custom_class: 'phase9'
+            },
+            {
+                id: 'task31',
+                name: '现场检查准备',
+                start: '2026-03-18',
+                end: '2026-03-25',
+                progress: 0,
+                dependencies: 'task30',
+                custom_class: 'critical'
+            },
+            {
+                id: 'task32',
+                name: '认证现场检查',
+                start: '2026-03-25',
+                end: '2026-03-28',
+                progress: 0,
+                dependencies: 'task31',
+                custom_class: 'phase9'
+            },
+            {
+                id: 'task33',
+                name: '缺陷整改',
+                start: '2026-03-28',
+                end: '2026-03-31',
+                progress: 0,
+                dependencies: 'task32',
+                custom_class: 'phase9'
+            },
+            {
+                id: 'task34',
+                name: '获得GMP证书',
+                start: '2026-03-31',
+                end: '2026-03-31',
+                progress: 0,
+                dependencies: 'task33',
+                custom_class: 'completion'
+            }
+        ];
+        
+        // 初始化甘特图
+        const gantt = new Gantt("#gantt", tasks, {
+            header_height: 60,
+            column_width: 35,
+            step: 24,
+            view_modes: ['Quarter Day', 'Half Day', 'Day', 'Week', 'Month'],
+            bar_height: 26,
+            bar_corner_radius: 4,
+            arrow_curve: 5,
+            padding: 16,
+            view_mode: 'Day',
+            date_format: 'YYYY-MM-DD',
+            custom_popup_html: function(task) {
+                return `
+                    <div class="popup-container">
+                        <div class="popup-title">${task.name}</div>
+                        <div class="popup-content">
+                            <div><strong>开始时间:</strong> ${task.start}</div>
+                            <div><strong>结束时间:</strong> ${task.end}</div>
+                            <div><strong>进度:</strong> ${task.progress}%</div>
+                            <div><strong>工期:</strong> ${task.duration} 天</div>
+                        </div>
+                    </div>
+                `;
+            }
+        });
+        
+        // 更改视图模式
+        function changeViewMode(mode) {
+            gantt.change_view_mode(mode);
+            document.querySelectorAll('.btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+        
+        // 模拟下载功能
+        function downloadImage() {
+            alert("导出功能：在实际应用中，这里会生成项目甘特图的图片文件供下载");
+        }
+        
+        // 模拟进度条动画
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                document.getElementById('progress-fill').style.width = '35%';
+            }, 500);
+        });
+    </script>
+</body>
+</html>
