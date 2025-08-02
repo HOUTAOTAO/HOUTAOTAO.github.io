@@ -3,784 +3,873 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>香港GMP药厂分布地图</title>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <title>香港济岁堂中药厂 - 百年传承 品质保证</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Microsoft YaHei', 'Noto Sans SC', sans-serif;
         }
         
         body {
-            font-family: 'Segoe UI', 'Microsoft JhengHei', sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
-            color: #2c3e50;
+            background-color: #f8f5f0;
+            color: #333;
             line-height: 1.6;
-            padding: 20px;
-            min-height: 100vh;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200"><path fill="%23d4e8d0" opacity="0.2" d="M0,0 C0,0 50,50 100,50 C150,50 200,0 200,0 L200,200 L0,200 Z"/></svg>');
+            background-size: 300px;
+            position: relative;
+        }
+        
+        body:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle, transparent 20%, #f8f5f0 80%), 
+                        linear-gradient(to bottom, rgba(248,245,240,0.9), rgba(248,245,240,0.9));
+            z-index: -1;
         }
         
         .container {
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
-        }
-        
-        header {
-            text-align: center;
-            padding: 25px 0;
-            margin-bottom: 25px;
-            background: linear-gradient(90deg, #1a5fb4, #2ecc71);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            border-bottom: 2px solid rgba(44, 62, 80, 0.1);
-        }
-        
-        h1 {
-            font-size: 2.8rem;
-            margin-bottom: 10px;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-        }
-        
-        .subtitle {
-            font-size: 1.2rem;
-            color: #7f8c8d;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-        
-        .dashboard {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 25px;
-            margin-bottom: 30px;
-        }
-        
-        .map-container {
-            flex: 1;
-            min-width: 300px;
-            height: 550px;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
             overflow: hidden;
-            position: relative;
         }
         
-        #map {
-            height: 100%;
-            width: 100%;
-            border-radius: 15px;
-            z-index: 10;
+        /* 头部样式 */
+        header {
+            background: linear-gradient(to right, #1a3c1f, #2c5b2e);
+            color: #fff;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
         
-        .info-panel {
-            flex: 1;
-            min-width: 300px;
-            max-width: 500px;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            padding: 25px;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .panel-title {
-            font-size: 1.5rem;
-            color: #1a5fb4;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #e0e6ed;
-            display: flex;
-            align-items: center;
-        }
-        
-        .panel-title i {
-            margin-right: 10px;
-            font-size: 1.8rem;
-        }
-        
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            margin-bottom: 25px;
-        }
-        
-        .stat-card {
-            background: #f8fafc;
-            border-radius: 12px;
-            padding: 18px;
-            text-align: center;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.03);
-            transition: all 0.3s ease;
-        }
-        
-        .stat-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
-        }
-        
-        .stat-value {
-            font-size: 2.2rem;
-            font-weight: 700;
-            color: #1a5fb4;
-            margin: 8px 0;
-        }
-        
-        .stat-label {
-            font-size: 0.95rem;
-            color: #7f8c8d;
-        }
-        
-        .district-bars {
-            flex-grow: 1;
-            overflow-y: auto;
-            padding-right: 10px;
-        }
-        
-        .district-bar {
-            margin-bottom: 15px;
-        }
-        
-        .district-header {
+        .header-top {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 8px;
-            font-size: 0.95rem;
+            align-items: center;
+            padding: 0 20px;
         }
         
-        .district-name {
-            font-weight: 600;
-        }
-        
-        .district-count {
-            color: #1a5fb4;
-            font-weight: 700;
-        }
-        
-        .bar-bg {
-            height: 12px;
-            background: #e0e6ed;
-            border-radius: 6px;
-            overflow: hidden;
-        }
-        
-        .bar-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #1a5fb4, #2ecc71);
-            border-radius: 6px;
-            width: 0;
-            transition: width 1s ease;
-        }
-        
-        .table-container {
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            overflow: hidden;
-            margin-bottom: 30px;
-        }
-        
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        
-        thead {
-            background: linear-gradient(90deg, #1a5fb4, #26a269);
-            color: white;
-        }
-        
-        th {
-            padding: 16px 20px;
-            text-align: left;
-            font-weight: 600;
-            font-size: 1.05rem;
-        }
-        
-        tbody tr {
-            border-bottom: 1px solid #e0e6ed;
-            transition: background 0.2s ease;
-        }
-        
-        tbody tr:hover {
-            background-color: #f8fafc;
-        }
-        
-        td {
-            padding: 14px 20px;
-            color: #4b5563;
-        }
-        
-        .region-hk { background-color: rgba(231, 76, 60, 0.08); }
-        .region-kl { background-color: rgba(46, 204, 113, 0.08); }
-        .region-nt { background-color: rgba(52, 152, 219, 0.08); }
-        
-        .region-tag {
-            display: inline-block;
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-        }
-        
-        .region-hk .region-tag { background: #e74c3c; color: white; }
-        .region-kl .region-tag { background: #2ecc71; color: white; }
-        .region-nt .region-tag { background: #3498db; color: white; }
-        
-        .map-controls {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            z-index: 1000;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            padding: 15px;
-            width: 220px;
-        }
-        
-        .map-legend {
-            margin-bottom: 15px;
-        }
-        
-        .legend-title {
-            font-weight: 600;
-            margin-bottom: 10px;
-            color: #1a5fb4;
-        }
-        
-        .legend-item {
+        .logo {
             display: flex;
             align-items: center;
-            margin-bottom: 8px;
         }
         
-        .legend-color {
-            width: 16px;
-            height: 16px;
+        .logo h1 {
+            font-size: 2.2rem;
+            font-weight: bold;
+            margin-left: 15px;
+            letter-spacing: 3px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            font-family: 'STKaiti', serif;
+        }
+        
+        .logo-icon {
+            font-size: 2.5rem;
+            color: #d4af37;
+            background: #fff;
             border-radius: 50%;
-            margin-right: 10px;
-            border: 2px solid white;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
         }
         
-        .search-box {
+        .contact-info {
+            text-align: right;
+            font-size: 0.9rem;
+        }
+        
+        .contact-info a {
+            color: #d4af37;
+            text-decoration: none;
+            margin-left: 15px;
+        }
+        
+        /* 导航栏 */
+        nav {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            margin-top: 10px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: center;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav li {
             position: relative;
-            margin-top: 15px;
         }
         
-        #searchInput {
-            width: 100%;
-            padding: 10px 15px;
-            border: 1px solid #e0e6ed;
-            border-radius: 30px;
-            font-size: 0.95rem;
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 15px 25px;
+            display: block;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
+        
+        nav a:hover, nav a.active {
+            background: rgba(255,255,255,0.2);
+            color: #d4af37;
+        }
+        
+        nav a:after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 3px;
+            background: #d4af37;
             transition: all 0.3s ease;
         }
         
-        #searchInput:focus {
-            outline: none;
-            border-color: #1a5fb4;
-            box-shadow: 0 0 0 3px rgba(26, 95, 180, 0.1);
+        nav a:hover:after, nav a.active:after {
+            left: 10%;
+            width: 80%;
         }
         
-        .factory-list {
-            max-height: 300px;
-            overflow-y: auto;
-            margin-top: 15px;
-            padding-right: 5px;
+        /* 轮播图 */
+        .hero {
+            position: relative;
+            height: 500px;
+            overflow: hidden;
+            margin-bottom: 50px;
         }
         
-        .factory-item {
-            padding: 10px 15px;
-            margin-bottom: 8px;
-            background: #f8fafc;
-            border-radius: 8px;
+        .slides {
+            display: flex;
+            height: 100%;
+            transition: transform 0.5s ease;
+        }
+        
+        .slide {
+            min-width: 100%;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        
+        .slide-content {
+            max-width: 600px;
+            margin-left: 10%;
+            color: white;
+            padding: 30px;
+            background: rgba(26, 60, 31, 0.8);
+            border-left: 5px solid #d4af37;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        .slide-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            font-family: 'STKaiti', serif;
+        }
+        
+        .slide-content p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: #d4af37;
+            color: #1a3c1f;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            border: 2px solid #d4af37;
+        }
+        
+        .btn:hover {
+            background: transparent;
+            color: #d4af37;
+        }
+        
+        .slide-controls {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+        }
+        
+        .slide-indicator {
+            width: 12px;
+            height: 12px;
+            background: rgba(255,255,255,0.5);
+            border-radius: 50%;
+            margin: 0 8px;
             cursor: pointer;
-            transition: all 0.2s ease;
-            border-left: 3px solid #1a5fb4;
+            transition: all 0.3s ease;
         }
         
-        .factory-item:hover {
-            background: #edf2f7;
-            transform: translateX(3px);
+        .slide-indicator.active {
+            background: #d4af37;
+            transform: scale(1.2);
         }
         
-        .factory-name {
-            font-weight: 600;
-            margin-bottom: 4px;
+        /* 关于我们 */
+        .section {
+            padding: 60px 20px;
         }
         
-        .factory-district {
-            font-size: 0.9rem;
-            color: #718096;
-        }
-        
-        .highlight {
-            background-color: #fffbdd;
-            animation: highlight 2s ease;
-        }
-        
-        @keyframes highlight {
-            0% { background-color: #fff9c4; }
-            100% { background-color: transparent; }
-        }
-        
-        footer {
+        .section-title {
             text-align: center;
-            padding: 25px 0;
-            color: #718096;
-            font-size: 0.95rem;
-            border-top: 1px solid #e0e6ed;
-            margin-top: 20px;
+            margin-bottom: 50px;
+            position: relative;
         }
         
-        @media (max-width: 768px) {
-            .dashboard {
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: #1a3c1f;
+            display: inline-block;
+            padding: 0 20px;
+            background: #f8f5f0;
+            position: relative;
+            z-index: 2;
+            font-family: 'STKaiti', serif;
+        }
+        
+        .section-title:after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #d4af37;
+            z-index: 1;
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-text h3 {
+            color: #1a3c1f;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+        
+        .about-text p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+        
+        .about-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 5px solid #fff;
+            position: relative;
+            height: 350px;
+            background: linear-gradient(45deg, #2c5b2e, #1a3c1f);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255,255,255,0.2);
+            font-size: 3rem;
+        }
+        
+        /* 产品展示 */
+        .products {
+            background: #e8f1e6;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .products:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100"><path fill="none" stroke="%232c5b2e" stroke-width="0.5" opacity="0.1" d="M20,20 Q40,5 50,30 T90,20"/></svg>');
+            background-size: 200px;
+            opacity: 0.2;
+        }
+        
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .product-image {
+            height: 200px;
+            background: linear-gradient(45deg, #1a3c1f, #2c5b2e);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255,255,255,0.2);
+            font-size: 5rem;
+        }
+        
+        .product-info {
+            padding: 20px;
+        }
+        
+        .product-info h3 {
+            color: #1a3c1f;
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+        
+        .product-info p {
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        
+        .product-category {
+            display: inline-block;
+            background: #e8f1e6;
+            color: #2c5b2e;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+        }
+        
+        /* GMP认证 */
+        .gmp-certification {
+            text-align: center;
+        }
+        
+        .gmp-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 30px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            position: relative;
+            border: 1px solid #e0e7d7;
+        }
+        
+        .gmp-badge {
+            width: 120px;
+            height: 120px;
+            background: #d4af37;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: -60px auto 20px;
+            font-size: 2.5rem;
+            color: #1a3c1f;
+            border: 5px solid white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .gmp-content p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+        
+        /* 新闻动态 */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .news-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .news-image {
+            height: 200px;
+            background: linear-gradient(45deg, #1a3c1f, #2c5b2e);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255,255,255,0.2);
+            font-size: 4rem;
+        }
+        
+        .news-content {
+            padding: 25px;
+        }
+        
+        .news-date {
+            color: #d4af37;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+        
+        .news-content h3 {
+            color: #1a3c1f;
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+        
+        .news-content p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        /* 底部 */
+        footer {
+            background: #1a3c1f;
+            color: #b8c9b5;
+            padding: 60px 0 20px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            padding: 0 20px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-col h3 {
+            color: #d4af37;
+            font-size: 1.4rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-col h3:after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: #d4af37;
+        }
+        
+        .footer-col p, .footer-col li {
+            margin-bottom: 15px;
+            font-size: 1rem;
+        }
+        
+        .footer-col ul {
+            list-style: none;
+        }
+        
+        .footer-col a {
+            color: #b8c9b5;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-col a:hover {
+            color: #d4af37;
+        }
+        
+        .contact-list li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+        
+        .contact-list i {
+            color: #d4af37;
+            margin-right: 15px;
+            font-size: 1.2rem;
+            min-width: 20px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 900px) {
+            .about-content {
                 flex-direction: column;
             }
             
-            .info-panel {
-                max-width: 100%;
+            .header-top {
+                flex-direction: column;
+                gap: 15px;
             }
             
-            h1 {
-                font-size: 2.2rem;
+            .contact-info {
+                text-align: center;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .hero {
+                height: 400px;
+            }
+            
+            .slide-content {
+                margin: 0 auto;
+                padding: 20px;
+            }
+            
+            nav a {
+                padding: 12px 15px;
+                font-size: 1rem;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>香港GMP药厂分布地图</h1>
-            <p class="subtitle">基于香港卫生署认证的21家GMP药厂位置数据，优化展示地理分布及详细信息</p>
-        </header>
-        
-        <div class="dashboard">
-            <div class="map-container">
-                <div id="map"></div>
-                <div class="map-controls">
-                    <div class="map-legend">
-                        <div class="legend-title">区域图例</div>
-                        <div class="legend-item">
-                            <div class="legend-color" style="background-color: #e74c3c;"></div>
-                            <span>香港岛</span>
-                        </div>
-                        <div class="legend-item">
-                            <div class="legend-color" style="background-color: #2ecc71;"></div>
-                            <span>九龙</span>
-                        </div>
-                        <div class="legend-item">
-                            <div class="legend-color" style="background-color: #3498db;"></div>
-                            <span>新界</span>
-                        </div>
+    <!-- 头部 -->
+    <header>
+        <div class="container">
+            <div class="header-top">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-leaf"></i>
                     </div>
-                    
-                    <div class="search-box">
-                        <input type="text" id="searchInput" placeholder="搜索药厂名称...">
-                        <div class="factory-list" id="factoryList">
-                            <!-- 药厂列表由JS动态生成 -->
-                        </div>
-                    </div>
+                    <h1>香港济岁堂</h1>
+                </div>
+                <div class="contact-info">
+                    <p><i class="fas fa-phone"></i> 电话: (852) 1234-5678</p>
+                    <p><i class="fas fa-envelope"></i> 邮箱: <a href="mailto:info@jisuitang.hk">info@jisuitang.hk</a></p>
                 </div>
             </div>
             
-            <div class="info-panel">
-                <div class="panel-title">
-                    <span>区域分布统计</span>
+            <nav>
+                <div class="nav-container">
+                    <ul>
+                        <li><a href="index.html" class="active">首页</a></li>
+                        <li><a href="about.html">关于我们</a></li>
+                        <li><a href="products.html">产品中心</a></li>
+                        <li><a href="gmp.html">GMP认证</a></li>
+                        <li><a href="news.html">新闻动态</a></li>
+                        <li><a href="contact.html">联系我们</a></li>
+                    </ul>
                 </div>
-                
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <div class="stat-value">21</div>
-                        <div class="stat-label">药厂总数</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-value">3</div>
-                        <div class="stat-label">香港岛药厂</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-value">3</div>
-                        <div class="stat-label">九龙药厂</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-value">15</div>
-                        <div class="stat-label">新界药厂</div>
-                    </div>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- 轮播图 -->
+    <section class="hero">
+        <div class="slides">
+            <div class="slide" style="background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://via.placeholder.com/1200x500?text=GMP生产车间') center/cover;">
+                <div class="slide-content">
+                    <h2>百年传承 品质保证</h2>
+                    <p>香港济岁堂中药厂，源自1910年，秉承传统工艺结合现代科技，为您提供高品质中药产品。</p>
+                    <a href="about.html" class="btn">了解更多</a>
                 </div>
-                
-                <div class="panel-title">
-                    <span>行政区分布</span>
+            </div>
+            <div class="slide" style="background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://via.placeholder.com/1200x500?text=道地药材种植基地') center/cover;">
+                <div class="slide-content">
+                    <h2>道地药材 精心炮制</h2>
+                    <p>严格甄选道地药材，遵循古法炮制工艺，确保每一味药材发挥最大药效。</p>
+                    <a href="products.html" class="btn">查看产品</a>
                 </div>
-                
-                <div class="district-bars">
-                    <!-- 行政区分布条形图由JS动态生成 -->
+            </div>
+            <div class="slide" style="background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://via.placeholder.com/1200x500?text=GMP认证生产车间') center/cover;">
+                <div class="slide-content">
+                    <h2>GMP认证 品质保障</h2>
+                    <p>香港首批获得GMP认证的中药生产企业，严格遵循药品生产质量管理规范。</p>
+                    <a href="gmp.html" class="btn">认证详情</a>
                 </div>
             </div>
         </div>
-        
-        <div class="table-container">
-            <table>
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>公司名称</th>
-                        <th>制造厂地址</th>
-                        <th>大区</th>
-                        <th>行政区</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="region-hk">
-                        <td>1</td>
-                        <td>和興白花油藥廠有限公司</td>
-                        <td>香港柴灣嘉業街12號百樂門大廈2樓</td>
-                        <td><span class="region-tag">香港岛</span></td>
-                        <td>东区</td>
-                    </tr>
-                    <tr class="region-hk">
-                        <td>2</td>
-                        <td>保心安藥廠有限公司</td>
-                        <td>香港香港仔黃竹坑道28號保濟工業大廈11，12及13樓</td>
-                        <td><span class="region-tag">香港岛</span></td>
-                        <td>南区</td>
-                    </tr>
-                    <tr class="region-nt">
-                        <td>3</td>
-                        <td>京都養生堂製藥廠有限公司</td>
-                        <td>新界青衣長達路14-20號偉力工業大廈A座9樓1-12室</td>
-                        <td><span class="region-tag">新界</span></td>
-                        <td>葵青区</td>
-                    </tr>
-                    <tr class="region-nt">
-                        <td>4</td>
-                        <td>香港生物科技研究院有限公司</td>
-                        <td>新界沙田大埔公路十二咪生物科技路二號</td>
-                        <td><span class="region-tag">新界</span></td>
-                        <td>沙田区</td>
-                    </tr>
-                    <tr class="region-kl">
-                        <td>5</td>
-                        <td>英吉利製葯廠有限公司</td>
-                        <td>九龍油塘高輝道17號油塘工業城B2座11字樓8，9，12室</td>
-                        <td><span class="region-tag">九龙</span></td>
-                        <td>观塘区</td>
-                    </tr>
-                    <tr class="region-nt">
-                        <td>6</td>
-                        <td>澳美製藥（中藥）有限公司</td>
-                        <td>新界元朗元朗工業村宏樂街19號B</td>
-                        <td><span class="region-tag">新界</span></td>
-                        <td>元朗区</td>
-                    </tr>
-                    <tr class="region-hk">
-                        <td>7</td>
-                        <td>維特健靈大藥廠</td>
-                        <td>香港鴨脷洲利樂街2號海灣工貿中心14樓1-5室及15樓3-11室</td>
-                        <td><span class="region-tag">香港岛</span></td>
-                        <td>南区</td>
-                    </tr>
-                    <tr class="region-kl">
-                        <td>8</td>
-                        <td>遠大製葯廠有限公司</td>
-                        <td>九龍荔枝角荔枝角道808號好運工業中心6樓601-3室</td>
-                        <td><span class="region-tag">九龙</span></td>
-                        <td>深水埗区</td>
-                    </tr>
-                    <tr class="region-nt">
-                        <td>9</td>
-                        <td>香港陳老二藥廠有限公司</td>
-                        <td>新界荃灣白田壩街23-39號長豐工業大廈7樓701及705室</td>
-                        <td><span class="region-tag">新界</span></td>
-                        <td>荃湾区</td>
-                    </tr>
-                    <tr class="region-nt">
-                        <td>10</td>
-                        <td>黃氏國際藥業有限公司</td>
-                        <td>新界葵涌葵喜街26-32號金發工業大廈一期21字樓A, B, C, D室</td>
-                        <td><span class="region-tag">新界</span></td>
-                        <td>葵青区</td>
-                    </tr>
-                    <tr class="region-nt">
-                        <td>11</td>
-                        <td>北京同仁堂國藥有限公司</td>
-                        <td>新界大埔工業邨大景街3號</td>
-                        <td><span class="region-tag">新界</span></td>
-                        <td>大埔区</td>
-                    </tr>
-                    <tr class="region-nt">
-                        <td>12</td>
-                        <td>余仁生(香港)有限公司</td>
-                        <td>新界元朗元朗工業邨宏利街10號余仁生中心</td>
-                        <td><span class="region-tag">新界</span></td>
-                        <td>元朗区</td>
-                    </tr>
-                    <tr class="region-nt">
-                        <td>13</td>
-                        <td>漢生堂制藥有限公司</td>
-                        <td>新界大埔工業邨大喜街1號地下A區及1樓L101至L105室</td>
-                        <td><span class="region-tag">新界</span></td>
-                        <td>大埔区</td>
-                    </tr>
-                    <tr class="region-kl">
-                        <td>14</td>
-                        <td>香港紫花油大藥廠有限公司</td>
-                        <td>九龍觀塘成業街16號怡生工業中心2樓E及F座</td>
-                        <td><span class="region-tag">九龙</span></td>
-                        <td>观塘区</td>
-                    </tr>
-                    <tr class="region-nt">
-                        <td>15</td>
-                        <td>京都念慈菴總廠有限公司</td>
-                        <td>新界元朗元朗工業邨宏利街50號京都念慈菴中心</td>
-                        <td><span class="region-tag">新界</span></td>
-                        <td>元朗区</td>
-                    </tr>
-                    <tr class="region-nt">
-                        <td>16</td>
-                        <td>李衆勝堂(集團)有限公司</td>
-                        <td>新界大埔大埔工業村大富街5號1座2樓，3樓，4樓C，D室，3座</td>
-                        <td><span class="region-tag">新界</span></td>
-                        <td>大埔区</td>
-                    </tr>
-                    <tr class="region-nt">
-                        <td>17</td>
-                        <td>嶺南藥廠(香港)有限公司</td>
-                        <td>新界屯門新安街18號怡華工業大廈13樓B座，19樓B座，20樓B座</td>
-                        <td><span class="region-tag">新界</span></td>
-                        <td>屯门区</td>
-                    </tr>
-                    <tr class="region-nt">
-                        <td>18</td>
-                        <td>位元堂藥廠有限公司</td>
-                        <td>新界元朗宏利街9號位元堂藥業大廈2樓A-D單位，3樓及4樓A-C單位</td>
-                        <td><span class="region-tag">新界</span></td>
-                        <td>元朗区</td>
-                    </tr>
-                    <tr class="region-nt">
-                        <td>19</td>
-                        <td>維特健靈大藥廠</td>
-                        <td>新界大埔大埔工業邨大喜街18號地下，1樓，5樓及601單位</td>
-                        <td><span class="region-tag">新界</span></td>
-                        <td>大埔区</td>
-                    </tr>
-                    <tr class="region-nt">
-                        <td>20</td>
-                        <td>香港保和堂製藥有限公司</td>
-                        <td>新界青山公路 - 荃灣段603-609號江南工業大廈B座6樓</td>
-                        <td><span class="region-tag">新界</span></td>
-                        <td>荃湾区</td>
-                    </tr>
-                    <tr class="region-nt">
-                        <td>21</td>
-                        <td>歐化藥業(香港)有限公司</td>
-                        <td>新界大埔大埔工業村大富街5號一座G/F, 1/F, 4/F A室 & B室</td>
-                        <td><span class="region-tag">新界</span></td>
-                        <td>大埔区</td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="slide-controls">
+            <div class="slide-indicator active"></div>
+            <div class="slide-indicator"></div>
+            <div class="slide-indicator"></div>
         </div>
-        
-        <footer>
-            <p>数据来源：香港卫生署 | 最后更新：2023年 | 可视化设计：GMP药厂分布分析</p>
-        </footer>
-    </div>
-
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    </section>
+    
+    <!-- 关于我们 -->
+    <section class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>关于济岁堂</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>百年老字号 传承中药文化</h3>
+                    <p>香港济岁堂创立于1910年，至今已有百年历史。我们始终秉承"济世救民，延年益寿"的宗旨，坚持选用道地药材，遵循古法炮制工艺，结合现代制药技术，为消费者提供安全、有效、高品质的中药产品。</p>
+                    <p>经过百年发展，济岁堂已成为香港领先的中药生产企业，拥有现代化的GMP认证生产基地，配备先进的生产设备和检测仪器，确保每一批产品都符合最高质量标准。</p>
+                    <p>我们的产品涵盖传统方剂、中药饮片、中成药、保健食品等多个系列，深受香港及海外消费者信赖。</p>
+                    <a href="about.html" class="btn">了解更多</a>
+                </div>
+                <div class="about-image">
+                    <i class="fas fa-mortar-pestle"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 产品中心 -->
+    <section class="section products">
+        <div class="container">
+            <div class="section-title">
+                <h2>产品中心</h2>
+            </div>
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <i class="fas fa-capsules"></i>
+                    </div>
+                    <div class="product-info">
+                        <span class="product-category">中成药系列</span>
+                        <h3>安神补心胶囊</h3>
+                        <p>精选酸枣仁、五味子、麦冬等药材，养心安神，改善失眠多梦、心悸健忘等症状。</p>
+                        <a href="products.html" class="btn">查看详情</a>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image">
+                        <i class="fas fa-wine-bottle"></i>
+                    </div>
+                    <div class="product-info">
+                        <span class="product-category">传统方剂</span>
+                        <h3>十全大补汤</h3>
+                        <p>源自宋代《太平惠民和剂局方》，由十味名贵药材组成，气血双补，强身健体。</p>
+                        <a href="products.html" class="btn">查看详情</a>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <div class="product-info">
+                        <span class="product-category">中药饮片</span>
+                        <h3>道地药材精选</h3>
+                        <p>精选来自原产地的道地药材，包括人参、当归、黄芪等数百种常用中药饮片。</p>
+                        <a href="products.html" class="btn">查看详情</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- GMP认证 -->
+    <section class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>GMP认证</h2>
+            </div>
+            <div class="gmp-certification">
+                <div class="gmp-badge">
+                    <i class="fas fa-award"></i>
+                </div>
+                <div class="gmp-content">
+                    <h3>药品生产质量管理规范认证</h3>
+                    <p>香港济岁堂中药厂于2010年首批通过香港卫生署GMP认证，2015年通过中国GMP认证，2020年通过欧盟GMP认证。我们严格执行GMP标准，从原料采购、生产加工到成品检验，每个环节都严格把控，确保药品安全有效。</p>
+                    <p>我们的生产车间配备先进的空气净化系统、自动化生产设备和精密检测仪器，确保生产环境符合10万级洁净度要求。所有员工定期接受GMP培训，严格执行标准操作规程(SOP)。</p>
+                    <a href="gmp.html" class="btn">查看认证详情</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 新闻动态 -->
+    <section class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>新闻动态</h2>
+            </div>
+            <div class="news-grid">
+                <div class="news-card">
+                    <div class="news-image">
+                        <i class="fas fa-newspaper"></i>
+                    </div>
+                    <div class="news-content">
+                        <span class="news-date">2025年7月15日</span>
+                        <h3>济岁堂荣获"香港中药行业杰出企业奖"</h3>
+                        <p>在2025年香港中药行业评选中，济岁堂凭借卓越的产品质量和创新研发能力，荣获"杰出企业奖"。</p>
+                        <a href="news.html" class="btn">阅读更多</a>
+                    </div>
+                </div>
+                
+                <div class="news-card">
+                    <div class="news-image">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <div class="news-content">
+                        <span class="news-date">2025年6月28日</span>
+                        <h3>新研发中心正式启用</h3>
+                        <p>济岁堂投资5000万港元建设的新研发中心正式启用，将重点开展中药现代化研究和经典名方二次开发。</p>
+                        <a href="news.html" class="btn">阅读更多</a>
+                    </div>
+                </div>
+                
+                <div class="news-card">
+                    <div class="news-image">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <div class="news-content">
+                        <span class="news-date">2025年5月10日</span>
+                        <h3>与香港大学中医药学院达成战略合作</h3>
+                        <p>济岁堂与香港大学中医药学院签署战略合作协议，双方将在人才培养、科研创新和成果转化等方面开展深度合作。</p>
+                        <a href="news.html" class="btn">阅读更多</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 底部 -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>关于我们</h3>
+                    <p>香港济岁堂中药厂创立于1910年，是香港历史悠久的中药生产企业。我们秉承传统，结合现代科技，致力于为消费者提供安全、有效、高品质的中药产品。</p>
+                    <a href="about.html" class="btn">了解更多</a>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>快速链接</h3>
+                    <ul>
+                        <li><a href="index.html">首页</a></li>
+                        <li><a href="about.html">关于我们</a></li>
+                        <li><a href="products.html">产品中心</a></li>
+                        <li><a href="gmp.html">GMP认证</a></li>
+                        <li><a href="news.html">新闻动态</a></li>
+                        <li><a href="contact.html">联系我们</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>联系方式</h3>
+                    <ul class="contact-list">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>香港新界元朗工业邨宏利街88号济岁堂大厦</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <span>电话: (852) 1234-5678</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>邮箱: info@jisuitang.hk</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-clock"></i>
+                            <span>工作时间: 周一至周五 9:00-18:00</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>© 2025 香港济岁堂中药厂 版权所有 | 香港卫生署GMP认证企业 | 注册编号: HK-2025-GMP-00128</p>
+            </div>
+        </div>
+    </footer>
+    
     <script>
-        // 行政区分布数据
-        const districtData = [
-            { name: "大埔区", count: 6 },
-            { name: "元朗区", count: 4 },
-            { name: "葵青区", count: 2 },
-            { name: "荃湾区", count: 2 },
-            { name: "观塘区", count: 2 },
-            { name: "南区", count: 2 },
-            { name: "东区", count: 1 },
-            { name: "深水埗区", count: 1 },
-            { name: "沙田区", count: 1 },
-            { name: "屯门区", count: 1 }
-        ];
+        // 轮播图功能
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const indicators = document.querySelectorAll('.slide-indicator');
+        const totalSlides = slides.length;
         
-        // 药厂数据
-        const factories = [
-            { id: 1, name: "和興白花油藥廠有限公司", address: "香港柴灣嘉業街12號百樂門大廈2樓", region: "香港岛", district: "东区", lat: 22.2638, lng: 114.2383 },
-            { id: 2, name: "保心安藥廠有限公司", address: "香港香港仔黃竹坑道28號保濟工業大廈11-13樓", region: "香港岛", district: "南区", lat: 22.2479, lng: 114.1685 },
-            { id: 3, name: "京都養生堂製藥廠有限公司", address: "新界青衣長達路14-20號偉力工業大廈A座9樓1-12室", region: "新界", district: "葵青区", lat: 22.3589, lng: 114.1075 },
-            { id: 4, name: "香港生物科技研究院有限公司", address: "新界沙田大埔公路十二咪生物科技路二號", region: "新界", district: "沙田区", lat: 22.3825, lng: 114.1982 },
-            { id: 5, name: "英吉利製葯廠有限公司", address: "九龍油塘高輝道17號油塘工業城B2座11字樓8-12室", region: "九龙", district: "观塘区", lat: 22.2950, lng: 114.2390 },
-            { id: 6, name: "澳美製藥（中藥）有限公司", address: "新界元朗元朗工業村宏樂街19號B", region: "新界", district: "元朗区", lat: 22.4536, lng: 114.0281 },
-            { id: 7, name: "維特健靈大藥廠", address: "香港鴨脷洲利樂街2號海灣工貿中心14-15樓", region: "香港岛", district: "南区", lat: 22.2433, lng: 114.1556 },
-            { id: 8, name: "遠大製葯廠有限公司", address: "九龍荔枝角荔枝角道808號好運工業中心6樓601-3室", region: "九龙", district: "深水埗区", lat: 22.3364, lng: 114.1496 },
-            { id: 9, name: "香港陳老二藥廠有限公司", address: "新界荃灣白田壩街23-39號長豐工業大廈7樓701-705室", region: "新界", district: "荃湾区", lat: 22.3705, lng: 114.1119 },
-            { id: 10, name: "黃氏國際藥業有限公司", address: "新界葵涌葵喜街26-32號金發工業大廈一期21字樓A-D室", region: "新界", district: "葵青区", lat: 22.3622, lng: 114.1258 },
-            { id: 11, name: "北京同仁堂國藥有限公司", address: "新界大埔工業邨大景街3號", region: "新界", district: "大埔区", lat: 22.4486, lng: 114.1736 },
-            { id: 12, name: "余仁生(香港)有限公司", address: "新界元朗元朗工業邨宏利街10號余仁生中心", region: "新界", district: "元朗区", lat: 22.4542, lng: 114.0315 },
-            { id: 13, name: "漢生堂制藥有限公司", address: "新界大埔工業邨大喜街1號地下A區及1樓L101-L105室", region: "新界", district: "大埔区", lat: 22.4468, lng: 114.1721 },
-            { id: 14, name: "香港紫花油大藥廠有限公司", address: "九龍觀塘成業街16號怡生工業中心2樓E及F座", region: "九龙", district: "观塘区", lat: 22.3124, lng: 114.2256 },
-            { id: 15, name: "京都念慈菴總廠有限公司", address: "新界元朗元朗工業邨宏利街50號京都念慈菴中心", region: "新界", district: "元朗区", lat: 22.4530, lng: 114.0300 },
-            { id: 16, name: "李衆勝堂(集團)有限公司", address: "新界大埔大埔工業村大富街5號1座2-4樓C,D室,3座", region: "新界", district: "大埔区", lat: 22.4475, lng: 114.1718 },
-            { id: 17, name: "嶺南藥廠(香港)有限公司", address: "新界屯門新安街18號怡華工業大廈13-20樓B座", region: "新界", district: "屯门区", lat: 22.3937, lng: 113.9754 },
-            { id: 18, name: "位元堂藥廠有限公司", address: "新界元朗宏利街9號位元堂藥業大廈2-4樓A-D單位", region: "新界", district: "元朗区", lat: 22.4448, lng: 114.0352 },
-            { id: 19, name: "維特健靈大藥廠", address: "新界大埔大埔工業邨大喜街18號地下,1樓,5樓及601單位", region: "新界", district: "大埔区", lat: 22.4472, lng: 114.1725 },
-            { id: 20, name: "香港保和堂製藥有限公司", address: "新界青山公路-荃灣段603-609號江南工業大廈B座6樓", region: "新界", district: "荃湾区", lat: 22.3688, lng: 114.1105 },
-            { id: 21, name: "歐化藥業(香港)有限公司", address: "新界大埔大埔工業村大富街5號一座G/F,1/F,4/F A-B室", region: "新界", district: "大埔区", lat: 22.4478, lng: 114.1715 }
-        ];
-        
-        // 区域颜色映射
-        const regionColors = {
-            "香港岛": "#e74c3c",
-            "九龙": "#2ecc71",
-            "新界": "#3498db"
-        };
-        
-        // 初始化地图
-        function initMap() {
-            // 创建地图实例
-            const map = L.map('map').setView([22.3193, 114.1694], 11);
+        function showSlide(index) {
+            // 隐藏所有幻灯片
+            document.querySelector('.slides').style.transform = `translateX(-${index * 100}%)`;
             
-            // 添加OpenStreetMap图层
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-                maxZoom: 18
-            }).addTo(map);
+            // 更新指示器
+            indicators.forEach((indicator, i) => {
+                if (i === index) {
+                    indicator.classList.add('active');
+                } else {
+                    indicator.classList.remove('active');
+                }
+            });
             
-            // 添加药厂标记
-            factories.forEach(factory => {
-                const marker = L.circleMarker(
-                    [factory.lat, factory.lng],
-                    {
-                        radius: 8,
-                        fillColor: regionColors[factory.region],
-                        color: "#fff",
-                        weight: 2,
-                        opacity: 1,
-                        fillOpacity: 0.8
-                    }
-                ).addTo(map);
+            currentSlide = index;
+        }
+        
+        // 添加指示器点击事件
+        indicators.forEach((indicator, index) => {
+            indicator.addEventListener('click', () => {
+                showSlide(index);
+            });
+        });
+        
+        // 自动轮播
+        setInterval(() => {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            showSlide(currentSlide);
+        }, 5000);
+        
+        // 导航滚动效果
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
                 
-                // 绑定弹出窗口
-                marker.bindPopup(`
-                    <div style="max-width:250px">
-                        <h3 style="margin:0 0 8px;color:${regionColors[factory.region]}">${factory.name}</h3>
-                        <p><strong>地址:</strong> ${factory.address}</p>
-                        <p><strong>区域:</strong> ${factory.region} - ${factory.district}</p>
-                        <p><strong>编号:</strong> #${factory.id}</p>
-                    </div>
-                `);
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
                 
-                // 添加点击事件
-                marker.on('click', function() {
-                    highlightTableRow(factory.id);
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
                 });
             });
-            
-            return map;
-        }
-        
-        // 初始化行政区分布条形图
-        function initDistrictBars() {
-            const maxCount = Math.max(...districtData.map(d => d.count));
-            const container = document.querySelector('.district-bars');
-            
-            districtData.sort((a, b) => b.count - a.count).forEach(district => {
-                const barElement = document.createElement('div');
-                barElement.className = 'district-bar';
-                
-                barElement.innerHTML = `
-                    <div class="district-header">
-                        <span class="district-name">${district.name}</span>
-                        <span class="district-count">${district.count}家</span>
-                    </div>
-                    <div class="bar-bg">
-                        <div class="bar-fill" style="width: ${(district.count / maxCount) * 100}%"></div>
-                    </div>
-                `;
-                
-                container.appendChild(barElement);
-            });
-        }
-        
-        // 初始化药厂列表
-        function initFactoryList() {
-            const container = document.getElementById('factoryList');
-            
-            factories.forEach(factory => {
-                const item = document.createElement('div');
-                item.className = 'factory-item';
-                item.dataset.id = factory.id;
-                
-                item.innerHTML = `
-                    <div class="factory-name">${factory.name}</div>
-                    <div class="factory-district">${factory.district} | ${factory.region}</div>
-                `;
-                
-                item.addEventListener('click', function() {
-                    const id = parseInt(this.dataset.id);
-                    highlightTableRow(id);
-                    centerMapOnFactory(id);
-                });
-                
-                container.appendChild(item);
-            });
-        }
-        
-        // 高亮表格行
-        function highlightTableRow(id) {
-            // 移除所有高亮
-            document.querySelectorAll('tbody tr').forEach(row => {
-                row.classList.remove('highlight');
-            });
-            
-            // 添加高亮
-            const row = document.querySelector(`tbody tr:nth-child(${id})`);
-            if (row) {
-                row.classList.add('highlight');
-                
-                // 滚动到视图
-                row.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }
-        }
-        
-        // 将地图中心定位到指定药厂
-        function centerMapOnFactory(id) {
-            const factory = factories.find(f => f.id === id);
-            if (factory && map) {
-                map.setView([factory.lat, factory.lng], 14);
-            }
-        }
-        
-        // 搜索功能
-        function setupSearch() {
-            const searchInput = document.getElementById('searchInput');
-            
-            searchInput.addEventListener('input', function() {
-                const searchTerm = this.value.toLowerCase();
-                const items = document.querySelectorAll('.factory-item');
-                
-                items.forEach(item => {
-                    const name = item.querySelector('.factory-name').textContent.toLowerCase();
-                    if (name.includes(searchTerm)) {
-                        item.style.display = 'block';
-                    } else {
-                        item.style.display = 'none';
-                    }
-                });
-            });
-        }
-        
-        // 页面加载完成后初始化
-        let map;
-        document.addEventListener('DOMContentLoaded', function() {
-            map = initMap();
-            initDistrictBars();
-            initFactoryList();
-            setupSearch();
         });
     </script>
 </body>
