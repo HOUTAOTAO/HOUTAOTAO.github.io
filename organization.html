@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中药厂筹建项目 - 组织架构与任务分解</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f8f5f0, #e9ecef);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        header {
+            background: linear-gradient(to right, #1a3c1f, #2c5b2e);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        .logo {
+            font-size: 48px;
+            margin-right: 15px;
+            color: #d4af37;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.4rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .project-info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+        
+        .info-card {
+            text-align: center;
+            min-width: 200px;
+        }
+        
+        .info-card i {
+            font-size: 2.5rem;
+            color: #d4af37;
+            margin-bottom: 10px;
+        }
+        
+        .tabs {
+            display: flex;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            padding: 5px;
+            max-width: 600px;
+            margin: 30px auto 0;
+        }
+        
+        .tab {
+            flex: 1;
+            text-align: center;
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 50px;
+            font-weight: 600;
+        }
+        
+        .tab.active {
+            background: white;
+            color: #1a3c1f;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        /* 组织架构图样式 */
+        .org-chart {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 50px;
+        }
+        
+        .org-level {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            margin-bottom: 50px;
+        }
+        
+        .org-node {
+            background: white;
+            border: 2px solid #1a3c1f;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            width: 250px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+        
+        .org-node:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            border-color: #d4af37;
+        }
+        
+        .node-header {
+            background: #1a3c1f;
+            color: white;
+            padding: 8px;
+            border-radius: 5px;
+            margin: -20px -20px 15px -20px;
+            font-weight: bold;
+        }
+        
+        .node-name {
+            font-weight: bold;
+            color: #1a3c1f;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .node-role {
+            color: #d4af37;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+        
+        .node-members {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .connector {
+            position: absolute;
+            height: 30px;
+            width: 2px;
+            background: #1a3c1f;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .connector-horizontal {
+            height: 2px;
+            width: 100%;
+            background: #1a3c1f;
+            position: absolute;
+            top: 50%;
+            z-index: 1;
+        }
+        
+        .level-1 .org-node {
+            background: linear-gradient(to bottom, #f8f5f0, #e8f1e6);
+            border: 3px solid #d4af37;
+        }
+        
+        .level-2 .org-node {
+            width: 220px;
+        }
+        
+        .level-3 .org-node {
+            width: 200px;
+        }
+        
+        /* 任务分解样式 */
+        .task-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .task-group {
+            background: #f8f9fa;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid #1a3c1f;
+        }
+        
+        .task-header {
+            background: #1a3c1f;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .task-header i {
+            font-size: 1.5rem;
+            margin-right: 10px;
+            color: #d4af37;
+        }
+        
+        .task-list {
+            padding: 20px;
+        }
+        
+        .task-item {
+            display: flex;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #e0e0e0;
+        }
+        
+        .task-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .task-icon {
+            min-width: 30px;
+            color: #d4af37;
+            font-size: 1.2rem;
+            padding-top: 3px;
+        }
+        
+        .task-content {
+            flex: 1;
+        }
+        
+        .task-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #1a3c1f;
+        }
+        
+        .task-details {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .task-status {
+            display: flex;
+            align-items: center;
+            margin-top: 8px;
+        }
+        
+        .status-badge {
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        .status-planning {
+            background: #e3f2fd;
+            color: #1976d2;
+        }
+        
+        .status-progress {
+            background: #fff8e1;
+            color: #ff8f00;
+        }
+        
+        .status-completed {
+            background: #e8f5e9;
+            color: #388e3c;
+        }
+        
+        .progress-bar {
+            height: 6px;
+            background: #e0e0e0;
+            border-radius: 3px;
+            margin-top: 5px;
+            overflow: hidden;
+        }
+        
+        .progress-value {
+            height: 100%;
+            background: #2c5b2e;
+            border-radius: 3px;
+        }
+        
+        /* 时间线样式 */
+        .timeline-section {
+            margin-top: 50px;
+        }
+        
+        .timeline-title {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #1a3c1f;
+            font-size: 1.8rem;
+            position: relative;
+        }
+        
+        .timeline-title:after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: #d4af37;
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 0;
+        }
+        
+        .timeline:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 3px;
+            height: 100%;
+            background: #1a3c1f;
+            transform: translateX(-50%);
+        }
+        
+        .timeline-item {
+            position: relative;
+            width: 50%;
+            padding: 20px 40px;
+            box-sizing: border-box;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            padding-right: 70px;
+            text-align: right;
+        }
+        
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            padding-left: 70px;
+        }
+        
+        .timeline-content {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid #d4af37;
+            position: relative;
+        }
+        
+        .timeline-date {
+            font-weight: bold;
+            color: #d4af37;
+            margin-bottom: 10px;
+        }
+        
+        .timeline-title {
+            font-size: 1.3rem;
+            color: #1a3c1f;
+            margin-bottom: 10px;
+        }
+        
+        .timeline-dot {
+            position: absolute;
+            top: 50%;
+            width: 20px;
+            height: 20px;
+            background: #d4af37;
+            border: 3px solid #1a3c1f;
+            border-radius: 50%;
+            transform: translateY(-50%);
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-dot {
+            right: -10px;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-dot {
+            left: -10px;
+        }
+        
+        .footer {
+            background: #1a3c1f;
+            color: white;
+            text-align: center;
+            padding: 25px;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 900px) {
+            .timeline:before {
+                left: 20px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding: 20px 0 20px 50px;
+                left: 0 !important;
+                text-align: left !important;
+            }
+            
+            .timeline-item:nth-child(odd) {
+                padding-right: 0;
+            }
+            
+            .timeline-item:nth-child(even) {
+                padding-left: 50px;
+            }
+            
+            .timeline-dot {
+                left: 10px !important;
+            }
+            
+            .org-level {
+                flex-wrap: wrap;
+            }
+            
+            .org-node {
+                margin: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo-container">
+                <i class="fas fa-industry logo"></i>
+                <div>
+                    <h1>中药厂筹建项目小组</h1>
+                    <p class="subtitle">组织架构与任务分解</p>
+                </div>
+            </div>
+            
+            <div class="project-info">
+                <div class="info-card">
+                    <i class="fas fa-calendar-alt"></i>
+                    <h3>项目周期</h3>
+                    <p>2025.08 - 2026.12</p>
+                </div>
+                <div class="info-card">
+                    <i class="fas fa-tasks"></i>
+                    <h3>任务总数</h3>
+                    <p>28个核心任务</p>
+                </div>
+                <div class="info-card">
+                    <i class="fas fa-users"></i>
+                    <h3>团队规模</h3>
+                    <p>7个工作组 | 42人</p>
+                </div>
+            </div>
+            
+            <div class="tabs">
+                <div class="tab active" data-tab="org-chart">组织架构</div>
+                <div class="tab" data-tab="task-breakdown">任务分解</div>
+                <div class="tab" data-tab="timeline">项目时间线</div>
+            </div>
+        </header>
+        
+        <div class="content">
+            <!-- 组织架构图 -->
+            <div class="tab-content active" id="org-chart">
+                <div class="org-chart">
+                    <!-- 第一层：项目领导小组 -->
+                    <div class="org-level level-1">
+                        <div class="org-node">
+                            <div class="node-header">项目领导小组</div>
+                            <div class="node-name">王振华</div>
+                            <div class="node-role">项目总指挥</div>
+                            <div class="node-members">
+                                <p>李明 - 副指挥</p>
+                                <p>张伟 - 秘书</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 第二层：七个工作组 -->
+                    <div class="org-level level-2">
+                        <div class="org-node">
+                            <div class="connector"></div>
+                            <div class="node-header">技术研发组</div>
+                            <div class="node-name">陈博士</div>
+                            <div class="node-role">高级研究员</div>
+                            <div class="node-members">6名成员</div>
+                        </div>
+                        
+                        <div class="org-node">
+                            <div class="connector"></div>
+                            <div class="node-header">工程建设组</div>
+                            <div class="node-name">赵工程师</div>
+                            <div class="node-role">总工程师</div>
+                            <div class="node-members">8名成员</div>
+                        </div>
+                        
+                        <div class="org-node">
+                            <div class="connector"></div>
+                            <div class="node-header">质量管理组</div>
+                            <div class="node-name">刘总监</div>
+                            <div class="node-role">质量总监</div>
+                            <div class="node-members">5名成员</div>
+                        </div>
+                    </div>
+                    
+                    <div class="org-level level-2">
+                        <div class="org-node">
+                            <div class="connector"></div>
+                            <div class="node-header">采购供应组</div>
+                            <div class="node-name">杨经理</div>
+                            <div class="node-role">采购总监</div>
+                            <div class="node-members">4名成员</div>
+                        </div>
+                        
+                        <div class="org-node">
+                            <div class="connector"></div>
+                            <div class="node-header">财务控制组</div>
+                            <div class="node-name">周总监</div>
+                            <div class="node-role">财务总监</div>
+                            <div class="node-members">3名成员</div>
+                        </div>
+                        
+                        <div class="org-node">
+                            <div class="connector"></div>
+                            <div class="node-header">人力资源组</div>
+                            <div class="node-name">吴经理</div>
+                            <div class="node-role">HR总监</div>
+                            <div class="node-members">3名成员</div>
+                        </div>
+                        
+                        <div class="org-node">
+                            <div class="connector"></div>
+                            <div class="node-header">政府事务组</div>
+                            <div class="node-name">郑主任</div>
+                            <div class="node-role">政府关系总监</div>
+                            <div class="node-members">3名成员</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="team-roles">
+                    <h2 style="text-align: center; color: #1a3c1f; margin-bottom: 30px;">各组核心职责</h2>
+                    <div class="task-container">
+                        <div class="task-group">
+                            <div class="task-header">
+                                <i class="fas fa-flask"></i>
+                                <h3>技术研发组</h3>
+                            </div>
+                            <div class="task-list">
+                                <p>• 产品配方研发与优化</p>
+                                <p>• 生产工艺流程设计</p>
+                                <p>• 技术标准制定</p>
+                                <p>• 设备选型技术支持</p>
+                            </div>
+                        </div>
+                        
+                        <div class="task-group">
+                            <div class="task-header">
+                                <i class="fas fa-hard-hat"></i>
+                                <h3>工程建设组</h3>
+                            </div>
+                            <div class="task-list">
+                                <p>• 厂房规划与设计</p>
+                                <p>• GMP车间建设管理</p>
+                                <p>• 设备安装调试</p>
+                                <p>• 工程进度控制</p>
+                            </div>
+                        </div>
+                        
+                        <div class="task-group">
+                            <div class="task-header">
+                                <i class="fas fa-check-circle"></i>
+                                <h3>质量管理组</h3>
+                            </div>
+                            <div class="task-list">
+                                <p>• GMP体系建立</p>
+                                <p>• 质量标准制定</p>
+                                <p>• 质量文件编制</p>
+                                <p>• 认证准备工作</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 任务分解 -->
+            <div class="tab-content" id="task-breakdown">
+                <h2 style="text-align: center; color: #1a3c1f; margin-bottom: 30px;">项目任务分解</h2>
+                <div class="task-container">
+                    <div class="task-group">
+                        <div class="task-header">
+                            <i class="fas fa-flag"></i>
+                            <h3>项目启动阶段</h3>
+                        </div>
+                        <div class="task-list">
+                            <div class="task-item">
+                                <div class="task-icon"><i class="fas fa-file-alt"></i></div>
+                                <div class="task-content">
+                                    <div class="task-title">项目可行性研究</div>
+                                    <div class="task-details">市场分析、技术评估、财务预测</div>
+                                    <div class="task-status">
+                                        <span class="status-badge status-completed">已完成</span>
+                                        <div class="progress-bar">
+                                            <div class="progress-value" style="width: 100%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="task-item">
+                                <div class="task-icon"><i class="fas fa-users"></i></div>
+                                <div class="task-content">
+                                    <div class="task-title">组建核心团队</div>
+                                    <div class="task-details">确定各小组负责人及成员</div>
+                                    <div class="task-status">
+                                        <span class="status-badge status-completed">已完成</span>
+                                        <div class="progress-bar">
+                                            <div class="progress-value" style="width: 100%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="task-item">
+                                <div class="task-icon"><i class="fas fa-map-marked-alt"></i></div>
+                                <div class="task-content">
+                                    <div class="task-title">厂址选择与评估</div>
+                                    <div class="task-details">环境评估、交通、配套设施分析</div>
+                                    <div class="task-status">
+                                        <span class="status-badge status-progress">进行中</span>
+                                        <div class="progress-bar">
+                                            <div class="progress-value" style="width: 70%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="task-group">
+                        <div class="task-header">
+                            <i class="fas fa-drafting-compass"></i>
+                            <h3>规划设计阶段</h3>
+                        </div>
+                        <div class="task-list">
+                            <div class="task-item">
+                                <div class="task-icon"><i class="fas fa-draw-polygon"></i></div>
+                                <div class="task-content">
+                                    <div class="task-title">工厂总体规划设计</div>
+                                    <div class="task-details">厂区布局、功能分区、流线设计</div>
+                                    <div class="task-status">
+                                        <span class="status-badge status-progress">进行中</span>
+                                        <div class="progress-bar">
+                                            <div class="progress-value" style="width: 40%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="task-item">
+                                <div class="task-icon"><i class="fas fa-vial"></i></div>
+                                <div class="task-content">
+                                    <div class="task-title">生产工艺流程设计</div>
+                                    <div class="task-details">提取、浓缩、干燥、制剂工艺</div>
+                                    <div class="task-status">
+                                        <span class="status-badge status-planning">待开始</span>
+                                        <div class="progress-bar">
+                                            <div class="progress-value" style="width: 0%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="task-item">
+                                <div class="task-icon"><i class="fas fa-cogs"></i></div>
+                                <div class="task-content">
+                                    <div class="task-title">设备选型与招标</div>
+                                    <div class="task-details">主要设备技术参数确定</div>
+                                    <div class="task-status">
+                                        <span class="status-badge status-planning">待开始</span>
+                                        <div class="progress-bar">
+                                            <div class="progress-value" style="width: 0%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="task-group">
+                        <div class="task-header">
+                            <i class="fas fa-hard-hat"></i>
+                            <h3>建设实施阶段</h3>
+                        </div>
+                        <div class="task-list">
+                            <div class="task-item">
+                                <div class="task-icon"><i class="fas fa-tools"></i></div>
+                                <div class="task-content">
+                                    <div class="task-title">厂房土建施工</div>
+                                    <div class="task-details">主体结构、装修、水电工程</div>
+                                    <div class="task-status">
+                                        <span class="status-badge status-planning">待开始</span>
+                                        <div class="progress-bar">
+                                            <div class="progress-value" style="width: 0%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="task-item">
+                                <div class="task-icon"><i class="fas fa-wind"></i></div>
+                                <div class="task-content">
+                                    <div class="task-title">GMP车间建设</div>
+                                    <div class="task-details">洁净车间、空调系统、工艺管道</div>
+                                    <div class="task-status">
+                                        <span class="status-badge status-planning">待开始</span>
+                                        <div class="progress-bar">
+                                            <div class="progress-value" style="width: 0%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="task-item">
+                                <div class="task-icon"><i class="fas fa-cogs"></i></div>
+                                <div class="task-content">
+                                    <div class="task-title">设备安装调试</div>
+                                    <div class="task-details">生产线设备安装与联动调试</div>
+                                    <div class="task-status">
+                                        <span class="status-badge status-planning">待开始</span>
+                                        <div class="progress-bar">
+                                            <div class="progress-value" style="width: 0%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 项目时间线 -->
+            <div class="tab-content" id="timeline">
+                <div class="timeline-section">
+                    <h2 class="timeline-title">项目关键里程碑</h2>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-date">2025年8月</div>
+                                <h3 class="timeline-title">项目正式启动</h3>
+                                <p>组建核心团队，完成可行性研究，确定厂址</p>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-date">2025年11月</div>
+                                <h3 class="timeline-title">完成工厂设计</h3>
+                                <p>完成总体规划设计、工艺流程设计和设备选型</p>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-date">2026年3月</div>
+                                <h3 class="timeline-title">厂房建设开工</h3>
+                                <p>土建工程开始，主要设备采购合同签订</p>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-date">2026年7月</div>
+                                <h3 class="timeline-title">GMP车间完工</h3>
+                                <p>洁净车间建设完成，空调系统安装调试</p>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-date">2026年10月</div>
+                                <h3 class="timeline-title">设备安装完成</h3>
+                                <p>生产线设备全部安装完成，进入调试阶段</p>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-date">2026年12月</div>
+                                <h3 class="timeline-title">GMP认证申请</h3>
+                                <p>完成验证工作，提交GMP认证申请</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>© 2025 中药厂筹建项目组 | 最后更新: 2025年8月</p>
+            <p>项目总负责人: 王振华 | 联系电话: (852) 1234-5678</p>
+        </div>
+    </div>
+    
+    <script>
+        // 标签切换功能
+        const tabs = document.querySelectorAll('.tab');
+        const tabContents = document.querySelectorAll('.tab-content');
+        
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // 移除所有活动状态
+                tabs.forEach(t => t.classList.remove('active'));
+                tabContents.forEach(c => c.classList.remove('active'));
+                
+                // 添加当前活动状态
+                tab.classList.add('active');
+                const tabId = tab.getAttribute('data-tab');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+        
+        // 组织架构节点悬停效果
+        const orgNodes = document.querySelectorAll('.org-node');
+        orgNodes.forEach(node => {
+            node.addEventListener('mouseenter', () => {
+                const header = node.querySelector('.node-header');
+                header.style.backgroundColor = '#d4af37';
+                header.style.transition = 'background-color 0.3s ease';
+            });
+            
+            node.addEventListener('mouseleave', () => {
+                const header = node.querySelector('.node-header');
+                header.style.backgroundColor = '#1a3c1f';
+            });
+        });
+    </script>
+</body>
+</html>
