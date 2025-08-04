@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>香港公司电话及域名注册调研</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0F52BA',
+                        secondary: '#37CAEC',
+                        accent: '#FF7D00',
+                        dark: '#1A202C',
+                        light: '#F7FAFC'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+            .card-hover {
+                transition: all 0.3s ease;
+            }
+            .card-hover:hover {
+                transform: translateY(-5px);
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans text-gray-800">
+    <!-- 导航栏 -->
+    <header class="sticky top-0 z-50 bg-white shadow-md transition-all duration-300">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <i class="fa fa-building text-primary text-2xl"></i>
+                <h1 class="text-xl font-bold text-dark">香港商业服务调研</h1>
+            </div>
+            <nav class="hidden md:flex space-x-8">
+                <a href="#phone-service" class="text-gray-600 hover:text-primary transition-all">公司电话</a>
+                <a href="#domain-registry" class="text-gray-600 hover:text-primary transition-all">域名注册</a>
+                <a href="#comparison" class="text-gray-600 hover:text-primary transition-all">方案对比</a>
+                <a href="#process" class="text-gray-600 hover:text-primary transition-all">注册流程</a>
+                <a href="#faq" class="text-gray-600 hover:text-primary transition-all">常见问题</a>
+            </nav>
+            <button class="md:hidden text-gray-600" id="menuToggle">
+                <i class="fa fa-bars text-xl"></i>
+            </button>
+        </div>
+        <!-- 移动端菜单 -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white border-t">
+            <div class="container mx-auto px-4 py-3 flex flex-col space-y-3">
+                <a href="#phone-service" class="py-2 text-gray-600 hover:text-primary transition-all">公司电话</a>
+                <a href="#domain-registry" class="py-2 text-gray-600 hover:text-primary transition-all">域名注册</a>
+                <a href="#comparison" class="py-2 text-gray-600 hover:text-primary transition-all">方案对比</a>
+                <a href="#process" class="py-2 text-gray-600 hover:text-primary transition-all">注册流程</a>
+                <a href="#faq" class="py-2 text-gray-600 hover:text-primary transition-all">常见问题</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 英雄区域 -->
+    <section class="bg-gradient-to-r from-primary to-secondary text-white py-20 md:py-32">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-3xl md:text-5xl font-bold mb-6 text-shadow">香港公司电话及域名注册调研</h1>
+            <p class="text-lg md:text-xl max-w-3xl mx-auto opacity-90 mb-8">全面解析香港商业通讯解决方案，包括服务提供商、费用对比、方案选择及注册流程</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#phone-service" class="bg-white text-primary px-6 py-3 rounded-lg font-medium hover:bg-gray-100 transition-all">公司电话服务</a>
+                <a href="#domain-registry" class="bg-transparent border-2 border-white px-6 py-3 rounded-lg font-medium hover:bg-white/10 transition-all">域名注册服务</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 概述 -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto text-center mb-12">
+                <h2 class="text-2xl md:text-3xl font-bold mb-4 text-dark">香港商业通讯解决方案概述</h2>
+                <p class="text-gray-600">香港作为国际商业中心，拥有完善的通讯基础设施和规范的域名管理体系，为企业提供高效、可靠的商业通讯服务</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <div class="bg-light p-8 rounded-xl shadow-sm card-hover border border-gray-100">
+                    <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+                        <i class="fa fa-phone text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">香港公司电话服务</h3>
+                    <p class="text-gray-600 mb-4">香港提供多种企业电话解决方案，从基础固定线路到虚拟办公电话系统，满足不同规模企业的需求。主要服务商包括香港电讯、和记电讯、中国移动香港等。</p>
+                    <a href="#phone-service" class="inline-flex items-center text-primary font-medium hover:underline">
+                        了解更多 <i class="fa fa-arrow-right ml-2 text-sm"></i>
+                    </a>
+                </div>
+                
+                <div class="bg-light p-8 rounded-xl shadow-sm card-hover border border-gray-100">
+                    <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+                        <i class="fa fa-globe text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">香港域名注册服务</h3>
+                    <p class="text-gray-600 mb-4">.hk域名是香港地区的国家顶级域名，由香港互联网注册管理有限公司(HKIRC)管理。企业可通过授权注册商申请，建立本地化网络形象。</p>
+                    <a href="#domain-registry" class="inline-flex items-center text-primary font-medium hover:underline">
+                        了解更多 <i class="fa fa-arrow-right ml-2 text-sm"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 香港公司电话服务 -->
+    <section id="phone-service" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto text-center mb-12">
+                <h2 class="text-2xl md:text-3xl font-bold mb-4 text-dark">香港公司电话服务</h2>
+                <p class="text-gray-600">香港主要通讯服务商提供的企业电话解决方案对比</p>
+            </div>
+            
+            <!-- 主要服务商 -->
+            <div class="mb-16">
+                <h3 class="text-xl font-semibold mb-6 text-center">主要服务提供商</h3>
+                
+                <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+                    <!-- 香港电讯 -->
+                    <div class="bg-white rounded-xl overflow-hidden shadow-sm card-hover">
+                        <div class="h-3 bg-blue-600"></div>
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <img src="https://picsum.photos/id/1/60/60" alt="香港电讯标志" class="w-12 h-12 rounded mr-4">
+                                <h4 class="text-lg font-semibold">香港电讯</h4>
+                            </div>
+                            <p class="text-gray-600 text-sm mb-4">香港最大的电讯服务提供商，提供全面的商业通讯解决方案，覆盖固定电话、移动通讯和IP电话服务。</p>
+                            <a href="https://www.hkt.com" target="_blank" class="text-primary text-sm font-medium hover:underline flex items-center">
+                                官方网站 <i class="fa fa-external-link ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- 和记电讯 -->
+                    <div class="bg-white rounded-xl overflow-hidden shadow-sm card-hover">
+                        <div class="h-3 bg-red-600"></div>
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <img src="https://picsum.photos/id/2/60/60" alt="和记电讯标志" class="w-12 h-12 rounded mr-4">
+                                <h4 class="text-lg font-semibold">和记电讯</h4>
+                            </div>
+                            <p class="text-gray-600 text-sm mb-4">提供创新的企业通讯方案，包括IP电话系统、虚拟办公室服务和跨境通讯解决方案。</p>
+                            <a href="https://www.hutchisontelecom.com" target="_blank" class="text-primary text-sm font-medium hover:underline flex items-center">
+                                官方网站 <i class="fa fa-external-link ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- 中国移动香港 -->
+                    <div class="bg-white rounded-xl overflow-hidden shadow-sm card-hover">
+                        <div class="h-3 bg-green-600"></div>
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <img src="https://picsum.photos/id/3/60/60" alt="中国移动香港标志" class="w-12 h-12 rounded mr-4">
+                                <h4 class="text-lg font-semibold">中国移动香港</h4>
+                            </div>
+                            <p class="text-gray-600 text-sm mb-4">专注于提供高效的跨境通讯服务，适合需要频繁与内地联系的香港企业。</p>
+                            <a href="https://www.hk.chinamobile.com" target="_blank" class="text-primary text-sm font-medium hover:underline flex items-center">
+                                官方网站 <i class="fa fa-external-link ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 电话服务方案及费用 -->
+            <div>
+                <h3 class="text-xl font-semibold mb-6 text-center">主要服务方案及费用</h3>
+                
+                <div class="overflow-x-auto max-w-5xl mx-auto">
+                    <table class="w-full bg-white rounded-xl shadow-sm">
+                        <thead>
+                            <tr class="bg-gray-100 text-left">
+                                <th class="px-6 py-4 font-semibold">服务类型</th>
+                                <th class="px-6 py-4 font-semibold">主要特点</th>
+                                <th class="px-6 py-4 font-semibold">月费范围</th>
+                                <th class="px-6 py-4 font-semibold">适合企业</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <tr class="hover:bg-gray-50 transition-all">
+                                <td class="px-6 py-4 font-medium">传统固定电话</td>
+                                <td class="px-6 py-4">
+                                    <ul class="text-sm text-gray-600 space-y-1">
+                                        <li>• 实体电话线</li>
+                                        <li>• 基本通话功能</li>
+                                        <li>• 来电显示、转移</li>
+                                    </ul>
+                                </td>
+                                <td class="px-6 py-4">HK$150 - HK$300</td>
+                                <td class="px-6 py-4 text-sm">小型办公室、实体店</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50 transition-all">
+                                <td class="px-6 py-4 font-medium">IP电话系统</td>
+                                <td class="px-6 py-4">
+                                    <ul class="text-sm text-gray-600 space-y-1">
+                                        <li>• 基于互联网</li>
+                                        <li>• 多线支持、语音信箱</li>
+                                        <li>• 视频会议集成</li>
+                                    </ul>
+                                </td>
+                                <td class="px-6 py-4">HK$300 - HK$800</td>
+                                <td class="px-6 py-4 text-sm">中大型企业、多部门</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50 transition-all">
+                                <td class="px-6 py-4 font-medium">虚拟办公电话</td>
+                                <td class="px-6 py-4">
+                                    <ul class="text-sm text-gray-600 space-y-1">
+                                        <li>• 无需实体线路</li>
+                                        <li>• 可转接到任何电话</li>
+                                        <li>• 自动语音导航</li>
+                                    </ul>
+                                </td>
+                                <td class="px-6 py-4">HK$80 - HK$200</td>
+                                <td class="px-6 py-4 text-sm">初创企业、远程办公</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50 transition-all">
+                                <td class="px-6 py-4 font-medium">跨境商务电话</td>
+                                <td class="px-6 py-4">
+                                    <ul class="text-sm text-gray-600 space-y-1">
+                                        <li>• 含内地/国际通话套餐</li>
+                                        <li>• 多地区号码</li>
+                                        <li>• 低费率国际通话</li>
+                                    </ul>
+                                </td>
+                                <td class="px-6 py-4">HK$400 - HK$1,200</td>
+                                <td class="px-6 py-4 text-sm">有跨境业务的企业</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <p class="text-sm text-gray-500 text-center mt-4">注：费用仅供参考，具体价格可能因服务商、合约期限和附加服务而有所不同</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 香港域名注册服务 -->
+    <section id="domain-registry" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto text-center mb-12">
+                <h2 class="text-2xl md:text-3xl font-bold mb-4 text-dark">香港域名注册服务</h2>
+                <p class="text-gray-600">.hk域名及相关国际域名的注册管理机构与服务平台</p>
+            </div>
+            
+            <!-- 域名管理机构 -->
+            <div class="mb-16">
+                <h3 class="text-xl font-semibold mb-6 text-center">域名管理机构与注册平台</h3>
+                
+                <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                    <!-- HKIRC -->
+                    <div class="bg-light p-8 rounded-xl shadow-sm card-hover border border-gray-100">
+                        <div class="flex items-center mb-6">
+                            <img src="https://picsum.photos/id/4/80/80" alt="香港互联网注册管理有限公司标志" class="w-16 h-16 rounded mr-4">
+                            <div>
+                                <h4 class="text-lg font-semibold">香港互联网注册管理有限公司</h4>
+                                <p class="text-sm text-gray-500">HKIRC</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-4">.hk域名的官方管理机构，负责香港地区国家顶级域名的政策制定和管理，授权注册商提供域名注册服务。</p>
+                        <a href="https://www.hkirc.hk" target="_blank" class="text-primary text-sm font-medium hover:underline flex items-center">
+                            官方网站 <i class="fa fa-external-link ml-1"></i>
+                        </a>
+                    </div>
+                    
+                    <!-- 主要注册平台 -->
+                    <div class="bg-light p-8 rounded-xl shadow-sm card-hover border border-gray-100">
+                        <h4 class="text-lg font-semibold mb-4">主要授权注册平台</h4>
+                        <ul class="space-y-3 mb-4">
+                            <li class="flex items-center">
+                                <i class="fa fa-check-circle text-primary mr-2"></i>
+                                <div>
+                                    <span class="font-medium">GoDaddy</span>
+                                    <a href="https://www.godaddy.com" target="_blank" class="text-primary text-sm hover:underline ml-2">官网</a>
+                                </div>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fa fa-check-circle text-primary mr-2"></i>
+                                <div>
+                                    <span class="font-medium">Namecheap</span>
+                                    <a href="https://www.namecheap.com" target="_blank" class="text-primary text-sm hover:underline ml-2">官网</a>
+                                </div>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fa fa-check-circle text-primary mr-2"></i>
+                                <div>
+                                    <span class="font-medium">香港电讯域名服务</span>
+                                    <a href="https://www.hkt.com" target="_blank" class="text-primary text-sm hover:underline ml-2">官网</a>
+                                </div>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fa fa-check-circle text-primary mr-2"></i>
+                                <div>
+                                    <span class="font-medium">阿里云国际站</span>
+                                    <a href="https://www.alibabacloud.com" target="_blank" class="text-primary text-sm hover:underline ml-2">官网</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 域名注册费用 -->
+            <div>
+                <h3 class="text-xl font-semibold mb-6 text-center">域名注册费用对比</h3>
+                
+                <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+                    <!-- .hk域名 -->
+                    <div class="bg-white rounded-xl overflow-hidden shadow-sm card-hover border border-gray-100">
+                        <div class="p-6">
+                            <div class="text-center mb-4">
+                                <span class="inline-block bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium mb-2">香港本地域名</span>
+                                <h4 class="text-xl font-bold">.hk</h4>
+                            </div>
+                            
+                            <div class="text-center mb-6">
+                                <span class="text-3xl font-bold">HK$180</span>
+                                <span class="text-gray-500">/首年</span>
+                            </div>
+                            
+                            <ul class="space-y-2 text-sm text-gray-600 mb-6">
+                                <li class="flex items-start">
+                                    <i class="fa fa-check text-green-500 mt-1 mr-2"></i>
+                                    <span>续费约HK$220/年</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa fa-check text-green-500 mt-1 mr-2"></i>
+                                    <span>需提供香港公司/个人证明</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa fa-check text-green-500 mt-1 mr-2"></i>
+                                    <span>注册审核时间1-3个工作日</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa fa-check text-green-500 mt-1 mr-2"></i>
+                                    <span>支持IDN国际化域名</span>
+                                </li>
+                            </ul>
+                            
+                            <div class="text-center text-xs text-gray-500">
+                                价格参考自主要注册商，实际可能略有差异
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- .com域名 -->
+                    <div class="bg-white rounded-xl overflow-hidden shadow-sm card-hover border border-gray-100">
+                        <div class="p-6">
+                            <div class="text-center mb-4">
+                                <span class="inline-block bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm font-medium mb-2">国际通用域名</span>
+                                <h4 class="text-xl font-bold">.com</h4>
+                            </div>
+                            
+                            <div class="text-center mb-6">
+                                <span class="text-3xl font-bold">HK$150</span>
+                                <span class="text-gray-500">/首年</span>
+                            </div>
+                            
+                            <ul class="space-y-2 text-sm text-gray-600 mb-6">
+                                <li class="flex items-start">
+                                    <i class="fa fa-check text-green-500 mt-1 mr-2"></i>
+                                    <span>续费约HK$180/年</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa fa-check text-green-500 mt-1 mr-2"></i>
+                                    <span>无需本地证明文件</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa fa-check text-green-500 mt-1 mr-2"></i>
+                                    <span>即时注册，无需审核</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa fa-check text-green-500 mt-1 mr-2"></i>
+                                    <span>全球最常用域名后缀</span>
+                                </li>
+                            </ul>
+                            
+                            <div class="text-center text-xs text-gray-500">
+                                价格参考自主要注册商，实际可能略有差异
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- .com.hk域名 -->
+                    <div class="bg-white rounded-xl overflow-hidden shadow-sm card-hover border border-gray-100">
+                        <div class="p-6">
+                            <div class="text-center mb-4">
+                                <span class="inline-block bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium mb-2">香港企业域名</span>
+                                <h4 class="text-xl font-bold">.com.hk</h4>
+                            </div>
+                            
+                            <div class="text-center mb-6">
+                                <span class="text-3xl font-bold">HK$220</span>
+                                <span class="text-gray-500">/首年</span>
+                            </div>
+                            
+                            <ul class="space-y-2 text-sm text-gray-600 mb-6">
+                                <li class="flex items-start">
+                                    <i class="fa fa-check text-green-500 mt-1 mr-2"></i>
+                                    <span>续费约HK$260/年</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa fa-check text-green-500 mt-1 mr-2"></i>
+                                    <span>仅限公司注册，需商业登记证</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa fa-check text-green-500 mt-1 mr-2"></i>
+                                    <span>注册审核时间2-5个工作日</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa fa-check text-green-500 mt-1 mr-2"></i>
+                                    <span>增强香港企业形象</span>
+                                </li>
+                            </ul>
+                            
+                            <div class="text-center text-xs text-gray-500">
+                                价格参考自主要注册商，实际可能略有差异
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 方案对比分析 -->
+    <section id="comparison" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto text-center mb-12">
+                <h2 class="text-2xl md:text-3xl font-bold mb-4 text-dark">方案对比分析</h2>
+                <p class="text-gray-600">根据企业规模和需求选择最合适的通讯解决方案</p>
+            </div>
+            
+            <div class="max-w-5xl mx-auto">
+                <!-- 企业规模对比 -->
+                <div class="bg-white rounded-xl shadow-sm overflow-hidden mb-12">
+                    <div class="p-6 border-b border-gray-100">
+                        <h3 class="text-xl font-semibold">按企业规模推荐方案</h3>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-gray-100">
+                        <!-- 初创企业 -->
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center mr-3">
+                                    <i class="fa fa-seedling text-green-600"></i>
+                                </div>
+                                <h4 class="font-semibold">初创企业</h4>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <h5 class="text-sm font-medium text-gray-700 mb-2">推荐电话方案</h5>
+                                <p class="text-sm text-gray-600">虚拟办公电话<br>月费: HK$80-200</p>
+                            </div>
+                            
+                            <div>
+                                <h5 class="text-sm font-medium text-gray-700 mb-2">推荐域名方案</h5>
+                                <p class="text-sm text-gray-600">.com + .hk双域名<br>首年总费用: ~HK$330</p>
+                            </div>
+                            
+                            <div class="mt-4 pt-4 border-t border-gray-100">
+                                <p class="text-xs text-gray-500">优势：成本低，灵活性高，建立完整线上形象</p>
+                            </div>
+                        </div>
+                        
+                        <!-- 中小企业 -->
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                                    <i class="fa fa-building text-blue-600"></i>
+                                </div>
+                                <h4 class="font-semibold">中小企业</h4>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <h5 class="text-sm font-medium text-gray-700 mb-2">推荐电话方案</h5>
+                                <p class="text-sm text-gray-600">IP电话系统(3-10线)<br>月费: HK$300-600</p>
+                            </div>
+                            
+                            <div>
+                                <h5 class="text-sm font-medium text-gray-700 mb-2">推荐域名方案</h5>
+                                <p class="text-sm text-gray-600">.com.hk + .com + .hk<br>首年总费用: ~HK$550</p>
+                            </div>
+                            
+                            <div class="mt-4 pt-4 border-t border-gray-100">
+                                <p class="text-xs text-gray-500">优势：专业通讯系统，全面的品牌保护，适合团队协作</p>
+                            </div>
+                        </div>
+                        
+                        <!-- 大型企业 -->
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center mr-3">
+                                    <i class="fa fa-city text-purple-600"></i>
+                                </div>
+                                <h4 class="font-semibold">大型企业</h4>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <h5 class="text-sm font-medium text-gray-700 mb-2">推荐电话方案</h5>
+                                <p class="text-sm text-gray-600">企业级IP通讯系统<br>月费: HK$800-2,000+</p>
+                            </div>
+                            
+                            <div>
+                                <h5 class="text-sm font-medium text-gray-700 mb-2">推荐域名方案</h5>
+                                <p class="text-sm text-gray-600">全系列相关域名保护<br>首年总费用: ~HK$1,000+</p>
+                            </div>
+                            
+                            <div class="mt-4 pt-4 border-t border-gray-100">
+                                <p class="text-xs text-gray-500">优势：全方位通讯解决方案，完整品牌保护，全球通讯支持</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 服务商对比 -->
+                <div class="bg-white rounded-xl shadow-sm overflow-hidden">
+                    <div class="p-6 border-b border-gray-100">
+                        <h3 class="text-xl font-semibold">主要服务商综合对比</h3>
+                    </div>
+                    
+                    <div class="overflow-x-auto">
+                        <table class="w-full">
+                            <thead>
+                                <tr class="bg-gray-50 text-left">
+                                    <th class="px-6 py-4 font-semibold">服务商</th>
+                                    <th class="px-6 py-4 font-semibold">电话服务评分</th>
+                                    <th class="px-6 py-4 font-semibold">域名服务评分</th>
+                                    <th class="px-6 py-4 font-semibold">客户支持</th>
+                                    <th class="px-6 py-4 font-semibold">优势领域</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-100">
+                                <tr class="hover:bg-gray-50 transition-all">
+                                    <td class="px-6 py-4 font-medium">香港电讯</td>
+                                    <td class="px-6 py-4">
+                                        <div class="flex items-center">
+                                            <div class="text-yellow-400 flex mr-2">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star-half-o"></i>
+                                            </div>
+                                            <span class="text-sm text-gray-600">4.5/5</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <div class="flex items-center">
+                                            <div class="text-yellow-400 flex mr-2">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star-o"></i>
+                                            </div>
+                                            <span class="text-sm text-gray-600">4.0/5</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 text-sm">24/7电话及在线支持</td>
+                                    <td class="px-6 py-4 text-sm">稳定性、本地服务、企业方案</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50 transition-all">
+                                    <td class="px-6 py-4 font-medium">和记电讯</td>
+                                    <td class="px-6 py-4">
+                                        <div class="flex items-center">
+                                            <div class="text-yellow-400 flex mr-2">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star-o"></i>
+                                            </div>
+                                            <span class="text-sm text-gray-600">4.0/5</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <div class="flex items-center">
+                                            <div class="text-yellow-400 flex mr-2">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star-half-o"></i>
+                                                <i class="fa fa-star-o"></i>
+                                            </div>
+                                            <span class="text-sm text-gray-600">3.5/5</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 text-sm">工作日电话及在线支持</td>
+                                    <td class="px-6 py-4 text-sm">创新方案、跨境通讯、性价比</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50 transition-all">
+                                    <td class="px-6 py-4 font-medium">中国移动香港</td>
+                                    <td class="px-6 py-4">
+                                        <div class="flex items-center">
+                                            <div class="text-yellow-400 flex mr-2">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star-half-o"></i>
+                                                <i class="fa fa-star-o"></i>
+                                            </div>
+                                            <span class="text-sm text-gray-600">3.5/5</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <div class="flex items-center">
+                                            <div class="text-yellow-400 flex mr-2">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star-o"></i>
+                                                <i class="fa fa-star-o"></i>
+                                            </div>
+                                            <span class="text-sm text-gray-600">3.0/5</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 text-sm">电话及在线支持</td>
+                                    <td class="px-6 py-4 text-sm">中港通讯、内地业务对接</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50 transition-all">
+                                    <td class="px-6 py-4 font-medium">国际域名注册商</td>
+                                    <td class="px-6 py-4">-</td>
+                                    <td class="px-6 py-4">
+                                        <div class="flex items-center">
+                                            <div class="text-yellow-400 flex mr-2">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star-half-o"></i>
+                                            </div>
+                                            <span class="text-sm text-gray-600">4.5/5</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 text-sm">24/7在线支持</td>
+                                    <td class="px-6 py-4 text-sm">域名管理、全球服务、价格优势</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 注册流程 -->
+    <section id="process" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto text-center mb-12">
+                <h2 class="text-2xl md:text-3xl font-bold mb-4 text-dark">注册流程</h2>
+                <p class="text-gray-600">香港公司电话及域名注册的详细步骤指南</p>
+            </div>
+            
+            <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-12">
+                <!-- 公司电话注册流程 -->
+                <div>
+                    <div class="flex items-center mb-8">
+                        <div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center mr-4">
+                            <i class="fa fa-phone text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold">公司电话注册流程</h3>
+                    </div>
+                    
+                    <div class="space-y-6">
+                        <div class="flex">
+                            <div class="flex-shrink-0 w-8 h-8 bg-primary/10 text-primary rounded-full flex items-center justify-center font-bold mr-4 mt-1">1</div>
+                            <div>
+                                <h4 class="font-medium mb-1">选择服务商及方案</h4>
+                                <p class="text-sm text-gray-600">根据企业需求比较不同服务商的方案，选择最适合的电话服务类型和套餐。</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex">
+                            <div class="flex-shrink-0 w-8 h-8 bg-primary/10 text-primary rounded-full flex items-center justify-center font-bold mr-4 mt-1">2</div>
+                            <div>
+                                <h4 class="font-medium mb-1">提交申请及资料</h4>
+                                <p class="text-sm text-gray-600">填写服务申请表，提供公司注册证明、商业登记证、董事身份证明等文件。</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex">
+                            <div class="flex-shrink-0 w-8 h-8 bg-primary/10 text-primary rounded-full flex items-center justify-center font-bold mr-4 mt-1">3</div>
+                            <div>
+                                <h4 class="font-medium mb-1">审核与合约签署</h4>
+                                <p class="text-sm text-gray-600">服务商审核资料，通过后签署服务合约，确认服务期限和费用。</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex">
+                            <div class="flex-shrink-0 w-8 h-8 bg-primary/10 text-primary rounded-full flex items-center justify-center font-bold mr-4 mt-1">4</div>
+                            <div>
+                                <h4 class="font-medium mb-1">安装与设置</h4>
+                                <p class="text-sm text-gray-600">传统电话需安排上门安装，IP电话或虚拟电话可远程设置，通常1-5个工作日完成。</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex">
+                            <div class="flex-shrink-0 w-8 h-8 bg-primary/10 text-primary rounded-full flex items-center justify-center font-bold mr-4 mt-1">5</div>
+                            <div>
+                                <h4 class="font-medium mb-1">服务开通与测试</h4>
+                                <p class="text-sm text-gray-600">完成设置后开通服务，进行通话测试，确认所有功能正常使用。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 域名注册流程 -->
+                <div>
+                    <div class="flex items-center mb-8">
+                        <div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center mr-4">
+                            <i class="fa fa-globe text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold">域名注册流程</h3>
+                    </div>
+                    
+                    <div class="space-y-6">
+                        <div class="flex">
+                            <div class="flex-shrink-0 w-8 h-8 bg-primary/10 text-primary rounded-full flex items-center justify-center font-bold mr-4 mt-1">1</div>
+                            <div>
+                                <h4 class="font-medium mb-1">域名查询与选择</h4>
+                                <p class="text-sm text-gray-600">通过注册商平台查询所需域名是否可用，建议同时查询多个后缀。</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex">
+                            <div class="flex-shrink-0 w-8 h-8 bg-primary/10 text-primary rounded-full flex items-center justify-center font-bold mr-4 mt-1">2</div>
+                            <div>
+                                <h4 class="font-medium mb-1">选择注册商并提交资料</h4>
+                                <p class="text-sm text-gray-600">选择合适的注册商，提交公司资料（.hk/.com.hk域名需要香港公司证明）。</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex">
+                            <div class="flex-shrink-0 w-8 h-8 bg-primary/10 text-primary rounded-full flex items-center justify-center font-bold mr-4 mt-1">3</div>
+                            <div>
+                                <h4 class="font-medium mb-1">支付注册费用</h4>
+                                <p class="text-sm text-gray-600">根据所选域名和注册年限支付相应费用，支持多种支付方式。</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex">
+                            <div class="flex-shrink-0 w-8 h-8 bg-primary/10 text-primary rounded-full flex items-center justify-center font-bold mr-4 mt-1">4</div>
+                            <div>
+                                <h4 class="font-medium mb-1">域名审核（如需要）</h4>
+                                <p class="text-sm text-gray-600">.hk和.com.hk域名需要通过HKIRC审核，通常1-3个工作日完成。</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex">
+                            <div class="flex-shrink-0 w-8 h-8 bg-primary/10 text-primary rounded-full flex items-center justify-center font-bold mr-4 mt-1">5</div>
+                            <div>
+                                <h4 class="font-medium mb-1">域名生效与管理</h4>
+                                <p class="text-sm text-gray-600">审核通过后域名正式生效，可通过注册商提供的管理平台进行DNS设置等操作。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 常见问题 -->
+    <section id="faq" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto text-center mb-12">
+                <h2 class="text-2xl md:text-3xl font-bold mb-4 text-dark">常见问题</h2>
+                <p class="text-gray-600">香港公司电话及域名注册的常见疑问解答</p>
+            </div>
+            
+            <div class="max-w-3xl mx-auto space-y-4">
+                <!-- 问题1 -->
+                <div class="border border-gray-200 rounded-lg overflow-hidden bg-white">
+                    <button class="faq-toggle w-full flex justify-between items-center p-5 text-left hover:bg-gray-50 transition-all">
+                        <span class="font-medium">非香港公司可以申请香港电话号码吗？</span>
+                        <i class="fa fa-chevron-down text-gray-500 transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content hidden p-5 pt-0 border-t border-gray-100 text-gray-600">
+                        可以。非香港公司也可以申请香港电话号码，但需要提供公司注册证明（经公证）、董事身份证明以及香港本地联络地址。部分服务商可能对非香港公司有额外要求或限制。
+                    </div>
+                </div>
+                
+                <!-- 问题2 -->
+                <div class="border border-gray-200 rounded-lg overflow-hidden bg-white">
+                    <button class="faq-toggle w-full flex justify-between items-center p-5 text-left hover:bg-gray-50 transition-all">
+                        <span class="font-medium">个人可以注册.com.hk域名吗？</span>
+                        <i class="fa fa-chevron-down text-gray-500 transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content hidden p-5 pt-0 border-t border-gray-100 text-gray-600">
+                        不可以。.com.hk域名仅限香港注册公司申请，需要提供有效的香港商业登记证。个人可以注册.hk域名，但需要提供香港身份证作为证明文件。
+                    </div>
+                </div>
+                
+                <!-- 问题3 -->
+                <div class="border border-gray-200 rounded-lg overflow-hidden bg-white">
+                    <button class="faq-toggle w-full flex justify-between items-center p-5 text-left hover:bg-gray-50 transition-all">
+                        <span class="font-medium">香港电话号码可以转接到内地手机吗？</span>
+                        <i class="fa fa-chevron-down text-gray-500 transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content hidden p-5 pt-0 border-t border-gray-100 text-gray-600">
+                        可以。大多数香港电话服务商都提供来电转接功能，可以将香港号码转接到内地手机或固定电话。部分套餐包含一定的转接分钟数，超出部分可能会产生额外费用，具体需咨询服务商。
+                    </div>
+                </div>
+                
+                <!-- 问题4 -->
+                <div class="border border-gray-200 rounded-lg overflow-hidden bg-white">
+                    <button class="faq-toggle w-full flex justify-between items-center p-5 text-left hover:bg-gray-50 transition-all">
+                        <span class="font-medium">域名注册后可以更改所有人信息吗？</span>
+                        <i class="fa fa-chevron-down text-gray-500 transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content hidden p-5 pt-0 border-t border-gray-100 text-gray-600">
+                        可以更改域名所有人信息，但需要通过注册商提交变更申请并提供相关证明文件。对于.hk和.com.hk域名，变更所有人可能需要重新审核，并且可能产生一定的行政费用。建议在注册时仔细核对信息，减少后续修改。
+                    </div>
+                </div>
+                
+                <!-- 问题5 -->
+                <div class="border border-gray-200 rounded-lg overflow-hidden bg-white">
+                    <button class="faq-toggle w-full flex justify-between items-center p-5 text-left hover:bg-gray-50 transition-all">
+                        <span class="font-medium">香港电话服务需要签订长期合约吗？</span>
+                        <i class="fa fa-chevron-down text-gray-500 transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content hidden p-5 pt-0 border-t border-gray-100 text-gray-600">
+                        这取决于服务商和方案类型。传统固定电话通常需要签订1-2年的合约，而IP电话和虚拟电话服务可能提供更灵活的月付方案。长期合约通常会有一定的价格优惠，但提前终止可能需要支付违约金。
+                    </div>
+                </div>
+                
+                <!-- 问题6 -->
+                <div class="border border-gray-200 rounded-lg overflow-hidden bg-white">
+                    <button class="faq-toggle w-full flex justify-between items-center p-5 text-left hover:bg-gray-50 transition-all">
+                        <span class="font-medium">如何选择适合企业的香港域名？</span>
+                        <i class="fa fa-chevron-down text-gray-500 transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content hidden p-5 pt-0 border-t border-gray-100 text-gray-600">
+                        选择香港域名时应考虑：1) 与公司名称一致或相关，便于记忆；2) 同时注册.com和.hk/.com.hk域名，保护品牌；3) 对于主要面向香港市场的企业，优先考虑.hk或.com.hk；4) 对于国际业务较多的企业，.com域名更为通用。建议注册多个相关域名，避免品牌被滥用。
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 调研总结 -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto text-center mb-12">
+                <h2 class="text-2xl md:text-3xl font-bold mb-4 text-dark">调研总结</h2>
+                <p class="text-gray-600">香港公司电话及域名注册的核心要点</p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto bg-light p-8 rounded-xl shadow-sm">
+                <ul class="space-y-4">
+                    <li class="flex items-start">
+                        <i class="fa fa-check-circle text-green-500 mt-1 mr-3 text-lg"></i>
+                        <p class="text-gray-700">香港提供多元化的企业电话解决方案，从低成本的虚拟电话到高端的企业IP通讯系统，可满足不同规模企业需求。</p>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fa fa-check-circle text-green-500 mt-1 mr-3 text-lg"></i>
+                        <p class="text-gray-700">.hk和.com.hk域名能有效提升企业在香港市场的可信度，但注册需要满足特定条件并经过审核。</p>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fa fa-check-circle text-green-500 mt-1 mr-3 text-lg"></i>
+                        <p class="text-gray-700">建议企业同时注册国际域名(.com)和香港本地域名，既拓展国际市场又兼顾本地业务。</p>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fa fa-check-circle text-green-500 mt-1 mr-3 text-lg"></i>
+                        <p class="text-gray-700">选择服务商时，需综合考虑服务稳定性、价格、客户支持及企业未来发展需求，特别是有跨境业务的企业应关注跨境通讯能力。</p>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fa fa-check-circle text-green-500 mt-1 mr-3 text-lg"></i>
+                        <p class="text-gray-700">注册前需准备齐全相关文件，尤其是香港本地域名和电话服务，提前准备可加快审核流程。</p>
+                    </li>
+                </ul>
+                
+                <div class="mt-8 pt-6 border-t border-gray-200 text-center">
+                    <p class="text-gray-600">根据企业规模和业务需求选择合适的方案，可有效控制成本同时建立专业的商业形象</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-dark text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <i class="fa fa-building text-primary text-2xl"></i>
+                        <h3 class="text-xl font-bold">香港商业服务调研</h3>
+                    </div>
+                    <p class="text-gray-400 text-sm">提供香港公司电话及域名注册的专业调研分析，助力企业做出明智决策。</p>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-medium mb-4">快速导航</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#phone-service" class="hover:text-primary transition-all">公司电话服务</a></li>
+                        <li><a href="#domain-registry" class="hover:text-primary transition-all">域名注册服务</a></li>
+                        <li><a href="#comparison" class="hover:text-primary transition-all">方案对比分析</a></li>
+                        <li><a href="#process" class="hover:text-primary transition-all">注册流程</a></li>
+                        <li><a href="#faq" class="hover:text-primary transition-all">常见问题</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-medium mb-4">相关资源</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="https://www.hkirc.hk" target="_blank" class="hover:text-primary transition-all">HKIRC官方网站</a></li>
+                        <li><a href="https://www.hkt.com" target="_blank" class="hover:text-primary transition-all">香港电讯</a></li>
+                        <li><a href="https://www.godaddy.com" target="_blank" class="hover:text-primary transition-all">GoDaddy域名注册</a></li>
+                        <li><a href="https://www.namecheap.com" target="_blank" class="hover:text-primary transition-all">Namecheap</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-medium mb-4">联系我们</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li class="flex items-center">
+                            <i class="fa fa-envelope-o mr-2"></i>
+                            <a href="mailto:info@example.com" class="hover:text-primary transition-all">info@example.com</a>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa fa-phone mr-2"></i>
+                            <span>+852 1234 5678</span>
+                        </li>
+                    </ul>
+                    
+                    <div class="mt-4 flex space-x-4">
+                        <a href="#" class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition-all">
+                            <i class="fa fa-facebook"></i>
+                        </a>
+                        <a href="#" class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition-all">
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                        <a href="#" class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition-all">
+                            <i class="fa fa-linkedin"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8 text-center text-gray-500 text-sm">
+                <p>&copy; 2023 香港商业服务调研. 本调研仅供参考，具体服务请以供应商提供信息为准。</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 返回顶部按钮 -->
+    <button id="backToTop" class="fixed bottom-8 right-8 bg-primary text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg opacity-0 invisible transition-all duration-300 hover:bg-primary/90">
+        <i class="fa fa-chevron-up"></i>
+    </button>
+
+    <script>
+        // 移动端菜单切换
+        document.getElementById('menuToggle').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // FAQ 折叠功能
+        document.querySelectorAll('.faq-toggle').forEach(toggle => {
+            toggle.addEventListener('click', function() {
+                const content = this.nextElementSibling;
+                const icon = this.querySelector('i');
+                
+                // 切换当前FAQ的显示状态
+                content.classList.toggle('hidden');
+                icon.classList.toggle('rotate-180');
+                
+                // 关闭其他打开的FAQ
+                document.querySelectorAll('.faq-toggle').forEach(otherToggle => {
+                    if (otherToggle !== toggle) {
+                        const otherContent = otherToggle.nextElementSibling;
+                        const otherIcon = otherToggle.querySelector('i');
+                        
+                        if (!otherContent.classList.contains('hidden')) {
+                            otherContent.classList.add('hidden');
+                            otherIcon.classList.remove('rotate-180');
+                        }
+                    }
+                });
+            });
+        });
+        
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    // 关闭移动端菜单（如果打开）
+                    document.getElementById('mobileMenu').classList.add('hidden');
+                    
+                    // 滚动到目标位置
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // 返回顶部按钮
+        const backToTopButton = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove('opacity-0', 'invisible');
+                backToTopButton.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopButton.classList.remove('opacity-100', 'visible');
+                backToTopButton.classList.add('opacity-0', 'invisible');
+            }
+            
+            // 导航栏滚动效果
+            const header = document.querySelector('header');
+            if (window.pageYOffset > 50) {
+                header.classList.add('py-2');
+                header.classList.remove('py-4');
+            } else {
+                header.classList.add('py-4');
+                header.classList.remove('py-2');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+</html>
+    
