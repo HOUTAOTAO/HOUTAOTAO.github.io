@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>香港中成药包装法规及注册流程</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1e40af',
+                        secondary: '#3b82f6',
+                        accent: '#60a5fa',
+                        neutral: '#f3f4f6',
+                        dark: '#1e293b'
+                    },
+                    fontFamily: {
+                        sans: ['Noto Sans TC', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .section-fade {
+                scroll-margin-top: 80px;
+            }
+            .nav-active {
+                @apply bg-primary text-white;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-gray-50 font-sans text-gray-800">
+    <!-- 顶部导航栏 -->
+    <header class="sticky top-0 z-50 bg-white shadow-md transition-all duration-300" id="navbar">
+        <div class="container mx-auto px-4 py-3 flex flex-wrap items-center justify-between">
+            <h1 class="text-xl md:text-2xl font-bold text-primary flex items-center">
+                <i class="fa fa-medkit mr-2"></i>
+                香港中成药包装法规
+            </h1>
+            
+            <!-- 移动端菜单按钮 -->
+            <button id="menu-toggle" class="md:hidden text-gray-600 focus:outline-none">
+                <i class="fa fa-bars text-xl"></i>
+            </button>
+            
+            <!-- 导航链接 - 桌面端 -->
+            <nav class="hidden md:flex w-full md:w-auto mt-4 md:mt-0" id="main-nav">
+                <ul class="flex flex-col md:flex-row md:space-x-1 w-full">
+                    <li><a href="#intro" class="nav-link block px-4 py-2 rounded hover:bg-gray-100 transition-colors">概述</a></li>
+                    <li><a href="#regulations" class="nav-link block px-4 py-2 rounded hover:bg-gray-100 transition-colors">核心法规</a></li>
+                    <li><a href="#requirements" class="nav-link block px-4 py-2 rounded hover:bg-gray-100 transition-colors">设计要求</a></li>
+                    <li><a href="#process" class="nav-link block px-4 py-2 rounded hover:bg-gray-100 transition-colors">注册流程</a></li>
+                    <li><a href="#timeline" class="nav-link block px-4 py-2 rounded hover:bg-gray-100 transition-colors">时间费用</a></li>
+                    <li><a href="#advice" class="nav-link block px-4 py-2 rounded hover:bg-gray-100 transition-colors">合规建议</a></li>
+                    <li><a href="#resources" class="nav-link block px-4 py-2 rounded hover:bg-gray-100 transition-colors">官方资源</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 主要内容 -->
+    <main class="container mx-auto px-4 py-8">
+        <!-- 概述部分 -->
+        <section id="intro" class="mb-16 section-fade">
+            <div class="bg-white rounded-xl shadow-lg p-6 md:p-8">
+                <div class="flex items-center mb-6">
+                    <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white mr-4">
+                        <i class="fa fa-info-circle text-2xl"></i>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold text-gray-800">概述</h2>
+                </div>
+                
+                <p class="text-gray-700 leading-relaxed mb-4">
+                    根据香港《中医药条例》（第549章）及相关规例，中成药外包装的设计及变更需严格遵循法规要求及注册流程。所有在香港销售的中成药必须完成注册并获得HKP/HKC编号，外包装必须清晰标注相关信息。
+                </p>
+                
+                <div class="bg-blue-50 border-l-4 border-primary p-4 rounded-r my-6">
+                    <p class="text-gray-700"><i class="fa fa-exclamation-circle text-primary mr-2"></i>
+                    违反标签规定最高可处10万港元罚款及监禁2年，务必确保包装设计符合所有法规要求。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 核心法规依据 -->
+        <section id="regulations" class="mb-16 section-fade">
+            <div class="bg-white rounded-xl shadow-lg p-6 md:p-8">
+                <div class="flex items-center mb-6">
+                    <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white mr-4">
+                        <i class="fa fa-gavel text-2xl"></i>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold text-gray-800">核心法规依据</h2>
+                </div>
+                
+                <div class="space-y-6">
+                    <div class="border-b border-gray-200 pb-4">
+                        <h3 class="text-xl font-semibold text-primary mb-2">《中医药条例》及附属规例</h3>
+                        <ul class="list-disc pl-6 text-gray-700 space-y-2">
+                            <li>所有中成药必须完成注册并获得HKP/HKC编号方可销售，外包装必须标注注册编号</li>
+                            <li>标签及说明书需符合《中药规例》第26-28条要求，包括药品名称、主要有效成分、生产地、用量、失效日期等，且需以中文为主</li>
+                            <li>违反标签规定最高可处10万港元罚款及监禁2年</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="border-b border-gray-200 pb-4">
+                        <h3 class="text-xl font-semibold text-primary mb-2">《不良医药广告条例》（第231章）</h3>
+                        <p class="text-gray-700">外包装不得含有虚假或误导性宣传，如未经批准的疗效声称。</p>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-xl font-semibold text-primary mb-2">环保及包装材料要求</h3>
+                        <p class="text-gray-700">包装材料需符合药用标准，具备防潮、防污染等保护功能，鼓励使用可回收材料。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 外包装设计关键要求 -->
+        <section id="requirements" class="mb-16 section-fade">
+            <div class="bg-white rounded-xl shadow-lg p-6 md:p-8">
+                <div class="flex items-center mb-6">
+                    <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white mr-4">
+                        <i class="fa fa-list-alt text-2xl"></i>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold text-gray-800">外包装设计关键要求</h2>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-xl font-semibold text-primary mb-3 flex items-center">
+                            <i class="fa fa-tag mr-2"></i>标签内容
+                        </h3>
+                        <div class="mb-4">
+                            <h4 class="font-medium text-gray-800 mb-2">必须包含：</h4>
+                            <ul class="list-disc pl-6 text-gray-700 space-y-1">
+                                <li>药品名称</li>
+                                <li>主要有效成分（3种以下全列，3种以上列超过半数）</li>
+                                <li>注册编号</li>
+                                <li>生产地</li>
+                                <li>用量及用法</li>
+                                <li>失效日期</li>
+                                <li>批次编号</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-medium text-gray-800 mb-2">可选内容：</h4>
+                            <p class="text-gray-700">功能主治、禁忌、副作用等需与注册申报内容一致，不得超出说明书范围。</p>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-xl font-semibold text-primary mb-3 flex items-center">
+                            <i class="fa fa-book mr-2"></i>说明书要求
+                        </h3>
+                        <p class="text-gray-700 mb-4">需随包装提供，列明功能主治、药理作用、禁忌、副作用、贮存条件等，且内容需与标签一致。</p>
+                        
+                        <h3 class="text-xl font-semibold text-primary mb-3 flex items-center">
+                            <i class="fa fa-font mr-2"></i>字体与格式
+                        </h3>
+                        <ul class="list-disc pl-6 text-gray-700 space-y-1">
+                            <li>通用名称需显著突出，字体颜色与背景形成强烈反差，不得使用草书或装饰性字体</li>
+                            <li>商品名称字体不得大于通用名称的1/2</li>
+                            <li>注册商标需印在边角且字体不超过通用名称的1/4</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 包装变更分类及处理流程 -->
+        <section id="process" class="mb-16 section-fade">
+            <div class="bg-white rounded-xl shadow-lg p-6 md:p-8">
+                <div class="flex items-center mb-6">
+                    <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white mr-4">
+                        <i class="fa fa-refresh text-2xl"></i>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold text-gray-800">包装变更分类及处理流程</h2>
+                </div>
+                
+                <h3 class="text-xl font-semibold text-primary mb-4">变更分类</h3>
+                <div class="grid md:grid-cols-2 gap-6 mb-8">
+                    <div class="bg-blue-50 p-5 rounded-lg border border-blue-100">
+                        <h4 class="font-bold text-primary mb-2">实质性变更</h4>
+                        <p class="text-gray-700">涉及成分、适应症、用法用量、规格等核心信息修改，需向CMCHK提交补充申请并通过技术审评。</p>
+                    </div>
+                    <div class="bg-green-50 p-5 rounded-lg border border-green-100">
+                        <h4 class="font-bold text-green-700 mb-2">非实质性变更</h4>
+                        <p class="text-gray-700">仅外观调整（如颜色、图案、字体大小），需确保不影响标签内容准确性，建议提交备案。</p>
+                    </div>
+                </div>
+                
+                <h3 class="text-xl font-semibold text-primary mb-4">注册流程</h3>
+                <div class="mb-6">
+                    <h4 class="font-medium text-gray-800 mb-3">申请材料：</h4>
+                    <ul class="list-disc pl-6 text-gray-700 space-y-2 mb-4">
+                        <li>填写《更改注册中成药的注册详情申请书》（DH0044表格）</li>
+                        <li>修订后的标签及说明书样稿（需标注变更内容及依据）</li>
+                        <li>药学研究资料（如稳定性试验数据，证明变更不影响药品质量）</li>
+                        <li>原注册证书副本及相关批文</li>
+                    </ul>
+                </div>
+                
+                <div class="mb-6">
+                    <h4 class="font-medium text-gray-800 mb-3">审批流程：</h4>
+                    <div class="relative">
+                        <!-- 时间线 -->
+                        <div class="absolute h-full w-0.5 bg-gray-200 left-3 top-0"></div>
+                        
+                        <div class="relative pl-10 pb-6">
+                            <div class="absolute w-6 h-6 rounded-full bg-primary text-white flex items-center justify-center left-0">1</div>
+                            <h5 class="font-semibold text-gray-800">提交申请</h5>
+                            <p class="text-gray-700">提交申请至卫生署中医药规管办公室。</p>
+                        </div>
+                        
+                        <div class="relative pl-10 pb-6">
+                            <div class="absolute w-6 h-6 rounded-full bg-primary text-white flex items-center justify-center left-0">2</div>
+                            <h5 class="font-semibold text-gray-800">缴纳费用</h5>
+                            <p class="text-gray-700">缴纳申请费用（具体金额需咨询CMCHK）。</p>
+                        </div>
+                        
+                        <div class="relative pl-10 pb-6">
+                            <div class="absolute w-6 h-6 rounded-full bg-primary text-white flex items-center justify-center left-0">3</div>
+                            <h5 class="font-semibold text-gray-800">技术审评</h5>
+                            <p class="text-gray-700">约3-6个月，可能要求补充资料或样品测试。</p>
+                        </div>
+                        
+                        <div class="relative pl-10">
+                            <div class="absolute w-6 h-6 rounded-full bg-primary text-white flex items-center justify-center left-0">4</div>
+                            <h5 class="font-semibold text-gray-800">获批更新</h5>
+                            <p class="text-gray-700">获批后更新注册证书，旧包装需在规定过渡期内替换。</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <h3 class="text-xl font-semibold text-primary mb-3">特殊情形</h3>
+                <div class="space-y-3 text-gray-700">
+                    <div>
+                        <span class="font-medium">委托生产：</span>
+                        若委托GMP药厂生产，需确保受托方资质合规，并在申请中说明委托关系。
+                    </div>
+                    <div>
+                        <span class="font-medium">出口包装：</span>
+                        仅出口的中成药可豁免说明书，但标签仍需标注名称、注册编号及持有人信息。
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 时间与费用参考 -->
+        <section id="timeline" class="mb-16 section-fade">
+            <div class="bg-white rounded-xl shadow-lg p-6 md:p-8">
+                <div class="flex items-center mb-6">
+                    <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white mr-4">
+                        <i class="fa fa-clock-o text-2xl"></i>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold text-gray-800">时间与费用参考</h2>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-gray-50 p-6 rounded-lg">
+                        <h3 class="text-xl font-semibold text-primary mb-4 flex items-center">
+                            <i class="fa fa-calendar mr-2"></i>处理时间
+                        </h3>
+                        <ul class="space-y-3 text-gray-700">
+                            <li class="flex items-start">
+                                <i class="fa fa-circle text-xs text-primary mt-1.5 mr-2"></i>
+                                <span><strong>实质性变更：</strong>约6-12个月</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-circle text-xs text-primary mt-1.5 mr-2"></i>
+                                <span><strong>非实质性变更：</strong>约3-6个月</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-gray-50 p-6 rounded-lg">
+                        <h3 class="text-xl font-semibold text-primary mb-4 flex items-center">
+                            <i class="fa fa-money mr-2"></i>费用
+                        </h3>
+                        <ul class="space-y-3 text-gray-700">
+                            <li class="flex items-start">
+                                <i class="fa fa-circle text-xs text-primary mt-1.5 mr-2"></i>
+                                <span><strong>注册申请费：</strong>约数千元（具体以CMCHK最新公告为准）</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-circle text-xs text-primary mt-1.5 mr-2"></i>
+                                <span><strong>其他费用：</strong>若涉及补充试验或第三方检测，费用另计</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 合规建议 -->
+        <section id="advice" class="mb-16 section-fade">
+            <div class="bg-white rounded-xl shadow-lg p-6 md:p-8">
+                <div class="flex items-center mb-6">
+                    <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white mr-4">
+                        <i class="fa fa-lightbulb-o text-2xl"></i>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold text-gray-800">合规建议</h2>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="border border-gray-200 rounded-lg p-5 hover:shadow-md transition-shadow">
+                        <div class="text-primary text-3xl mb-4">
+                            <i class="fa fa-line-chart"></i>
+                        </div>
+                        <h3 class="font-semibold text-lg mb-2">风险评估</h3>
+                        <p class="text-gray-700">建议委托专业机构评估变更类型，避免因误判实质性变更导致违法。</p>
+                    </div>
+                    
+                    <div class="border border-gray-200 rounded-lg p-5 hover:shadow-md transition-shadow">
+                        <div class="text-primary text-3xl mb-4">
+                            <i class="fa fa-exchange"></i>
+                        </div>
+                        <h3 class="font-semibold text-lg mb-2">过渡期管理</h3>
+                        <p class="text-gray-700">获批后需在CMCHK规定时间内完成旧包装替换，避免新旧包装同时流通。</p>
+                    </div>
+                    
+                    <div class="border border-gray-200 rounded-lg p-5 hover:shadow-md transition-shadow">
+                        <div class="text-primary text-3xl mb-4">
+                            <i class="fa fa-file-text"></i>
+                        </div>
+                        <h3 class="font-semibold text-lg mb-2">记录保存</h3>
+                        <p class="text-gray-700">保留所有变更申请文件、检测报告及沟通记录至少5年，以备监管检查。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 官方资源 -->
+        <section id="resources" class="mb-16 section-fade">
+            <div class="bg-white rounded-xl shadow-lg p-6 md:p-8">
+                <div class="flex items-center mb-6">
+                    <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white mr-4">
+                        <i class="fa fa-link text-2xl"></i>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold text-gray-800">官方资源</h2>
+                </div>
+                
+                <div class="space-y-4">
+                    <div class="flex items-start p-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+                        <div class="text-primary text-xl mt-0.5 mr-4">
+                            <i class="fa fa-file-pdf-o"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-gray-800">申请表格</h3>
+                            <p class="text-gray-700 mb-2">可从卫生署中医药规管办公室官网下载《更改注册中成药的注册详情申请书》。</p>
+                            <a href="https://www.cmchk.gov.hk" target="_blank" class="text-primary hover:text-secondary flex items-center inline-flex">
+                                访问官网 <i class="fa fa-external-link ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start p-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+                        <div class="text-primary text-xl mt-0.5 mr-4">
+                            <i class="fa fa-book"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-gray-800">技术指引</h3>
+                            <p class="text-gray-700 mb-2">参考《中成药生产质量管理规范指引》及《标签及说明书技术指南》。</p>
+                            <a href="https://www.dh.gov.hk" target="_blank" class="text-primary hover:text-secondary flex items-center inline-flex">
+                                卫生署官网 <i class="fa fa-external-link ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-8 bg-amber-50 p-5 rounded-lg border border-amber-100">
+                    <p class="text-gray-700 flex items-start">
+                        <i class="fa fa-hand-pointer-o text-amber-600 mt-1 mr-3 text-lg"></i>
+                        建议在启动设计前与CMCHK直接沟通，确保方案符合最新法规要求。
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="bg-dark text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <p class="text-gray-400">&copy; 2023 香港中成药包装法规指南</p>
+                    <p class="text-gray-500 text-sm mt-1">本资料仅供参考，具体请以官方最新规定为准</p>
+                </div>
+                
+                <div class="flex space-x-6">
+                    <a href="https://www.dh.gov.hk" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fa fa-globe text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fa fa-envelope text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fa fa-phone text-xl"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 返回顶部按钮 -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 bg-primary text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg opacity-0 invisible transition-all duration-300 hover:bg-primary/90">
+        <i class="fa fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // 导航菜单切换（移动端）
+        const menuToggle = document.getElementById('menu-toggle');
+        const mainNav = document.getElementById('main-nav');
+        
+        menuToggle.addEventListener('click', () => {
+            mainNav.classList.toggle('hidden');
+        });
+        
+        // 导航链接激活状态
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const backToTopBtn = document.getElementById('back-to-top');
+        const navbar = document.getElementById('navbar');
+        
+        window.addEventListener('scroll', () => {
+            // 导航栏滚动效果
+            if (window.scrollY > 50) {
+                navbar.classList.add('py-2', 'shadow-lg');
+                navbar.classList.remove('py-3', 'shadow-md');
+            } else {
+                navbar.classList.add('py-3', 'shadow-md');
+                navbar.classList.remove('py-2', 'shadow-lg');
+            }
+            
+            // 显示/隐藏返回顶部按钮
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.remove('opacity-0', 'invisible');
+                backToTopBtn.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopBtn.classList.add('opacity-0', 'invisible');
+                backToTopBtn.classList.remove('opacity-100', 'visible');
+            }
+            
+            // 更新导航链接激活状态
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (window.scrollY >= sectionTop - 150) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('nav-active');
+                if (link.getAttribute('href').substring(1) === current) {
+                    link.classList.add('nav-active');
+                }
+            });
+        });
+        
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // 移动端点击导航后关闭菜单
+                if (window.innerWidth < 768) {
+                    mainNav.classList.add('hidden');
+                }
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // 返回顶部功能
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+</html>

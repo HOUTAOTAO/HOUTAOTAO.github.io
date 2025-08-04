@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中药厂项目建设费用基准图表</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@2.1.1/dist/chartjs-plugin-annotation.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            color: #333;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(120deg, #2c7a5a, #1a5632);
+            color: white;
+            padding: 30px 40px;
+            text-align: center;
+            position: relative;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        .project-info {
+            display: flex;
+            justify-content: space-around;
+            background: #e8f5e9;
+            padding: 20px;
+            font-size: 1rem;
+            border-bottom: 1px solid #c8e6c9;
+            flex-wrap: wrap;
+        }
+        
+        .info-item {
+            text-align: center;
+            padding: 8px 15px;
+            min-width: 200px;
+        }
+        
+        .info-item strong {
+            color: #2c7a5a;
+            font-size: 1.2rem;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .content-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 25px;
+            gap: 25px;
+        }
+        
+        .chart-container {
+            flex: 1;
+            min-width: 400px;
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        
+        .chart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+        
+        .chart-header h2 {
+            color: #2c7a5a;
+            font-size: 1.8rem;
+        }
+        
+        .chart-wrapper {
+            height: 350px;
+            position: relative;
+        }
+        
+        .baseline-cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .card {
+            flex: 1;
+            min-width: 250px;
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            border-left: 5px solid #2c7a5a;
+        }
+        
+        .card h3 {
+            color: #666;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .card h3 i {
+            margin-right: 10px;
+            color: #2c7a5a;
+        }
+        
+        .card .value {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #2c7a5a;
+            text-align: right;
+        }
+        
+        .card .sub-value {
+            font-size: 1rem;
+            color: #888;
+            text-align: right;
+            margin-top: 5px;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        
+        .comparison-table th {
+            background: #2c7a5a;
+            color: white;
+            text-align: left;
+            padding: 15px;
+            font-weight: 600;
+        }
+        
+        .comparison-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        .comparison-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .comparison-table .category {
+            font-weight: 600;
+            color: #2c7a5a;
+        }
+        
+        .comparison-table .baseline {
+            text-align: right;
+            font-weight: 600;
+            color: #2c7a5a;
+        }
+        
+        .comparison-table .variance {
+            text-align: right;
+            width: 100px;
+        }
+        
+        .positive {
+            color: #4CAF50;
+        }
+        
+        .negative {
+            color: #F44336;
+        }
+        
+        .neutral {
+            color: #9E9E9E;
+        }
+        
+        .progress-cell {
+            width: 200px;
+        }
+        
+        .progress-container {
+            height: 10px;
+            background: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            border-radius: 5px;
+        }
+        
+        .baseline-notes {
+            background: #e3f2fd;
+            border-radius: 10px;
+            padding: 25px;
+            margin-top: 30px;
+            border-left: 5px solid #2196F3;
+        }
+        
+        .baseline-notes h3 {
+            color: #1976d2;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .baseline-notes h3 i {
+            margin-right: 10px;
+        }
+        
+        .baseline-notes ul {
+            padding-left: 25px;
+            margin-top: 15px;
+        }
+        
+        .baseline-notes li {
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+        
+        .baseline-notes li strong {
+            color: #0d47a1;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 25px;
+            color: #666;
+            font-size: 1rem;
+            background: #f5f5f5;
+            border-top: 1px solid #eee;
+        }
+        
+        @media (max-width: 1100px) {
+            .content-wrapper {
+                flex-direction: column;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            header {
+                padding: 20px 15px;
+            }
+            h1 {
+                font-size: 2rem;
+            }
+            .subtitle {
+                font-size: 1rem;
+            }
+            .project-info {
+                flex-direction: column;
+                align-items: center;
+            }
+            .info-item {
+                margin-bottom: 10px;
+            }
+            .chart-container {
+                min-width: 100%;
+            }
+            .comparison-table {
+                font-size: 0.9rem;
+            }
+            .comparison-table th, .comparison-table td {
+                padding: 8px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-chart-line"></i> 中药厂项目建设费用基准图表</h1>
+            <p class="subtitle">香港济岁堂中药厂有限公司 - 厂房购买、装修到GMP认证全流程费用基准</p>
+        </header>
+        
+        <div class="project-info">
+            <div class="info-item">
+                <strong>总预算基准</strong>
+                ¥15,800,000
+            </div>
+            <div class="info-item">
+                <strong>最大单项基准</strong>
+                厂房购置 (¥8,200,000)
+            </div>
+            <div class="info-item">
+                <strong>预备费用</strong>
+                ¥1,200,000
+            </div>
+            <div class="info-item">
+                <strong>基准周期</strong>
+                240天 (8个月)
+            </div>
+        </div>
+        
+        <div class="content-wrapper">
+            <div class="baseline-cards">
+                <div class="card">
+                    <h3><i class="fas fa-bullseye"></i> 预算基准</h3>
+                    <div class="value">¥15,800,000</div>
+                    <div class="sub-value">经董事会批准的基准</div>
+                </div>
+                <div class="card">
+                    <h3><i class="fas fa-tachometer-alt"></i> 当前执行</h3>
+                    <div class="value">¥5,200,000</div>
+                    <div class="sub-value">基准达成率 32.9%</div>
+                </div>
+                <div class="card">
+                    <h3><i class="fas fa-balance-scale"></i> 费用偏差</h3>
+                    <div class="value">+¥120,000</div>
+                    <div class="sub-value">较基准偏差 +0.76%</div>
+                </div>
+                <div class="card">
+                    <h3><i class="fas fa-shield-alt"></i> 预备金使用</h3>
+                    <div class="value">¥0</div>
+                    <div class="sub-value">尚未使用预备金</div>
+                </div>
+            </div>
+            
+            <div class="chart-container">
+                <div class="chart-header">
+                    <h2><i class="fas fa-chart-line"></i> 费用基准S曲线</h2>
+                </div>
+                <div class="chart-wrapper">
+                    <canvas id="baselineChart"></canvas>
+                </div>
+            </div>
+            
+            <div class="chart-container">
+                <div class="chart-header">
+                    <h2><i class="fas fa-chart-bar"></i> 基准与实际对比</h2>
+                </div>
+                <div class="chart-wrapper">
+                    <canvas id="comparisonChart"></canvas>
+                </div>
+            </div>
+            
+            <div style="flex: 100%;">
+                <div class="chart-header">
+                    <h2><i class="fas fa-table"></i> 费用基准对比分析</h2>
+                </div>
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>费用类别</th>
+                            <th>基准预算</th>
+                            <th>实际支出</th>
+                            <th>偏差金额</th>
+                            <th>偏差率</th>
+                            <th>基准达成率</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="category">厂房购置</td>
+                            <td class="baseline">¥8,200,000</td>
+                            <td class="baseline">¥3,800,000</td>
+                            <td class="variance neutral">-¥4,400,000</td>
+                            <td class="variance neutral">-53.7%</td>
+                            <td>
+                                <div class="progress-container">
+                                    <div class="progress-bar" style="width: 46%; background: #4CAF50;"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="category">设备采购</td>
+                            <td class="baseline">¥4,500,000</td>
+                            <td class="baseline">¥1,200,000</td>
+                            <td class="variance neutral">-¥3,300,000</td>
+                            <td class="variance neutral">-73.3%</td>
+                            <td>
+                                <div class="progress-container">
+                                    <div class="progress-bar" style="width: 27%; background: #2196F3;"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="category">装修工程</td>
+                            <td class="baseline">¥1,500,000</td>
+                            <td class="baseline">¥200,000</td>
+                            <td class="variance neutral">-¥1,300,000</td>
+                            <td class="variance neutral">-86.7%</td>
+                            <td>
+                                <div class="progress-container">
+                                    <div class="progress-bar" style="width: 13%; background: #FF9800;"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="category">GMP认证筹备</td>
+                            <td class="baseline">¥1,000,000</td>
+                            <td class="baseline">¥0</td>
+                            <td class="variance neutral">-¥1,000,000</td>
+                            <td class="variance neutral">-100%</td>
+                            <td>
+                                <div class="progress-container">
+                                    <div class="progress-bar" style="width: 0%; background: #9C27B0;"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="category">项目管理</td>
+                            <td class="baseline">¥600,000</td>
+                            <td class="baseline">¥500,000</td>
+                            <td class="variance positive">-¥100,000</td>
+                            <td class="variance positive">-16.7%</td>
+                            <td>
+                                <div class="progress-container">
+                                    <div class="progress-bar" style="width: 83%; background: #F44336;"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="category">预备费用</td>
+                            <td class="baseline">¥1,200,000</td>
+                            <td class="baseline">¥0</td>
+                            <td class="variance neutral">¥0</td>
+                            <td class="variance neutral">0%</td>
+                            <td>
+                                <div class="progress-container">
+                                    <div class="progress-bar" style="width: 0%; background: #607D8B;"></div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr style="background: #e8f5e9; font-weight: 600;">
+                            <td>总计</td>
+                            <td class="baseline">¥15,800,000</td>
+                            <td class="baseline">¥5,200,000</td>
+                            <td class="variance neutral">-¥10,600,000</td>
+                            <td class="variance neutral">-67.1%</td>
+                            <td>
+                                <div class="progress-container">
+                                    <div class="progress-bar" style="width: 32.9%; background: #2c7a5a;"></div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+            
+            <div class="baseline-notes">
+                <h3><i class="fas fa-clipboard-check"></i> 费用基准管理说明</h3>
+                <p>本费用基准经董事会批准，作为项目成本控制的基准线，用于衡量项目成本绩效。</p>
+                <ul>
+                    <li><strong>基准定义</strong>：费用基准是经批准的项目预算计划，包含所有已批准的变更</li>
+                    <li><strong>基准控制</strong>：实际支出与基准的偏差超过5%时需要报告，超过10%需要申请变更</li>
+                    <li><strong>当前状态</strong>：项目处于前期阶段，费用支出符合基准预期，厂房购置完成46%</li>
+                    <li><strong>关键风险点</strong>：设备采购进度滞后，需关注供应链风险</li>
+                    <li><strong>基准变更原则</strong>：重大设计变更、不可抗力因素或政策变化可申请基准调整</li>
+                </ul>
+            </div>
+        </div>
+        
+        <footer>
+            <p>香港济岁堂中药厂有限公司 | 中成药GMP建设项目费用基准 | 基准批准日期: 2025年6月15日</p>
+            <p>注：此费用基准作为项目成本控制的基准线，未经正式变更程序不得修改</p>
+        </footer>
+    </div>
+
+    <script>
+        // 初始化费用基准图表
+        document.addEventListener('DOMContentLoaded', function() {
+            // 注册插件
+            Chart.register(ChartAnnotation);
+            
+            // 费用基准S曲线
+            const baselineCtx = document.getElementById('baselineChart').getContext('2d');
+            const baselineChart = new Chart(baselineCtx, {
+                type: 'line',
+                data: {
+                    labels: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月'],
+                    datasets: [
+                        {
+                            label: '计划支出基准',
+                            data: [800, 4200, 6800, 9800, 12800, 14800, 15600, 15800],
+                            borderColor: '#2c7a5a',
+                            backgroundColor: 'rgba(44, 122, 90, 0.1)',
+                            borderWidth: 3,
+                            fill: true,
+                            tension: 0.3
+                        },
+                        {
+                            label: '实际支出',
+                            data: [800, 2500, 3800, 5200, null, null, null, null],
+                            borderColor: '#2196F3',
+                            backgroundColor: 'rgba(33, 150, 243, 0.1)',
+                            borderWidth: 3,
+                            borderDash: [5, 5],
+                            pointRadius: 6,
+                            pointBackgroundColor: '#2196F3'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: '累计费用 (万元)'
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: '项目时间'
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        annotation: {
+                            annotations: {
+                                baselineLabel: {
+                                    type: 'label',
+                                    content: ['费用基准: ¥15,800,000'],
+                                    position: {
+                                        x: '95%',
+                                        y: '5%'
+                                    },
+                                    backgroundColor: 'rgba(44, 122, 90, 0.8)',
+                                    color: 'white',
+                                    font: {
+                                        size: 14,
+                                        weight: 'bold'
+                                    },
+                                    borderRadius: 4,
+                                    padding: 10
+                                },
+                                currentPoint: {
+                                    type: 'point',
+                                    xValue: '4月',
+                                    yValue: 5200,
+                                    backgroundColor: '#2196F3',
+                                    radius: 8,
+                                    borderWidth: 2,
+                                    borderColor: 'white'
+                                },
+                                currentLabel: {
+                                    type: 'label',
+                                    content: ['当前支出: ¥5,200,000'],
+                                    position: {
+                                        x: '4月',
+                                        y: 5200
+                                    },
+                                    xAdjust: 100,
+                                    yAdjust: -30,
+                                    backgroundColor: 'rgba(33, 150, 243, 0.8)',
+                                    color: 'white',
+                                    font: {
+                                        size: 12
+                                    },
+                                    padding: 8,
+                                    borderRadius: 4
+                                },
+                                phase1: {
+                                    type: 'box',
+                                    xMin: '1月',
+                                    xMax: '2月',
+                                    backgroundColor: 'rgba(76, 175, 80, 0.1)',
+                                    borderColor: 'rgba(76, 175, 80, 0.5)',
+                                    borderWidth: 1,
+                                    label: {
+                                        display: true,
+                                        content: '厂房购置',
+                                        position: 'start',
+                                        backgroundColor: 'rgba(76, 175, 80, 0.7)',
+                                        color: 'white',
+                                        padding: 5
+                                    }
+                                },
+                                phase2: {
+                                    type: 'box',
+                                    xMin: '2月',
+                                    xMax: '4月',
+                                    backgroundColor: 'rgba(33, 150, 243, 0.1)',
+                                    borderColor: 'rgba(33, 150, 243, 0.5)',
+                                    borderWidth: 1,
+                                    label: {
+                                        display: true,
+                                        content: '设备采购',
+                                        position: 'start',
+                                        backgroundColor: 'rgba(33, 150, 243, 0.7)',
+                                        color: 'white',
+                                        padding: 5
+                                    }
+                                },
+                                phase3: {
+                                    type: 'box',
+                                    xMin: '5月',
+                                    xMax: '8月',
+                                    backgroundColor: 'rgba(156, 39, 176, 0.1)',
+                                    borderColor: 'rgba(156, 39, 176, 0.5)',
+                                    borderWidth: 1,
+                                    label: {
+                                        display: true,
+                                        content: 'GMP认证',
+                                        position: 'start',
+                                        backgroundColor: 'rgba(156, 39, 176, 0.7)',
+                                        color: 'white',
+                                        padding: 5
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // 基准与实际对比柱状图
+            const comparisonCtx = document.getElementById('comparisonChart').getContext('2d');
+            const comparisonChart = new Chart(comparisonCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['厂房购置', '设备采购', '装修工程', 'GMP筹备', '项目管理', '预备费用'],
+                    datasets: [
+                        {
+                            label: '基准预算',
+                            data: [820, 450, 150, 100, 60, 120],
+                            backgroundColor: 'rgba(44, 122, 90, 0.7)',
+                            borderColor: 'rgba(44, 122, 90, 1)',
+                            borderWidth: 1
+                        },
+                        {
+                            label: '实际支出',
+                            data: [380, 120, 20, 0, 50, 0],
+                            backgroundColor: 'rgba(33, 150, 243, 0.7)',
+                            borderColor: 'rgba(33, 150, 243, 1)',
+                            borderWidth: 1
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: '费用金额 (万元)'
+                            }
+                        }
+                    },
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `${context.dataset.label}: ¥${context.raw}万`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
