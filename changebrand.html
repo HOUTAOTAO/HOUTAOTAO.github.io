@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>香港中成药品牌转换与包装设计流程指南</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            padding: 30px 20px;
+            background: linear-gradient(120deg, #0d47a1, #2196f3);
+            color: white;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 20px rgba(13, 71, 161, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><polygon points="0,100 100,0 100,100" fill="rgba(255,255,255,0.1)"/></svg>');
+            background-size: cover;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            position: relative;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+        
+        .overview {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        
+        .overview h2 {
+            color: #0d47a1;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .overview h2 i {
+            margin-right: 10px;
+            background: #e3f2fd;
+            width: 40px;
+            height: 40px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+        
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .card {
+            background: #f8fbff;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            border: 1px solid #e1e8f0;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(33, 150, 243, 0.15);
+        }
+        
+        .card h3 {
+            color: #1565c0;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .card h3 i {
+            margin-right: 10px;
+            background: #bbdefb;
+            width: 30px;
+            height: 30px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 0.9rem;
+        }
+        
+        .process-flow {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        
+        .flow-steps {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            position: relative;
+            margin: 40px 0;
+        }
+        
+        .step {
+            background: #e3f2fd;
+            border: 2px solid #bbdefb;
+            border-radius: 12px;
+            padding: 20px;
+            width: 220px;
+            margin: 0 10px 50px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .step:after {
+            content: "➔";
+            position: absolute;
+            bottom: -35px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 24px;
+            color: #64b5f6;
+        }
+        
+        .step:last-child:after {
+            display: none;
+        }
+        
+        .step-number {
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            background: #2196f3;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        .step h4 {
+            color: #0d47a1;
+            margin-bottom: 10px;
+        }
+        
+        .timeline {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        
+        .timeline-container {
+            position: relative;
+            padding: 40px 0;
+        }
+        
+        .timeline-line {
+            position: absolute;
+            left: 50px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: #2196f3;
+            border-radius: 2px;
+        }
+        
+        .timeline-item {
+            display: flex;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .timeline-icon {
+            width: 50px;
+            height: 50px;
+            background: #2196f3;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+            margin-right: 30px;
+            z-index: 2;
+        }
+        
+        .timeline-content {
+            background: #f5f9ff;
+            border-radius: 10px;
+            padding: 20px;
+            flex: 1;
+            border-left: 3px solid #2196f3;
+        }
+        
+        .timeline-content h4 {
+            color: #0d47a1;
+            margin-bottom: 8px;
+        }
+        
+        .time-period {
+            background: #e3f2fd;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            display: inline-block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: #1565c0;
+        }
+        
+        .notes {
+            background: #fff8e1;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            border-left: 5px solid #ffc107;
+        }
+        
+        .notes h2 {
+            color: #ff8f00;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .notes h2 i {
+            margin-right: 10px;
+            background: #ffecb3;
+            width: 40px;
+            height: 40px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            color: #ff8f00;
+        }
+        
+        .note-item {
+            display: flex;
+            margin-bottom: 15px;
+            align-items: flex-start;
+        }
+        
+        .note-item i {
+            color: #ff8f00;
+            font-size: 1.2rem;
+            margin-right: 15px;
+            margin-top: 5px;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .flow-steps {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .step {
+                margin-bottom: 60px;
+            }
+            
+            .step:after {
+                content: "↓";
+                bottom: -45px;
+            }
+            
+            .timeline-line {
+                left: 25px;
+            }
+            
+            .timeline-icon {
+                margin-right: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-pills"></i> 香港中成药品牌转换与包装设计流程指南</h1>
+            <p class="subtitle">全面解析品牌转换、外包装设计及商品条码办理的详细流程、关键节点与时间安排</p>
+        </header>
+        
+        <section class="overview">
+            <h2><i class="fas fa-clipboard-list"></i> 流程概览</h2>
+            <p>香港中成药品牌转换及包装变更需严格遵循《中医药条例》规定，整体流程约需20-24周完成。以下是四个主要阶段：</p>
+            
+            <div class="cards-container">
+                <div class="card">
+                    <h3><i class="fas fa-palette"></i> 品牌与包装设计</h3>
+                    <p><strong>周期：4-8周</strong></p>
+                    <ul>
+                        <li>品牌策略与商标查重</li>
+                        <li>包装设计与合规审查</li>
+                        <li>设计定稿与打样</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3><i class="fas fa-file-contract"></i> 注册变更申请</h3>
+                    <p><strong>周期：8-12周</strong></p>
+                    <ul>
+                        <li>准备申请文件</li>
+                        <li>提交中医药事务部</li>
+                        <li>技术评估与批准</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3><i class="fas fa-barcode"></i> 商品条码申请</h3>
+                    <p><strong>周期：1-2周</strong></p>
+                    <ul>
+                        <li>GS1香港会员申请</li>
+                        <li>获取厂商识别码</li>
+                        <li>生成产品GTIN条码</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3><i class="fas fa-industry"></i> 生产与上市</h3>
+                    <p><strong>周期：3-4周</strong></p>
+                    <ul>
+                        <li>包装印刷与生产</li>
+                        <li>质量检测与签样</li>
+                        <li>上市备案与销售</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <section class="process-flow">
+            <h2><i class="fas fa-sitemap"></i> 详细流程与关键节点</h2>
+            
+            <div class="flow-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h4>品牌定位与策略</h4>
+                    <ul>
+                        <li>商标查重与注册</li>
+                        <li>包装设计初稿</li>
+                        <li>文案内容策划</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h4>包装合规审查</h4>
+                    <ul>
+                        <li>强制标注内容审核</li>
+                        <li>设计规范检查</li>
+                        <li>法规符合性确认</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h4>注册变更申请</h4>
+                    <ul>
+                        <li>填写表格17</li>
+                        <li>提交新旧包装对比</li>
+                        <li>支付审批费用</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h4>商品条码办理</h4>
+                    <ul>
+                        <li>申请GS1会员</li>
+                        <li>获取厂商识别码</li>
+                        <li>生成产品条码</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <h4>包装生产</h4>
+                    <ul>
+                        <li>选择合格印刷厂</li>
+                        <li>首件签样(FA)</li>
+                        <li>条码印刷检测</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">6</div>
+                    <h4>上市准备</h4>
+                    <ul>
+                        <li>提交包装样本备案</li>
+                        <li>更新标签数据库</li>
+                        <li>市场推广准备</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <section class="timeline">
+            <h2><i class="fas fa-calendar-alt"></i> 时间安排与节点</h2>
+            
+            <div class="timeline-container">
+                <div class="timeline-line"></div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fas fa-rocket"></i></div>
+                    <div class="timeline-content">
+                        <span class="time-period">第1周</span>
+                        <h4>项目启动</h4>
+                        <p>确定品牌策略，开始商标查重（香港知识产权署TMsearch系统）</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fas fa-drafting-compass"></i></div>
+                    <div class="timeline-content">
+                        <span class="time-period">第2-5周</span>
+                        <h4>包装设计阶段</h4>
+                        <p>完成包装初稿设计，进行合规性内部审查，准备设计说明文件</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fas fa-file-medical"></i></div>
+                    <div class="timeline-content">
+                        <span class="time-period">第6周</span>
+                        <h4>提交注册变更申请</h4>
+                        <p>向卫生署中医药事务部提交表格17及全套申请文件（HKD $1,046）</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fas fa-search"></i></div>
+                    <div class="timeline-content">
+                        <span class="time-period">第7-14周</span>
+                        <h4>技术评估阶段</h4>
+                        <p>卫生署进行形式审查和技术评估，可能需要补充材料</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fas fa-barcode"></i></div>
+                    <div class="timeline-content">
+                        <span class="time-period">第15周</span>
+                        <h4>条码申请</h4>
+                        <p>获得变更批准后，立即向GS1香港申请商品条码（HKD $2,000+）</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fas fa-print"></i></div>
+                    <div class="timeline-content">
+                        <span class="time-period">第16-18周</span>
+                        <h4>包装印刷生产</h4>
+                        <p>选择ISO 15378认证印刷厂，完成首件签样和条码验证</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fas fa-database"></i></div>
+                    <div class="timeline-content">
+                        <span class="time-period">第19周</span>
+                        <h4>上市备案</h4>
+                        <p>向卫生署提交3份最终包装样本，更新药品标签数据库</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fas fa-store"></i></div>
+                    <div class="timeline-content">
+                        <span class="time-period">第20周</span>
+                        <h4>正式上市销售</h4>
+                        <p>新产品上市，旧包装需在批准后6个月内清空库存</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="notes">
+            <h2><i class="fas fa-exclamation-triangle"></i> 重要注意事项</h2>
+            
+            <div class="note-item">
+                <i class="fas fa-ban"></i>
+                <div>
+                    <h4>合规性要求</h4>
+                    <p>未经批准使用新包装属刑事罪行（最高罚款$10万及监禁2年）。必须包含：香港注册编号（HKC-XXXXX/HKP-XXXXX）、成分、功效、用法用量、禁忌、生产批号、有效期及持证人信息。</p>
+                </div>
+            </div>
+            
+            <div class="note-item">
+                <i class="fas fa-ruler-combined"></i>
+                <div>
+                    <h4>设计规范</h4>
+                    <p>字体高度：英文≥1.5mm，中文≥2mm；禁用"治愈""根治"等绝对化用语；须标注"注册中成药"字样；条码尺寸≥32×25mm且左侧留白≥3.63mm。</p>
+                </div>
+            </div>
+            
+            <div class="note-item">
+                <i class="fas fa-globe-asia"></i>
+                <div>
+                    <h4>跨境销售</h4>
+                    <p>计划进入内地市场需额外申请中国药品电子监管码（中国物品编码中心），预留额外4-6周时间。</p>
+                </div>
+            </div>
+            
+            <div class="note-item">
+                <i class="fas fa-lightbulb"></i>
+                <div>
+                    <h4>专业建议</h4>
+                    <p>委托香港持牌中成药顾问公司（费用HKD $5-8万）可减少合规风险。卫生署提供预审服务（电话：+85221211888）。</p>
+                </div>
+            </div>
+        </section>
+        
+        <footer>
+            <p>© 2023 香港中成药合规指南 | 资料依据：《中医药条例》（第549章）、《商品说明条例》（第362章）及GS1 Hong Kong规范</p>
+            <p>注：以上时间表为预估时间，实际执行可能因个案情况而有所不同，建议预留10-15%缓冲时间</p>
+        </footer>
+    </div>
+</body>
+</html>
