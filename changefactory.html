@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>香港中成药转工厂办理指南</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f0f8ff 0%, #e6f7ff 100%);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            padding: 30px 20px;
+            background: linear-gradient(120deg, #0066cc, #0099cc);
+            color: white;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 20px rgba(0, 102, 204, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><polygon points="0,100 100,0 100,100" fill="rgba(255,255,255,0.1)"/></svg>');
+            background-size: cover;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            position: relative;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+        
+        .summary {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            border-left: 5px solid #0066cc;
+        }
+        
+        .summary h2 {
+            color: #0066cc;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .summary h2 i {
+            margin-right: 10px;
+            background: #e6f2ff;
+            width: 40px;
+            height: 40px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+        
+        .requirements {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        
+        .requirements h2 {
+            color: #0066cc;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .requirements h2 i {
+            margin-right: 10px;
+            background: #e6f2ff;
+            width: 40px;
+            height: 40px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+        
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .card {
+            background: #f0f8ff;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            border: 1px solid #cce6ff;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 153, 204, 0.15);
+        }
+        
+        .card h3 {
+            color: #004d99;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .card h3 i {
+            margin-right: 10px;
+            background: #b3d9ff;
+            width: 30px;
+            height: 30px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 0.9rem;
+        }
+        
+        .process-flow {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        
+        .flow-steps {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            position: relative;
+            margin: 40px 0;
+        }
+        
+        .step {
+            background: #e6f2ff;
+            border: 2px solid #b3d9ff;
+            border-radius: 12px;
+            padding: 20px;
+            width: 220px;
+            margin: 0 10px 50px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .step:after {
+            content: "➔";
+            position: absolute;
+            bottom: -35px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 24px;
+            color: #66b3ff;
+        }
+        
+        .step:last-child:after {
+            display: none;
+        }
+        
+        .step-number {
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            background: #0066cc;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        .step h4 {
+            color: #004d99;
+            margin-bottom: 10px;
+        }
+        
+        .timeline {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        
+        .timeline-container {
+            position: relative;
+            padding: 40px 0;
+        }
+        
+        .timeline-line {
+            position: absolute;
+            left: 50px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: #0099cc;
+            border-radius: 2px;
+        }
+        
+        .timeline-item {
+            display: flex;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .timeline-icon {
+            width: 50px;
+            height: 50px;
+            background: #0099cc;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+            margin-right: 30px;
+            z-index: 2;
+        }
+        
+        .timeline-content {
+            background: #f0f8ff;
+            border-radius: 10px;
+            padding: 20px;
+            flex: 1;
+            border-left: 3px solid #0099cc;
+        }
+        
+        .timeline-content h4 {
+            color: #004d99;
+            margin-bottom: 8px;
+        }
+        
+        .time-period {
+            background: #e6f2ff;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            display: inline-block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: #0066cc;
+        }
+        
+        .notes {
+            background: #fff8e1;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            border-left: 5px solid #ff9900;
+        }
+        
+        .notes h2 {
+            color: #cc7a00;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .notes h2 i {
+            margin-right: 10px;
+            background: #ffecb3;
+            width: 40px;
+            height: 40px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            color: #cc7a00;
+        }
+        
+        .note-item {
+            display: flex;
+            margin-bottom: 15px;
+            align-items: flex-start;
+        }
+        
+        .note-item i {
+            color: #ff9900;
+            font-size: 1.2rem;
+            margin-right: 15px;
+            margin-top: 5px;
+        }
+        
+        .comparison {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        
+        .comparison h2 {
+            color: #0066cc;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .comparison h2 i {
+            margin-right: 10px;
+            background: #e6f2ff;
+            width: 40px;
+            height: 40px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        th {
+            background-color: #e6f2ff;
+            color: #004d99;
+            font-weight: 600;
+        }
+        
+        tr:hover {
+            background-color: #f5fbff;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .flow-steps {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .step {
+                margin-bottom: 60px;
+            }
+            
+            .step:after {
+                content: "↓";
+                bottom: -45px;
+            }
+            
+            .timeline-line {
+                left: 25px;
+            }
+            
+            .timeline-icon {
+                margin-right: 15px;
+            }
+            
+            table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-industry"></i> 香港中成药转工厂办理指南</h1>
+            <p class="subtitle">全面解析转工厂要求、关键节点与时间安排</p>
+        </header>
+        
+        <section class="summary">
+            <h2><i class="fas fa-clipboard-list"></i> 流程概览</h2>
+            <p>根据香港《中医药条例》（第549章），中成药制造商变更属于重大变更，需重新审批。整体流程约需24-30周完成。主要阶段如下：</p>
+            
+            <div class="cards-container">
+                <div class="card">
+                    <h3><i class="fas fa-search"></i> 前期准备</h3>
+                    <p><strong>周期：4-6周</strong></p>
+                    <ul>
+                        <li>新工厂资质审核</li>
+                        <li>GMP符合性评估</li>
+                        <li>工艺转移方案制定</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3><i class="fas fa-flask"></i> 工艺验证</h3>
+                    <p><strong>周期：8-12周</strong></p>
+                    <ul>
+                        <li>三批次工艺验证</li>
+                        <li>稳定性测试</li>
+                        <li>质量对比研究</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3><i class="fas fa-file-alt"></i> 申请提交</h3>
+                    <p><strong>周期：6-8周</strong></p>
+                    <ul>
+                        <li>准备申请文件</li>
+                        <li>提交卫生署中医药事务部</li>
+                        <li>技术审评</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3><i class="fas fa-check-circle"></i> 批准与实施</h3>
+                    <p><strong>周期：6-8周</strong></p>
+                    <ul>
+                        <li>现场检查</li>
+                        <li>最终批准</li>
+                        <li>产品转移</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <section class="requirements">
+            <h2><i class="fas fa-clipboard-check"></i> 新工厂基本要求</h2>
+            
+            <div class="cards-container">
+                <div class="card">
+                    <h3><i class="fas fa-certificate"></i> 资质要求</h3>
+                    <ul>
+                        <li>香港GMP认证（或同等认证）</li>
+                        <li>有效商业登记证</li>
+                        <li>中成药生产许可证</li>
+                        <li>质量管理体系认证</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3><i class="fas fa-building"></i> 设施要求</h3>
+                    <ul>
+                        <li>独立中成药生产区域</li>
+                        <li>符合要求的仓储条件</li>
+                        <li>完善的检验实验室</li>
+                        <li>环境控制系统</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3><i class="fas fa-cogs"></i> 体系要求</h3>
+                    <ul>
+                        <li>完善的GMP文件体系</li>
+                        <li>完整的变更控制程序</li>
+                        <li>偏差处理系统</li>
+                        <li>供应商管理体系</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3><i class="fas fa-user-tie"></i> 人员要求</h3>
+                    <ul>
+                        <li>注册药剂师驻厂</li>
+                        <li>合格的质量负责人</li>
+                        <li>培训合格的操作人员</li>
+                        <li>专业技术人员配置</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <section class="process-flow">
+            <h2><i class="fas fa-sitemap"></i> 转工厂办理流程</h2>
+            
+            <div class="flow-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h4>工厂评估</h4>
+                    <ul>
+                        <li>资质文件审核</li>
+                        <li>GMP符合性评估</li>
+                        <li>现场初步考察</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h4>工艺转移方案</h4>
+                    <ul>
+                        <li>制定详细转移计划</li>
+                        <li>确定关键工艺参数</li>
+                        <li>风险评估</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h4>工艺验证</h4>
+                    <ul>
+                        <li>三批次试生产</li>
+                        <li>工艺验证报告</li>
+                        <li>质量对比研究</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h4>文件准备</h4>
+                    <ul>
+                        <li>填写表格17A</li>
+                        <li>准备验证报告</li>
+                        <li>稳定性研究数据</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <h4>申请提交</h4>
+                    <ul>
+                        <li>提交中医药事务部</li>
+                        <li>支付申请费用</li>
+                        <li>技术审评</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">6</div>
+                    <h4>现场检查</h4>
+                    <ul>
+                        <li>GMP现场检查</li>
+                        <li>工艺符合性确认</li>
+                        <li>问题整改</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">7</div>
+                    <h4>批准实施</h4>
+                    <ul>
+                        <li>获得批准通知书</li>
+                        <li>产品转移</li>
+                        <li>上市销售</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <section class="timeline">
+            <h2><i class="fas fa-calendar-alt"></i> 时间安排与节点</h2>
+            
+            <div class="timeline-container">
+                <div class="timeline-line"></div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fas fa-search"></i></div>
+                    <div class="timeline-content">
+                        <span class="time-period">第1-4周</span>
+                        <h4>新工厂评估</h4>
+                        <p>审核工厂资质文件，进行GMP符合性评估，完成现场考察报告</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fas fa-tasks"></i></div>
+                    <div class="timeline-content">
+                        <span class="time-period">第5-8周</span>
+                        <h4>工艺转移方案制定</h4>
+                        <p>制定详细工艺转移方案，进行风险评估，确定关键工艺参数</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fas fa-flask"></i></div>
+                    <div class="timeline-content">
+                        <span class="time-period">第9-18周</span>
+                        <h4>工艺验证与测试</h4>
+                        <p>完成三批次试生产，进行质量对比研究，启动稳定性测试</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fas fa-file-alt"></i></div>
+                    <div class="timeline-content">
+                        <span class="time-period">第19-22周</span>
+                        <h4>申请文件准备</h4>
+                        <p>准备表格17A及全套申请文件，包括验证报告和稳定性数据</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fas fa-paper-plane"></i></div>
+                    <div class="timeline-content">
+                        <span class="time-period">第23周</span>
+                        <h4>申请提交</h4>
+                        <p>向卫生署中医药事务部提交申请（费用：HKD $15,000）</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fas fa-search-plus"></i></div>
+                    <div class="timeline-content">
+                        <span class="time-period">第24-28周</span>
+                        <h4>技术审评</h4>
+                        <p>卫生署进行文件审评，可能要求补充资料或说明</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fas fa-hard-hat"></i></div>
+                    <div class="timeline-content">
+                        <span class="time-period">第29-30周</span>
+                        <h4>现场检查</h4>
+                        <p>GMP现场检查，确认生产工艺和质量控制符合要求</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fas fa-check-double"></i></div>
+                    <div class="timeline-content">
+                        <span class="time-period">第31周</span>
+                        <h4>最终批准</h4>
+                        <p>获得批准通知书，完成产品转移，开始上市销售</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="comparison">
+            <h2><i class="fas fa-balance-scale"></i> 新旧工厂要求对比</h2>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>项目</th>
+                        <th>原工厂要求</th>
+                        <th>新工厂要求</th>
+                        <th>注意事项</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>GMP认证</td>
+                        <td>香港GMP有效</td>
+                        <td>香港GMP或同等认证</td>
+                        <td>需提供认证文件英文版</td>
+                    </tr>
+                    <tr>
+                        <td>生产工艺</td>
+                        <td>已批准工艺</td>
+                        <td>需重新验证</td>
+                        <td>三批次工艺验证报告</td>
+                    </tr>
+                    <tr>
+                        <td>质量标准</td>
+                        <td>原注册标准</td>
+                        <td>不得低于原标准</td>
+                        <td>需质量对比研究</td>
+                    </tr>
+                    <tr>
+                        <td>包装材料</td>
+                        <td>已批准材料</td>
+                        <td>可保持不变</td>
+                        <td>需重新备案</td>
+                    </tr>
+                    <tr>
+                        <td>稳定性数据</td>
+                        <td>原注册数据</td>
+                        <td>6个月加速试验</td>
+                        <td>需承诺继续长期试验</td>
+                    </tr>
+                    <tr>
+                        <td>申请费用</td>
+                        <td>不适用</td>
+                        <td>HKD $15,000</td>
+                        <td>2024年标准</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        
+        <section class="notes">
+            <h2><i class="fas fa-exclamation-triangle"></i> 重要注意事项</h2>
+            
+            <div class="note-item">
+                <i class="fas fa-ban"></i>
+                <div>
+                    <h4>法规要求</h4>
+                    <p>根据《中医药条例》第15条，未经批准擅自变更制造商属违法行为，最高可处罚款$100,000及监禁2年。新工厂必须符合GMP要求并具备同等生产能力。</p>
+                </div>
+            </div>
+            
+            <div class="note-item">
+                <i class="fas fa-file-contract"></i>
+                <div>
+                    <h4>申请文件</h4>
+                    <p>必须提交表格17A、新工厂GMP证书、工艺验证报告、三批样品检验报告、稳定性研究报告、质量对比研究、新工厂质量体系文件清单及新旧工厂对比表。</p>
+                </div>
+            </div>
+            
+            <div class="note-item">
+                <i class="fas fa-flask"></i>
+                <div>
+                    <h4>质量对比研究</h4>
+                    <p>需对三批新厂产品与一批原厂产品进行质量对比，包括性状、鉴别、含量测定、溶出度（如适用）、杂质谱等关键质量指标，证明质量一致性。</p>
+                </div>
+            </div>
+            
+            <div class="note-item">
+                <i class="fas fa-globe-asia"></i>
+                <div>
+                    <h4>跨境生产</h4>
+                    <p>如新工厂位于内地，需同时满足中国GMP要求并提供NMPA相关证明文件。香港卫生署可能要求提供内地监管部门出具的GMP符合性证明。</p>
+                </div>
+            </div>
+        </section>
+        
+        <footer>
+            <p>© 2023 香港中成药合规指南 | 资料依据：《中医药条例》（第549章）及《中成药注册申请手册》</p>
+            <p>注：以上时间表为预估时间，实际执行可能因个案情况而有所不同，建议预留20%缓冲时间</p>
+            <p>卫生署中医药事务部咨询电话：+852 2121 1888 | 官网：https://www.cmchk.org.hk</p>
+        </footer>
+    </div>
+</body>
+</html>
