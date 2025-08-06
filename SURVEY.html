@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大陆中成药赴香港注册法规调研报告</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2c5f2d;
+            --secondary: #5a8f5c;
+            --accent: #d4af37;
+            --light: #f0f7e9;
+            --dark: #1a3c1d;
+            --success: #4caf50;
+            --warning: #ff9800;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+            line-height: 1.7;
+            color: #333;
+            background: linear-gradient(135deg, #f8fdf2 0%, #e6f3d6 100%);
+            padding: 20px;
+            background-attachment: fixed;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        header {
+            background: linear-gradient(105deg, var(--dark) 0%, var(--primary) 100%);
+            color: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 90% 10%, rgba(154, 205, 50, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 10% 90%, rgba(139, 195, 74, 0.1) 0%, transparent 25%);
+        }
+        
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        .logo {
+            background: var(--accent);
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: var(--dark);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.25rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+            color: #e0f7e0;
+        }
+        
+        .last-update {
+            margin-top: 15px;
+            font-size: 0.95rem;
+            color: #c8e6c9;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+        
+        .stat-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px 20px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            transition: all 0.4s ease;
+            border-top: 4px solid var(--secondary);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .stat-card i {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+        
+        .stat-card:hover i {
+            transform: scale(1.1);
+        }
+        
+        .stat-card h3 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin: 10px 0;
+        }
+        
+        .stat-card p {
+            color: #555;
+            font-size: 1rem;
+        }
+        
+        .content-section {
+            background: white;
+            border-radius: 15px;
+            padding: 35px;
+            margin-bottom: 40px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+            border-left: 5px solid var(--secondary);
+            position: relative;
+        }
+        
+        h2 {
+            color: var(--primary);
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--secondary);
+            font-size: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        h2 i {
+            background: var(--light);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            box-shadow: 0 4px 10px rgba(92, 107, 92, 0.15);
+        }
+        
+        h3 {
+            color: var(--dark);
+            margin: 25px 0 18px;
+            font-size: 1.6rem;
+            padding-left: 15px;
+            border-left: 4px solid var(--accent);
+        }
+        
+        ul {
+            padding-left: 30px;
+            margin: 20px 0;
+        }
+        
+        li {
+            margin-bottom: 15px;
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        li:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 12px;
+            height: 12px;
+            background: var(--secondary);
+            border-radius: 50%;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        th {
+            background: var(--primary);
+            color: white;
+            padding: 18px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        td {
+            padding: 16px 18px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f9fcf5;
+        }
+        
+        tr:hover {
+            background-color: #f1f8e9;
+        }
+        
+        .case-study {
+            background: #f8fdf2;
+            border: 1px solid #d9e8c3;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 25px 0;
+            position: relative;
+        }
+        
+        .case-study:before {
+            content: "案例研究";
+            position: absolute;
+            top: -15px;
+            left: 25px;
+            background: var(--accent);
+            color: var(--dark);
+            padding: 6px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 1rem;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .success {
+            border-left: 5px solid var(--success);
+        }
+        
+        .warning {
+            border-left: 5px solid var(--warning);
+        }
+        
+        .process-flow {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .process-step {
+            background: #edf7e4;
+            border-radius: 12px;
+            padding: 25px 20px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-top: 4px solid var(--secondary);
+            transition: transform 0.3s ease;
+        }
+        
+        .process-step:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .step-number {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .comparison-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .comparison-box {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.07);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .comparison-box:after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--primary);
+        }
+        
+        .action-box {
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            color: white;
+            padding: 40px;
+            border-radius: 15px;
+            margin: 50px 0 30px;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--dark);
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 25px;
+            transition: all 0.4s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn:hover {
+            background: #e6b400;
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+        }
+        
+        .btn i {
+            margin-left: 10px;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 40px 0 30px;
+            color: #666;
+            font-size: 0.95rem;
+            border-top: 1px solid #ddd;
+            margin-top: 40px;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--dark);
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 768px) {
+            header {
+                padding: 1.8rem;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .content-section {
+                padding: 25px;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+        }
+        
+        .herb-decoration {
+            position: absolute;
+            opacity: 0.1;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .herb-1 {
+            top: 10%;
+            right: 5%;
+            width: 150px;
+            height: 150px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50,10 C70,15 85,35 80,60 C75,85 50,95 30,85 C10,75 5,50 15,30 C25,10 40,5 50,10 Z" fill="%232c5f2d"/></svg>');
+        }
+        
+        .herb-2 {
+            bottom: 10%;
+            left: 5%;
+            width: 120px;
+            height: 120px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M30,20 C45,5 70,10 80,30 C90,50 85,70 70,80 C55,90 30,85 20,70 C10,55 15,35 30,20 Z" fill="%232c5f2d"/></svg>');
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="herb-decoration herb-1"></div>
+        <div class="herb-decoration herb-2"></div>
+        
+        <header>
+            <div class="logo-container">
+                <div class="logo">
+                    <i class="fas fa-leaf"></i>
+                </div>
+            </div>
+            <h1>大陆中成药赴香港注册法规调研报告</h1>
+            <p class="subtitle">全面解析香港中成药注册法规、流程、挑战与解决方案，助力中医药企业开拓香港市场</p>
+            <p class="last-update"><i class="fas fa-sync-alt"></i> 最后更新：2023年10月15日</p>
+        </header>
+        
+        <div class="stats-grid">
+            <div class="stat-card">
+                <i class="fas fa-hourglass-half"></i>
+                <h3>2026年6月30日</h3>
+                <p>过渡期注册截止日期</p>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-file-alt"></i>
+                <h3>12-18个月</h3>
+                <p>注册审批周期</p>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-check-circle"></i>
+                <h3>85%+</h3>
+                <p>过渡期注册成功率</p>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-pills"></i>
+                <h3>12,000+</h3>
+                <p>已注册中成药品种</p>
+            </div>
+        </div>
+        
+        <div class="content-section">
+            <h2><i class="fas fa-book"></i> 法规框架与监管机构</h2>
+            
+            <h3>核心法律法规</h3>
+            <ul>
+                <li><strong>《中医药条例》（第549章）</strong> - 香港中成药注册管理的根本法律依据</li>
+                <li><strong>《中成药注册申请手册》</strong> - 详细规定注册技术要求和申请流程</li>
+                <li><strong>《不良药物反应报告指引》</strong> - 对上市后安全监测的要求</li>
+                <li><strong>《药剂业及毒药条例》（第138章）</strong> - 规范中成药标签和广告宣传</li>
+            </ul>
+            
+            <h3>监管机构</h3>
+            <div class="process-flow">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <h3>香港中医药管理委员会</h3>
+                    <p>(Chinese Medicine Council of Hong Kong)</p>
+                    <p>负责中成药注册审批与监管</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <h3>卫生署中医药规管办公室</h3>
+                    <p>(Chinese Medicine Regulatory Office)</p>
+                    <p>执行具体注册审核工作</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <h3>香港认可处</h3>
+                    <p>(Hong Kong Accreditation Service)</p>
+                    <p>负责实验室资质认可</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="content-section">
+            <h2><i class="fas fa-tasks"></i> 注册路径与要求</h2>
+            
+            <h3>注册分类</h3>
+            <div class="comparison-section">
+                <div class="comparison-box">
+                    <h3>固有药注册</h3>
+                    <p><strong>适用条件：</strong>1999年3月1日前已在香港销售的中成药</p>
+                    <ul>
+                        <li>简化申请程序</li>
+                        <li>可豁免部分安全性和疗效证明</li>
+                        <li>需提供至少5年销售证明</li>
+                        <li>过渡期延长至2026年6月30日</li>
+                    </ul>
+                </div>
+                
+                <div class="comparison-box">
+                    <h3>非固有药注册</h3>
+                    <p><strong>适用条件：</strong>新开发或1999年后进入香港市场的中成药</p>
+                    <ul>
+                        <li>需提交完整技术资料</li>
+                        <li>提供药理毒理研究报告</li>
+                        <li>提交稳定性试验数据</li>
+                        <li>完整的临床试验数据（如适用）</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <h3>核心技术要求</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>项目</th>
+                        <th>具体要求</th>
+                        <th>注意事项</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>质量标准</td>
+                        <td>符合香港中药材标准(HKCMMS)</td>
+                        <td>重金属、农药残留标准严于内地</td>
+                    </tr>
+                    <tr>
+                        <td>稳定性试验</td>
+                        <td>加速试验6个月+长期试验24个月</td>
+                        <td>需香港认可实验室或互认实验室数据</td>
+                    </tr>
+                    <tr>
+                        <td>毒理研究</td>
+                        <td>急性毒性、长期毒性试验</td>
+                        <td>含毒性药材需特别安全评估</td>
+                    </tr>
+                    <tr>
+                        <td>标签要求</td>
+                        <td>中英文对照，符合第138章规定</td>
+                        <td>禁用"治愈"、"特效"等绝对化用语</td>
+                    </tr>
+                    <tr>
+                        <td>生产规范</td>
+                        <td>GMP认证（内地GMP证书可作为支持文件）</td>
+                        <td>需补充香港要求的厂区资料</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="content-section">
+            <h2><i class="fas fa-road"></i> 注册流程详解</h2>
+            
+            <div class="process-flow">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <h3>前期准备</h3>
+                    <p>资料合规性调整</p>
+                    <p>质量检测</p>
+                    <p>文件翻译</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <h3>提交申请</h3>
+                    <p>填写申请表</p>
+                    <p>提交证明文件</p>
+                    <p>缴纳申请费</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <h3>文件审核</h3>
+                    <p>形式审查(30天)</p>
+                    <p>实质审查(90-180天)</p>
+                    <p>问题反馈</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <h3>审批决定</h3>
+                    <p>补充材料</p>
+                    <p>专家评审</p>
+                    <p>最终决定</p>
+                </div>
+            </div>
+            
+            <h3>时间周期</h3>
+            <div class="case-study">
+                <p><strong>固有药注册：</strong> 10-14个月（含补正材料时间）</p>
+                <p><strong>非固有药注册：</strong> 18-24个月（需完整技术资料）</p>
+                <p><strong>注意事项：</strong> 建议至少预留6个月缓冲期应对可能的材料补充要求</p>
+            </div>
+        </div>
+        
+        <div class="content-section">
+            <h2><i class="fas fa-lightbulb"></i> 成功案例与常见问题</h2>
+            
+            <div class="case-study success">
+                <h3>成功案例：云南白药气雾剂</h3>
+                <p><strong>注册策略：</strong></p>
+                <ul>
+                    <li>利用固有药通道（提供1990年代香港销售证明）</li>
+                    <li>针对性调整生产工艺控制乌头碱含量</li>
+                    <li>委托香港本地实验室进行重金属检测</li>
+                    <li>聘请专业法律顾问审核标签内容</li>
+                </ul>
+                <p><strong>结果：</strong> 14个月完成注册，年销售额增长35%</p>
+            </div>
+            
+            <div class="case-study warning">
+                <h3>常见问题与解决方案</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>问题类型</th>
+                            <th>典型案例</th>
+                            <th>解决方案</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>质量标准不符</td>
+                            <td>某止咳糖浆汞含量超标（0.25ppm）</td>
+                            <td>建立专属药材基地，源头控制质量</td>
+                        </tr>
+                        <tr>
+                            <td>标签不规范</td>
+                            <td>英文说明中"清热解毒"翻译不当</td>
+                            <td>聘请香港持牌中医师专业翻译</td>
+                        </tr>
+                        <tr>
+                            <td>材料不完整</td>
+                            <td>未提供药材DNA条形码鉴定报告</td>
+                            <td>提前按香港要求准备全套材料</td>
+                        </tr>
+                        <tr>
+                            <td>安全性质疑</td>
+                            <td>含马兜铃酸成分被要求补充毒理数据</td>
+                            <td>提前进行安全性研究并准备替代方案</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div class="content-section">
+            <h2><i class="fas fa-chart-line"></i> 最新政策动态</h2>
+            
+            <div class="process-flow">
+                <div class="process-step">
+                    <i class="fas fa-calendar-plus fa-2x"></i>
+                    <h3>过渡期延长</h3>
+                    <p>2023年8月宣布延长至2026年6月30日</p>
+                </div>
+                <div class="process-step">
+                    <i class="fas fa-handshake fa-2x"></i>
+                    <h3>大湾区互认</h3>
+                    <p>2024年起实施"港澳药械通"扩展计划</p>
+                </div>
+                <div class="process-step">
+                    <i class="fas fa-laptop-medical fa-2x"></i>
+                    <h3>电子化申报</h3>
+                    <p>2023年10月推出全新电子注册系统</p>
+                </div>
+            </div>
+            
+            <h3>粤港澳大湾区中医药合作重点</h3>
+            <ul>
+                <li><strong>标准互认：</strong> 2025年前建立30项中药材共同标准</li>
+                <li><strong]检测互认：</strong> 认可大湾区9市GLP实验室数据</li>
+                <li><strong>简化审批：</strong> 港澳已上市传统外用中成药快速通道</li>
+                <li><strong]产业协同：</strong> 共建国际中医药科技产业园</li>
+            </ul>
+        </div>
+        
+        <div class="action-box">
+            <h2>立即行动：企业注册策略建议</h2>
+            <p>距离过渡期截止不足3年，建议企业立即启动以下关键行动：</p>
+            
+            <div class="process-flow">
+                <div class="process-step">
+                    <i class="fas fa-search fa-2x"></i>
+                    <h3>资质评估</h3>
+                    <p>确认是否符合固有药条件</p>
+                    <p>2023年内完成</p>
+                </div>
+                <div class="process-step">
+                    <i class="fas fa-vial fa-2x"></i>
+                    <h3]检测准备</h3>
+                    <p>按香港标准进行质量检测</p>
+                    <p>2024年Q1完成</p>
+                </div>
+                <div class="process-step">
+                    <i class="fas fa-file-contract fa-2x"></i>
+                    <h3>材料准备</h3>
+                    <p>全套注册文件准备</p>
+                    <p>2024年Q2完成</p>
+                </div>
+                <div class="process-step">
+                    <i class="fas fa-paper-plane fa-2x"></i>
+                    <h3>提交申请</h3>
+                    <p>正式提交注册申请</p>
+                    <p>2024年Q3前完成</p>
+                </div>
+            </div>
+            
+            <button class="btn">获取完整注册指南 <i class="fas fa-download"></i></button>
+        </div>
+        
+        <footer>
+            <div class="footer-links">
+                <a href="#"><i class="fas fa-external-link-alt"></i> 香港卫生署中医药规管办公室</a>
+                <a href="#"><i class="fas fa-file-pdf"></i> 中成药注册申请手册下载</a>
+                <a href="#"><i class="fas fa-database"></i> 已注册中成药数据库</a>
+            </div>
+            <p>© 2023 中医药国际化研究中心 | 数据来源：香港中医药管理委员会、国家中医药管理局、行业调研</p>
+            <p>免责声明：本报告仅供参考，具体注册要求以香港官方最新规定为准</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 按钮动画效果
+            const btn = document.querySelector('.btn');
+            if(btn) {
+                btn.addEventListener('click', function() {
+                    const originalText = this.innerHTML;
+                    this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 生成报告中...';
+                    
+                    setTimeout(() => {
+                        this.innerHTML = '<i class="fas fa-check"></i> 报告已发送至邮箱';
+                        this.style.background = '#4CAF50';
+                        
+                        setTimeout(() => {
+                            this.innerHTML = originalText;
+                            this.style.background = '';
+                        }, 3000);
+                    }, 2000);
+                });
+            }
+            
+            // 卡片悬停效果
+            const cards = document.querySelectorAll('.stat-card, .process-step, .comparison-box');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px)';
+                    this.style.boxShadow = '0 15px 30px rgba(0, 0, 0, 0.15)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = '';
+                    this.style.boxShadow = '';
+                });
+            });
+            
+            // 滚动动画
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            document.querySelectorAll('.content-section, .stats-grid').forEach(el => {
+                el.style.opacity = 0;
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
