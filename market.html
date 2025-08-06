@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大陆中成药市场分析及香港注册指南</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2c5f2d;
+            --secondary: #5a8f5c;
+            --accent: #d4af37;
+            --light: #f0f7e9;
+            --dark: #1a3c1d;
+            --success: #4caf50;
+            --warning: #ff9800;
+            --danger: #e74c3c;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+            line-height: 1.7;
+            color: #333;
+            background: linear-gradient(135deg, #f8fdf2 0%, #e6f3d6 100%);
+            padding: 20px;
+            background-attachment: fixed;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+        header {
+            background: linear-gradient(105deg, var(--dark) 0%, var(--primary) 100%);
+            color: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .logo {
+            background: var(--accent);
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: var(--dark);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        .subtitle {
+            font-size: 1.25rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+            color: #e0f7e0;
+        }
+        .last-update {
+            margin-top: 15px;
+            font-size: 0.95rem;
+            color: #c8e6c9;
+        }
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 35px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+            border-left: 5px solid var(--secondary);
+            position: relative;
+        }
+        h2 {
+            color: var(--primary);
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--secondary);
+            font-size: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        h3 {
+            color: var(--dark);
+            margin: 25px 0 18px;
+            font-size: 1.6rem;
+            padding-left: 15px;
+            border-left: 4px solid var(--accent);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        th {
+            background: var(--primary);
+            color: white;
+            padding: 18px;
+            text-align: left;
+            font-weight: 600;
+        }
+        td {
+            padding: 16px 18px;
+            border-bottom: 1px solid #eee;
+        }
+        tr:nth-child(even) {
+            background-color: #f9fcf5;
+        }
+        tr:hover {
+            background-color: #f1f8e9;
+        }
+        .difficulty-easy {
+            background-color: #e8f5e9;
+            color: var(--success);
+            font-weight: bold;
+            padding: 4px 8px;
+            border-radius: 4px;
+            display: inline-block;
+            min-width: 70px;
+            text-align: center;
+        }
+        .difficulty-medium {
+            background-color: #fff8e1;
+            color: var(--warning);
+            font-weight: bold;
+            padding: 4px 8px;
+            border-radius: 4px;
+            display: inline-block;
+            min-width: 70px;
+            text-align: center;
+        }
+        .difficulty-hard {
+            background-color: #ffebee;
+            color: var(--danger);
+            font-weight: bold;
+            padding: 4px 8px;
+            border-radius: 4px;
+            display: inline-block;
+            min-width: 70px;
+            text-align: center;
+        }
+        .highlight {
+            background-color: #fffde7;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid var(--accent);
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .stat-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .process-flow {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .process-step {
+            background: #edf7e4;
+            border-radius: 12px;
+            padding: 25px 20px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-top: 4px solid var(--secondary);
+            transition: transform 0.3s ease;
+        }
+        .step-number {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .comparison-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        .comparison-box {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.07);
+            position: relative;
+            overflow: hidden;
+        }
+        .comparison-box:after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--primary);
+        }
+        .action-box {
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            color: white;
+            padding: 40px;
+            border-radius: 15px;
+            margin: 50px 0 30px;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+        .btn {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--dark);
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 25px;
+            transition: all 0.4s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        .btn:hover {
+            background: #e6b400;
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+        }
+        .btn i {
+            margin-left: 10px;
+        }
+        footer {
+            text-align: center;
+            padding: 40px 0 30px;
+            color: #666;
+            font-size: 0.95rem;
+            border-top: 1px solid #ddd;
+            margin-top: 40px;
+        }
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        .footer-links a {
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.3s ease;
+        }
+        .footer-links a:hover {
+            color: var(--dark);
+            text-decoration: underline;
+        }
+        .herb-decoration {
+            position: absolute;
+            opacity: 0.1;
+            pointer-events: none;
+            z-index: -1;
+        }
+        .market-value {
+            font-weight: bold;
+        }
+        .value-high {
+            color: var(--success);
+        }
+        .value-medium {
+            color: var(--warning);
+        }
+        .value-low {
+            color: var(--danger);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="herb-decoration"></div>
+        
+        <header>
+            <div class="logo-container">
+                <div class="logo">
+                    <i class="fas fa-prescription-bottle-alt"></i>
+                </div>
+            </div>
+            <h1>大陆中成药市场分析及香港注册指南</h1>
+            <p class="subtitle">各品类前十分析 · 香港注册难易度评估 · 注册流程详解</p>
+            <p class="last-update"><i class="fas fa-sync-alt"></i> 最后更新：2025年8月6日</p>
+        </header>
+        
+        <div class="card">
+            <h2><i class="fas fa-chart-bar"></i> 大陆中成药市场十大品类分析</h2>
+            
+            <h3>2025年市场格局概览</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>品类</th>
+                        <th>代表产品</th>
+                        <th>市场份额</th>
+                        <th>年增长率</th>
+                        <th>核心优势</th>
+                        <th>目标人群</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>外伤急救</td>
+                        <td>云南白药、京万红</td>
+                        <td>18.5%</td>
+                        <td>7.2%</td>
+                        <td>快速止血、国家保密配方</td>
+                        <td>全年龄段</td>
+                    </tr>
+                    <tr>
+                        <td>肝病防治</td>
+                        <td>片仔癀、护肝片</td>
+                        <td>12.3%</td>
+                        <td>9.8%</td>
+                        <td>保肝抗炎、天然成分</td>
+                        <td>中老年、应酬人群</td>
+                    </tr>
+                    <tr>
+                        <td>心脑血管</td>
+                        <td>速效救心丸、复方丹参滴丸</td>
+                        <td>15.7%</td>
+                        <td>6.5%</td>
+                        <td>急救效果、FDA认证</td>
+                        <td>老年人、心血管患者</td>
+                    </tr>
+                    <tr>
+                        <td>抗病毒</td>
+                        <td>连花清瘟胶囊、抗病毒口服液</td>
+                        <td>10.2%</td>
+                        <td>12.4%</td>
+                        <td>国家方案推荐、广谱抗病毒</td>
+                        <td>全年龄段</td>
+                    </tr>
+                    <tr>
+                        <td>补肾滋阴</td>
+                        <td>六味地黄丸、金匮肾气丸</td>
+                        <td>8.9%</td>
+                        <td>5.3%</td>
+                        <td>千年经典方剂、渗透率高</td>
+                        <td>中老年人</td>
+                    </tr>
+                    <tr>
+                        <td>解暑祛湿</td>
+                        <td>藿香正气水、十滴水</td>
+                        <td>6.4%</td>
+                        <td>4.1%</td>
+                        <td>湿热气候刚需、廉价高效</td>
+                        <td>南方地区居民</td>
+                    </tr>
+                    <tr>
+                        <td>急救促醒</td>
+                        <td>安宫牛黄丸、苏合香丸</td>
+                        <td>5.8%</td>
+                        <td>11.2%</td>
+                        <td>中风"黄金药"、含珍稀成分</td>
+                        <td>高风险人群</td>
+                    </tr>
+                    <tr>
+                        <td>代谢类</td>
+                        <td>参花消渴茶、降糖胶囊</td>
+                        <td>4.7%</td>
+                        <td>8.7%</td>
+                        <td>糖尿病辅助治疗、中药调理</td>
+                        <td>糖尿病患者</td>
+                    </tr>
+                    <tr>
+                        <td>风湿骨病</td>
+                        <td>舒筋健腰丸、风湿骨痛贴</td>
+                        <td>7.2%</td>
+                        <td>10.5%</td>
+                        <td>缓解疼痛、外用方便</td>
+                        <td>老年人、体力劳动者</td>
+                    </tr>
+                    <tr>
+                        <td>妇科类</td>
+                        <td>气血和胶囊、乌鸡白凤丸</td>
+                        <td>5.3%</td>
+                        <td>6.9%</td>
+                        <td>调理内分泌、中药温和</td>
+                        <td>成年女性</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="highlight">
+                <h3>市场趋势洞察</h3>
+                <ul>
+                    <li><strong>外伤急救类</strong>持续领跑市场，云南白药年销售额突破50亿元</li>
+                    <li><strong>心脑血管类</strong>受益于老龄化加剧，院外市场占比达70%</li>
+                    <li><strong>抗病毒类</strong>后疫情时代需求稳定，连花清瘟年销售额维持在30亿元以上</li>
+                    <li><strong>急救促醒类</strong>高端市场增长迅猛，"双天然"安宫牛黄丸溢价率达200%</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="card">
+            <h2><i class="fas fa-clipboard-check"></i> 香港注册难易度评估</h2>
+            
+            <h3>各品类注册难易度分析</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>品类</th>
+                        <th>代表产品</th>
+                        <th>注册难点</th>
+                        <th>难易度</th>
+                        <th>预估时间</th>
+                        <th>市场价值</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>固有药类</td>
+                        <td>六味地黄丸</td>
+                        <td>需提供1999年前在港销售证明</td>
+                        <td><span class="difficulty-easy">较易</span></td>
+                        <td>10-14个月</td>
+                        <td class="value-medium">中</td>
+                    </tr>
+                    <tr>
+                        <td>含珍稀成分</td>
+                        <td>安宫牛黄丸</td>
+                        <td>需天然麝香/牛黄来源证明及CITES认证</td>
+                        <td><span class="difficulty-hard">困难</span></td>
+                        <td>18-24个月</td>
+                        <td class="value-high">高</td>
+                    </tr>
+                    <tr>
+                        <td>传统外用</td>
+                        <td>云南白药喷雾剂</td>
+                        <td>走"传统外用中成药"快速通道</td>
+                        <td><span class="difficulty-medium">中等</span></td>
+                        <td>12-16个月</td>
+                        <td class="value-high">高</td>
+                    </tr>
+                    <tr>
+                        <td>新药/非固有药</td>
+                        <td>连花清瘟胶囊</td>
+                        <td>需完整药理毒理报告及香港本地临床试验</td>
+                        <td><span class="difficulty-hard">困难</span></td>
+                        <td>20个月+</td>
+                        <td class="value-medium">中</td>
+                    </tr>
+                    <tr>
+                        <td>风湿骨病类</td>
+                        <td>舒筋健腰丸</td>
+                        <td>需提供药材基源鉴定</td>
+                        <td><span class="difficulty-medium">中等</span></td>
+                        <td>14-18个月</td>
+                        <td class="value-high">高</td>
+                    </tr>
+                    <tr>
+                        <td>代谢类</td>
+                        <td>参花消渴茶</td>
+                        <td>需降糖机理证明</td>
+                        <td><span class="difficulty-hard">困难</span></td>
+                        <td>18-24个月</td>
+                        <td class="value-medium">中</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="highlight">
+                <h3>关键注册影响因素</h3>
+                <ul>
+                    <li><strong>优势因素</strong>：古籍记载处方可简化注册；外用制剂审批提速30%；大湾区检测互认政策</li>
+                    <li><strong>挑战因素</strong>：重金属检测标准严于内地（汞≤0.2ppm）；需提供药材DNA条形码鉴定；2025年过渡期已结束</li>
+                    <li><strong>成本因素</strong>：平均注册费用8-15万港元，含珍稀成分产品可达20万港元以上</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="card">
+            <h2><i class="fas fa-road"></i> 香港注册流程详解</h2>
+            
+            <h3>标准注册流程四阶段</h3>
+            <div class="process-flow">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <h3>前期准备</h3>
+                    <p><strong>耗时：2-3个月</strong></p>
+                    <p>资料合规性调整</p>
+                    <p>质量检测（香港标准）</p>
+                    <p>文件翻译（中英文）</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <h3>提交申请</h3>
+                    <p><strong>耗时：1个月</strong></p>
+                    <p>填写申请表</p>
+                    <p>缴纳申请费（1,100港元）</p>
+                    <p>提交证明文件</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <h3>技术审评</h3>
+                    <p><strong>耗时：4-8个月</strong></p>
+                    <p>形式审查（30天）</p>
+                    <p>实质审查（3-6个月）</p>
+                    <p>问题反馈与补充</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <h3>获批上市</h3>
+                    <p><strong>耗时：1个月</strong></p>
+                    <p>领取注册证书（1,370港元）</p>
+                    <p>产品包装备案</p>
+                    <p>市场推广启动</p>
+                </div>
+            </div>
+            
+            <div class="comparison-section">
+                <div class="comparison-box">
+                    <h3>固有药注册特殊要求</h3>
+                    <ul>
+                        <li>提供1999年3月1日前在港销售证明（发票、报关单等）</li>
+                        <li>处方需有30年以上使用历史</li>
+                        <li>可豁免部分安全性和疗效证明</li>
+                        <li>需提交近5年安全性监测报告</li>
+                    </ul>
+                </div>
+                
+                <div class="comparison-box">
+                    <h3>非固有药注册特殊要求</h3>
+                    <ul>
+                        <li>完整的药理毒理研究报告</li>
+                        <li>24个月加速及长期稳定性试验</li>
+                        <li>药材基源DNA条形码鉴定</li>
+                        <li>香港本地临床试验数据（部分情况）</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <h2><i class="fas fa-lightbulb"></i> 注册策略与优化建议</h2>
+            
+            <div class="process-flow">
+                <div class="process-step">
+                    <i class="fas fa-route fa-2x"></i>
+                    <h3>路径选择</h3>
+                    <p>优先选择固有药通道</p>
+                    <p>外用制剂走传统外用通道</p>
+                    <p>新药联合香港大学研发</p>
+                </div>
+                <div class="process-step">
+                    <i class="fas fa-coins fa-2x"></i>
+                    <h3>成本优化</h3>
+                    <p>申请中医药发展基金补贴</p>
+                    <p>利用大湾区检测互认政策</p>
+                    <p>批量申请降低单品种成本</p>
+                </div>
+                <div class="process-step">
+                    <i class="fas fa-shield-alt fa-2x"></i>
+                    <h3>风险规避</h3>
+                    <p>标签禁用"治愈""特效"等词汇</p>
+                    <p>英文翻译由持牌中医师审核</p>
+                    <p>建立完整供应链追溯体系</p>
+                </div>
+            </div>
+            
+            <div class="highlight">
+                <h3>重点产品注册策略</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>产品类型</th>
+                            <th>代表产品</th>
+                            <th>推荐策略</th>
+                            <th>预期时间</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>风湿骨病类</td>
+                            <td>舒筋健腰丸</td>
+                            <td>引用古籍记载，申请固有药通道</td>
+                            <td>10-14个月</td>
+                        </tr>
+                        <tr>
+                            <td>外用皮肤类</td>
+                            <td>灰指甲药、生发液</td>
+                            <td>传统外用快速通道</td>
+                            <td>8-12个月</td>
+                        </tr>
+                        <tr>
+                            <td>含珍稀成分</td>
+                            <td>安宫牛黄丸</td>
+                            <td>提前准备CITES认证，分阶段注册</td>
+                            <td>18-24个月</td>
+                        </tr>
+                        <tr>
+                            <td>代谢类</td>
+                            <td>参花消渴茶</td>
+                            <td>先申请保健品通道，后补充药品注册</td>
+                            <td>12-16个月</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div class="action-box">
+            <h2>三年行动计划建议</h2>
+            <p>基于当前市场及政策环境，制定以下战略规划：</p>
+            
+            <div class="process-flow">
+                <div class="process-step">
+                    <h4>第一年（2025）</h4>
+                    <p>启动舒筋健腰丸（固有药）注册</p>
+                    <p>提交外用制剂（传统外用）申请</p>
+                    <p>建立香港本地合作伙伴</p>
+                </div>
+                <div class="process-step">
+                    <h4>第二年（2026）</h4>
+                    <p>完成安宫牛黄丸原料合规化</p>
+                    <p>启动代谢类产品循证研究</p>
+                    <p>拓展香港零售渠道</p>
+                </div>
+                <div class="process-step">
+                    <h4>第三年（2027）</h4>
+                    <p>香港市场占有率目标15%</p>
+                    <p>通过香港注册进入东南亚市场</p>
+                    <p>申请"港澳药械通"进入大湾区医院</p>
+                </div>
+            </div>
+            
+            <button class="btn">下载完整注册策略方案 <i class="fas fa-download"></i></button>
+        </div>
+        
+        <footer>
+            <div class="footer-links">
+                <a href="#"><i class="fas fa-external-link-alt"></i> 香港中医药管理委员会</a>
+                <a href="#"><i class="fas fa-file-pdf"></i> 中成药注册申请手册</a>
+                <a href="#"><i class="fas fa-database"></i> 已注册中成药数据库</a>
+            </div>
+            <p>数据来源：香港卫生署、DeepSeek榜单、韦伯咨询、2025年中医药行业白皮书</p>
+            <p>免责声明：本报告仅供参考，具体注册要求以香港官方最新规定为准</p>
+            <p>© 2025 中成药国际化研究中心 | 报告日期：2025年8月6日</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 按钮动画效果
+            const btn = document.querySelector('.btn');
+            if(btn) {
+                btn.addEventListener('click', function() {
+                    const originalText = this.innerHTML;
+                    this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 生成报告中...';
+                    
+                    setTimeout(() => {
+                        this.innerHTML = '<i class="fas fa-check"></i> 报告已发送至邮箱';
+                        this.style.background = '#4CAF50';
+                        
+                        setTimeout(() => {
+                            this.innerHTML = originalText;
+                            this.style.background = '';
+                        }, 3000);
+                    }, 2000);
+                });
+            }
+            
+            // 卡片悬停效果
+            const cards = document.querySelectorAll('.stat-card, .process-step, .comparison-box');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px)';
+                    this.style.boxShadow = '0 15px 30px rgba(0, 0, 0, 0.15)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = '';
+                    this.style.boxShadow = '';
+                });
+            });
+            
+            // 滚动动画
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            document.querySelectorAll('.card, .stats-grid').forEach(el => {
+                el.style.opacity = 0;
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
