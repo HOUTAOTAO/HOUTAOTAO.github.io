@@ -32,10 +32,8 @@
             margin: 20px auto;
         }
         
-        /* 页眉样式 - 固定 */
-        .page-header {
-            position: sticky;
-            top: 0;
+        /* 文档首部（原页眉内容） */
+        .document-header {
             width: 100%;
             height: 25mm;
             background: white;
@@ -44,14 +42,10 @@
             justify-content: space-between;
             align-items: center;
             border-bottom: 2px solid #c33;
-            z-index: 100;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
         
-        /* 页脚样式 - 固定 */
-        .page-footer {
-            position: sticky;
-            bottom: 0;
+        /* 文档尾部（原页脚内容） */
+        .document-footer {
             width: 100%;
             height: 15mm;
             background: white;
@@ -60,7 +54,7 @@
             justify-content: center;
             align-items: center;
             border-top: 1px solid #ddd;
-            z-index: 100;
+            margin-top: 15mm;
         }
         
         .footer-content {
@@ -105,7 +99,7 @@
         /* 主要内容样式 */
         .content {
             padding: 20mm;
-            padding-top: 5mm;
+            padding-top: 15mm; /* 调整顶部内边距 */
         }
         
         .title {
@@ -131,17 +125,21 @@
             line-height: 1.8;
         }
         
-        /* 表格样式 */
+        /* 表格样式 - 防止跨页拆分 */
+        .table-container {
+            page-break-inside: avoid;
+            margin: 15px 0 25px 0;
+        }
+        
         table {
             width: 100%;
             border-collapse: collapse;
-            margin: 15px 0;
             font-size: 10pt;
         }
         
         th, td {
             border: 1px solid #ddd;
-            padding: 10px;
+            padding: 8px;
             text-align: center;
         }
         
@@ -183,7 +181,7 @@
         
         /* 进度条样式 */
         .progress-section {
-            padding: 10mm;
+            padding: 10mm 20mm;
             background: #f9f5f0;
             border: 1px solid #e0d6cc;
             border-radius: 5px;
@@ -226,7 +224,7 @@
         .signature {
             margin-top: 20mm;
             text-align: right;
-            padding-right: 20mm;
+            padding-right: 0;
         }
         
         .signature p {
@@ -248,8 +246,21 @@
             page-break-after: always;
         }
         
-        /* 打印样式 - 修复进度条问题 */
+        /* 内容区块 - 避免跨页拆分 */
+        .content-block {
+            page-break-inside: avoid;
+            margin-bottom: 15px;
+        }
+        
+        /* 打印样式 */
         @media print {
+            @page {
+                size: A4;
+                margin: 20mm;
+                margin-header: 0;
+                margin-footer: 0;
+            }
+            
             body {
                 background: white;
                 padding: 0;
@@ -265,16 +276,12 @@
                 height: 100%;
             }
             
-            .page-header, .page-footer {
-                position: fixed;
+            /* 确保表格不被拆分 */
+            table {
+                page-break-inside: avoid !important;
             }
             
-            .content {
-                padding: 20mm;
-                padding-top: 5mm;
-            }
-            
-            /* 确保打印时背景色可见 */
+            /* 确保背景色打印正常 */
             th {
                 background-color: #a52a2a !important;
                 -webkit-print-color-adjust: exact;
@@ -286,7 +293,7 @@
                 color-adjust: exact !important;
             }
             
-            /* 打印时隐藏不必要的元素 */
+            /* 隐藏非打印元素 */
             .no-print {
                 display: none;
             }
@@ -295,8 +302,8 @@
 </head>
 <body>
     <div class="a4-container">
-        <!-- 固定页眉 -->
-        <div class="page-header">
+        <!-- 文档首部（原页眉内容） -->
+        <div class="document-header">
             <div class="company-info">
                 <div class="company-name">香港濟歲堂中藥廠有限公司</div>
                 <div class="company-address">地址：香港新界葵涌華星街8號華達工業中心A座4樓12室</div>
@@ -310,120 +317,140 @@
         <div class="content">
             <h1 class="title">致濟歲堂股東的工作進展彙報信</h1>
             
-            <div class="greeting">
+            <div class="greeting content-block">
                 <p>各位股東：</p>
                 <p>值此2025年年中關鍵階段，香港濟歲堂团队圍繞批文合規、生產提效、信息賦能三大核心領域穩步推進，現將階段性工作進展彙報如下：</p>
             </div>
             
-            <h2>一、批文轉移</h2>
-            <table>
-                <tr>
-                    <th>任務名稱</th>
-                    <th>時間範圍</th>
-                    <th>當前狀態</th>
-                </tr>
-                <tr>
-                    <td>採購批文50個</td>
-                    <td>2025-06-18～2025-10-08</td>
-                    <td>進行中</td>
-                </tr>
-                <tr>
-                    <td>香港批文品類細分</td>
-                    <td>2025-07-16～2025-08-01</td>
-                    <td>已完成</td>
-                </tr>
-                <tr>
-                    <td>轉商標</td>
-                    <td>2025-08-01～2025-12-31</td>
-                    <td>未啟動</td>
-                </tr>
-                <tr>
-                    <td>包裝設計</td>
-                    <td>2025-07-19～2025-12-31</td>
-                    <td>進行中</td>
-                </tr>
-                <tr>
-                    <td>批文轉持有人申請</td>
-                    <td>2025-12-31～2026-04-30</td>
-                    <td>規劃階段</td>
-                </tr>
-                <tr>
-                    <td>轉廠</td>
-                    <td>2025-08-01～2025-12-31</td>
-                    <td>未啟動</td>
-                </tr>
-                <tr>
-                    <td>推動銷售</td>
-                    <td>2025-08-15～2025-12-31</td>
-                    <td>未啟動</td>
-                </tr>
-            </table>
+            <div class="content-block">
+                <h2>一、批文轉移</h2>
+                <div class="table-container">
+                    <table>
+                        <tr>
+                            <th>任務名稱</th>
+                            <th>時間範圍</th>
+                            <th>當前狀態</th>
+                        </tr>
+                        <tr>
+                            <td>採購批文50個</td>
+                            <td>2025-06-18～2025-10-08</td>
+                            <td>進行中</td>
+                        </tr>
+                        <tr>
+                            <td>香港批文品類細分</td>
+                            <td>2025-07-16～2025-08-01</td>
+                            <td>已完成</td>
+                        </tr>
+                        <tr>
+                            <td>轉商標</td>
+                            <td>2025-08-01～2025-12-31</td>
+                            <td>未啟動</td>
+                        </tr>
+                        <tr>
+                            <td>包裝設計</td>
+                            <td>2025-07-19～2025-12-31</td>
+                            <td>進行中</td>
+                        </tr>
+                        <tr>
+                            <td>批文轉持有人申請</td>
+                            <td>2025-12-31～2026-04-30</td>
+                            <td>規劃階段</td>
+                        </tr>
+                        <tr>
+                            <td>轉廠</td>
+                            <td>2025-08-01～2025-12-31</td>
+                            <td>未啟動</td>
+                        </tr>
+                        <tr>
+                            <td>推動銷售</td>
+                            <td>2025-08-15～2025-12-31</td>
+                            <td>未啟動</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
             
-            <h2>二、工廠調研GMP認證</h2>
-            <table>
-                <tr>
-                    <th>任務名稱</th>
-                    <th>時間範圍</th>
-                    <th>當前狀態</th>
-                </tr>
-                <tr>
-                    <td>粵港口服和外用工廠清單</td>
-                    <td>2025-07-26～2025-08-12</td>
-                    <td>進行中</td>
-                </tr>
-                <tr>
-                    <td>粵港工廠產能調價格调研</td>
-                    <td>2025-08-01～2025-09-30</td>
-                    <td>未啟動</td>
-                </tr>
-                <tr>
-                    <td>工廠裝修</td>
-                    <td>2025-09-01～2026-04-30</td>
-                    <td>規劃階段</td>
-                </tr>
-                <tr>
-                    <td>GMP申請</td>
-                    <td>2026-04-01～2026-10-31</td>
-                    <td>規劃階段</td>
-                </tr>
-            </table>
+            <div class="content-block">
+                <h2>二、工廠調研GMP認證</h2>
+                <div class="table-container">
+                    <table>
+                        <tr>
+                            <th>任務名稱</th>
+                            <th>時間範圍</th>
+                            <th>當前狀態</th>
+                        </tr>
+                        <tr>
+                            <td>粵港口服和外用工廠清單</td>
+                            <td>2025-07-26～2025-08-12</td>
+                            <td>進行中</td>
+                        </tr>
+                        <tr>
+                            <td>粵港工廠產能調價格调研</td>
+                            <td>2025-08-01～2025-09-30</td>
+                            <td>未啟動</td>
+                        </tr>
+                        <tr>
+                            <td>工廠裝修</td>
+                            <td>2025-09-01～2026-04-30</td>
+                            <td>規劃階段</td>
+                        </tr>
+                        <tr>
+                            <td>GMP申請</td>
+                            <td>2026-04-01～2026-10-31</td>
+                            <td>規劃階段</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
             
-            <h2>三、資訊宣傳合作</h2>
-            <table>
-                <tr>
-                    <th>任務名稱</th>
-                    <th>時間範圍</th>
-                    <th>當前狀態</th>
-                </tr>
-                <tr>
-                    <td>申請官方網站郵箱電話</td>
-                    <td>2025-07-26～2025-08-18</td>
-                    <td>進行中</td>
-                </tr>
-                <tr>
-                    <td>加入協會（調研批文字号）</td>
-                    <td>2025-07-08～2025-07-30</td>
-                    <td>進行中</td>
-                </tr>
-                <tr>
-                    <td>港校合作(實習、聯合开发）</td>
-                    <td>2025-07-08～2025-08-04</td>
-                    <td>進行中</td>
-                </tr>
-                <tr>
-                    <td>陸港濟歲堂商標註冊進度</td>
-                    <td>2025-07-29～2025-08-01</td>
-                    <td class="urgent">緊急進行</td>
-                </tr>
-            </table>
+            <div class="content-block">
+                <h2>三、資訊宣傳合作</h2>
+                <div class="table-container">
+                    <table>
+                        <tr>
+                            <th>任務名稱</th>
+                            <th>時間範圍</th>
+                            <th>當前狀態</th>
+                        </tr>
+                        <tr>
+                            <td>申請官方網站郵箱電話</td>
+                            <td>2025-07-26～2025-08-18</td>
+                            <td>進行中</td>
+                        </tr>
+                        <tr>
+                            <td>加入協會（調研批文字号）</td>
+                            <td>2025-07-08～2025-07-30</td>
+                            <td>進行中</td>
+                        </tr>
+                        <tr>
+                            <td>港校合作(實習、聯合开发）</td>
+                            <td>2025-07-08～2025-08-04</td>
+                            <td>進行中</td>
+                        </tr>
+                        <tr>
+                            <td>陸港濟歲堂商標註冊進度</td>
+                            <td>2025-07-29～2025-08-01</td>
+                            <td class="urgent">緊急進行</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
             
-            <p class="greeting">我們以"合規為基、效率為刃、生態為網"三大支柱，持續夯實企業競爭護城河，為股東創造可持續價值。</p>
+            <div class="greeting content-block">
+                <p>我們以"合規為基、效率為刃、生態為網"三大支柱，持續夯實企業競爭護城河，為股東創造可持續價值。</p>
+            </div>
             
-            <div class="signature">
+            <div class="signature content-block">
                 <p>順頌商祺！</p>
                 <p class="company">香港濟歲堂中藥廠有限公司</p>
-                <!-- 更新落款时间为今天（2025年8月8日） -->
                 <p class="date">2025年8月8日</p>
+            </div>
+            
+            <!-- 文档尾部（原页脚内容）- 放在第一页末尾 -->
+            <div class="document-footer">
+                <div class="footer-content">
+                    <p>機密文件 - 僅限內部使用 | 第 1 頁，共 2 頁 | 更新日期：2025年8月8日</p>
+                </div>
             </div>
         </div>
         
@@ -438,10 +465,10 @@
             <div class="progress-item">
                 <div class="progress-label">
                     <span>採購批文50個</span>
-                    <span>50%</span>
+                    <span>60%</span>
                 </div>
                 <div class="progress-bar-container">
-                    <div class="progress-bar in-progress" style="width: 50%"></div>
+                    <div class="progress-bar in-progress" style="width: 60%"></div>
                 </div>
             </div>
             
@@ -509,10 +536,10 @@
             <div class="progress-item">
                 <div class="progress-label">
                     <span>工廠裝修</span>
-                    <span>15%</span>
+                    <span>0%</span>
                 </div>
                 <div class="progress-bar-container">
-                    <div class="progress-bar planned" style="width: 15%"></div>
+                    <div class="progress-bar not-started" style="width: 0%"></div>
                 </div>
             </div>
             
@@ -558,7 +585,7 @@
             </div>
             
             <div class="progress-legend" style="margin-top: 30px; display: flex; justify-content: center;">
-                <div style="display: flex; gap: 15px;">
+                <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;">
                     <div style="display: flex; align-items: center;">
                         <div style="width: 15px; height: 15px; background: #4caf50; margin-right: 5px;"></div>
                         <span>已完成</span>
@@ -581,13 +608,12 @@
                     </div>
                 </div>
             </div>
-        </div>
-        
-        <!-- 固定页脚 -->
-        <div class="page-footer">
-            <div class="footer-content">
-                <!-- 更新页脚时间为今天（2025年8月8日） -->
-                <p>機密文件 - 僅限內部使用 | 第 1 頁，共 2 頁 | 更新日期：2025年8月8日</p>
+            
+            <!-- 第二页的页脚内容 -->
+            <div class="document-footer">
+                <div class="footer-content">
+                    <p>機密文件 - 僅限內部使用 | 第 2 頁，共 2 頁 | 更新日期：2025年8月8日</p>
+                </div>
             </div>
         </div>
     </div>
@@ -597,7 +623,7 @@
         document.addEventListener('DOMContentLoaded', function() {
             const progressBars = document.querySelectorAll('.progress-bar');
             
-            // 添加延迟，使进度条依次动画
+            // 进度条动画
             progressBars.forEach((bar, index) => {
                 setTimeout(() => {
                     const width = bar.style.width;
@@ -611,3 +637,4 @@
     </script>
 </body>
 </html>
+    
