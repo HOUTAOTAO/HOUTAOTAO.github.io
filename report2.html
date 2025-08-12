@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>濟歲堂股東會議通知</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: "Microsoft JhengHei", "微軟正黑體", sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            position: relative;
+        }
+        
+        /* A4纸张样式 */
+        .a4-container {
+            width: 210mm;
+            min-height: 297mm;
+            background: white;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
+            position: relative;
+            padding: 0;
+            margin: 20px auto;
+        }
+        
+        /* 文档首部 */
+        .document-header {
+            width: 100%;
+            height: 25mm;
+            background: white;
+            padding: 5mm 20mm;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #c33;
+        }
+        
+        /* 文档尾部 */
+        .document-footer {
+            width: 100%;
+            height: 15mm;
+            background: white;
+            padding: 0 20mm;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-top: 1px solid #ddd;
+            margin-top: 15mm;
+        }
+        
+        .footer-content {
+            font-size: 10pt;
+            color: #666;
+            text-align: center;
+        }
+        
+        /* 公司信息样式 */
+        .company-info {
+            flex: 1;
+        }
+        
+        .company-name {
+            font-size: 16pt;
+            font-weight: bold;
+            color: #a52a2a;
+        }
+        
+        .company-address {
+            font-size: 10pt;
+            color: #666;
+        }
+        
+        /* Logo样式 */
+        .logo-container {
+            width: 50mm;
+            height: 15mm;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #eee;
+            padding: 2px;
+        }
+        
+        .logo-container img {
+            max-height: 100%;
+            max-width: 100%;
+            object-fit: contain;
+        }
+        
+        /* 主要内容样式 */
+        .content {
+            padding: 20mm;
+            padding-top: 15mm;
+        }
+        
+        .title {
+            text-align: center;
+            font-size: 18pt;
+            margin: 10mm 0 15mm;
+            color: #a52a2a;
+            position: relative;
+        }
+        
+        .title::after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: 25%;
+            width: 50%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #c33, transparent);
+        }
+        
+        .greeting {
+            margin: 15px 0;
+            line-height: 1.8;
+        }
+        
+        /* 表格样式 */
+        .table-container {
+            page-break-inside: avoid;
+            margin: 15px 0 25px 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 10pt;
+        }
+        
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        
+        th {
+            background-color: #a52a2a;
+            color: white;
+            font-weight: normal;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        /* 参会人员样式 */
+        .participants {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f9f5f0;
+            border-radius: 5px;
+        }
+        
+        .participants h3 {
+            color: #a52a2a;
+            margin-bottom: 10px;
+        }
+        
+        .participant-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .participant-group {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .participant-group h4 {
+            margin-bottom: 8px;
+            color: #333;
+        }
+        
+        /* 签名部分 */
+        .signature {
+            margin-top: 20mm;
+            text-align: right;
+            padding-right: 0;
+        }
+        
+        .signature p {
+            margin: 5px 0;
+        }
+        
+        .signature .company {
+            font-weight: bold;
+            color: #a52a2a;
+        }
+        
+        .signature .date {
+            font-size: 10pt;
+            color: #666;
+        }
+        
+        /* 打印样式 */
+        @media print {
+            @page {
+                size: A4;
+                margin: 20mm;
+                margin-header: 0;
+                margin-footer: 0;
+            }
+            
+            body {
+                background: white;
+                padding: 0;
+                width: 210mm;
+                height: 297mm;
+            }
+            
+            .a4-container {
+                box-shadow: none;
+                margin: 0;
+                padding: 0;
+                width: 100%;
+                height: 100%;
+            }
+            
+            table {
+                page-break-inside: avoid !important;
+            }
+            
+            th {
+                background-color: #a52a2a !important;
+                -webkit-print-color-adjust: exact;
+                color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="a4-container">
+        <!-- 文档首部 -->
+        <div class="document-header">
+            <div class="company-info">
+                <div class="company-name">香港濟歲堂中藥廠有限公司</div>
+                <div class="company-address">地址：香港新界葵涌華星街8號華達工業中心A座4樓12室</div>
+            </div>
+            <div class="logo-container">
+                <img src="logo.jpg" alt="濟歲堂標誌">
+            </div>
+        </div>
+        
+        <!-- 内容区域 -->
+        <div class="content">
+            <h1 class="title">香港濟歲堂中藥廠月度股東會議通知</h1>
+            
+            <div class="greeting">
+                <p>各位股東及團隊成員：</p>
+                <p>謹定於2025年8月召開香港濟歲堂月度股東會議，現將會議相關事項通知如下：</p>
+            </div>
+            
+            <div class="participants">
+                <h3>▍ 參會人員</h3>
+                <div class="participant-list">
+                    <div class="participant-group">
+                        <h4>股東成員</h4>
+                        <p>劉艷國劉總、濱總、王總、張總</p>
+                    </div>
+                    <div class="participant-group">
+                        <h4>團隊成員</h4>
+                        <p>劉總、仙總、巴旭文、侯滔</p>
+                    </div>
+                </div>
+            </div>
+            
+            <h2>會議主題</h2>
+            <div class="table-container">
+                <table>
+                    <tr>
+                        <th width="10%">序號</th>
+                        <th width="40%">主題內容</th>
+                        <th width="50%">重點說明</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>團隊建聯→明確職位分工</td>
+                        <td>優化團隊協作機制，明確職位定位、職責及工作流程</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>彙報8月份工作情況</td>
+                        <td>批文採購、工廠建設等核心工作進展彙報與問題分析</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>對齊工作目標和計劃</td>
+                        <td>基於8月成果商議9月目標，分解至各崗位執行計劃</td>
+                    </tr>
+                </table>
+            </div>
+            
+            <h2>議程詳情</h2>
+            <div class="table-container">
+                <table>
+                    <tr>
+                        <th width="10%">序號</th>
+                        <th width="30%">議程主題</th>
+                        <th width="60%">主要內容</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>團隊建聯與職位分工明確</td>
+                        <td>團隊協作機制建立，明確職位定位、職責及協作流程</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>總結辦彙報8月份工作情況</td>
+                        <td>批文採購、工廠建設等核心工作及數據彙報，問題分析與改進方案</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>對齊工作目標和計劃</td>
+                        <td>基於8月成果商議9月目標，分解目標至各崗位執行計劃</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>住宿與晚餐安排</td>
+                        <td>感謝股東參會，會議後共進晚餐</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>會議總結與同步</td>
+                        <td>核心內容總結，確認待辦任務負責人及截止時間，建立跟進流程</td>
+                    </tr>
+                </table>
+            </div>
+            
+            <div class="greeting">
+                <p>本次會議將聚焦團隊協作優化與工作目標對齊，為下階段發展奠定基礎。</p>
+                <p>請各參會人員提前準備相關材料，準時出席。</p>
+            </div>
+            
+            <div class="signature">
+                <p>順頌商祺！</p>
+                <p class="company">香港濟歲堂中藥廠有限公司</p>
+                <p class="date">2025年8月</p>
+            </div>
+            
+            <!-- 文档尾部 -->
+            <div class="document-footer">
+                <div class="footer-content">
+                    <p>內部文件 - 僅限參會人員 | 第 1 頁，共 1 頁 | 發文日期：2025年8月</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
