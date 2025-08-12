@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>办公室租赁合同</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", "SimSun", serif;
+        }
+        
+        body {
+            background-color: #f8f8f8;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        .contract-container {
+            max-width: 900px;
+            margin: 20px auto;
+            background: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 50px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #1a3a5f;
+        }
+        
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            color: #1a3a5f;
+        }
+        
+        .header h2 {
+            font-size: 20px;
+            font-weight: normal;
+            margin-bottom: 15px;
+        }
+        
+        .parties {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+        
+        .party {
+            flex: 1;
+            padding: 15px;
+        }
+        
+        .party h3 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #ccc;
+            color: #1a3a5f;
+        }
+        
+        .party-info p {
+            margin: 8px 0;
+        }
+        
+        .property-info {
+            margin: 25px 0;
+            padding: 20px;
+            background-color: #f0f7ff;
+            border-left: 4px solid #1a3a5f;
+        }
+        
+        .property-info h3 {
+            margin-bottom: 15px;
+            color: #1a3a5f;
+        }
+        
+        .property-details p {
+            margin: 8px 0;
+        }
+        
+        .terms-section {
+            margin: 30px 0;
+        }
+        
+        .section-title {
+            font-size: 20px;
+            margin: 25px 0 15px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #1a3a5f;
+            color: #1a3a5f;
+        }
+        
+        .term {
+            margin-bottom: 15px;
+        }
+        
+        .term-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .signature-area {
+            margin-top: 40px;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .signature-box {
+            width: 45%;
+        }
+        
+        .signature-box h3 {
+            margin-bottom: 15px;
+            color: #1a3a5f;
+        }
+        
+        .signature-line {
+            height: 1px;
+            background: #ccc;
+            margin: 40px 0 20px;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #ccc;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .highlight {
+            color: #c00;
+            font-weight: bold;
+        }
+        
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .contract-container {
+                box-shadow: none;
+                padding: 20px;
+                margin: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="contract-container">
+        <div class="header">
+            <h1>办公室租赁合同</h1>
+            <h2>合同编号：MKF-LZ-2023-0098</h2>
+        </div>
+        
+        <div class="parties">
+            <div class="party">
+                <h3>出租方（甲方）：</h3>
+                <div class="party-info">
+                    <p><strong>名称：</strong>玛柯莱芙（深圳）品牌运营管理有限公司</p>
+                    <p><strong>法定代表人：</strong>张明远</p>
+                    <p><strong>地址：</strong>深圳市福田区深南大道1008号</p>
+                    <p><strong>联系电话：</strong>0755-87654321</p>
+                    <p><strong>统一社会信用代码：</strong>91440300MA5FXXXXXX</p>
+                </div>
+            </div>
+            
+            <div class="party">
+                <h3>承租方（乙方）：</h3>
+                <div class="party-info">
+                    <p><strong>名称：</strong>济岁堂医药信息科技(深圳)有限公司</p>
+                    <p><strong>法定代表人：</strong>李济民</p>
+                    <p><strong>地址：</strong>深圳市南山区科技园南区</p>
+                    <p><strong>联系电话：</strong>0755-12345678</p>
+                    <p><strong>统一社会信用代码：</strong>91440300MA5GXXXXXX</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="property-info">
+            <h3>租赁物业信息</h3>
+            <div class="property-details">
+                <p>根据《中华人民共和国民法典》及相关法律法规，甲乙双方在平等自愿的基础上，就办公室租赁事宜达成如下协议：</p>
+                <p><strong>物业地址：</strong>深圳市龙岗区龙城街道黄阁坑社区京基御景时代大厦2栋804A</p>
+                <p><strong>租赁面积：</strong>建筑面积：86平方米（使用面积：78平方米）</p>
+                <p><strong>房屋用途：</strong>办公用途（医药信息科技研发、咨询及相关业务活动）</p>
+            </div>
+        </div>
+        
+        <div class="terms-section">
+            <div class="section-title">第一条 租赁期限</div>
+            <div class="term">
+                <p>租赁期限自<span class="highlight">2023年10月1日</span>起至<span class="highlight">2025年9月30日</span>止，共计<span class="highlight">贰年</span>。</p>
+            </div>
+            
+            <div class="section-title">第二条 租金及支付方式</div>
+            <div class="term">
+                <p>1. 月租金为人民币<span class="highlight">壹万贰仟捌佰元整（¥12,800）</span>。</p>
+                <p>2. 租金支付方式为<span class="highlight">季度支付</span>，乙方应于每季度开始前10个工作日内支付当季租金。</p>
+                <p>3. 甲方收到租金后应向乙方提供正规发票。</p>
+                <p>4. 逾期支付租金，每日按应付租金的<span class="highlight">0.1%</span>支付违约金。</p>
+            </div>
+            
+            <div class="section-title">第三条 押金</div>
+            <div class="term">
+                <p>1. 本合同签订之日，乙方应向甲方支付租赁押金人民币<span class="highlight">贰万伍仟陆佰元整（¥25,600）</span>，相当于两个月租金。</p>
+                <p>2. 租赁期满，乙方结清所有费用并将房屋按约定交还甲方后，甲方应在<span class="highlight">30日内</span>无息退还押金。</p>
+                <p>3. 如乙方有违约行为或造成房屋损坏，甲方有权从押金中扣除相应费用。</p>
+            </div>
+            
+            <div class="section-title">第四条 双方权利与义务</div>
+            <div class="term">
+                <p>1. 甲方应保证房屋及其附属设施处于正常使用状态。</p>
+                <p>2. 乙方应按约定用途使用房屋，不得擅自改变房屋结构或转租。</p>
+                <p>3. 物业管理费由甲方承担，乙方自行承担办公区域内水电、网络等费用。</p>
+                <p>4. 房屋租赁产生的相关税费由甲方承担，乙方经营产生的税费由乙方自行承担。</p>
+            </div>
+            
+            <div class="section-title">第五条 装修规定</div>
+            <div class="term">
+                <p>1. 乙方如需装修，应提前30日向甲方提交装修方案，经甲方书面同意后方可施工。</p>
+                <p>2. 装修不得改变房屋主体结构，不得影响建筑安全。</p>
+                <p>3. 租赁期满，乙方装修形成的不可移动附属物归甲方所有。</p>
+            </div>
+            
+            <div class="section-title">第六条 违约责任</div>
+            <div class="term">
+                <p>1. 任何一方单方面解除合同，应提前90日书面通知对方，并向对方支付<span class="highlight">三个月租金</span>作为违约金。</p>
+                <p>2. 乙方逾期支付租金超过30日，甲方有权解除合同并收回房屋。</p>
+                <p>3. 因不可抗力导致合同无法履行的，双方互不承担责任。</p>
+            </div>
+            
+            <div class="section-title">第七条 争议解决</div>
+            <div class="term">
+                <p>本合同在履行过程中发生争议，由双方当事人协商解决；协商不成的，依法向<span class="highlight">深圳市龙岗区人民法院</span>提起诉讼。</p>
+            </div>
+            
+            <div class="section-title">第八条 其他约定</div>
+            <div class="term">
+                <p>1. 本合同未尽事宜，双方可另行签订补充协议，补充协议与本合同具有同等法律效力。</p>
+                <p>2. 本合同一式<span class="highlight">肆份</span>，甲方执<span class="highlight">贰份</span>，乙方执<span class="highlight">贰份</span>，自双方签字盖章之日起生效。</p>
+            </div>
+        </div>
+        
+        <div class="signature-area">
+            <div class="signature-box">
+                <h3>出租方（甲方）：</h3>
+                <p>玛柯莱芙（深圳）品牌运营管理有限公司</p>
+                <p>法定代表人（授权代表）：</p>
+                <div class="signature-line"></div>
+                <p>日期： 年 月 日</p>
+                <p>（公司公章）</p>
+            </div>
+            
+            <div class="signature-box">
+                <h3>承租方（乙方）：</h3>
+                <p>济岁堂医药信息科技(深圳)有限公司</p>
+                <p>法定代表人（授权代表）：</p>
+                <div class="signature-line"></div>
+                <p>日期： 年 月 日</p>
+                <p>（公司公章）</p>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>签订地点：深圳市龙岗区</p>
+            <p>签订日期：2023年9月15日</p>
+        </div>
+    </div>
+</body>
+</html>
