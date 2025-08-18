@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>香港濟歲堂入职通知书</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: "Microsoft JhengHei", "微軟正黑體", sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e8edf5 100%);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            position: relative;
+        }
+        
+        .controls {
+            width: 210mm;
+            background: white;
+            padding: 15px 20px;
+            margin: 0 auto 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .controls button {
+            background: #a52a2a;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .controls button:hover {
+            background: #8a2323;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(165, 42, 42, 0.3);
+        }
+        
+        .controls button i {
+            font-size: 16px;
+        }
+        
+        .document-info {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .document-info span {
+            background: #f0f7ff;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 13px;
+            color: #1a5fb4;
+        }
+        
+        /* A4纸张样式 */
+        .a4-container {
+            width: 210mm;
+            min-height: 297mm;
+            background: white;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
+            position: relative;
+            padding: 0;
+            margin: 0 auto;
+            transition: all 0.3s ease;
+        }
+        
+        .a4-container:hover {
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* 页眉样式 */
+        .page-header {
+            width: 100%;
+            height: 25mm;
+            background: white;
+            padding: 5mm 20mm;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #c33;
+        }
+        
+        /* 页脚样式 */
+        .page-footer {
+            width: 100%;
+            height: 15mm;
+            background: white;
+            padding: 0 20mm;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-top: 1px solid #ddd;
+        }
+        
+        .footer-content {
+            font-size: 10pt;
+            color: #666;
+            text-align: center;
+        }
+        
+        /* 公司信息样式 */
+        .company-info {
+            flex: 1;
+        }
+        
+        .company-name {
+            font-size: 16pt;
+            font-weight: bold;
+            color: #a52a2a;
+        }
+        
+        .company-address {
+            font-size: 10pt;
+            color: #666;
+        }
+        
+        /* Logo样式 */
+        .logo-container {
+            width: 50mm;
+            height: 15mm;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid transparent;
+            padding: 2px;
+        }
+        
+        .logo-container .logo {
+            width: 40mm;
+            height: 12mm;
+            background: #a52a2a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-weight: bold;
+            font-size: 16px;
+            letter-spacing: 1px;
+            border-radius: 2px;
+        }
+        
+        /* 主要内容样式 */
+        .content {
+            padding: 20mm;
+            padding-top: 15mm;
+            padding-bottom: 15mm;
+        }
+        
+        .title {
+            text-align: center;
+            font-size: 24pt;
+            margin: 10mm 0 15mm;
+            color: #a52a2a;
+            position: relative;
+            letter-spacing: 2px;
+        }
+        
+        .title::after {
+            content: "";
+            position: absolute;
+            bottom: -8px;
+            left: 35%;
+            width: 30%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #c33, transparent);
+        }
+        
+        /* 通知内容样式 */
+        .notification-content {
+            margin: 20px 0;
+            line-height: 1.8;
+            font-size: 11pt;
+        }
+        
+        .salutation {
+            margin-bottom: 25px;
+            padding-left: 5px;
+        }
+        
+        .section-title {
+            font-size: 14pt;
+            color: #a52a2a;
+            margin: 20px 0 12px;
+            border-left: 4px solid #c33;
+            padding-left: 12px;
+            position: relative;
+            left: -12px;
+        }
+        
+        /* 表格样式 */
+        .terms-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 11pt;
+            border: 1px solid #e0d6cc;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        .terms-table th, .terms-table td {
+            border: 1px solid #e0d6cc;
+            padding: 12px 15px;
+            text-align: left;
+        }
+        
+        .terms-table th {
+            background-color: #f9f5f0;
+            font-weight: normal;
+            width: 25%;
+            color: #5c3c20;
+        }
+        
+        /* 可编辑字段样式 */
+        .editable-field {
+            display: inline-block;
+            min-width: 100px;
+            min-height: 1.2em;
+            border-bottom: 1px dashed #a52a2a;
+            padding: 0 5px 2px;
+            margin: 0 3px;
+            background: rgba(165, 42, 42, 0.05);
+            cursor: text;
+        }
+        
+        .editable-field:focus {
+            outline: none;
+            border-bottom: 2px solid #a52a2a;
+            background: rgba(165, 42, 42, 0.08);
+        }
+        
+        /* 列表样式 */
+        .document-list {
+            list-style-type: none;
+            padding-left: 0;
+            margin: 15px 0 25px;
+        }
+        
+        .document-list li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 28px;
+        }
+        
+        .document-list li:before {
+            content: "•";
+            color: #a52a2a;
+            position: absolute;
+            left: 10px;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        
+        /* 提醒样式 */
+        .reminder-box {
+            background-color: #fff8f8;
+            border: 1px solid #f5c6cb;
+            border-radius: 5px;
+            padding: 18px 20px;
+            margin: 20px 0;
+            font-size: 10.5pt;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+        }
+        
+        .reminder-title {
+            color: #a52a2a;
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 12pt;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .reminder-title i {
+            font-size: 16px;
+        }
+        
+        .reminder-box p {
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        .reminder-box p:before {
+            content: "▪";
+            position: absolute;
+            left: 0;
+            color: #a52a2a;
+            font-size: 12px;
+        }
+        
+        /* 签名部分 */
+        .signature {
+            margin-top: 25mm;
+            text-align: right;
+            padding-right: 20mm;
+        }
+        
+        .signature p {
+            margin: 8px 0;
+        }
+        
+        .signature .company {
+            font-weight: bold;
+            color: #a52a2a;
+            font-size: 12.5pt;
+        }
+        
+        .signature .date {
+            font-size: 10.5pt;
+            color: #666;
+        }
+        
+        .signature-line {
+            display: inline-block;
+            width: 200px;
+            border-bottom: 1px solid #333;
+            margin-top: 15px;
+            margin-bottom: 5px;
+        }
+        
+        /* 承诺部分 */
+        .commitment {
+            background-color: #f9f5f0;
+            padding: 20px;
+            border-left: 4px solid #e0a800;
+            margin: 25px 0;
+            font-size: 10.5pt;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .commitment strong {
+            color: #8a2323;
+        }
+        
+        /* 水印 */
+        .watermark {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-30deg);
+            font-size: 120px;
+            color: rgba(165, 42, 42, 0.05);
+            pointer-events: none;
+            user-select: none;
+            z-index: -1;
+            font-weight: bold;
+        }
+        
+        /* 打印样式 */
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+                width: 210mm;
+                height: 297mm;
+            }
+            
+            .controls {
+                display: none;
+            }
+            
+            .a4-container {
+                box-shadow: none;
+                margin: 0;
+                padding: 0;
+                width: 100%;
+                height: 100%;
+            }
+            
+            .page-header {
+                position: relative;
+                height: 20mm;
+            }
+            
+            .page-footer {
+                position: relative;
+                height: 10mm;
+            }
+            
+            .content {
+                padding: 20mm;
+                padding-top: 15mm;
+                padding-bottom: 15mm;
+            }
+            
+            .editable-field {
+                border-bottom: 1px solid #a52a2a;
+                background: transparent;
+            }
+            
+            .watermark {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="controls">
+        <div class="document-info">
+            <span><i class="fas fa-file-alt"></i> 入职通知书</span>
+            <span><i class="fas fa-user"></i> HR-2025-08</span>
+            <span><i class="fas fa-lock"></i> 机密文件</span>
+        </div>
+        <button id="printBtn">
+            <i class="fas fa-print"></i> 打印A4文件
+        </button>
+    </div>
+    
+    <div class="a4-container">
+        <div class="watermark">濟歲堂</div>
+        
+        <!-- 页眉 -->
+        <div class="page-header">
+            <div class="company-info">
+                <div class="company-name">香港濟歲堂中藥廠有限公司</div>
+                <div class="company-address">地址：香港新界葵涌華星街8號華達工業中心A座4樓12室</div>
+            </div>
+            <div class="logo-container">
+                <div class="logo">濟歲堂</div>
+            </div>
+        </div>
+        
+        <!-- 内容区域 -->
+        <div class="content">
+            <h1 class="title">入職通知書</h1>
+            
+            <div class="notification-content">
+                <div class="salutation">
+                    <p>尊敬的 <span class="editable-field" id="candidateName" contenteditable="true">張偉明</span> 先生：</p>
+                </div>
+                
+                <p>非常榮幸的通知您，根據面試結果及綜合評估，香港濟歲堂中藥廠有限公司誠聘您擔任：<span class="editable-field" id="position" contenteditable="true">品牌運營專員</span> 職位。</p>
+                
+                <h3 class="section-title">聘用條款</h3>
+                
+                <table class="terms-table">
+                    <tr>
+                        <th>勞動合同期限</th>
+                        <td><span class="editable-field" id="contractDuration" contenteditable="true">3年</span>（根據香港《僱傭條例》標準合約）</td>
+                    </tr>
+                    <tr>
+                        <th>試用期</th>
+                        <td><span class="editable-field" id="probationPeriod" contenteditable="true">3個月</span>（試用期薪資不低於正式薪資的80%）</td>
+                    </tr>
+                    <tr>
+                        <th>入職時間</th>
+                        <td><span class="editable-field" id="startDate" contenteditable="true">2025年9月1日（星期一）上午9:00</span></td>
+                    </tr>
+                    <tr>
+                        <th>工作地點</th>
+                        <td><span class="editable-field" id="workLocation" contenteditable="true">香港新界葵涌華星街8號華達工業中心A座4樓12室</span></td>
+                    </tr>
+                    <tr>
+                        <th>工作時間</th>
+                        <td><span class="editable-field" id="workHours" contenteditable="true">週一至週五：09:00-18:00（含1小時午休）<br>週六：09:00-13:00（隔週休息）</span></td>
+                    </tr>
+                </table>
+                
+                <h3 class="section-title">薪酬福利</h3>
+                
+                <div style="margin: 18px 0;">
+                    <p>1. 試用期基本工資：<span class="editable-field" id="probationSalary" contenteditable="true">HK$ 18,000</span> /月 + 績效獎金 <span class="editable-field" id="probationBonus" contenteditable="true">HK$ 2,000</span>/月</p>
+                    <p>2. 轉正後基本工資：<span class="editable-field" id="salary" contenteditable="true">HK$ 20,000</span> /月 + 績效獎金 <span class="editable-field" id="bonus" contenteditable="true">HK$ 3,000</span>/月</p>
+                    <p>3. 年終獎金：<span class="editable-field" id="yearEndBonus" contenteditable="true">根據公司業績及個人績效考核發放</span></p>
+                    <p>4. 法定福利：<span class="editable-field" id="legalBenefits" contenteditable="true">強積金供款、年假12天、病假、法定假期等</span></p>
+                    <p>5. 公司福利：<span class="editable-field" id="companyBenefits" contenteditable="true">年度健康檢查、中醫保健、培訓發展計劃</span></p>
+                </div>
+                
+                <h3 class="section-title">入職所需文件</h3>
+                
+                <ul class="document-list">
+                    <li><span class="editable-field" id="doc1" contenteditable="true">香港身份證正本及影印本2份</span></li>
+                    <li><span class="editable-field" id="doc2" contenteditable="true">學歷證明正本及影印本1份</span></li>
+                    <li><span class="editable-field" id="doc3" contenteditable="true">最近三個月內拍攝的一寸彩色證件照片2張</span></li>
+                    <li><span class="editable-field" id="doc4" contenteditable="true">銀行帳戶資料（用於發放薪金）</span></li>
+                    <li><span class="editable-field" id="doc5" contenteditable="true">強積金計劃成員登記表格（如適用）</span></li>
+                    <li><span class="editable-field" id="doc6" contenteditable="true">前僱主離職證明信正本（如適用）</span></li>
+                    <li><span class="editable-field" id="doc7" contenteditable="true">體格檢查報告（根據香港《職業安全及健康條例》要求）</span></li>
+                </ul>
+                
+                <div class="reminder-box">
+                    <div class="reminder-title"><i class="fas fa-exclamation-circle"></i> 重要提示：</div>
+                    <p>請於入職當日攜帶上述文件準時到人力資源部辦理入職手續</p>
+                    <p>如未能於指定日期報到，請提前<span class="editable-field" id="noticePeriod" contenteditable="true">3個</span>工作日通知人力資源部</p>
+                    <p>根據香港《個人資料（私隱）條例》，您提供的個人資料將嚴格保密</p>
+                    <p>體檢報告需由註冊醫生簽發，包含基本健康檢查項目</p>
+                </div>
+                
+                <div class="commitment">
+                    <p><strong>入職者承諾：</strong></p>
+                    <p>本人確認在入職香港濟歲堂中藥廠有限公司前，已與前僱主終止所有僱傭關係，並解除任何競業禁止或保密協議責任。如有任何因前僱傭關係引起的法律糾紛，將由本人自行承擔全部責任。同時承諾所提供之個人資料均屬真實，如有虛假，公司有權即時終止合約。</p>
+                </div>
+                
+                <p>我們誠摯歡迎您加入香港濟歲堂大家庭！如有任何疑問，請聯繫人力資源部<span class="editable-field" id="contactPerson" contenteditable="true">陳小姐</span>（電話：<span class="editable-field" id="contactPhone" contenteditable="true">+852 1234 5678</span>）。</p>
+                
+                <div class="signature">
+                    <p>此致</p>
+                    <p class="company">香港濟歲堂中藥廠有限公司</p>
+                    <p>人力資源部經理</p>
+                    <div class="signature-line"></div>
+                    <p class="date">簽署：_________________________</p>
+                    <p class="date"><span class="editable-field" id="issueDate" contenteditable="true">2025年8月18日</span></p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 页脚 -->
+        <div class="page-footer">
+            <div class="footer-content">
+                <p>機密文件 - 僅限指定收件人 | 版本：HR-2025-08 | 依據香港《僱傭條例》制定</p>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        document.getElementById('printBtn').addEventListener('click', function() {
+            window.print();
+        });
+        
+        // 自动聚焦第一个可编辑字段
+        document.addEventListener('DOMContentLoaded', function() {
+            const firstEditable = document.querySelector('.editable-field');
+            if (firstEditable) {
+                firstEditable.focus();
+            }
+        });
+        
+        // 保存数据到本地存储
+        document.querySelectorAll('.editable-field').forEach(field => {
+            field.addEventListener('blur', function() {
+                localStorage.setItem(this.id, this.innerHTML);
+            });
+            
+            // 加载保存的数据
+            const savedValue = localStorage.getItem(this.id);
+            if (savedValue) {
+                this.innerHTML = savedValue;
+            }
+        });
+    </script>
+</body>
+</html>
