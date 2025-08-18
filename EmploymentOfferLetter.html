@@ -145,18 +145,11 @@
             padding: 2px;
         }
         
-        .logo-container .logo {
-            width: 40mm;
-            height: 12mm;
-            background: #a52a2a;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            font-weight: bold;
-            font-size: 16px;
-            letter-spacing: 1px;
-            border-radius: 2px;
+        .logo-container img {
+            max-height: 100%;
+            max-width: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
         }
         
         /* 主要内容样式 */
@@ -437,7 +430,7 @@
                 <div class="company-address">地址：香港新界葵涌華星街8號華達工業中心A座4樓12室</div>
             </div>
             <div class="logo-container">
-                <img src="logo.jpg" alt="濟歲堂標誌">
+                <img src="https://i.imgur.com/2z7qy7t.png" alt="濟歲堂標誌">
             </div>
         </div>
         
@@ -556,6 +549,36 @@
             const savedValue = localStorage.getItem(this.id);
             if (savedValue) {
                 this.innerHTML = savedValue;
+            }
+        });
+        
+        // 初始化默认值
+        const initValues = {
+            candidateName: "張偉明",
+            position: "品牌運營專員",
+            contractDuration: "3年",
+            probationPeriod: "3個月",
+            startDate: "2025年9月1日（星期一）上午9:00",
+            workLocation: "香港新界葵涌華星街8號華達工業中心A座4樓12室",
+            workHours: "週一至週五：09:00-18:00（含1小時午休）<br>週六：09:00-13:00（隔週休息）",
+            probationSalary: "HK$ 18,000",
+            probationBonus: "HK$ 2,000",
+            salary: "HK$ 20,000",
+            bonus: "HK$ 3,000",
+            yearEndBonus: "根據公司業績及個人績效考核發放",
+            legalBenefits: "強積金供款、年假12天、病假、法定假期等",
+            companyBenefits: "年度健康檢查、中醫保健、培訓發展計劃",
+            noticePeriod: "3個",
+            contactPerson: "陳小姐",
+            contactPhone: "+852 1234 5678",
+            issueDate: "2025年8月18日"
+        };
+        
+        // 设置默认值
+        Object.keys(initValues).forEach(id => {
+            const element = document.getElementById(id);
+            if (element && !localStorage.getItem(id)) {
+                element.innerHTML = initValues[id];
             }
         });
     </script>
