@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>供应商评估与成本分析</title>
+    <style>
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+            background-color: #f5f7fa;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #3498db;
+            font-size: 28px;
+        }
+        h2 {
+            color: #2980b9;
+            margin-top: 30px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        /* 供应商信息区域优化 */
+        .supplier-info {
+            background: linear-gradient(135deg, #eaf7ff 0%, #d6eaff 100%);
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            border-left: 5px solid #3498db;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .info-group {
+            display: flex;
+            flex-direction: column;
+        }
+        .info-group label {
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #2c3e50;
+            font-size: 15px;
+        }
+        .info-group input {
+            padding: 12px 15px;
+            border: 1px solid #cce7ff;
+            border-radius: 6px;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            background: white;
+        }
+        .info-group input:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        }
+        .info-group input:hover {
+            border-color: #3498db;
+        }
+        
+        .tabs {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+        }
+        .tab {
+            padding: 12px 25px;
+            background: #f8f9fa;
+            margin-right: 5px;
+            cursor: pointer;
+            border-radius: 5px 5px 0 0;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+        .tab.active {
+            background: #3498db;
+            color: white;
+        }
+        .tab:hover:not(.active) {
+            background: #e9ecef;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        input[type="number"], input[type="text"] {
+            padding: 8px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 100%;
+        }
+        .score-input {
+            width: 70px;
+            text-align: center;
+        }
+        .score-display {
+            font-weight: bold;
+            color: #2980b9;
+            text-align: center;
+        }
+        .dimension-header {
+            background-color: #e8f4fc;
+            font-weight: bold;
+        }
+        .dimension-title {
+            font-weight: bold;
+            background-color: #e8f4fc;
+            vertical-align: top;
+        }
+        .sub-item {
+            padding-left: 20px;
+        }
+        .button-group {
+            margin: 25px 0;
+            text-align: center;
+        }
+        button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin: 0 10px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        button:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+        .summary {
+            margin-top: 20px;
+            padding: 20px;
+            background: #eaf7ff;
+            border-radius: 8px;
+            border-left: 5px solid #3498db;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .supplier-info {
+                grid-template-columns: 1fr;
+            }
+            .container {
+                padding: 15px;
+            }
+            .tab {
+                padding: 10px 15px;
+                font-size: 14px;
+            }
+            button {
+                padding: 10px 15px;
+                margin: 5px;
+                width: 100%;
+            }
+            .button-group {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+        
+        /* 打印样式 */
+        @media print {
+            body, .container {
+                margin: 0;
+                padding: 0;
+                width: 100%;
+                box-shadow: none;
+                background: white;
+            }
+            .no-print {
+                display: none;
+            }
+            h1, h2 {
+                color: black !important;
+            }
+            table {
+                page-break-inside: avoid;
+            }
+            .tab-content {
+                display: block !important;
+            }
+            .supplier-info {
+                border: 1px solid #000;
+                background: white;
+                margin-bottom: 15px;
+            }
+            input {
+                border: none;
+                background: transparent;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>供应商评估与成本分析</h1>
+        
+        <div class="supplier-info no-print">
+            <div class="info-group">
+                <label for="supplier-name">供应商名称</label>
+                <input type="text" id="supplier-name" placeholder="请输入供应商名称">
+            </div>
+            <div class="info-group">
+                <label for="evaluator">评估人</label>
+                <input type="text" id="evaluator" placeholder="请输入评估人姓名">
+            </div>
+            <div class="info-group">
+                <label for="evaluation-date">评估日期</label>
+                <input type="date" id="evaluation-date">
+            </div>
+        </div>
+        
+        <div class="tabs no-print">
+            <div class="tab active" onclick="switchTab(0)">供应商能力评估</div>
+            <div class="tab" onclick="switchTab(1)">成本与产能分析</div>
+        </div>
+        
+        <div class="tab-content active" id="tab0">
+            <div class="supplier-info-print">
+                <strong>供应商名称:</strong> <span id="print-supplier-name"></span> | 
+                <strong>评估人:</strong> <span id="print-evaluator"></span> | 
+                <strong>评估日期:</strong> <span id="print-date"></span>
+            </div>
+            
+            <h2>供应商（代工厂）综合能力评估表</h2>
+            <table id="supplier-assessment">
+                <thead>
+                    <tr>
+                        <th width="25%">评估维度</th>
+                        <th width="45%">评估细项</th>
+                        <th width="10%">权重</th>
+                        <th width="10%">评分 (1-5)</th>
+                        <th width="10%">得分</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- 资质与合规 -->
+                    <tr class="dimension-header">
+                        <td rowspan="4" class="dimension-title">资质与合规</td>
+                        <td class="sub-item">持有有效的《药品生产许可证》，且生产范围覆盖我方剂型</td>
+                        <td>15%</td>
+                        <td><input type="number" min="1" max="5" value="3" class="score-input" data-weight="15"></td>
+                        <td class="score-display" id="score-1">9.0</td>
+                    </tr>
+                    <tr>
+                        <td class="sub-item">通过最新版GMP符合性检查</td>
+                        <td>10%</td>
+                        <td><input type="number" min="1" max="5" value="3" class="score-input" data-weight="10"></td>
+                        <td class="score-display" id="score-2">6.0</td>
+                    </tr>
+                    <tr>
+                        <td class="sub-item">具备"接受港澳药品上市许可持有人委托生产"的许可项</td>
+                        <td>15%</td>
+                        <td><input type="number" min="1" max="5" value="3" class="score-input" data-weight="15"></td>
+                        <td class="score-display" id="score-3">9.0</td>
+                    </tr>
+                    <tr>
+                        <td class="sub-item">无重大药品质量安全事故或监管不良记录</td>
+                        <td>10%</td>
+                        <td><input type="number" min="1" max="5" value="3" class="score-input" data-weight="10"></td>
+                        <td class="score-display" id="score-4">6.0</td>
+                    </tr>
+                    
+                    <!-- 技术与管理能力 -->
+                    <tr class="dimension-header">
+                        <td rowspan="4" class="dimension-title">技术与管理能力</td>
+                        <td class="sub-item">有同剂型（尤其是胶囊、丸剂、外用膏剂）的成熟生产经验</td>
+                        <td>10%</td>
+                        <td><input type="number" min="1" max="5" value="3" class="score-input" data-weight="10"></td>
+                        <td class="score-display" id="score-5">6.0</td>
+                    </tr>
+                    <tr>
+                        <td class="sub-item">有香港药品或跨境委托生产的成功案例或经验</td>
+                        <td>10%</td>
+                        <td><input type="number" min="1" max="5" value="3" class="score-input" data-weight="10"></td>
+                        <td class="score-display" id="score-6">6.0</td>
+                    </tr>
+                    <tr>
+                        <td class="sub-item">质量体系完善，QC/QA团队专业，检测设备齐全</td>
+                        <td>8%</td>
+                        <td><input type="number" min="1" max="5" value="3" class="score-input" data-weight="8"></td>
+                        <td class="score-display" id="score-7">4.8</td>
+                    </tr>
+                    <tr>
+                        <td class="sub-item">技术团队能提供工艺优化、难题解决的支持</td>
+                        <td>5%</td>
+                        <td><input type="number" min="1" max="5" value="3" class="score-input" data-weight="5"></td>
+                        <td class="score-display" id="score-8">3.0</td>
+                    </tr>
+                    
+                    <!-- 产能与柔性 -->
+                    <tr class="dimension-header">
+                        <td rowspan="3" class="dimension-title">产能与柔性</td>
+                        <td class="sub-item">现有产能充足，能满足我方预期订单量</td>
+                        <td>7%</td>
+                        <td><input type="number" min="1" max="5" value="3" class="score-input" data-weight="7"></td>
+                        <td class="score-display" id="score-9">4.2</td>
+                    </tr>
+                    <tr>
+                        <td class="sub-item">能接受小批量试产，并具备快速扩产的能力</td>
+                        <td>5%</td>
+                        <td><input type="number" min="1" max="5" value="3" class="score-input" data-weight="5"></td>
+                        <td class="score-display" id="score-10">3.0</td>
+                    </tr>
+                    <tr>
+                        <td class="sub-item">生产线切换和准备时间短，灵活性高</td>
+                        <td>3%</td>
+                        <td><input type="number" min="1" max="5" value="3" class="score-input" data-weight="3"></td>
+                        <td class="score-display" id="score-11">1.8</td>
+                    </tr>
+                    
+                    <!-- 合作与沟通 -->
+                    <tr class="dimension-header">
+                        <td rowspan="3" class="dimension-title">合作与沟通</td>
+                        <td class="sub-item">合作意愿强烈，响应及时，有专人对接</td>
+                        <td>5%</td>
+                        <td><input type="number" min="1" max="5" value="3" class="score-input" data-weight="5"></td>
+                        <td class="score-display" id="score-12">3.0</td>
+                    </tr>
+                    <tr>
+                        <td class="sub-item">沟通顺畅，能理解我方需求，透明度高</td>
+                        <td>4%</td>
+                        <td><input type="number" min="1" max="5" value="3" class="score-input" data-weight="4"></td>
+                        <td class="score-display" id="score-13">2.4</td>
+                    </tr>
+                    <tr>
+                        <td class="sub-item">地理位置（优先深圳，其次大湾区）</td>
+                        <td>3%</td>
+                        <td><input type="number" min="1" max="5" value="3" class="score-input" data-weight="3"></td>
+                        <td class="score-display" id="score-14">1.8</td>
+                    </tr>
+                    
+                    <!-- 总分 -->
+                    <tr>
+                        <td colspan="2" style="text-align: right; font-weight: bold;">总分</td>
+                        <td>100%</td>
+                        <td>-</td>
+                        <td id="total-score" class="score-display">60.0</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="summary">
+                <p><strong>评估说明：</strong>每项评分1-5分（1=很差/无，3=一般/符合基本要求，5=优秀/超出预期）。总分满分100分，80分以上可列为重点候选对象。</p>
+                <p><strong>当前评估结果：</strong> <span id="result-text">合格</span></p>
+            </div>
+        </div>
+        
+        <div class="tab-content" id="tab1">
+            <div class="supplier-info-print">
+                <strong>供应商名称:</strong> <span id="print-supplier-name2"></span> | 
+                <strong>评估人:</strong> <span id="print-evaluator2"></span> | 
+                <strong>评估日期:</strong> <span id="print-date2"></span>
+            </div>
+            
+            <h2>成本与产能详细评估表</h2>
+            <table id="cost-assessment">
+                <thead>
+                    <tr>
+                        <th width="25%">评估项目</th>
+                        <th width="25%">具体内容</th>
+                        <th width="16%">工厂A报价</th>
+                        <th width="16%">工厂B报价</th>
+                        <th width="18%">备注</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td rowspan="3">一次性费用</td>
+                        <td>技术转移费（如适用）</td>
+                        <td><input type="text" placeholder="请输入金额"></td>
+                        <td><input type="text" placeholder="请输入金额"></td>
+                        <td><input type="text" placeholder="工艺验证、方法转移等"></td>
+                    </tr>
+                    <tr>
+                        <td>专用工装/模具开发费</td>
+                        <td><input type="text" placeholder="请输入金额"></td>
+                        <td><input type="text" placeholder="请输入金额"></td>
+                        <td><input type="text" placeholder=""></td>
+                    </tr>
+                    <tr>
+                        <td>首批稳定性考察费用</td>
+                        <td><input type="text" placeholder="请输入金额"></td>
+                        <td><input type="text" placeholder="请输入金额"></td>
+                        <td><input type="text" placeholder=""></td>
+                    </tr>
+                    <tr>
+                        <td rowspan="4">单位生产成本</td>
+                        <td>原料成本（是否代采？）</td>
+                        <td><input type="text" placeholder="/盒"></td>
+                        <td><input type="text" placeholder="/盒"></td>
+                        <td><input type="text" placeholder="明确是否含主料、辅料"></td>
+                    </tr>
+                    <tr>
+                        <td>包材成本（是否代采？）</td>
+                        <td><input type="text" placeholder="/盒"></td>
+                        <td><input type="text" placeholder="/盒"></td>
+                        <td><input type="text" placeholder="内包材、外包材、说明书"></td>
+                    </tr>
+                    <tr>
+                        <td>加工费（核心）</td>
+                        <td><input type="text" placeholder="/盒"></td>
+                        <td><input type="text" placeholder="/盒"></td>
+                        <td><input type="text" placeholder="清晰列明计价单位"></td>
+                    </tr>
+                    <tr>
+                        <td>检验/质量控制费</td>
+                        <td><input type="text" placeholder="/批"></td>
+                        <td><input type="text" placeholder="/批"></td>
+                        <td><input type="text" placeholder=""></td>
+                    </tr>
+                    <tr>
+                        <td>最小起订量（MOQ）</td>
+                        <td>批量要求（如：≥ 50,000盒/批）</td>
+                        <td><input type="text" placeholder=""></td>
+                        <td><input type="text" placeholder=""></td>
+                        <td><input type="text" placeholder="直接影响库存成本和资金占用"></td>
+                    </tr>
+                    <tr>
+                        <td rowspan="3">产能情况</td>
+                        <td>现有闲置产能（盒/月）</td>
+                        <td><input type="text" placeholder=""></td>
+                        <td><input type="text" placeholder=""></td>
+                        <td><input type="text" placeholder=""></td>
+                    </tr>
+                    <tr>
+                        <td>达到满负荷产能所需周期</td>
+                        <td><input type="text" placeholder=""></td>
+                        <td><input type="text" placeholder=""></td>
+                        <td><input type="text" placeholder=""></td>
+                    </tr>
+                    <tr>
+                        <td>最大可承接产能（盒/月）</td>
+                        <td><input type="text" placeholder=""></td>
+                        <td><input type="text" placeholder=""></td>
+                        <td><input type="text" placeholder=""></td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2">付款方式</td>
+                        <td>定金比例</td>
+                        <td><input type="text" placeholder=""></td>
+                        <td><input type="text" placeholder=""></td>
+                        <td><input type="text" placeholder=""></td>
+                    </tr>
+                    <tr>
+                        <td>账期</td>
+                        <td><input type="text" placeholder=""></td>
+                        <td><input type="text" placeholder=""></td>
+                        <td><input type="text" placeholder=""></td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2">其他成本</td>
+                        <td>物流运输成本（至香港仓库）</td>
+                        <td><input type="text" placeholder=""></td>
+                        <td><input type="text" placeholder=""></td>
+                        <td><input type="text" placeholder=""></td>
+                    </tr>
+                    <tr>
+                        <td>仓储费用（如适用）</td>
+                        <td><input type="text" placeholder=""></td>
+                        <td><input type="text" placeholder=""></td>
+                        <td><input type="text" placeholder=""></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">总成本初步估算（基于年需求XX万盒）</td>
+                        <td><input type="text" placeholder=""></td>
+                        <td><input type="text" placeholder=""></td>
+                        <td><input type="text" placeholder=""></td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="summary">
+                <p><strong>使用说明：</strong>此表用于横向对比几家核心候选工厂。要求工厂提供详细的报价单，并逐一分解填列。不要只比较单价，要综合MOQ、付款方式、物流等计算总体成本。</p>
+            </div>
+        </div>
+        
+        <div class="button-group no-print">
+            <button onclick="calculateScores()">重新计算得分</button>
+            <button onclick="window.print()">打印表格 (A4)</button>
+            <button onclick="saveData()">保存数据</button>
+            <button onclick="loadSampleData()">加载示例数据</button>
+        </div>
+    </div>
+
+    <script>
+        // 切换标签页
+        function switchTab(tabIndex) {
+            document.querySelectorAll('.tab').forEach((tab, index) => {
+                if(index === tabIndex) {
+                    tab.classList.add('active');
+                } else {
+                    tab.classList.remove('active');
+                }
+            });
+            
+            document.querySelectorAll('.tab-content').forEach((content, index) => {
+                if(index === tabIndex) {
+                    content.classList.add('active');
+                } else {
+                    content.classList.remove('active');
+                }
+            });
+        }
+        
+        // 计算得分
+        function calculateScores() {
+            let totalScore = 0;
+            
+            // 获取所有评分输入框
+            const scoreInputs = document.querySelectorAll('.score-input');
+            
+            scoreInputs.forEach((input, index) => {
+                const weight = parseFloat(input.getAttribute('data-weight'));
+                const score = parseFloat(input.value) || 0;
+                
+                // 计算加权得分
+                const weightedScore = (weight * score) / 5;
+                
+                // 更新显示得分
+                document.getElementById(`score-${index + 1}`).textContent = weightedScore.toFixed(1);
+                
+                // 累加到总分
+                totalScore += weightedScore;
+            });
+            
+            // 更新总分
+            document.getElementById('total-score').textContent = totalScore.toFixed(1);
+            
+            // 更新评估结果文本
+            const resultText = document.getElementById('result-text');
+            if (totalScore >= 80) {
+                resultText.textContent = '优秀 (重点候选对象)';
+                resultText.style.color = '#2ecc71';
+            } else if (totalScore >= 60) {
+                resultText.textContent = '合格';
+                resultText.style.color = '#f39c12';
+            } else {
+                resultText.textContent = '有待改进';
+                resultText.style.color = '#e74c3c';
+            }
+            
+            // 更新打印信息
+            updatePrintInfo();
+        }
+        
+        // 更新打印信息
+        function updatePrintInfo() {
+            const supplierName = document.getElementById('supplier-name').value || '未命名供应商';
+            const evaluator = document.getElementById('evaluator').value || '未命名评估人';
+            const date = document.getElementById('evaluation-date').value || new Date().toLocaleDateString();
+            
+            document.getElementById('print-supplier-name').textContent = supplierName;
+            document.getElementById('print-evaluator').textContent = evaluator;
+            document.getElementById('print-date').textContent = date;
+            
+            document.getElementById('print-supplier-name2').textContent = supplierName;
+            document.getElementById('print-evaluator2').textContent = evaluator;
+            document.getElementById('print-date2').textContent = date;
+        }
+        
+        // 保存数据到本地存储
+        function saveData() {
+            const supplierData = [];
+            document.querySelectorAll('.score-input').forEach(input => {
+                supplierData.push(input.value);
+            });
+            
+            const costData = [];
+            document.querySelectorAll('#cost-assessment tbody tr input').forEach(input => {
+                costData.push(input.value);
+            });
+            
+            // 保存供应商信息
+            const supplierInfo = {
+                name: document.getElementById('supplier-name').value,
+                evaluator: document.getElementById('evaluator').value,
+                date: document.getElementById('evaluation-date').value
+            };
+            
+            localStorage.setItem('supplierAssessment', JSON.stringify(supplierData));
+            localStorage.setItem('costAssessment', JSON.stringify(costData));
+            localStorage.setItem('supplierInfo', JSON.stringify(supplierInfo));
+            
+            alert('数据已保存!');
+        }
+        
+        // 从本地存储加载数据
+        function loadData() {
+            try {
+                const supplierData = JSON.parse(localStorage.getItem('supplierAssessment'));
+                if (supplierData) {
+                    const inputs = document.querySelectorAll('.score-input');
+                    inputs.forEach((input, index) => {
+                        if (supplierData[index]) {
+                            input.value = supplierData[index];
+                        }
+                    });
+                }
+                
+                const costData = JSON.parse(localStorage.getItem('costAssessment'));
+                if (costData) {
+                    const inputs = document.querySelectorAll('#cost-assessment tbody tr input');
+                    inputs.forEach((input, index) => {
+                        if (costData[index]) {
+                            input.value = costData[index];
+                        }
+                    });
+                }
+                
+                // 加载供应商信息
+                const supplierInfo = JSON.parse(localStorage.getItem('supplierInfo'));
+                if (supplierInfo) {
+                    document.getElementById('supplier-name').value = supplierInfo.name || '';
+                    document.getElementById('evaluator').value = supplierInfo.evaluator || '';
+                    document.getElementById('evaluation-date').value = supplierInfo.date || '';
+                }
+                
+                calculateScores();
+            } catch (e) {
+                console.error('加载数据出错:', e);
+            }
+        }
+        
+        // 加载示例数据
+        function loadSampleData() {
+            if (confirm('加载示例数据将覆盖当前数据，是否继续?')) {
+                // 设置供应商信息
+                document.getElementById('supplier-name').value = '深圳广济堂制药有限公司';
+                document.getElementById('evaluator').value = '张经理';
+                document.getElementById('evaluation-date').value = new Date().toISOString().split('T')[0];
+                
+                // 设置供应商评估表示例数据
+                const scoreInputs = document.querySelectorAll('.score-input');
+                const sampleScores = [4, 5, 4, 4, 4, 5, 4, 4, 4, 4, 4, 4, 4, 4];
+                
+                scoreInputs.forEach((input, index) => {
+                    if (index < sampleScores.length) {
+                        input.value = sampleScores[index];
+                    }
+                });
+                
+                // 设置成本评估表示例数据
+                const costInputs = document.querySelectorAll('#cost-assessment tbody tr input');
+                const sampleCosts = [
+                    '50,000', '45,000', '模具费用', 
+                    '30,000', '28,000', '代采原料', 
+                    '8.5', '8.2', '含内包材', 
+                    '15.0', '14.5', '按药典标准', 
+                    '2,500', '2,300', '每批检验费', 
+                    '50,000', '45,000', '最小订单量', 
+                    '200,000', '180,000', '当前可用产能', 
+                    '2周', '3周', '扩产准备时间', 
+                    '500,000', '450,000', '最大月产能', 
+                    '30%', '25%', '预付款比例', 
+                    '货到30天', '货到45天', '付款周期', 
+                    '0.8', '0.9', '港币/盒', 
+                    '0.2', '0.25', '仓储费/月/盒', 
+                    '1,850,000', '1,720,000', '年需求100万盒估算'
+                ];
+                
+                costInputs.forEach((input, index) => {
+                    if (index < sampleCosts.length) {
+                        input.value = sampleCosts[index];
+                    }
+                });
+                
+                calculateScores();
+                alert('示例数据已加载!');
+            }
+        }
+        
+        // 页面加载时初始化
+        window.onload = function() {
+            // 为所有评分输入框添加事件监听
+            document.querySelectorAll('.score-input').forEach(input => {
+                input.addEventListener('input', calculateScores);
+            });
+            
+            // 添加事件监听器到供应商信息输入框
+            document.getElementById('supplier-name').addEventListener('input', updatePrintInfo);
+            document.getElementById('evaluator').addEventListener('input', updatePrintInfo);
+            document.getElementById('evaluation-date').addEventListener('input', updatePrintInfo);
+            
+            loadData();
+            calculateScores();
+        };
+    </script>
+</body>
+</html>
