@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>可编辑批文交易合同</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: "Microsoft JhengHei", "微軟正黑體", sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1000px;
+            background: white;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
+            position: relative;
+            padding: 0;
+            margin: 20px auto;
+        }
+        
+        /* 页眉样式 */
+        .page-header {
+            width: 100%;
+            height: auto;
+            background: white;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #c33;
+        }
+        
+        /* 页脚样式 */
+        .page-footer {
+            width: 100%;
+            height: auto;
+            background: white;
+            padding: 10px 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-top: 1px solid #ddd;
+        }
+        
+        .footer-content {
+            font-size: 10pt;
+            color: #666;
+            text-align: center;
+        }
+        
+        /* 公司信息样式 */
+        .company-info {
+            flex: 1;
+        }
+        
+        .company-name {
+            font-size: 16pt;
+            font-weight: bold;
+            color: #a52a2a;
+            margin-bottom: 5px;
+        }
+        
+        .company-address {
+            font-size: 10pt;
+            color: #666;
+        }
+        
+        /* Logo样式 */
+        .logo-container {
+            width: 150px;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 5px;
+        }
+        
+        .logo-container img {
+            max-height: 100%;
+            max-width: 100%;
+            object-fit: contain;
+        }
+        
+        /* 主要内容样式 */
+        .content {
+            padding: 25px;
+        }
+        
+        .title {
+            text-align: center;
+            font-size: 18pt;
+            margin: 15px 0 20px;
+            color: #a52a2a;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 25%;
+            width: 50%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #c33, transparent);
+        }
+        
+        /* 表格样式 */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 10pt;
+        }
+        
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        th {
+            background-color: #a52a2a;
+            color: white;
+            font-weight: normal;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        /* 条款样式 */
+        .clause {
+            margin: 15px 0;
+        }
+        
+        .clause-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #a52a2a;
+        }
+        
+        /* 签名部分 */
+        .signature {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .signature-party {
+            width: 45%;
+        }
+        
+        .signature-party p {
+            margin: 5px 0;
+        }
+        
+        .signature-party .company {
+            font-weight: bold;
+            color: #a52a2a;
+        }
+        
+        .signature-party .date {
+            font-size: 10pt;
+            color: #666;
+        }
+        
+        .signature-line {
+            border-top: 1px solid #333;
+            margin-top: 40px;
+            padding-top: 5px;
+        }
+        
+        /* 风险提示样式 */
+        .risk-section {
+            margin-top: 20px;
+            padding: 15px;
+            background: #fff4f4;
+            border-left: 4px solid #f44336;
+        }
+        
+        .risk-section h3 {
+            color: #f44336;
+            margin-bottom: 10px;
+        }
+        
+        .risk-list {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+        
+        .risk-list li {
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 15px;
+        }
+        
+        .risk-list li:before {
+            content: "•";
+            color: #f44336;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        
+        /* 可编辑区域样式 */
+        .editable {
+            border-bottom: 1px dashed #a52a2a;
+            padding: 2px 4px;
+            min-width: 100px;
+            display: inline-block;
+            background-color: #fff8e1;
+            min-height: 18px;
+        }
+        
+        .editable:focus {
+            outline: none;
+            background-color: #ffecb3;
+            border-bottom: 1px solid #a52a2a;
+        }
+        
+        /* 按钮样式 */
+        .btn {
+            padding: 5px 10px;
+            background: #a52a2a;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            margin: 5px;
+            font-size: 12px;
+        }
+        
+        .btn:hover {
+            background: #8b0000;
+        }
+        
+        .btn-danger {
+            background: #f44336;
+        }
+        
+        .btn-danger:hover {
+            background: #d32f2f;
+        }
+        
+        .btn-success {
+            background: #4caf50;
+        }
+        
+        .btn-success:hover {
+            background: #388e3c;
+        }
+        
+        .control-bar {
+            display: flex;
+            justify-content: flex-end;
+            padding: 10px;
+            background: #f5f5f5;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        /* 打印样式 */
+        @media print {
+            .btn, .control-bar {
+                display: none !important;
+            }
+            
+            .editable {
+                border-bottom: none;
+                background-color: transparent;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="control-bar">
+            <button class="btn btn-success" onclick="window.print()">打印合同</button>
+            <button class="btn" onclick="saveContract()">保存内容</button>
+            <button class="btn" onclick="resetContract()">重置内容</button>
+        </div>
+        
+        <!-- 页眉 -->
+        <div class="page-header">
+            <div class="company-info">
+                <div class="company-name">
+                    <span class="editable" contenteditable="true" id="company-name">香港濟歲堂中藥廠有限公司</span>
+                </div>
+                <div class="company-address">
+                    地址：<span class="editable" contenteditable="true" id="company-address">香港新界葵涌華星街8號華達工業中心A座4樓12室</span>
+                </div>
+            </div>
+            <div class="logo-container">
+                <img src="https://via.placeholder.com/150x60/e3d9c0/666666?text=濟歲堂標誌" alt="濟歲堂標誌">
+            </div>
+        </div>
+        
+        <!-- 内容区域 -->
+        <div class="content">
+            <h1 class="title">中成藥批文收購協議</h1>
+            
+            <div class="clause">
+                <div class="clause-title">甲方（收購方）：<span class="editable" contenteditable="true" id="party-a">香港濟歲堂中藥廠有限公司</span></div>
+                <div class="clause-title">乙方（出售方）：<span class="editable" contenteditable="true" id="party-b">香港千草堂中藥廠</span></div>
+            </div>
+            
+            <div class="clause">
+                <div class="clause-title">一、協議背景</div>
+                <p>甲乙雙方經過友好磋商，雙方一致同意就甲方收購乙方香港中成藥產品批文的收購，特簽訂本批文收購總協議。</p>
+            </div>
+            
+            <div class="clause">
+                <div class="clause-title">二、收購批文明細</div>
+                <button class="btn btn-success" onclick="addTableRow()">添加批文</button>
+                <table id="approval-table">
+                    <tr>
+                        <th width="15%">批文編號</th>
+                        <th width="45%">產品名稱</th>
+                        <th width="20%">劑型</th>
+                        <th width="15%">單價（港幣）</th>
+                        <th width="5%">操作</th>
+                    </tr>
+                    <tr>
+                        <td><span class="editable" contenteditable="true">HKP-12196</span></td>
+                        <td><span class="editable" contenteditable="true">【日本和漢堂】海狗丸</span></td>
+                        <td><span class="editable" contenteditable="true">丸劑</span></td>
+                        <td><span class="editable" contenteditable="true">500,000</span></td>
+                        <td><button class="btn btn-danger" onclick="deleteRow(this)">删除</button></td>
+                    </tr>
+                    <tr>
+                        <td><span class="editable" contenteditable="true">HKP-05652</span></td>
+                        <td><span class="editable" contenteditable="true">【德國華特莎博士】風痛關刺靈</span></td>
+                        <td><span class="editable" contenteditable="true">膠囊</span></td>
+                        <td><span class="editable" contenteditable="true">500,000</span></td>
+                        <td><button class="btn btn-danger" onclick="deleteRow(this)">删除</button></td>
+                    </tr>
+                    <tr>
+                        <td><span class="editable" contenteditable="true">HKP-05665</span></td>
+                      
