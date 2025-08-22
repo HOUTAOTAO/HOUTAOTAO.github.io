@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>濟歲堂工作週報</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: "Microsoft JhengHei", "微軟正黑體", sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            position: relative;
+        }
+        
+        /* A4纸张样式 */
+        .a4-container {
+            width: 210mm;
+            min-height: 297mm;
+            background: white;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
+            position: relative;
+            padding: 0;
+            margin: 20px auto;
+        }
+        
+        /* 页眉样式 - 非固定 */
+        .page-header {
+            width: 100%;
+            height: 25mm;
+            background: white;
+            padding: 5mm 20mm;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #c33;
+        }
+        
+        /* 页脚样式 - 非固定 */
+        .page-footer {
+            width: 100%;
+            height: 15mm;
+            background: white;
+            padding: 0 20mm;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-top: 1px solid #ddd;
+        }
+        
+        .footer-content {
+            font-size: 10pt;
+            color: #666;
+            text-align: center;
+        }
+        
+        /* 公司信息样式 */
+        .company-info {
+            flex: 1;
+        }
+        
+        .company-name {
+            font-size: 16pt;
+            font-weight: bold;
+            color: #a52a2a;
+        }
+        
+        .company-address {
+            font-size: 10pt;
+            color: #666;
+        }
+        
+        /* Logo样式 - 边框透明 */
+        .logo-container {
+            width: 50mm;
+            height: 15mm;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid transparent; /* 边框透明 */
+            padding: 2px;
+        }
+        
+        .logo-container img {
+            max-height: 100%;
+            max-width: 100%;
+            object-fit: contain;
+        }
+        
+        /* 主要内容样式 */
+        .content {
+            padding: 20mm;
+            padding-top: 15mm; /* 减少顶部内边距 */
+            padding-bottom: 15mm; /* 减少底部内边距 */
+        }
+        
+        .title {
+            text-align: center;
+            font-size: 18pt;
+            margin: 10mm 0 15mm;
+            color: #a52a2a;
+            position: relative;
+        }
+        
+        .title::after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: 25%;
+            width: 50%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #c33, transparent);
+        }
+        
+        .greeting {
+            margin: 15px 0;
+            line-height: 1.8;
+        }
+        
+        /* 表格样式 */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 10pt;
+        }
+        
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        th {
+            background-color: #a52a2a;
+            color: white;
+            font-weight: normal;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        /* 状态标签 */
+        .status {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+        
+        .completed {
+            background: #4caf50;
+            color: white;
+        }
+        
+        .in-progress {
+            background: #2196f3;
+            color: white;
+        }
+        
+        .planned {
+            background: #ff9800;
+            color: white;
+        }
+        
+        .urgent {
+            background: #f44336;
+            color: white;
+        }
+        
+        .not-started {
+            background: #9e9e9e;
+            color: white;
+        }
+        
+        /* 进度条样式 */
+        .progress-section {
+            padding: 20mm;
+            padding-top: 15mm; /* 减少顶部内边距 */
+            padding-bottom: 15mm; /* 减少底部内边距 */
+            background: #f9f5f0;
+            border: 1px solid #e0d6cc;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            margin-top: 10mm;
+        }
+        
+        .progress-title {
+            text-align: center;
+            margin-bottom: 15px;
+            color: #a52a2a;
+            font-size: 14pt;
+        }
+        
+        .progress-item {
+            margin: 15px 0;
+        }
+        
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 10pt;
+        }
+        
+        .progress-bar-container {
+            height: 12px;
+            background: #e0e0e0;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            border-radius: 6px;
+            transition: width 0.5s ease;
+        }
+        
+        /* 分析部分 */
+        .analysis-section {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f0f7ff;
+            border-left: 4px solid #1a5fb4;
+        }
+        
+        .analysis-section h3 {
+            color: #1a5fb4;
+            margin-bottom: 10px;
+        }
+        
+        .analysis-list {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+        
+        .analysis-list li {
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 15px;
+        }
+        
+        .analysis-list li:before {
+            content: "•";
+            color: #1a5fb4;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        
+        /* 签名部分 */
+        .signature {
+            margin-top: 20mm;
+            text-align: right;
+            padding-right: 20mm;
+        }
+        
+        .signature p {
+            margin: 5px 0;
+        }
+        
+        .signature .company {
+            font-weight: bold;
+            color: #a52a2a;
+        }
+        
+        .signature .date {
+            font-size: 10pt;
+            color: #666;
+        }
+        
+        /* 分页控制 */
+        .page-break {
+            page-break-after: always;
+        }
+        
+        /* 打印样式 */
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+                width: 210mm;
+                height: 297mm;
+            }
+            
+            .a4-container {
+                box-shadow: none;
+                margin: 0;
+                padding: 0;
+                width: 100%;
+                height: 100%;
+            }
+            
+            /* 移除固定定位 */
+            .page-header {
+                position: relative;
+                height: 20mm;
+            }
+            
+            .page-footer {
+                position: relative;
+                height: 10mm;
+            }
+            
+            .content {
+                padding: 20mm;
+                padding-top: 15mm; /* 减少顶部内边距 */
+                padding-bottom: 15mm; /* 减少底部内边距 */
+            }
+            
+            .progress-section {
+                padding-top: 15mm; /* 减少顶部内边距 */
+                padding-bottom: 15mm; /* 减少底部内边距 */
+            }
+            
+            /* 确保打印时背景色可见 */
+            th {
+                background-color: #a52a2a !important;
+                -webkit-print-color-adjust: exact;
+                color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="a4-container">
+        <!-- 普通页眉 -->
+        <div class="page-header">
+            <div class="company-info">
+                <div class="company-name">香港濟歲堂中藥廠有限公司</div>
+                <div class="company-address">地址：香港新界葵涌華星街8號華達工業中心A座4樓12室</div>
+            </div>
+            <div class="logo-container">
+                <img src="logo.jpg" alt="濟歲堂標誌">
+            </div>
+        </div>
+        
+        <!-- 内容区域 -->
+        <div class="content">
+            <h1 class="title">濟歲堂工作週報</h1>
+            <h2 style="text-align: center; margin-bottom: 20px; color: #555;">2025年8月18日 - 8月22日</h2>
+            
+            <div class="greeting">
+                <p>致管理團隊：</p>
+                <p>本週圍繞批文管理、OEM工廠合作、團隊建設及法規對接等核心事項穩步推進，現將工作進展及下週計劃彙報如下：</p>
+            </div>
+            
+            <h2>一、本週工作總結</h2>
+            <table>
+                <tr>
+                    <th width="15%">日期</th>
+                    <th width="70%">工作內容</th>
+                    <th width="15%">狀態</th>
+                </tr>
+                <tr>
+                    <td>週一<br>8月18日</td>
+                    <td>
+                        <ul style="list-style-type: none; padding-left: 0;">
+                            <li>1. 千草堂預付款處理完成</li>
+                            <li>2. 員工入職文件準備（OKR、勞動合同、入職通知書等）</li>
+                            <li>3. 仙總（GMP工廠認證項目負責人）入職流程辦理</li>
+                            <li>4. 確定批文生產優先順序，對接OEM工廠合作方向</li>
+                            <li>5. 客戶應酬-批文購買相關事宜</li>
+                        </ul>
+                    </td>
+                    <td><span class="status completed">已完成</span></td>
+                </tr>
+                <tr>
+                    <td>週二<br>8月19日</td>
+                    <td>
+                        <ul style="list-style-type: none; padding-left: 0;">
+                            <li>1. 商品條碼付款流程完成</li>
+                            <li>2. 大灣區香港工廠調研劑型產能匹配到已收購批文</li>
+                            <li>3. 市場監督局投訴處理</li>
+                        </ul>
+                    </td>
+                    <td><span class="status completed">已完成</span></td>
+                </tr>
+                <tr>
+                    <td>週三<br>8月20日</td>
+                    <td>
+                        <ul style="list-style-type: none; padding-left: 0;">
+                            <li>1. 招商經理面試安排</li>
+                            <li>2. 飛書售後培訓</li>
+                            <li>3. 客戶應酬-批文購買相關事宜</li>
+                        </ul>
+                    </td>
+                    <td><span class="status in-progress">進行中</span></td>
+                </tr>
+                <tr>
+                    <td>週四<br>8月21日</td>
+                    <td>
+                        <ul style="list-style-type: none; padding-left: 0;">
+                            <li>1. 香港周生資料樣品索取</li>
+                            <li>2. 日常差旅報銷整理</li>
+                            <li>3. 中藥堂藥牌辦理完成準備接收</li>
+                            <li>4. 深圳濟歲堂社保賬戶關聯銀行賬戶</li>
+                            <li>5. GMP工廠中介對接</li>
+                        </ul>
+                    </td>
+                    <td><span class="status in-progress">進行中</span></td>
+                </tr>
+                <tr>
+                    <td>週五<br>8月22日</td>
+                    <td>
+                        <ul style="list-style-type: none; padding-left: 0;">
+                            <li>1. 奇靈製藥拜訪（OEM合作事宜），確定合作方向為口服品種</li>
+                            <li>2. OEM貼牌工廠對接資料框架搭建</li>
+                            <li>3. 飛書售後培訓-需求對接</li>
+                            <li>4. 本週工作總結與覆盤</li>
+                        </ul>
+                    </td>
+                    <td><span class="status in-progress">進行中</span></td>
+                </tr>
+            </table>
+            
+            <div class="analysis-section">
+                <h3>本週工作亮點與挑戰</h3>
+                <ul class="analysis-list">
+                    <li>成功完成千草堂預付款處理，推進批文收購進程</li>
+                    <li>確定了與奇靈製藥的OEM合作方向，專注口服品種生產</li>
+                    <li>團隊建設逐步完善，GMP工廠認證負責人到位</li>
+                    <li>需加強與政府部門（市場監督局）的溝通，妥善處理投訴事宜</li>
+                    <li>飛書系統培訓需進一步深化，確保團隊熟練使用</li>
+                </ul>
+            </div>
+            
+            <h2>二、下週工作計劃</h2>
+            <table>
+                <tr>
+                    <th width="15%">日期</th>
+                    <th width="70%">工作內容</th>
+                    <th width="15%">狀態</th>
+                </tr>
+                <tr>
+                    <td>週一<br>8月25日</td>
+                    <td>
+                        <ul style="list-style-type: none; padding-left: 0;">
+                            <li>1. 條碼購買合同回收，批文購買合同回收</li>
+                            <li>2. 濟歲堂合同模板設計優化</li>
+                            <li>3. 候選口服工廠以及外用工廠尋找</li>
+                            <li>4. 批文資料細化整理（配方、工藝、外包材、標籤、說明書）</li>
+                            <li>5. 確定批文註冊狀態（到期時間、實驗室資料補充需求）</li>
+                            <li>6. 購買工廠中介對接（藥廠要求評估，新方案探索）</li>
+                            <li>7. 成本核算與產能調研要點覆盤</li>
+                        </ul>
+                    </td>
+                    <td><span class="status planned">規劃中</span></td>
+                </tr>
+                <tr>
+                    <td>週二<br>8月26日</td>
+                    <td>
+                        <ul style="list-style-type: none; padding-left: 0;">
+                            <li>1. 對接下游客戶需求量，協調上游小奇製藥MOQ以及成本核算</li>
+                            <li>2. 對接波姐團隊覆盤對齊工作進度</li>
+                            <li>3. 轉商標與轉工廠文件準備，法規覆盤</li>
+                            <li>4. 新購買三個批文合同擬定</li>
+                        </ul>
+                    </td>
+                    <td><span class="status planned">規劃中</span></td>
+                </tr>
+                <tr>
+                    <td>週三<br>8月27日</td>
+                    <td>
+                        <ul style="list-style-type: none; padding-left: 0;">
+                            <li>1. 中醫藥委員會建立聯繫人，實地拜訪</li>
+                            <li>2. 轉品牌法規對接，包裝與工廠要求諮詢</li>
+                        </ul>
+                    </td>
+                    <td><span class="status planned">規劃中</span></td>
+                </tr>
+                <tr>
+                    <td>週四<br>8月28日</td>
+                    <td>
+                        <ul style="list-style-type: none; padding-left: 0;">
+                            <li>1. 衛生署建立聯繫人，實地拜訪</li>
+                            <li>2. 轉品牌法規對接，包裝與工廠要求諮詢</li>
+                        </ul>
+                    </td>
+                    <td><span class="status planned">規劃中</span></td>
+                </tr>
+                <tr>
+                    <td>週五<br>8月29日</td>
+                    <td>
+                        <ul style="list-style-type: none; padding-left: 0;">
+                            <li>1. 廠房候選名單確定</li>
+                            <li>2. 本週工作總結與下週計劃制定</li>
+                        </ul>
+                    </td>
+                    <td><span class="status planned">規劃中</span></td>
+                </tr>
+            </table>
+            
+            <div class="analysis-section">
+                <h3>重點事項提醒</h3>
+                <ul class="analysis-list">
+                    <li>批文合同回收需加強跟進，確保法律文件完整歸檔</li>
+                    <li>與中醫藥委員會和衛生署的拜訪需提前準備資料，明確諮詢要點</li>
+                    <li>工廠選址需綜合考慮生產能力、合規性及成本效益</li>
+                    <li>法規對接是下週重點，需確保所有業務活動符合監管要求</li>
+                </ul>
+            </div>
+            
+            <div class="signature">
+                <p>順頌商祺！</p>
+                <p class="company">香港濟歲堂中藥廠有限公司</p>
+                <p class="date">2025年8月22日</p>
+            </div>
+        </div>
+        
+        <!-- 分页 -->
+        <div class="page-break"></div>
+        
+        <!-- 第二页 - 进度条展示 -->
+        <div class="progress-section">
+            <h2 class="progress-title">重點任務進度概覽</h2>
+            
+            <h3>批文管理進度</h3>
+            <div class="progress-item">
+                <div class="progress-label">
+                    <span>千草堂預付款處理</span>
+                    <span>100%</span>
+                </div>
+                <div class="progress-bar-container">
+                    <div class="progress-bar completed" style="width: 100%"></div>
+                </div>
+            </div>
+            
+            <div class="progress-item">
+                <div class="progress-label">
+                    <span>批文購買合同回收</span>
+                    <span>40%</span>
+                </div>
+                <div class="progress-bar-container">
+                    <div class="progress-bar in-progress" style="width: 40%"></div>
+                </div>
+            </div>
+            
+            <div class="progress-item">
+                <div class="progress-label">
+                    <span>批文資料細化整理</span>
+                    <span>30%</span>
+                </div>
+                <div class="progress-bar-container">
+                    <div class="progress-bar in-progress" style="width: 30%"></div>
+                </div>
+            </div>
+            
+            <h3>公司建設進度</h3>
+            <div class="progress-item">
+                <div class="progress-label">
+                    <span>團隊人員招聘與入職</span>
+                    <span>70%</span>
+                </div>
+                <div class="progress-bar-container">
+                    <div class="progress-bar in-progress" style="width: 70%"></div>
+                </div>
+            </div>
+            
+            <div class="progress-item">
+                <div class="progress-label">
+                    <span>深圳公司社保賬戶關聯</span>
+                    <span>80%</span>
+                </div>
+                <div class="progress-bar-container">
+                    <div class="progress-bar in-progress" style="width: 80%"></div>
+                </div>
+            </div>
+            
+            <div class="progress-item">
+                <div class="progress-label">
+                    <span>飛書系統培訓與應用</span>
+                    <span>60%</span>
+                </div>
+                <div class="progress-bar-container">
+                    <div class="progress-bar in-progress" style="width: 60%"></div>
+                </div>
+            </div>
+            
+            <h3>工廠合作進度</h3>
+            <div class="progress-item">
+                <div class="progress-label">
+                    <span>OEM工廠合作方向確定</span>
+                    <span>75%</span>
+                </div>
+                <div class="progress-bar-container">
+                    <div class="progress-bar in-progress" style="width: 75%"></div>
+                </div>
+            </div>
+            
+            <div class="progress-item">
+                <div class="progress-label">
+                    <span>工廠中介對接</span>
+                    <span>50%</span>
+                </div>
+                <div class="progress-bar-container">
+                    <div class="progress-bar in-progress" style="width: 50%"></div>
+                </div>
+            </div>
+            
+            <div class="progress-item">
+                <div class="progress-label">
+                    <span>廠房候選名單確定</span>
+                    <span>40%</span>
+                </div>
+                <div class="progress-bar-container">
+                    <div class="progress-bar in-progress" style="width: 40%"></div>
+                </div>
+            </div>
+            
+            <div style="margin-top: 30px; display: flex; justify-content: center;">
+                <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                    <div style="display: flex; align-items: center;">
+                        <div style="width: 15px; height: 15px; background: #4caf50; margin-right: 5px;"></div>
+                        <span>已完成</span>
+                    </div>
+                    <div style="display: flex; align-items: center;">
+                        <div style="width: 15px; height: 15px; background: #2196f3; margin-right: 5px;"></div>
+                        <span>進行中</span>
+                    </div>
+                    <div style="display: flex; align-items: center;">
+                        <div style="width: 15px; height: 15px; background: #ff9800; margin-right: 5px;"></div>
+                        <span>規劃中</span>
+                    </div>
+                    <div style="display: flex; align-items: center;">
+                        <div style="width: 15px; height: 15px; background: #f44336; margin-right: 5px;"></div>
+                        <span>緊急</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 普通页脚 -->
+        <div class="page-footer">
+            <div class="footer-content">
+                <p>機密文件 - 僅限內部使用 | 第 1 頁，共 2 頁 | 更新日期：2025年8月22日</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
