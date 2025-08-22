@@ -79,19 +79,18 @@
         
         /* Logo样式 */
         .logo-container {
-            width: 50mm;
-            height: 15mm;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border: 1px solid transparent; /* 边框透明 */
-            padding: 2px;
+            width: 150px;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 5px;
         }
         
         .logo-container img {
-            max-height: 60%;
-            max-width: 60%;
-            object-fit: contain;
+            max-height: 100%;
+            max-width: 100%;
+            object-fit: contain;
         }
         
         /* 主要内容样式 */
@@ -447,6 +446,10 @@
                 <td><button class="btn btn-danger" onclick="deleteRow(this)">删除</button></td>
             `;
             
+            // 为新增行的价格单元格添加监听
+            const priceCell = newRow.cells[3].querySelector('.editable');
+            priceCell.addEventListener('input', updateProductCount);
+            
             updateProductCount();
         }
         
@@ -471,7 +474,8 @@
             let total = 0;
             for (let i = 1; i < table.rows.length; i++) {
                 const priceCell = table.rows[i].cells[3];
-                const price = parseFloat(priceCell.textContent.replace(/,/g, '')) || 0;
+                const priceText = priceCell.querySelector('.editable').textContent;
+                const price = parseFloat(priceText.replace(/,/g, '')) || 0;
                 total += price;
             }
             
@@ -481,7 +485,7 @@
         
         // 数字格式化
         function formatNumber(num) {
-            return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            return num.toLocaleString('zh-Hans');
         }
         
         // 数字转中文大写
@@ -491,17 +495,24 @@
             
             if (num === 0) return '零';
             
-            let result = '';
             let numStr = num.toString();
-            let unitIndex = 0;
+            let result = '';
             
-            for (let i = numStr.length - 1; i >= 0; i--) {
+            // 处理整数部分
+            for (let i = 0; i < numStr.length; i++) {
                 const digit = parseInt(numStr[i]);
-                result = chineseNumbers[digit] + units[unitIndex] + result;
-                unitIndex++;
+                const unitIndex = numStr.length - i - 1;
+                
+                if (digit !== 0) {
+                    result += chineseNumbers[digit] + units[unitIndex];
+                } else if (i > 0 && parseInt(numStr[i-1]) !== 0) {
+                    result += '零';
+                }
             }
             
-            // 简化处理，实际应用可能需要更复杂的逻辑
+            // 移除多余的零
+            result = result.replace(/零+/g, '零').replace(/零$/, '');
+            
             return result + '元整';
         }
         
@@ -518,6 +529,21 @@
                 totalAmount: document.getElementById('total-amount').textContent,
                 totalNumeric: document.getElementById('total-numeric').textContent
             };
+            
+            // 保存表格数据
+            const tableData = [];
+            const table = document.getElementById('approval-table');
+            for (let i = 1; i < table.rows.length; i++) {
+                const row = table.rows[i];
+                tableData.push({
+                    code: row.cells[0].querySelector('.editable').textContent,
+                    name: row.cells[1].querySelector('.editable').textContent,
+                    type: row.cells[2].querySelector('.editable').textContent,
+                    price: row.cells[3].querySelector('.editable').textContent
+                });
+            }
+            
+            contractData.tableData = tableData;
             
             localStorage.setItem('contractData', JSON.stringify(contractData));
             alert('合同内容已保存到本地存储');
@@ -546,6 +572,27 @@
                 document.getElementById('product-count').textContent = contractData.productCount;
                 document.getElementById('total-amount').textContent = contractData.totalAmount;
                 document.getElementById('total-numeric').textContent = contractData.totalNumeric;
+                
+                // 加载表格数据
+                if (contractData.tableData && contractData.tableData.length > 0) {
+                    const table = document.getElementById('approval-table');
+                    // 清空现有行（保留表头）
+                    while (table.rows.length > 1) {
+                        table.deleteRow(1);
+                    }
+                    
+                    // 添加保存的行数据
+                    contractData.tableData.forEach(rowData => {
+                        const newRow = table.insertRow(-1);
+                        newRow.innerHTML = `
+                            <td><span class="editable" contenteditable="true">${rowData.code}</span></td>
+                            <td><span class="editable" contenteditable="true">${rowData.name}</span></td>
+                            <td><span class="editable" contenteditable="true">${rowData.type}</span></td>
+                            <td><span class="editable" contenteditable="true">${rowData.price}</span></td>
+                            <td><button class="btn btn-danger" onclick="deleteRow(this)">删除</button></td>
+                        `;
+                    });
+                }
             }
             
             // 为所有可编辑区域添加输入监听
@@ -566,6 +613,9 @@
                 const priceCell = table.rows[i].cells[3].querySelector('.editable');
                 priceCell.addEventListener('input', updateProductCount);
             }
+            
+            // 初始更新总金额
+            updateProductCount();
         });
     </script>
 </body>
