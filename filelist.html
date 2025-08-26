@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>香港药品批文交易必要文件清单</title>
+    <style>
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+            background-color: #f5f7fa;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #3498db;
+            font-size: 28px;
+        }
+        h2 {
+            color: #2980b9;
+            margin-top: 30px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .info-section {
+            background: linear-gradient(135deg, #eaf7ff 0%, #d6eaff 100%);
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            border-left: 5px solid #3498db;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .info-group {
+            display: flex;
+            flex-direction: column;
+        }
+        .info-group label {
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #2c3e50;
+            font-size: 15px;
+        }
+        .info-group input {
+            padding: 12px 15px;
+            border: 1px solid #cce7ff;
+            border-radius: 6px;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            background: white;
+        }
+        .info-group input:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .dimension-header {
+            background-color: #e8f4fc;
+            font-weight: bold;
+        }
+        .dimension-title {
+            font-weight: bold;
+            background-color: #e8f4fc;
+            vertical-align: top;
+        }
+        .sub-item {
+            padding-left: 20px;
+        }
+        .check-input {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+        .remark-input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .editable-input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background: white;
+        }
+        .button-group {
+            margin: 25px 0;
+            text-align: center;
+        }
+        button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin: 0 10px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        button:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+        .summary {
+            margin-top: 20px;
+            padding: 20px;
+            background: #eaf7ff;
+            border-radius: 8px;
+            border-left: 5px solid #3498db;
+        }
+        .summary-textarea {
+            width: 100%;
+            padding: 12px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 14px;
+            margin-bottom: 15px;
+            resize: vertical;
+            min-height: 100px;
+        }
+        .print-only {
+            display: none;
+        }
+        @media (max-width: 768px) {
+            .info-section {
+                grid-template-columns: 1fr;
+            }
+            .container {
+                padding: 15px;
+            }
+            button {
+                padding: 10px 15px;
+                margin: 5px;
+                width: 100%;
+            }
+            .button-group {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+        @media print {
+            body, .container {
+                margin: 0;
+                padding: 0;
+                width: 100%;
+                box-shadow: none;
+                background: white;
+            }
+            .no-print {
+                display: none;
+            }
+            .print-only {
+                display: block;
+            }
+            h1, h2 {
+                color: black !important;
+            }
+            table {
+                page-break-inside: avoid;
+            }
+            .info-section {
+                border: 1px solid #000;
+                background: white;
+                margin-bottom: 15px;
+            }
+            input, textarea {
+                border: none;
+                background: transparent;
+            }
+            .remark-input {
+                border: 1px solid #ccc;
+            }
+            .summary-textarea {
+                border: none;
+                padding: 0;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>香港药品批文交易必要文件清单</h1>
+
+        <!-- 基础信息区域 -->
+        <div class="info-section no-print">
+            <div class="info-group">
+                <label for="seller-name">出售方（乙方）名称</label>
+                <input type="text" id="seller-name" placeholder="如：香港千草堂中藥廠" value="香港千草堂中藥廠">
+            </div>
+            <div class="info-group">
+                <label for="buyer-name">收购方（甲方）名称</label>
+                <input type="text" id="buyer-name" placeholder="如：香港濟歲堂中藥廠有限公司" value="香港濟歲堂中藥廠有限公司">
+            </div>
+            <div class="info-group">
+                <label for="assessment-date">考察日期</label>
+                <input type="date" id="assessment-date" value="2025-08-22">
+            </div>
+            <div class="info-group">
+                <label for="assessor">考察人</label>
+                <input type="text" id="assessor" placeholder="请输入考察人姓名" value="张经理">
+            </div>
+        </div>
+
+        <!-- 批文基础信息表 -->
+        <h2>一、批文基础信息核对表</h2>
+        <table id="approval-basic-info">
+            <thead>
+                <tr>
+                    <th width="15%">批文編號</th>
+                    <th width="25%">產品名稱</th>
+                    <th width="10%">劑型</th>
+                    <th width="15%">單價(港幣)</th>
+                    <th width="15%">批文有效期</th>
+                    <th width="20%">備註</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input type="text" class="editable-input" value="HKP-12196"></td>
+                    <td><input type="text" class="editable-input" value="【日本和漢堂】海狗丸"></td>
+                    <td><input type="text" class="editable-input" value="丸劑"></td>
+                    <td><input type="text" class="editable-input" value="500,000"></td>
+                    <td><input type="date" class="approval-date" value="2030-05-10"></td>
+                    <td><input type="text" class="remark-input" placeholder="填写批文状态备注" value="批文状态正常，无历史异常记录"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- 批文交易必要文件接收清单 -->
+        <h2>二、批文交易必要文件接收清单</h2>
+        <table id="required-documents">
+            <thead>
+                <tr>
+                    <th width="5%">序號</th>
+                    <th width="35%">文件名稱</th>
+                    <th width="20%">文件用途</th>
+                    <th width="10%">是否提供</th>
+                    <th width="15%">文件完整性</th>
+                    <th width="15%">核對備註</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- 批文相关文件 -->
+                <tr class="dimension-header">
+                    <td rowspan="4" class="dimension-title">1. 批文主體文件</td>
+                    <td class="sub-item">药品注册证书（中成药批文）原件及复印件</td>
+                    <td>核实批文真实性、有效性</td>
+                    <td><input type="checkbox" class="check-input" checked></td>
+                    <td><select class="integrity-select"><option selected>完整</option><option>部分完整</option><option>不完整</option></select></td>
+                    <td><input type="text" class="remark-input" value="原件与复印件一致，公章清晰"></td>
+                </tr>
+                <tr>
+                    <td class="sub-item">批文变更记录（如有）</td>
+                    <td>确认批文历史变更情况</td>
+                    <td><input type="checkbox" class="check-input" checked></td>
+                    <td><select class="integrity-select"><option selected>完整</option><option>部分完整</option><option>不完整</option></select></td>
+                    <td><input type="text" class="remark-input" value="无历史变更记录，批文信息稳定"></td>
+                </tr>
+                <tr>
+                    <td class="sub-item">药品注册标准的批准文件</td>
+                    <td>明确产品质量要求</td>
+                    <td><input type="checkbox" class="check-input" checked></td>
+                    <td><select class="integrity-select"><option selected>完整</option><option>部分完整</option><option>不完整</option></select></td>
+                    <td><input type="text" class="remark-input" value="包含原料、辅料、成品质量标准"></td>
+                </tr>
+                <tr>
+                    <td class="sub-item">政府部门出具的批文无异议证明</td>
+                    <td>确认批文无监管风险</td>
+                    <td><input type="checkbox" class="check-input"></td>
+                    <td><select class="integrity-select"><option>完整</option><option>部分完整</option><option selected>不完整</option></select></td>
+                    <td><input type="text" class="remark-input" value="已申请，预计5个工作日内获取"></td>
+                </tr>
+
+                <!-- 企业资质文件 -->
+                <tr class="dimension-header">
+                    <td rowspan="3" class="dimension-title">2. 企業資質文件</td>
+                    <td class="sub-item">卖方公司的商业登记证明</td>
+                    <td>确认公司合法注册</td>
+                    <td><input type="checkbox" class="check-input" checked></td>
+                    <td><select class="integrity-select"><option selected>完整</option><option>部分完整</option><option>不完整</option></select></td>
+                    <td><input type="text" class="remark-input" value="商业登记证在有效期内"></td>
+                </tr>
+                <tr>
+                    <td class="sub-item">药品生产/经营许可证</td>
+                    <td>确认经营资质合规</td>
+                    <td><input type="checkbox" class="check-input" checked></td>
+                    <td><select class="integrity-select"><option selected>完整</option><option>部分完整</option><option>不完整</option></select></td>
+                    <td><input type="text" class="remark-input" value="许可证在有效期内，经营范围包含中成藥"></td>
+                </tr>
+                <tr>
+                    <td class="sub-item">公司董事会或股东关于批文转让的决议</td>
+                    <td>确认内部授权合规</td>
+                    <td><input type="checkbox" class="check-input" checked></td>
+                    <td><select class="integrity-select"><option selected>完整</option><option>部分完整</option><option>不完整</option></select></td>
+                    <td><input type="text" class="remark-input" value="决议签字齐全，符合公司章程"></td>
+                </tr>
+
+                <!-- 技术资料文件 -->
+                <tr class="dimension-header">
+                    <td rowspan="5" class="dimension-title">3. 技術資料文件</td>
+                    <td class="sub-item">产品生产工艺流程图及详细说明</td>
+                    <td>确保生产工艺可转移、可落地</td>
+                    <td><input type="checkbox" class="check-input" checked></td>
+                    <td><select class="integrity-select"><option selected>完整</option><option>部分完整</option><option>不完整</option></select></td>
+                    <td><input type="text" class="remark-input" value="工艺步骤清晰，关键参数明确"></td>
+                </tr>
+                <tr>
+                    <td class="sub-item">原料及辅料清单（含规格、供应商信息）</td>
+                    <td>评估原料供应稳定性</td>
+                    <td><input type="checkbox" class="check-input" checked></td>
+                    <td><select class="integrity-select"><option selected>完整</option><option>部分完整</option><option>不完整</option></select></td>
+                    <td><input type="text" class="remark-input" value="辅料供应商均为合规企业，可追溯"></td>
+                </tr>
+                <tr>
+                    <td class="sub-item">质量控制方法及检测报告模板</td>
+                    <td>保障产品质量检测可执行</td>
+                    <td><input type="checkbox" class="check-input" checked></td>
+                    <td><select class="integrity-select"><option selected>完整</option><option>部分完整</option><option>不完整</option></select></td>
+                    <td><input type="text" class="remark-input" value="检测方法符合香港药典标准"></td>
+                </tr>
+                <tr>
+                    <td class="sub-item">产品稳定性考察数据（近3年）</td>
+                    <td>评估产品储存风险</td>
+                    <td><input type="checkbox" class="check-input" checked></td>
+                    <td><select class="integrity-select"><option selected>完整</option><option>部分完整</option><option>不完整</option></select></td>
+                    <td><input type="text" class="remark-input" value="稳定性数据达标，有效期设定合理"></td>
+                </tr>
+                <tr>
+                    <td class="sub-item">药品包装、标签和说明书样稿</td>
+                    <td>确认包装材料合规性</td>
+                    <td><input type="checkbox" class="check-input" checked></td>
+                    <td><select class="integrity-select"><option selected>完整</option><option>部分完整</option><option>不完整</option></select></td>
+                    <td><input type="text" class="remark-input" value="符合香港中医药管委会要求"></td>
+                </tr>
+
+                <!-- 合规与监管文件 -->
+                <tr class="dimension-header">
+                    <td rowspan="3" class="dimension-title">4. 合規與監管文件</td>
+                    <td class="sub-item">最近一次的GMP符合性检查报告</td>
+                    <td>确认生产质量体系合规</td>
+                    <td><input type="checkbox" class="check-input" checked></td>
+                    <td><select class="integrity-select"><option selected>完整</option><option>部分完整</option><option>不完整</option></select></td>
+                    <td><input type="text" class="remark-input" value="GMP证书在有效期内"></td>
+                </tr>
+                <tr>
+                    <td class="sub-item">药品不良反应监测报告</td>
+                    <td>评估产品安全风险</td>
+                    <td><input type="checkbox" class="check-input" checked></td>
+                    <td><select class="integrity-select"><option selected>完整</option><option>部分完整</option><option>不完整</option></select></td>
+                    <td><input type="text" class="remark-input" value="近三年无严重不良反应报告"></td>
+                </tr>
+                <tr>
+                    <td class="sub-item">政府监管部门出具的无违规证明</td>
+                    <td>确认无历史违规记录</td>
+                    <td><input type="checkbox" class="check-input" checked></td>
+                    <td><select class="integrity-select"><option selected>完整</option><option>部分完整</option><option>不完整</option></select></td>
+                    <td><input type="text" class="remark-input" value="近五年无监管处罚记录"></td>
+                </tr>
+
+                <!-- 知识产权文件 -->
+                <tr class="dimension-header">
+                    <td rowspan="3" class="dimension-title">5. 知識產權文件</td>
+                    <td class="sub-item">商标注册证书（如适用）</td>
+                    <td>确认品牌权利归属</td>
+                    <td><input type="checkbox" class="check-input" checked></td>
+                    <td><select class="integrity-select"><option selected>完整</option><option>部分完整</option><option>不完整</option></select></td>
+                    <td><input type="text" class="remark-input" value="商标权清晰，无争议"></td>
+                </tr>
+                <tr>
+                    <td class="sub-item">专利证书或相关知识产权证明（如适用）</td>
+                    <td>确认技术权利归属</td>
+                    <td><input type="checkbox" class="check-input"></td>
+                    <td><select class="integrity-select"><option>完整</option><option>部分完整</option><option selected>不完整</option></select></td>
+                    <td><input type="text" class="remark-input" value="无相关专利"></td>
+                </tr>
+                <tr>
+                    <td class="sub-item">知识产权无争议声明</td>
+                    <td>防范知识产权侵权风险</td>
+                    <td><input type="checkbox" class="check-input" checked></td>
+                    <td><select class="integrity-select"><option selected>完整</option><option>部分完整</option><option>不完整</option></select></td>
+                    <td><input type="text" class="remark-input" value="声明内容涵盖商标、专利等无纠纷"></td>
+                </tr>
+
+                <!-- 交易相关文件 -->
+                <tr class="dimension-header">
+                    <td rowspan="3" class="dimension-title">6. 交易相關文件</td>
+                    <td class="sub-item">批文转让协议草案</td>
+                    <td>明确交易条款与条件</td>
+                    <td><input type="checkbox" class="check-input" checked></td>
+                    <td><select class="integrity-select"><option selected>完整</option><option>部分完整</option><option>不完整</option></select></td>
+                    <td><input type="text" class="remark-input" value="协议条款完备，权利义务清晰"></td>
+                </tr>
+                <tr>
+                    <td class="sub-item">收款账户信息及银行证明</td>
+                    <td>确认收款账户合法性</td>
+                    <td><input type="checkbox" class="check-input" checked></td>
+                    <td><select class="integrity-select"><option selected>完整</option><option>部分完整</option><option>不完整</option></select></td>
+                    <td><input type="text" class="remark-input" value="账户信息准确，银行证明齐全"></td>
+                </tr>
+                <tr>
+                    <td class="sub-item">税务登记证明和完税证明</td>
+                    <td>确认税务合规性</td>
+                    <td><input type="checkbox" class="check-input" checked></td>
+                    <td><select class="integrity-select"><option selected>完整</option><option>部分完整</option><option>不完整</option></select></td>
+                    <td><input type="text" class="remark-input" value="税务登记正常，无欠税记录"></td>
+                </tr>
+
+                <!-- 其他必要文件 -->
+                <tr class="dimension-header">
+                    <td rowspan="3" class="dimension-title">7. 其他必要文件</td>
+                    <td class="sub-item">法律尽职调查报告</td>
+                    <td>全面评估法律风险</td>
+                    <td><input type="checkbox" class="check-input" checked></td>
+                    <td><select class="integrity-select"><option selected>完整</option><option>部分完整</option><option>不完整</option></select></td>
+                    <td><input type="text" class="remark-input" value="尽职调查已完成，无重大法律风险"></td>
+                </tr>
+                <tr>
+                    <td class="sub-item">资产评估报告（如需要）</td>
+                    <td>确认交易定价合理性</td>
+                    <td><input type="checkbox" class="check-input"></td>
+                    <td><select class="integrity-select"><option>完整</option><option>部分完整</option><option selected>不完整</option></select></td>
+                    <td><input type="text" class="remark-input" value="根据市场行情定价，无需单独评估"></td>
+                </tr>
+                <tr>
+                    <td class="sub-item">第三方权利放弃声明（如有合作方）</td>
+                    <td>排除第三方权利主张</td>
+                    <td><input type="checkbox" class="check-input" checked></td>
+                    <td><select class="integrity-select"><option selected>完整</option><option>部分完整</option><option>不完整</option></select></td>
+                    <td><input type="text" class="remark-input" value="无合作方，无需第三方声明"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- 总结与建议 -->
+        <div class="summary">
+            <p><strong>考察总结：</strong></p>
+            <textarea class="summary-textarea" id="conclusion-text">本次考察的中成藥批文（HKP-12196）基础信息清晰，出售方提供的文件整体完整，批文合规性与权利清晰度达标，整体交易风险较低。仅需补充政府部门出具的批文无异议证明，即可推进后续转让流程。</textarea>
+            
+            <p><strong>推进建议：</strong></p>
+            <textarea class="summary-textarea" id="suggestion-text">1. 要求出售方在5个工作日内补充批文无异议证明；2. 核对收款账户与出售方及关联方的关系，确保资金流向合规；3. 在转让协议中明确文件补充、批文变更配合等义务及违约责任；4. 转让前再次通过香港政府监管平台核查批文最新状态，确保无突发监管风险。</textarea>
+        </div>
+
+        <!-- 操作按钮 -->
+        <div class="button-group no-print">
+            <button onclick="updatePrintInfo()">更新打印信息</button>
+            <button onclick="window.print()">打印文件清单 (A4)</button>
+            <button onclick="saveAssessmentData()">保存数据</button>
+            <button onclick="loadDefaultData()">加载默认数据</button>
+        </div>
+    </div>
+
+    <script>
+        // 更新打印信息
+        function updatePrintInfo() {
+            const sellerName = document.getElementById('seller-name').value || '未填写';
+            const buyerName = document.getElementById('buyer-name').value || '未填写';
+            const assessmentDate = document.getElementById('assessment-date').value || new Date().toLocaleDateString();
+            const assessor = document.getElementById('assessor').value || '未填写';
+
+            alert('打印信息已更新！');
+        }
+
+        // 保存考察数据到本地存储
+        function saveAssessmentData() {
+            // 收集批文基础信息
+            const approvalBasicInfo = [];
+            document.querySelectorAll('#approval-basic-info input').forEach(input => {
+                approvalBasicInfo.push(input.value);
+            });
+
+            // 收集备注数据
+            const remarks = [];
+            document.querySelectorAll('.remark-input').forEach(input => {
+                remarks.push(input.value);
+            });
+
+            // 收集勾选状态数据
+            const checkStatus = [];
+            document.querySelectorAll('.check-input').forEach(input => {
+                checkStatus.push(input.checked);
+            });
+
+            // 收集总结与建议
+            const summary = {
+                conclusion: document.getElementById('conclusion-text').value,
+                suggestion: document.getElementById('suggestion-text').value
+            };
+
+            // 收集基础信息
+            const basicInfo = {
+                sellerName: document.getElementById('seller-name').value,
+                buyerName: document.getElementById('buyer-name').value,
+                assessmentDate: document.getElementById('assessment-date').value,
+                assessor: document.getElementById('assessor').value
+            };
+
+            // 存储数据
+            const assessmentData = {
+                basicInfo,
+                approvalBasicInfo,
+                remarks,
+                checkStatus,
+                summary
+            };
+
+            localStorage.setItem('tcmApprovalAssessment', JSON.stringify(assessmentData));
+            alert('文件清单数据已保存到本地！');
+        }
+
+        // 加载默认数据
+        function loadDefaultData() {
+            if (confirm('加载默认数据将覆盖当前数据，是否继续？')) {
+                // 默认基础信息
+                document.getElementById('seller-name').value = '香港千草堂中藥廠';
+                document.getElementById('buyer-name').value = '香港濟歲堂中藥廠有限公司';
+                document.getElementById('assessment-date').value = '2025-08-22';
+                document.getElementById('assessor').value = '张经理';
+
+                // 默认批文基础信息
+                const approvalBasicInfo = ['HKP-12196', '【日本和漢堂】海狗丸', '丸劑', '500,000', '2030-05-10', '批文状态正常，无历史异常记录'];
+                document.querySelectorAll('#approval-basic-info input').forEach((input, index) => {
+                    if (index < approvalBasicInfo.length) input.value = approvalBasicInfo[index];
+                });
+
+                // 默认备注
+                const defaultRemarks = [
+                    '原件与复印件一致，公章清晰',
+                    '无历史变更记录，批文信息稳定',
+                    '包含原料、辅料、成品质量标准',
+                    '已申请，预计5个工作日内获取',
+                    '商业登记证在有效期内',
+                    '许可证在有效期内，经营范围包含中成藥',
+                    '决议签字齐全，符合公司章程',
+                    '工艺步骤清晰，关键参数明确',
+                    '辅料供应商均为合规企业，可追溯',
+                    '检测方法符合香港药典标准',
+                    '稳定性数据达标，有效期设定合理',
+                    '符合香港中医药管委会要求',
+                    'GMP证书在有效期内',
+                    '近三年无严重不良反应报告',
+                    '近五年无监管处罚记录',
+                    '商标权清晰，无争议',
+                    '无相关专利',
+                    '声明内容涵盖商标、专利等无纠纷',
+                    '协议条款完备，权利义务清晰',
+                    '账户信息准确，银行证明齐全',
+                    '税务登记正常，无欠税记录',
+                    '尽职调查已完成，无重大法律风险',
+                    '根据市场行情定价，无需单独评估',
+                    '无合作方，无需第三方声明'
+                ];
+                document.querySelectorAll('.remark-input').forEach((input, index) => {
+                    if (index < defaultRemarks.length) input.value = defaultRemarks[index];
+                });
+
+                // 默认勾选状态
+                const defaultCheckStatus = [
+                    true, true, true, false,  // 批文主体文件
+                    true, true, true,         // 企业资质文件
+                    true, true, true, true, true,  // 技术资料文件
+                    true, true, true,         // 合规与监管文件
+                    true, false, true,        // 知识产权文件
+                    true, true, true,         // 交易相关文件
+                    true, false, true         // 其他必要文件
+                ];
+                document.querySelectorAll('.check-input').forEach((input, index) => {
+                    if (index < defaultCheckStatus.length) input.checked = defaultCheckStatus[index];
+                });
+
+                // 默认总结与建议
+                document.getElementById('conclusion-text').value = '本次考察的中成藥批文（HKP-12196）基础信息清晰，出售方提供的文件整体完整，批文合规性与权利清晰度达标，整体交易风险较低。仅需补充政府部门出具的批文无异议证明，即可推进后续转让流程。';
+                document.getElementById('suggestion-text').value = '1. 要求出售方在5个工作日内补充批文无异议证明；2. 核对收款账户与出售方及关联方的关系，确保资金流向合规；3. 在转让协议中明确文件补充、批文变更配合等义务及违约责任；4. 转让前再次通过香港政府监管平台核查批文最新状态，确保无突发监管风险。';
+
+                // 更新打印信息
+                updatePrintInfo();
+                alert('默认数据已加载！');
+            }
+        }
+
+        // 页面加载时初始化
+        window.onload = function() {
+            // 尝试从本地存储加载数据
+            try {
+                const savedData = JSON.parse(localStorage.getItem('tcmApprovalAssessment'));
+                if (savedData) {
+                    // 加载基础信息
+                    document.getElementById('seller-name').value = savedData.basicInfo.sellerName || '';
+                    document.getElementById('buyer-name').value = savedData.basicInfo.buyerName || '';
+                    document.getElementById('assessment-date').value = savedData.basicInfo.assessmentDate || '';
+                    document.getElementById('assessor').value = savedData.basicInfo.assessor || '';
+
+                    // 加载批文基础信息
+                    savedData.approvalBasicInfo.forEach((value, index) => {
+                        const inputs = document.querySelectorAll('#approval-basic-info input');
+                        if (index < inputs.length) inputs[index].value = value;
+                    });
+
+                    // 加载备注
+                    savedData.remarks.forEach((remark, index) => {
+                        const inputs = document.querySelectorAll('.remark-input');
+                        if (index < inputs.length) inputs[index].value = remark;
+                    });
+
+                    // 加载勾选状态
+                    savedData.checkStatus.forEach((status, index) => {
+                        const inputs = document.querySelectorAll('.check-input');
+                        if (index < inputs.length) inputs[index].checked = status;
+                    });
+
+                    // 加载总结与建议
+                    if (savedData.summary) {
+                        document.getElementById('conclusion-text').value = savedData.summary.conclusion || '';
+                        document.getElementById('suggestion-text').value = savedData.summary.suggestion || '';
+                    }
+
+                    // 更新打印信息
+                    updatePrintInfo();
+                }
+            } catch (e) {
+                console.error('加载保存数据失败：', e);
+            }
+        };
+    </script>
+</body>
+</html>
