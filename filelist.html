@@ -34,6 +34,11 @@
             padding-bottom: 10px;
             border-bottom: 1px solid #ddd;
         }
+        h3 {
+            color: #3498db;
+            margin: 20px 0 15px;
+            font-size: 18px;
+        }
         .info-section {
             background: linear-gradient(135deg, #eaf7ff 0%, #d6eaff 100%);
             padding: 25px;
@@ -55,7 +60,7 @@
             color: #2c3e50;
             font-size: 15px;
         }
-        .info-group input {
+        .info-group input, .info-group select {
             padding: 12px 15px;
             border: 1px solid #cce7ff;
             border-radius: 6px;
@@ -63,7 +68,7 @@
             transition: all 0.3s ease;
             background: white;
         }
-        .info-group input:focus {
+        .info-group input:focus, .info-group select:focus {
             outline: none;
             border-color: #3498db;
             box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
@@ -159,6 +164,33 @@
             resize: vertical;
             min-height: 100px;
         }
+        .risk-section {
+            background: #fff4f4;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 5px solid #e74c3c;
+        }
+        .risk-indicator {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .risk-low {
+            background: #e8f7ef;
+            color: #27ae60;
+        }
+        .risk-medium {
+            background: #fef9e7;
+            color: #f39c12;
+        }
+        .risk-high {
+            background: #fdecea;
+            color: #e74c3c;
+        }
         .print-only {
             display: none;
         }
@@ -205,7 +237,7 @@
                 background: white;
                 margin-bottom: 15px;
             }
-            input, textarea {
+            input, textarea, select {
                 border: none;
                 background: transparent;
             }
@@ -216,6 +248,10 @@
                 border: none;
                 padding: 0;
                 margin-bottom: 10px;
+            }
+            .risk-section {
+                border: 1px solid #000;
+                background: white;
             }
         }
     </style>
@@ -241,6 +277,15 @@
             <div class="info-group">
                 <label for="assessor">考察人</label>
                 <input type="text" id="assessor" placeholder="请输入考察人姓名" value="张经理">
+            </div>
+            <div class="info-group">
+                <label for="approval-status">批文当前状态</label>
+                <select id="approval-status">
+                    <option value="formal">正式批准</option>
+                    <option value="temporary" selected>临时性批准</option>
+                    <option value="conditional">有条件批准</option>
+                    <option value="pending">待审批</option>
+                </select>
             </div>
         </div>
 
@@ -269,8 +314,73 @@
             </tbody>
         </table>
 
+        <!-- 批文历史与监管风险核查 -->
+        <h2>二、批文历史与监管风险核查</h2>
+        <div class="risk-section">
+            <h3>风险评级: 
+                <span class="risk-indicator risk-medium" id="risk-rating">中等风险</span>
+                <span id="risk-description">批文为临时性批准，存在后续被要求补交资料的风险</span>
+            </h3>
+            
+            <table id="risk-assessment">
+                <thead>
+                    <tr>
+                        <th width="25%">核查项目</th>
+                        <th width="20%">状态</th>
+                        <th width="55%">核查结果/备注</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>批文审批历史查询</td>
+                        <td>
+                            <select class="status-select">
+                                <option value="completed">已完成</option>
+                                <option value="pending" selected>进行中</option>
+                                <option value="not-started">未开始</option>
+                            </select>
+                        </td>
+                        <td><input type="text" class="remark-input" value="已通过中医药管委会系统查询，暂无异常记录"></td>
+                    </tr>
+                    <tr>
+                        <td>监管沟通记录核查</td>
+                        <td>
+                            <select class="status-select">
+                                <option value="completed">已完成</option>
+                                <option value="pending">进行中</option>
+                                <option value="not-started" selected>未开始</option>
+                            </select>
+                        </td>
+                        <td><input type="text" class="remark-input" placeholder="记录与监管部门的沟通情况"></td>
+                    </tr>
+                    <tr>
+                        <td>批文状态确认函</td>
+                        <td>
+                            <select class="status-select">
+                                <option value="completed">已完成</option>
+                                <option value="pending">进行中</option>
+                                <option value="not-started" selected>未开始</option>
+                            </select>
+                        </td>
+                        <td><input type="text" class="remark-input" placeholder="是否已获取官方状态确认函"></td>
+                    </tr>
+                    <tr>
+                        <td>历史补交资料要求</td>
+                        <td>
+                            <select class="status-select">
+                                <option value="completed">已完成</option>
+                                <option value="pending" selected>进行中</option>
+                                <option value="not-started">未开始</option>
+                            </select>
+                        </td>
+                        <td><input type="text" class="remark-input" value="初步核查显示近三年无补交要求，但临时性批准状态需关注"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
         <!-- 批文交易必要文件接收清单 -->
-        <h2>二、批文交易必要文件接收清单</h2>
+        <h2>三、批文交易必要文件接收清单</h2>
         <table id="required-documents">
             <thead>
                 <tr>
@@ -314,9 +424,33 @@
                     <td><input type="text" class="remark-input" value="已申请，预计5个工作日内获取"></td>
                 </tr>
 
+                <!-- 新增：批文风险管控文件 -->
+                <tr class="dimension-header">
+                    <td rowspan="3" class="dimension-title">2. 批文風險管控文件</td>
+                    <td class="sub-item">卖方关于无未完成补交资料的承诺函</td>
+                    <td>明确卖方责任，防范历史资料遗留问题</td>
+                    <td><input type="checkbox" class="check-input" checked></td>
+                    <td><select class="integrity-select"><option selected>完整</option><option>部分完整</option><option>不完整</option></select></td>
+                    <td><input type="text" class="remark-input" value="已提供签署版，内容涵盖所有潜在补交责任"></td>
+                </tr>
+                <tr>
+                    <td class="sub-item">监管部门批文状态确认函（如有）</td>
+                    <td>确认批文无待办事项</td>
+                    <td><input type="checkbox" class="check-input"></td>
+                    <td><select class="integrity-select"><option>完整</option><option>部分完整</option><option selected>不完整</option></select></td>
+                    <td><input type="text" class="remark-input" value="正在申请中，预计7个工作日内获取"></td>
+                </tr>
+                <tr>
+                    <td class="sub-item">注册资料合规性评估报告</td>
+                    <td>由第三方出具，评估资料完整性</td>
+                    <td><input type="checkbox" class="check-input" checked></td>
+                    <td><select class="integrity-select"><option selected>完整</option><option>部分完整</option><option>不完整</option></select></td>
+                    <td><input type="text" class="remark-input" value="第三方评估认为资料完整性达90%"></td>
+                </tr>
+
                 <!-- 企业资质文件 -->
                 <tr class="dimension-header">
-                    <td rowspan="3" class="dimension-title">2. 企業資質文件</td>
+                    <td rowspan="3" class="dimension-title">3. 企業資質文件</td>
                     <td class="sub-item">卖方公司的商业登记证明</td>
                     <td>确认公司合法注册</td>
                     <td><input type="checkbox" class="check-input" checked></td>
@@ -340,7 +474,7 @@
 
                 <!-- 技术资料文件 -->
                 <tr class="dimension-header">
-                    <td rowspan="5" class="dimension-title">3. 技術資料文件</td>
+                    <td rowspan="5" class="dimension-title">4. 技術資料文件</td>
                     <td class="sub-item">产品生产工艺流程图及详细说明</td>
                     <td>确保生产工艺可转移、可落地</td>
                     <td><input type="checkbox" class="check-input" checked></td>
@@ -378,7 +512,7 @@
 
                 <!-- 合规与监管文件 -->
                 <tr class="dimension-header">
-                    <td rowspan="3" class="dimension-title">4. 合規與監管文件</td>
+                    <td rowspan="3" class="dimension-title">5. 合規與監管文件</td>
                     <td class="sub-item">最近一次的GMP符合性检查报告</td>
                     <td>确认生产质量体系合规</td>
                     <td><input type="checkbox" class="check-input" checked></td>
@@ -402,7 +536,7 @@
 
                 <!-- 知识产权文件 -->
                 <tr class="dimension-header">
-                    <td rowspan="3" class="dimension-title">5. 知識產權文件</td>
+                    <td rowspan="3" class="dimension-title">6. 知識產權文件</td>
                     <td class="sub-item">商标注册证书（如适用）</td>
                     <td>确认品牌权利归属</td>
                     <td><input type="checkbox" class="check-input" checked></td>
@@ -426,7 +560,7 @@
 
                 <!-- 交易相关文件 -->
                 <tr class="dimension-header">
-                    <td rowspan="3" class="dimension-title">6. 交易相關文件</td>
+                    <td rowspan="3" class="dimension-title">7. 交易相關文件</td>
                     <td class="sub-item">批文转让协议草案</td>
                     <td>明确交易条款与条件</td>
                     <td><input type="checkbox" class="check-input" checked></td>
@@ -450,7 +584,7 @@
 
                 <!-- 其他必要文件 -->
                 <tr class="dimension-header">
-                    <td rowspan="3" class="dimension-title">7. 其他必要文件</td>
+                    <td rowspan="3" class="dimension-title">8. 其他必要文件</td>
                     <td class="sub-item">法律尽职调查报告</td>
                     <td>全面评估法律风险</td>
                     <td><input type="checkbox" class="check-input" checked></td>
@@ -477,10 +611,15 @@
         <!-- 总结与建议 -->
         <div class="summary">
             <p><strong>考察总结：</strong></p>
-            <textarea class="summary-textarea" id="conclusion-text">本次考察的中成藥批文（HKP-12196）基础信息清晰，出售方提供的文件整体完整，批文合规性与权利清晰度达标，整体交易风险较低。仅需补充政府部门出具的批文无异议证明，即可推进后续转让流程。</textarea>
+            <textarea class="summary-textarea" id="conclusion-text">本次考察的中成藥批文（HKP-12196）为临时性批准状态，基础信息清晰，出售方提供的文件整体完整，批文合规性与权利清晰度基本达标。但需注意临时性批准存在后续被要求补交资料的风险，建议在协议中明确相关责任分配。</textarea>
             
-            <p><strong>推进建议：</strong></p>
-            <textarea class="summary-textarea" id="suggestion-text">1. 要求出售方在5个工作日内补充批文无异议证明；2. 核对收款账户与出售方及关联方的关系，确保资金流向合规；3. 在转让协议中明确文件补充、批文变更配合等义务及违约责任；4. 转让前再次通过香港政府监管平台核查批文最新状态，确保无突发监管风险。</textarea>
+            <p><strong>风险分析与建议：</strong></p>
+            <textarea class="summary-textarea" id="suggestion-text">1. 要求出售方在5个工作日内补充批文无异议证明及监管部门的状态确认函；
+2. 在协议中明确约定：如因历史资料问题导致后续被要求补交资料，卖方应承担全部责任及相关费用；
+3. 建议保留15%交易款作为风险保证金，在批文转为正式批准后再支付；
+4. 核对收款账户与出售方及关联方的关系，确保资金流向合规；
+5. 转让前再次通过香港政府监管平台核查批文最新状态，确保无突发监管风险；
+6. 建立定期监管沟通机制，关注法规更新动态。</textarea>
         </div>
 
         <!-- 操作按钮 -->
@@ -499,8 +638,57 @@
             const buyerName = document.getElementById('buyer-name').value || '未填写';
             const assessmentDate = document.getElementById('assessment-date').value || new Date().toLocaleDateString();
             const assessor = document.getElementById('assessor').value || '未填写';
+            const approvalStatus = document.getElementById('approval-status').value;
+            
+            let statusText = '';
+            switch(approvalStatus) {
+                case 'formal':
+                    statusText = '正式批准';
+                    break;
+                case 'temporary':
+                    statusText = '临时性批准';
+                    break;
+                case 'conditional':
+                    statusText = '有条件批准';
+                    break;
+                case 'pending':
+                    statusText = '待审批';
+                    break;
+            }
+            
+            // 更新风险评级
+            updateRiskRating(approvalStatus);
 
-            alert('打印信息已更新！');
+            alert('打印信息已更新！当前批文状态: ' + statusText);
+        }
+
+        // 根据批文状态更新风险评级
+        function updateRiskRating(status) {
+            const riskRating = document.getElementById('risk-rating');
+            const riskDescription = document.getElementById('risk-description');
+            
+            switch(status) {
+                case 'formal':
+                    riskRating.textContent = '低风险';
+                    riskRating.className = 'risk-indicator risk-low';
+                    riskDescription.textContent = '批文为正式批准，监管风险较低';
+                    break;
+                case 'temporary':
+                    riskRating.textContent = '中等风险';
+                    riskRating.className = 'risk-indicator risk-medium';
+                    riskDescription.textContent = '批文为临时性批准，存在后续被要求补交资料的风险';
+                    break;
+                case 'conditional':
+                    riskRating.textContent = '中高风险';
+                    riskRating.className = 'risk-indicator risk-medium';
+                    riskDescription.textContent = '批文为有条件批准，需满足特定条件才能转为正式批准';
+                    break;
+                case 'pending':
+                    riskRating.textContent = '高风险';
+                    riskRating.className = 'risk-indicator risk-high';
+                    riskDescription.textContent = '批文处于待审批状态，审批结果存在不确定性';
+                    break;
+            }
         }
 
         // 保存考察数据到本地存储
@@ -509,6 +697,12 @@
             const approvalBasicInfo = [];
             document.querySelectorAll('#approval-basic-info input').forEach(input => {
                 approvalBasicInfo.push(input.value);
+            });
+
+            // 收集风险核查数据
+            const riskAssessment = [];
+            document.querySelectorAll('#risk-assessment select, #risk-assessment .remark-input').forEach(input => {
+                riskAssessment.push(input.value);
             });
 
             // 收集备注数据
@@ -523,6 +717,18 @@
                 checkStatus.push(input.checked);
             });
 
+            // 收集完整性选择数据
+            const integrityStatus = [];
+            document.querySelectorAll('.integrity-select').forEach(select => {
+                integrityStatus.push(select.value);
+            });
+
+            // 收集状态选择数据
+            const statusSelect = [];
+            document.querySelectorAll('.status-select').forEach(select => {
+                statusSelect.push(select.value);
+            });
+
             // 收集总结与建议
             const summary = {
                 conclusion: document.getElementById('conclusion-text').value,
@@ -534,15 +740,19 @@
                 sellerName: document.getElementById('seller-name').value,
                 buyerName: document.getElementById('buyer-name').value,
                 assessmentDate: document.getElementById('assessment-date').value,
-                assessor: document.getElementById('assessor').value
+                assessor: document.getElementById('assessor').value,
+                approvalStatus: document.getElementById('approval-status').value
             };
 
             // 存储数据
             const assessmentData = {
                 basicInfo,
                 approvalBasicInfo,
+                riskAssessment,
                 remarks,
                 checkStatus,
+                integrityStatus,
+                statusSelect,
                 summary
             };
 
@@ -558,11 +768,29 @@
                 document.getElementById('buyer-name').value = '香港濟歲堂中藥廠有限公司';
                 document.getElementById('assessment-date').value = '2025-08-22';
                 document.getElementById('assessor').value = '张经理';
+                document.getElementById('approval-status').value = 'temporary';
 
                 // 默认批文基础信息
                 const approvalBasicInfo = ['HKP-12196', '【日本和漢堂】海狗丸', '丸劑', '500,000', '2030-05-10', '批文状态正常，无历史异常记录'];
                 document.querySelectorAll('#approval-basic-info input').forEach((input, index) => {
                     if (index < approvalBasicInfo.length) input.value = approvalBasicInfo[index];
+                });
+
+                // 默认风险核查数据
+                const defaultRiskStatus = ['pending', 'not-started', 'not-started', 'pending'];
+                const defaultRiskRemarks = [
+                    '已通过中医药管委会系统查询，暂无异常记录',
+                    '',
+                    '',
+                    '初步核查显示近三年无补交要求，但临时性批准状态需关注'
+                ];
+                
+                document.querySelectorAll('#risk-assessment select').forEach((select, index) => {
+                    if (index < defaultRiskStatus.length) select.value = defaultRiskStatus[index];
+                });
+                
+                document.querySelectorAll('#risk-assessment .remark-input').forEach((input, index) => {
+                    if (index < defaultRiskRemarks.length) input.value = defaultRiskRemarks[index];
                 });
 
                 // 默认备注
@@ -571,6 +799,9 @@
                     '无历史变更记录，批文信息稳定',
                     '包含原料、辅料、成品质量标准',
                     '已申请，预计5个工作日内获取',
+                    '已提供签署版，内容涵盖所有潜在补交责任',
+                    '正在申请中，预计7个工作日内获取',
+                    '第三方评估认为资料完整性达90%',
                     '商业登记证在有效期内',
                     '许可证在有效期内，经营范围包含中成藥',
                     '决议签字齐全，符合公司章程',
@@ -599,6 +830,7 @@
                 // 默认勾选状态
                 const defaultCheckStatus = [
                     true, true, true, false,  // 批文主体文件
+                    true, false, true,        // 批文风险管控文件
                     true, true, true,         // 企业资质文件
                     true, true, true, true, true,  // 技术资料文件
                     true, true, true,         // 合规与监管文件
@@ -610,11 +842,26 @@
                     if (index < defaultCheckStatus.length) input.checked = defaultCheckStatus[index];
                 });
 
-                // 默认总结与建议
-                document.getElementById('conclusion-text').value = '本次考察的中成藥批文（HKP-12196）基础信息清晰，出售方提供的文件整体完整，批文合规性与权利清晰度达标，整体交易风险较低。仅需补充政府部门出具的批文无异议证明，即可推进后续转让流程。';
-                document.getElementById('suggestion-text').value = '1. 要求出售方在5个工作日内补充批文无异议证明；2. 核对收款账户与出售方及关联方的关系，确保资金流向合规；3. 在转让协议中明确文件补充、批文变更配合等义务及违约责任；4. 转让前再次通过香港政府监管平台核查批文最新状态，确保无突发监管风险。';
+                // 默认完整性状态
+                const defaultIntegrityStatus = [
+                    '完整', '完整', '完整', '不完整',
+                    '完整', '不完整', '完整',
+                    '完整', '完整', '完整',
+                    '完整', '完整', '完整', '完整', '完整',
+                    '完整', '完整', '完整',
+                    '完整', '不完整', '完整',
+                    '完整', '完整', '完整',
+                    '完整', '不完整', '完整'
+                ];
+                document.querySelectorAll('.integrity-select').forEach((select, index) => {
+                    if (index < defaultIntegrityStatus.length) select.value = defaultIntegrityStatus[index];
+                });
 
-                // 更新打印信息
+                // 默认总结与建议
+                document.getElementById('conclusion-text').value = '本次考察的中成藥批文（HKP-12196）为临时性批准状态，基础信息清晰，出售方提供的文件整体完整，批文合规性与权利清晰度基本达标。但需注意临时性批准存在后续被要求补交资料的风险，建议在协议中明确相关责任分配。';
+                document.getElementById('suggestion-text').value = '1. 要求出售方在5个工作日内补充批文无异议证明及监管部门的状态确认函；\n2. 在协议中明确约定：如因历史资料问题导致后续被要求补交资料，卖方应承担全部责任及相关费用；\n3. 建议保留15%交易款作为风险保证金，在批文转为正式批准后再支付；\n4. 核对收款账户与出售方及关联方的关系，确保资金流向合规；\n5. 转让前再次通过香港政府监管平台核查批文最新状态，确保无突发监管风险；\n6. 建立定期监管沟通机制，关注法规更新动态。';
+
+                // 更新打印信息和风险评级
                 updatePrintInfo();
                 alert('默认数据已加载！');
             }
@@ -631,12 +878,30 @@
                     document.getElementById('buyer-name').value = savedData.basicInfo.buyerName || '';
                     document.getElementById('assessment-date').value = savedData.basicInfo.assessmentDate || '';
                     document.getElementById('assessor').value = savedData.basicInfo.assessor || '';
+                    document.getElementById('approval-status').value = savedData.basicInfo.approvalStatus || 'temporary';
 
                     // 加载批文基础信息
                     savedData.approvalBasicInfo.forEach((value, index) => {
                         const inputs = document.querySelectorAll('#approval-basic-info input');
                         if (index < inputs.length) inputs[index].value = value;
                     });
+
+                    // 加载风险核查数据
+                    if (savedData.riskAssessment) {
+                        savedData.riskAssessment.forEach((value, index) => {
+                            if (index % 2 === 0) {
+                                // 选择框
+                                const selects = document.querySelectorAll('#risk-assessment select');
+                                const selectIndex = Math.floor(index / 2);
+                                if (selectIndex < selects.length) selects[selectIndex].value = value;
+                            } else {
+                                // 备注输入框
+                                const inputs = document.querySelectorAll('#risk-assessment .remark-input');
+                                const inputIndex = Math.floor(index / 2);
+                                if (inputIndex < inputs.length) inputs[inputIndex].value = value;
+                            }
+                        });
+                    }
 
                     // 加载备注
                     savedData.remarks.forEach((remark, index) => {
@@ -650,13 +915,30 @@
                         if (index < inputs.length) inputs[index].checked = status;
                     });
 
+                    // 加载完整性状态
+                    if (savedData.integrityStatus) {
+                        savedData.integrityStatus.forEach((status, index) => {
+                            const selects = document.querySelectorAll('.integrity-select');
+                            if (index < selects.length) selects[index].value = status;
+                        });
+                    }
+
+                    // 加载状态选择
+                    if (savedData.statusSelect) {
+                        savedData.statusSelect.forEach((status, index) => {
+                            const selects = document.querySelectorAll('.status-select');
+                            if (index < selects.length) selects[index].value = status;
+                        });
+                    }
+
                     // 加载总结与建议
                     if (savedData.summary) {
                         document.getElementById('conclusion-text').value = savedData.summary.conclusion || '';
                         document.getElementById('suggestion-text').value = savedData.summary.suggestion || '';
                     }
 
-                    // 更新打印信息
+                    // 更新打印信息和风险评级
+                    updateRiskRating(document.getElementById('approval-status').value);
                     updatePrintInfo();
                 }
             } catch (e) {
