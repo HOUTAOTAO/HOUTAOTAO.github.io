@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中国从俄罗斯进口的中药材清单 - 海关总署2025年第92号公告</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4efe9 100%);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(to right, #2c5e1a 0%, #4a8c2a 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+        
+        .disclaimer {
+            background: #fff8e1;
+            padding: 20px;
+            border-left: 5px solid #ffc107;
+            margin: 20px;
+            border-radius: 4px;
+            font-size: 0.95rem;
+        }
+        
+        .filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            padding: 20px;
+            background: #f5f9f5;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .filter-group {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .filter-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #2c5e1a;
+        }
+        
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        th {
+            background-color: #4a8c2a;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            position: relative;
+        }
+        
+        th:hover {
+            background-color: #3a6f20;
+        }
+        
+        tbody tr:hover {
+            background-color: #f1f8e9;
+        }
+        
+        .pagination {
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+            gap: 10px;
+        }
+        
+        .pagination button {
+            padding: 10px 15px;
+            background: #4a8c2a;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .pagination button:hover {
+            background: #3a6f20;
+            transform: translateY(-2px);
+        }
+        
+        .pagination button.active {
+            background: #2c5e1a;
+            font-weight: bold;
+        }
+        
+        .pagination button:disabled {
+            background: #cccccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #f5f9f5;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 20px;
+            background: #f0f7eb;
+            border-radius: 8px;
+            margin: 20px;
+        }
+        
+        .stat-card {
+            flex: 1;
+            min-width: 200px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+        
+        .stat-card i {
+            font-size: 2rem;
+            color: #4a8c2a;
+            margin-bottom: 10px;
+        }
+        
+        .stat-card .number {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #2c5e1a;
+        }
+        
+        .stat-card .label {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .import-info {
+            background: #e8f4f8;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px;
+        }
+        
+        .import-info h2 {
+            color: #2c5e1a;
+            margin-bottom: 15px;
+        }
+        
+        .import-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .step-card {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+        
+        .step-number {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background: #4a8c2a;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        
+        @media (max-width: 768px) {
+            .filters {
+                flex-direction: column;
+            }
+            
+            th, td {
+                padding: 10px 8px;
+                font-size: 0.9rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .import-steps {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>中国从俄罗斯进口的中药材清单</h1>
+            <p class="subtitle">根据中国海关总署2025年第92号公告整理</p>
+        </header>
+
+        <div class="disclaimer">
+            <strong><i class="fas fa-exclamation-circle"></i> 重要提示：</strong> 本清单仅供参考，进口中药材前请务必确认中国海关最新法规和要求。所有进口中药材必须符合中国的检验检疫标准，并随附相关证明文件。
+        </div>
+
+        <div class="stats">
+            <div class="stat-card">
+                <i class="fas fa-leaf"></i>
+                <div class="number">24</div>
+                <div class="label">允许进口种类</div>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-boxes"></i>
+                <div class="number">100%</div>
+                <div class="label">需检验检疫</div>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-check-circle"></i>
+                <div class="number">注册企业</div>
+                <div class="label">需经中俄双方批准</div>
+            </div>
+        </div>
+
+        <div class="filters">
+            <div class="filter-group">
+                <label for="search"><i class="fas fa-search"></i> 搜索药材名称</label>
+                <input type="text" id="search" placeholder="输入药材名称...">
+            </div>
+            <div class="filter-group">
+                <label for="category"><i class="fas fa-filter"></i> 按药用部位筛选</label>
+                <select id="category">
+                    <option value="all">全部部位</option>
+                    <option value="根">根及根茎类</option>
+                    <option value="果实">果实种子类</option>
+                    <option value="花">花叶类</option>
+                    <option value="皮">皮类</option>
+                    <option value="全草">全草类</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="sort"><i class="fas fa-sort"></i> 排序方式</label>
+                <select id="sort">
+                    <option value="name">按名称排序</option>
+                    <option value="latin">按拉丁名排序</option>
+                </select>
+            </div>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th data-sort="name">中文名称 <i class="fas fa-sort"></i></th>
+                    <th data-sort="latin">拉丁学名 <i class="fas fa-sort"></i></th>
+                    <th data-sort="part">药用部位 <i class="fas fa-sort"></i></th>
+                    <th>主要功效</th>
+                </tr>
+            </thead>
+            <tbody id="table-body">
+                <!-- 数据将通过JavaScript填充 -->
+            </tbody>
+        </table>
+
+        <div class="pagination">
+            <button id="prev-btn" disabled><i class="fas fa-chevron-left"></i> 上一页</button>
+            <button class="page-btn active" data-page="1">1</button>
+            <button class="page-btn" data-page="2">2</button>
+            <button class="page-btn" data-page="3">3</button>
+            <button id="next-btn">下一页 <i class="fas fa-chevron-right"></i></button>
+        </div>
+
+        <div class="import-info">
+            <h2><i class="fas fa-info-circle"></i> 进口流程与要求</h2>
+            <p>根据海关总署公告2025年第92号，进口俄罗斯植物源性中药材需符合以下要求：</p>
+            
+            <div class="import-steps">
+                <div class="step-card">
+                    <span class="step-number">1</span>
+                    <strong>企业注册</strong>
+                    <p>俄罗斯的生产、加工和存放企业需经俄方审核并中方批准注册[citation:3]。</p>
+                </div>
+                <div class="step-card">
+                    <span class="step-number">2</span>
+                    <strong>检疫要求</strong>
+                    <p>确保不带中方关注的检疫性有害生物，清除土壤、杂质并进行干燥[citation:3]。</p>
+                </div>
+                <div class="step-card">
+                    <span class="step-number">3</span>
+                    <strong>包装要求</strong>
+                    <p>使用新的、无毒材料包装，用中英文标明商品名称、拉丁学名、重量等信息[citation:3]。</p>
+                </div>
+                <div class="step-card">
+                    <span class="step-number">4</span>
+                    <strong>证书要求</strong>
+                    <p>需随附俄方出具的植物检疫证书，并在附加声明中注明符合议定书要求[citation:3]。</p>
+                </div>
+            </div>
+            
+            <p style="margin-top: 15px;"><strong>不合格处理：</strong> 如发现未随附有效植物检疫证书、来自未经注册企业、带有土壤或检疫性有害生物等情况，货物将作退回或销毁处理[citation:3]。</p>
+        </div>
+
+        <footer>
+            <p>数据来源：中国海关总署公告2025年第92号 | 最后更新：2025年8月</p>
+            <p>© 2025 中药材贸易信息中心 | 仅供参考，请以官方最新法规为准</p>
+        </footer>
+    </div>
+
+    <script>
+        // 中药材数据 - 根据提供的微信文章链接更新
+        const herbsData = [
+            { name: "防风", latin: "Saposhnikovia divaricata", part: "根", effect: "解表祛风，胜湿止痉" },
+            { name: "白鲜皮", latin: "Dictamnus dasycarpus", part: "根皮", effect: "清热燥湿，祛风解毒" },
+            { name: "黄芪", latin: "Astragalus membranaceus", part: "根", effect: "补气固表，利尿托毒" },
+            { name: "桔梗", latin: "Platycodon grandiflorum", part: "根", effect: "宣肺利咽，祛痰排脓" },
+            { name: "五味子", latin: "Schisandra chinensis", part: "果实", effect: "收敛固涩，益气生津" },
+            { name: "苍术", latin: "Atractylodes lancea", part: "根茎", effect: "燥湿健脾，祛风散寒" },
+            { name: "红景天", latin: "Rhodiola rosea", part: "根及根茎", effect: "益气活血，通脉平喘" },
+            { name: "甘草", latin: "Glycyrrhiza uralensis", part: "根及根茎", effect: "补脾益气，清热解毒" },
+            { name: "人参", latin: "Panax ginseng", part: "根及根茎", effect: "大补元气，复脉固脱" },
+            { name: "银杏叶", latin: "Ginkgo biloba", part: "叶", effect: "活血化瘀，通络止痛" },
+            { name: "黄芩", latin: "Scutellaria baicalensis", part: "根", effect: "清热燥湿，泻火解毒" },
+            { name: "秦艽", latin: "Gentiana macrophylla", part: "根", effect: "祛风湿，清湿热" },
+            { name: "赤芍", latin: "Paeonia lactiflora", part: "根", effect: "清热凉血，散瘀止痛" },
+            { name: "红花", latin: "Carthamus tinctorius", part: "花", effect: "活血通经，散瘀止痛" },
+            { name: "槲寄生", latin: "Viscum coloratum", part: "带叶茎枝", effect: "祛风湿，补肝肾" },
+            { name: "紫草", latin: "Arnebia euchroma", part: "根", effect: "凉血活血，解毒透疹" },
+            { name: "柴胡", latin: "Bupleurum chinense", part: "根", effect: "和解表里，疏肝解郁" },
+            { name: "升麻", latin: "Cimicifuga foetida", part: "根茎", effect: "发表透疹，清热解毒" },
+            { name: "地榆", latin: "Sanguisorba officinalis", part: "根", effect: "凉血止血，解毒敛疮" },
+            { name: "独活", latin: "Angelica pubescens", part: "根", effect: "祛风除湿，通痹止痛" },
+            { name: "羌活", latin: "Notopterygium incisum", part: "根及根茎", effect: "散寒祛风，除湿止痛" },
+            { name: "牛蒡子", latin: "Arctium lappa", part: "果实", effect: "疏散风热，宣肺透疹" },
+            { name: "沙棘", latin: "Hippophae rhamnoides", part: "果实", effect: "健脾消食，止咳祛痰" },
+            { name: "刺五加", latin: "Acanthopanax senticosus", part: "根及根茎", effect: "益气健脾，补肾安神" }
+        ];
+
+        // 分页相关变量
+        const itemsPerPage = 8;
+        let currentPage = 1;
+        let filteredData = [...herbsData];
+
+        // DOM元素
+        const tableBody = document.getElementById('table-body');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const pageBtns = document.querySelectorAll('.page-btn');
+        const searchInput = document.getElementById('search');
+        const categoryFilter = document.getElementById('category');
+        const sortSelect = document.getElementById('sort');
+
+        // 初始化表格
+        function renderTable() {
+            const startIndex = (currentPage - 1) * itemsPerPage;
+            const endIndex = startIndex + itemsPerPage;
+            const pageData = filteredData.slice(startIndex, endIndex);
+            
+            tableBody.innerHTML = '';
+            
+            pageData.forEach(herb => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${herb.name}</td>
+                    <td><i>${herb.latin}</i></td>
+                    <td>${herb.part}</td>
+                    <td>${herb.effect}</td>
+                `;
+                tableBody.appendChild(row);
+            });
+            
+            updatePagination();
+        }
+
+        // 更新分页控件
+        function updatePagination() {
+            const totalPages = Math.ceil(filteredData.length / itemsPerPage);
+            
+            // 更新上一页/下一页按钮状态
+            prevBtn.disabled = currentPage === 1;
+            nextBtn.disabled = currentPage === totalPages;
+            
+            // 更新页码按钮
+            pageBtns.forEach(btn => {
+                const pageNum = parseInt(btn.dataset.page);
+                btn.classList.toggle('active', pageNum === currentPage);
+                
+                // 隐藏不存在的页码
+                if (pageNum > totalPages) {
+                    btn.style.display = 'none';
+                } else {
+                    btn.style.display = 'inline-block';
+                }
+            });
+        }
+
+        // 搜索和筛选功能
+        function filterData() {
+            const searchText = searchInput.value.toLowerCase();
+            const category = categoryFilter.value;
+            
+            filteredData = herbsData.filter(herb => {
+                const matchesSearch = herb.name.toLowerCase().includes(searchText) || 
+                                     herb.latin.toLowerCase().includes(searchText);
+                const matchesCategory = category === 'all' || herb.part.includes(category);
+                
+                return matchesSearch && matchesCategory;
+            });
+            
+            // 重置到第一页
+            currentPage = 1;
+            renderTable();
+        }
+
+        // 排序功能
+        function sortData() {
+            const sortBy = sortSelect.value;
+            
+            filteredData.sort((a, b) => {
+                if (sortBy === 'name') {
+                    return a.name.localeCompare(b.name);
+                } else if (sortBy === 'latin') {
+                    return a.latin.localeCompare(b.latin);
+                }
+                return 0;
+            });
+            
+            renderTable();
+        }
+
+        // 事件监听
+        searchInput.addEventListener('input', filterData);
+        categoryFilter.addEventListener('change', filterData);
+        sortSelect.addEventListener('change', sortData);
+
+        prevBtn.addEventListener('click', () => {
+            if (currentPage > 1) {
+                currentPage--;
+                renderTable();
+            }
+        });
+
+        nextBtn.addEventListener('click', () => {
+            const totalPages = Math.ceil(filteredData.length / itemsPerPage);
+            if (currentPage < totalPages) {
+                currentPage++;
+                renderTable();
+            }
+        });
+
+        pageBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                currentPage = parseInt(btn.dataset.page);
+                renderTable();
+            });
+        });
+
+        // 表头排序
+        document.querySelectorAll('th[data-sort]').forEach(th => {
+            th.addEventListener('click', () => {
+                const sortBy = th.dataset.sort;
+                sortSelect.value = sortBy;
+                sortData();
+            });
+        });
+
+        // 初始渲染
+        renderTable();
+    </script>
+</body>
+</html>
