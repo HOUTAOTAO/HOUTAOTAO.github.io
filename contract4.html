@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>可编辑批文交易合同</title>
+    <title>可编辑批文交易合同（修订版）</title>
     <style>
         * {
             box-sizing: border-box;
@@ -30,7 +30,6 @@
             margin: 20px auto;
         }
         
-        /* 页眉样式 */
         .page-header {
             width: 100%;
             height: auto;
@@ -42,7 +41,6 @@
             border-bottom: 2px solid #c33;
         }
         
-        /* 页脚样式 */
         .page-footer {
             width: 100%;
             height: auto;
@@ -60,7 +58,6 @@
             text-align: center;
         }
         
-        /* 公司信息样式 */
         .company-info {
             flex: 1;
         }
@@ -77,7 +74,6 @@
             color: #666;
         }
         
-        /* Logo样式 */
         .logo-container {
             width: 150px;
             height: 60px;
@@ -85,15 +81,10 @@
             justify-content: center;
             align-items: center;
             padding: 5px;
+            background: #f9f9f9;
+            border: 1px solid #ddd;
         }
         
-        .logo-container img {
-            max-height: 100%;
-            max-width: 100%;
-            object-fit: contain;
-        }
-        
-        /* 主要内容样式 */
         .content {
             padding: 25px;
         }
@@ -117,7 +108,6 @@
             background: linear-gradient(90deg, transparent, #c33, transparent);
         }
         
-        /* 表格样式 */
         table {
             width: 100%;
             border-collapse: collapse;
@@ -141,7 +131,6 @@
             background-color: #f9f9f9;
         }
         
-        /* 条款样式 */
         .clause {
             margin: 15px 0;
         }
@@ -152,7 +141,6 @@
             color: #a52a2a;
         }
         
-        /* 签名部分 */
         .signature {
             margin-top: 20px;
             display: flex;
@@ -183,7 +171,6 @@
             padding-top: 5px;
         }
         
-        /* 风险提示样式 */
         .risk-section {
             margin-top: 20px;
             padding: 15px;
@@ -215,7 +202,6 @@
             font-weight: bold;
         }
         
-        /* 可编辑区域样式 */
         .editable {
             border-bottom: 1px dashed #a52a2a;
             padding: 2px 4px;
@@ -231,7 +217,6 @@
             border-bottom: 1px solid #a52a2a;
         }
         
-        /* 按钮样式 */
         .btn {
             padding: 5px 10px;
             background: #a52a2a;
@@ -271,7 +256,15 @@
             border-bottom: 1px solid #ddd;
         }
         
-        /* 打印样式 */
+        .modification-note {
+            background-color: #e8f5e9;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            border-left: 4px solid #4caf50;
+            font-size: 12px;
+        }
+        
         @media print {
             .btn, .control-bar {
                 display: none !important;
@@ -280,6 +273,10 @@
             .editable {
                 border-bottom: none;
                 background-color: transparent;
+            }
+            
+            .modification-note {
+                display: none;
             }
         }
     </style>
@@ -296,14 +293,14 @@
         <div class="page-header">
             <div class="company-info">
                 <div class="company-name">
-                    <span class="editable" contenteditable="true" id="company-name">香港濟歲堂中藥廠有限公司</span>
+                    <span class="editable" contenteditable="true" id="company-name">香港泰和生國際藥業有限公司</span>
                 </div>
                 <div class="company-address">
-                    地址：<span class="editable" contenteditable="true" id="company-address">香港新界葵涌華星街8號華達工業中心A座4樓12室</span>
+                    地址：<span class="editable" contenteditable="true" id="company-address">香港新界葵涌葵昌路1一7號禎昌工業大廈 1樓B室P房</span>
                 </div>
             </div>
             <div class="logo-container">
-                <img src="logo.jpg" alt="濟歲堂標誌">
+                [公司標誌]
             </div>
         </div>
         
@@ -311,9 +308,14 @@
         <div class="content">
             <h1 class="title">中成藥批文收購協議</h1>
             
+            <div class="modification-note">
+                <strong>修订说明：</strong>本合同已根据双方协商进行了修订，增加了代理关系证明、个人担保、退款机制和手续费承担等条款。
+            </div>
+            
             <div class="clause">
-                <div class="clause-title">甲方（收購方）：<span class="editable" contenteditable="true" id="party-a">香港濟歲堂中藥廠有限公司</span></div>
-                <div class="clause-title">乙方（出售方）：<span class="editable" contenteditable="true" id="party-b">香港千草堂中藥廠</span></div>
+                <div class="clause-title">甲方（收購方）：<span class="editable" contenteditable="true" id="party-a">香港泰和生國際藥業有限公司</span></div>
+                <div class="clause-title">乙方（出售方）：<span class="editable" contenteditable="true" id="party-b">香港千草堂中廠</span></div>
+                <div class="clause-title">丙方（擔保方）：<span class="editable" contenteditable="true" id="party-c">張永盛</span></div>
             </div>
             
             <div class="clause">
@@ -322,10 +324,21 @@
             </div>
             
             <div class="clause">
-                <div class="clause-title">二、收購批文明細</div>
+                <div class="clause-title">二、資質確認</div>
+                <p>永明（金）為批文法律上的持有方，永盛（張）為批文法律上的總經銷。乙方確認永明與永盛的法律身份，並保證其提供的批文轉讓所需的全部法律文件真實、有效。</p>
+                <p>乙方應在本協議簽訂後<span class="editable" contenteditable="true">3</span>個工作日內向甲方提供永明與永盛之間代理關係的法律文件原件以供查驗，包括但不限於授權委托書、代理協議書及公證文件等。</p>
+            </div>
+            
+            <div class="clause">
+                <div class="clause-title">三、批文轉讓責任</div>
+                <p>永盛和張個人負有將三個批文持有人成功轉讓到泰和生名下的法律責任。如果批文未成功轉讓，永盛和張個人負有相同的賠償責任，即按照本協議第七條違約責任的約定承擔賠償。</p>
+            </div>
+            
+            <div class="clause">
+                <div class="clause-title">四、收購批文明細</div>
                 <button class="btn btn-success" onclick="addTableRow()">添加批文</button>
                 <table id="approval-table">
-                    <tr>
+                    <tbody><tr>
                         <th width="15%">批文編號</th>
                         <th width="45%">產品名稱</th>
                         <th width="20%">劑型</th>
@@ -348,4 +361,306 @@
                     </tr>
                     <tr>
                         <td><span class="editable" contenteditable="true">HKP-05665</span></td>
-                      
+                        <td><span class="editable" contenteditable="true">【德國華特莎博士】通脈靈</span></td>
+                        <td><span class="editable" contenteditable="true">膠囊</span></td>
+                        <td><span class="editable" contenteditable="true">500,000</span></td>
+                        <td><button class="btn btn-danger" onclick="deleteRow(this)">删除</button></td>
+                    </tr>
+                </tbody></table>
+                <p style="margin-top: 10px;">以上合計收購<span class="editable" contenteditable="true" id="product-count">3</span>款中成藥產品批文，總金額為<span class="editable" contenteditable="true" id="total-amount">壹佰伍拾萬元整</span>港幣整（HKD <span class="editable" contenteditable="true" id="total-numeric">1,500,000</span>）。</p>
+            </div>
+            
+            <div class="clause">
+                <div class="clause-title">五、付款方式</div>
+                <p>甲乙雙方一致同意，乙方批文轉讓款分<span class="editable" contenteditable="true">三</span>個賬戶進行接收：</p>
+                <ol>
+                    <li><span class="editable" contenteditable="true">香港千草堂中藥廠公司賬戶：接收港幣壹佰貳拾萬元整（HKD 1,200,000）</span></li>
+                    <li><span class="editable" contenteditable="true">香港博辰醫藥有限公司：接收港幣壹拾伍萬元整（HKD 150,000）</span></li>
+                    <li><span class="editable" contenteditable="true">周曦文個人賬戶：接收港幣壹拾伍萬元整（HKD 150,000）</span></li>
+                </ol>
+                <p>付款分<span class="editable" contenteditable="true">三</span>期進行：</p>
+                <ol>
+                    <li><span class="editable" contenteditable="true">第一期：協議簽訂後3個工作日內，支付總金額的15%作為定金</span></li>
+                    <li><span class="editable" contenteditable="true">第二期：批文轉讓手遞交政府部門後5個工作日內，支付總金額的40%</span></li>
+                    <li><span class="editable" contenteditable="true">第三期：批文轉讓正式批准後5個工作日內，支付剩餘45%尾款</span></li>
+                </ol>
+                <p>向政府部門提交批文轉讓申請所產生的手續費、行政費及相關費用均由甲方承擔。</p>
+            </div>
+            
+            <div class="clause">
+                <div class="clause-title">六、雙方保證與承諾</div>
+                <p>6.1 乙方保證對所轉讓的批文擁有完全的所有權和處分權，不存在任何權利瑕疵。</p>
+                <p>6.2 乙方保證批文相關的所有技術資料、生產工藝、質量標準等文件的真實性和完整性。</p>
+                <p>6.3 乙方保證所轉讓的批文不存在任何知識產權糾紛或第三方權利主張。</p>
+                <p>6.4 甲方保證按照協議約定及時支付批文轉讓款項。</p>
+                <p>6.5 雙方保證對在履行本協議過程中獲知的對方商業秘密負有保密義務。</p>
+                <p>6.6 乙方確認永明（金）為批文法律上的持有方，永盛（張）為批文法律上的總經銷。乙方保證其提供的批文轉讓所需的全部法律文件真實、有效。</p>
+                <p>6.7 永盛和張個人負有將三個批文持有人成功轉讓到泰和生名下的法律責任。如果批文未成功轉讓，永盛和張個人負有相同的賠償責任。</p>
+            </div>
+            
+            <div class="clause">
+                <div class="clause-title">七、擔保條款</div>
+                <p>7.1 丙方張永盛作為本協議的擔保方，對乙方在本協議項下的所有義務和責任承擔連帶保證責任。</p>
+                <p>7.2 丙方的擔保範圍包括但不限於：乙方應履行的批文轉讓義務、違約賠償責任、退款責任等。</p>
+                <p>7.3 本擔保為不可撤銷的無限連帶責任擔保，擔保期限自本協議生效之日起至批文轉讓完成後兩年。</p>
+                <p>7.4 若乙方未能履行本協議項下的任何義務，甲方有權直接向丙方追償，丙方應在收到甲方通知後5個工作日內履行相應責任。</p>
+            </div>
+            
+            <div class="clause">
+                <div class="clause-title">八、批文轉讓不成功的處理</div>
+                <p>8.1 若因乙方原因導致批文轉讓未能獲得政府部門批准，乙方應在10個工作日內全額退還甲方已支付的所有款項，並按協議總金額的10%支付違約金。</p>
+                <p>8.2 若因政府政策變化等不可歸責於乙方的原因導致批文轉讓不成功，乙方應在10個工作日內全額退還甲方已支付的所有款項，雙方互不承擔違約責任。</p>
+                <p>8.3 若因甲方原因導致批文轉讓不成功，甲方已支付的款項作為對乙方的補償，不予退還。</p>
+                <p>8.4 退款應優先退還至甲方原付款賬戶，若甲方指定其他退款賬戶，應以書面形式通知乙方。</p>
+            </div>
+            
+            <div class="risk-section">
+                <h3>風險防範條款</h3>
+                <ul class="risk-list">
+                    <li><span class="editable" contenteditable="true">批文轉讓過程中如因政府政策變化導致無法完成轉讓，乙方應在10個工作日內全額退還甲方已支付款項</span></li>
+                    <li><span class="editable" contenteditable="true">如發現乙方提供的批文資料存在虛假或隱瞞情況，甲方有權單方面解除協議並要求乙方雙倍返還定金</span></li>
+                    <li><span class="editable" contenteditable="true">批文轉讓完成後，如因轉讓前存在的質量問題導致產品召回或處罰，乙方應承擔相應經濟損失</span></li>
+                    <li><span class="editable" contenteditable="true">乙方保證批文轉讓後三年內不從事同類產品的生產和銷售，否則應向甲方支付違約金港幣貳佰萬元</span></li>
+                    <li><span class="editable" contenteditable="true">因不可抗力導致協議無法履行，雙方互不承擔違約責任，但應及時通知對方並提供證明</span></li>
+                </ul>
+            </div>
+            
+            <div class="clause">
+                <div class="clause-title">九、違約責任</div>
+                <p>9.1 乙方如果單方取消協議，按協議簽訂批文收購總金額的<span class="editable" contenteditable="true">2</span>倍，作為違約賠償給甲方作為損失賠償。</p>
+                <p>9.2 甲方如果單方取消協議，乙方將扣除甲方全部預付的批文收購款作為對乙方的損失補償。</p>
+                <p>9.3 任何一方遲延履行協議義務，每遲延一日，應按協議總金額的千分之一向守約方支付違約金。</p>
+                <p>9.4 如因永盛或張個人原因導致批文未能成功轉讓，永盛和張個人應承擔連帶賠償責任，賠償金額為協議總金額的兩倍。</p>
+            </div>
+            
+            <div class="clause">
+                <div class="clause-title">十、爭議解決</div>
+                <p>因本協議引起的或與本協議有關的任何爭議，雙方應友好協商解決；協商不成的，任何一方均有權向<span class="editable" contenteditable="true">香港國際仲裁中心</span>申請仲裁。</p>
+            </div>
+            
+            <div class="clause">
+                <div class="clause-title">十一、協議生效</div>
+                <p>本協議自三方簽字蓋章之日起生效，一式<span class="editable" contenteditable="true">陸</span>份，甲乙丙三方各執<span class="editable" contenteditable="true">貳</span>份，具有同等法律效力。</p>
+            </div>
+            
+            <div class="signature">
+                <div class="signature-party">
+                    <p>甲方：<span class="editable" contenteditable="true" id="sign-party-a">香港泰和生國際藥業有限公司</span></p>
+                    <p>代表人簽字：_________________</p>
+                    <p class="signature-line">簽署日期：<span class="editable" contenteditable="true">2025年8月22日</span></p>
+                </div>
+                <div class="signature-party">
+                    <p>乙方：<span class="editable" contenteditable="true" id="sign-party-b">香港千草堂中廠</span></p>
+                    <p>代表人簽字：_________________</p>
+                    <p class="signature-line">簽署日期：<span class="editable" contenteditable="true">2025年8月22日</span></p>
+                </div>
+                <div class="signature-party">
+                    <p>丙方（擔保方）：<span class="editable" contenteditable="true" id="sign-party-c">張永盛</span></p>
+                    <p>簽字：_________________</p>
+                    <p class="signature-line">簽署日期：<span class="editable" contenteditable="true">2025年8月22日</span></p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 页脚 -->
+        <div class="page-footer">
+            <div class="footer-content">
+                <p>機密文件 - 僅限協議雙方使用 | 第 1 頁，共 1 頁 | 更新日期：<span class="editable" contenteditable="true">2025年8月22日</span></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 添加表格行
+        function addTableRow() {
+            const table = document.getElementById('approval-table');
+            const newRow = table.insertRow(-1);
+            
+            newRow.innerHTML = `
+                <td><span class="editable" contenteditable="true">HKP-</span></td>
+                <td><span class="editable" contenteditable="true">產品名稱</span></td>
+                <td><span class="editable" contenteditable="true">劑型</span></td>
+                <td><span class="editable" contenteditable="true">0</span></td>
+                <td><button class="btn btn-danger" onclick="deleteRow(this)">删除</button></td>
+            `;
+            
+            // 为新增行的价格单元格添加监听
+            const priceCell = newRow.cells[3].querySelector('.editable');
+            priceCell.addEventListener('input', updateProductCount);
+            
+            updateProductCount();
+        }
+        
+        // 删除表格行
+        function deleteRow(button) {
+            const row = button.parentNode.parentNode;
+            if (document.getElementById('approval-table').rows.length > 2) {
+                row.parentNode.removeChild(row);
+                updateProductCount();
+            } else {
+                alert("至少需要保留一行批文数据");
+            }
+        }
+        
+        // 更新产品数量
+        function updateProductCount() {
+            const table = document.getElementById('approval-table');
+            const rowCount = table.rows.length - 1; // 减去表头行
+            document.getElementById('product-count').textContent = rowCount;
+            
+            // 计算总金额
+            let total = 0;
+            for (let i = 1; i < table.rows.length; i++) {
+                const priceCell = table.rows[i].cells[3];
+                const priceText = priceCell.querySelector('.editable').textContent;
+                const price = parseFloat(priceText.replace(/,/g, '')) || 0;
+                total += price;
+            }
+            
+            document.getElementById('total-numeric').textContent = formatNumber(total);
+            document.getElementById('total-amount').textContent = numberToChinese(total);
+        }
+        
+        // 数字格式化
+        function formatNumber(num) {
+            return num.toLocaleString('zh-Hans');
+        }
+        
+        // 数字转中文大写
+        function numberToChinese(num) {
+            const chineseNumbers = ['零', '壹', '貳', '叁', '肆', '伍', '陸', '柒', '捌', '玖'];
+            const units = ['', '拾', '佰', '仟', '萬', '拾', '佰', '仟', '億'];
+            
+            if (num === 0) return '零';
+            
+            let numStr = num.toString();
+            let result = '';
+            
+            // 处理整数部分
+            for (let i = 0; i < numStr.length; i++) {
+                const digit = parseInt(numStr[i]);
+                const unitIndex = numStr.length - i - 1;
+                
+                if (digit !== 0) {
+                    result += chineseNumbers[digit] + units[unitIndex];
+                } else if (i > 0 && parseInt(numStr[i-1]) !== 0) {
+                    result += '零';
+                }
+            }
+            
+            // 移除多余的零
+            result = result.replace(/零+/g, '零').replace(/零$/, '');
+            
+            return result + '元整';
+        }
+        
+        // 保存合同内容
+        function saveContract() {
+            const contractData = {
+                companyName: document.getElementById('company-name').textContent,
+                companyAddress: document.getElementById('company-address').textContent,
+                partyA: document.getElementById('party-a').textContent,
+                partyB: document.getElementById('party-b').textContent,
+                partyC: document.getElementById('party-c').textContent,
+                signPartyA: document.getElementById('sign-party-a').textContent,
+                signPartyB: document.getElementById('sign-party-b').textContent,
+                signPartyC: document.getElementById('sign-party-c').textContent,
+                productCount: document.getElementById('product-count').textContent,
+                totalAmount: document.getElementById('total-amount').textContent,
+                totalNumeric: document.getElementById('total-numeric').textContent
+            };
+            
+            // 保存表格数据
+            const tableData = [];
+            const table = document.getElementById('approval-table');
+            for (let i = 1; i < table.rows.length; i++) {
+                const row = table.rows[i];
+                tableData.push({
+                    code: row.cells[0].querySelector('.editable').textContent,
+                    name: row.cells[1].querySelector('.editable').textContent,
+                    type: row.cells[2].querySelector('.editable').textContent,
+                    price: row.cells[3].querySelector('.editable').textContent
+                });
+            }
+            
+            contractData.tableData = tableData;
+            
+            localStorage.setItem('contractData', JSON.stringify(contractData));
+            alert('合同内容已保存到本地存储');
+        }
+        
+        // 重置合同内容
+        function resetContract() {
+            if (confirm('确定要重置所有内容吗？这将清除所有已编辑的内容。')) {
+                localStorage.removeItem('contractData');
+                location.reload();
+            }
+        }
+        
+        // 初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            // 加载保存的数据
+            const savedData = localStorage.getItem('contractData');
+            if (savedData) {
+                const contractData = JSON.parse(savedData);
+                document.getElementById('company-name').textContent = contractData.companyName;
+                document.getElementById('company-address').textContent = contractData.companyAddress;
+                document.getElementById('party-a').textContent = contractData.partyA;
+                document.getElementById('party-b').textContent = contractData.partyB;
+                document.getElementById('party-c').textContent = contractData.partyC || "張永盛";
+                document.getElementById('sign-party-a').textContent = contractData.signPartyA;
+                document.getElementById('sign-party-b').textContent = contractData.signPartyB;
+                document.getElementById('sign-party-c').textContent = contractData.signPartyC || "張永盛";
+                document.getElementById('product-count').textContent = contractData.productCount;
+                document.getElementById('total-amount').textContent = contractData.totalAmount;
+                document.getElementById('total-numeric').textContent = contractData.totalNumeric;
+                
+                // 加载表格数据
+                if (contractData.tableData && contractData.tableData.length > 0) {
+                    const table = document.getElementById('approval-table');
+                    // 清空现有行（保留表头）
+                    while (table.rows.length > 1) {
+                        table.deleteRow(1);
+                    }
+                    
+                    // 添加保存的行数据
+                    contractData.tableData.forEach(rowData => {
+                        const newRow = table.insertRow(-1);
+                        newRow.innerHTML = `
+                            <td><span class="editable" contenteditable="true">${rowData.code}</span></td>
+                            <td><span class="editable" contenteditable="true">${rowData.name}</span></td>
+                            <td><span class="editable" contenteditable="true">${rowData.type}</span></td>
+                            <td><span class="editable" contenteditable="true">${rowData.price}</span></td>
+                            <td><button class="btn btn-danger" onclick="deleteRow(this)">删除</button></td>
+                        `;
+                    });
+                }
+            }
+            
+            // 为所有可编辑区域添加输入监听
+            const editables = document.querySelectorAll('.editable');
+            editables.forEach(editable => {
+                editable.addEventListener('input', function() {
+                    if (this.id === 'party-a') {
+                        document.getElementById('sign-party-a').textContent = this.textContent;
+                    } else if (this.id === 'party-b') {
+                        document.getElementById('sign-party-b').textContent = this.textContent;
+                    } else if (this.id === 'party-c') {
+                        document.getElementById('sign-party-c').textContent = this.textContent;
+                    }
+                });
+            });
+            
+            // 为价格单元格添加监听，更新总金额
+            const table = document.getElementById('approval-table');
+            for (let i = 1; i < table.rows.length; i++) {
+                const priceCell = table.rows[i].cells[3].querySelector('.editable');
+                priceCell.addEventListener('input', updateProductCount);
+            }
+            
+            // 初始更新总金额
+            updateProductCount();
+        });
+    </script>
+</body>
+</html>
