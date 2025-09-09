@@ -170,43 +170,6 @@
             margin-bottom: 10px;
         }
         
-        /* 进度条样式 */
-        .progress-item {
-            margin: 15px 0;
-        }
-        
-        .progress-label {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 5px;
-            font-size: 10pt;
-        }
-        
-        .progress-bar-container {
-            height: 12px;
-            background: #e0e0e0;
-            border-radius: 6px;
-            overflow: hidden;
-        }
-        
-        .progress-bar {
-            height: 100%;
-            border-radius: 6px;
-            transition: width 0.5s ease;
-        }
-        
-        .completed {
-            background: #4caf50;
-        }
-        
-        .in-progress {
-            background: #2196f3;
-        }
-        
-        .planned {
-            background: #ff9800;
-        }
-        
         /* 签名部分 */
         .signature {
             margin-top: 20mm;
@@ -245,6 +208,35 @@
                 height: 100%;
             }
         }
+        
+        /* 重点强调样式 */
+        .highlight {
+            background-color: #fff9e6;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 4px solid #ff9900;
+            margin: 15px 0;
+        }
+        
+        .highlight-title {
+            color: #ff9900;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        /* 政策说明样式 */
+        .policy-note {
+            background-color: #f0f7ff;
+            border: 1px solid #1a5fb4;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .policy-note h4 {
+            color: #1a5fb4;
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 <body>
@@ -267,7 +259,7 @@
             
             <div class="greeting">
                 <p>尊敬的各位股東：</p>
-                <p>本月公司在大灣區藥品註冊政策研究、GMP廠房選址及批文管理等方面取得重要進展，現將相關情況彙報如下：</p>
+                <p>本月公司在大灣區藥品註冊政策研究、GMP廠房選址等方面取得重要進展，現將相關情況彙報如下：</p>
             </div>
             
             <div class="section">
@@ -279,6 +271,16 @@
                     <li><strong>委托加工</strong>：目前前处理工序仍须在香港完成，国内委托尚未明确允许。</li>
                     <li><strong>注册流程</strong>：需通过国内代理人提交资料，并由产品责任公司承担法律责任。</li>
                 </ul>
+                
+                <div class="policy-note">
+                    <h4>关于外用和口服制剂审批部门的重要说明</h4>
+                    <p>根据药品大湾区分中心的明确答复：</p>
+                    <ul class="bullet-list">
+                        <li><strong>外用制剂</strong>的注册审评由<strong>广东省药品监督管理局</strong>负责</li>
+                        <li><strong>口服制剂</strong>的注册审评由<strong>国家药品监督管理局药品审评中心</strong>负责</li>
+                    </ul>
+                    <p>此区分对我们在产品注册策略上有重要影响，需要针对不同剂型制定相应的注册计划。</p>
+                </div>
             </div>
             
             <div class="section">
@@ -289,58 +291,25 @@
                     <li>优选房源具备以下条件：层高≥4米、电力≥800A、承重≥200磅/平方英尺</li>
                     <li>部分房源可买卖，部分仅出租，需结合公司资金与扩展计划综合评估</li>
                 </ul>
-                
-                <h3 style="margin-top: 15px; color: #555;">厂房选址进度</h3>
-                <div class="progress-item">
-                    <div class="progress-label">
-                        <span>房源筛选与现场查看</span>
-                        <span>100%</span>
-                    </div>
-                    <div class="progress-bar-container">
-                        <div class="progress-bar completed" style="width: 100%"></div>
-                    </div>
-                </div>
-                
-                <div class="progress-item">
-                    <div class="progress-label">
-                        <span>技术参数评估</span>
-                        <span>80%</span>
-                    </div>
-                    <div class="progress-bar-container">
-                        <div class="progress-bar in-progress" style="width: 80%"></div>
-                    </div>
-                </div>
-                
-                <div class="progress-item">
-                    <div class="progress-label">
-                        <span>最终选址确定</span>
-                        <span>40%</span>
-                    </div>
-                    <div class="progress-bar-container">
-                        <div class="progress-bar in-progress" style="width: 40%"></div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="section">
-                <h2 class="section-title">三、公司运营与批文管理</h2>
-                <ul class="bullet-list">
-                    <li>已完成深圳公司银行开户，正在设立财务系统</li>
-                    <li>千草堂等批文预付款流程已启动，合同正在回收中</li>
-                    <li>销售团队组建中，已启动招聘流程</li>
-                    <li>外包装设计方向已初步确定，即将与OEM工厂对接</li>
-                    <li>与奇靈製藥达成OEM合作意向，专注于口服品种生产</li>
-                </ul>
             </div>
             
             <div class="conclusion">
                 <h3>结论与建议</h3>
                 <ul class="bullet-list">
-                    <li>大湾区注册政策已明确，建议优先筛选符合15年上市要求的批文</li>
-                    <li>厂房选址需尽快确定，建议优先考虑可买卖且电力、层高符合GMP标准的房源</li>
-                    <li>建议加快批文收购与注册资料整理进度，以抢占政策窗口期</li>
-                    <li>团队与系统建设需同步推进，确保运营与生产无缝衔接</li>
+                    <li><strong>厂房选址目标一：华润东亚工业大厦</strong> - 11楼18000呎或10楼，业主华润（13,15,16,17楼），需落实价格、面积楼层，一周内（到9月15日）完成盘点。</li>
+                    <li><strong>厂房选址目标二：明华工业大厦</strong> - 空置状态，作为重点备选目标，需进一步考察其适用性和价格谈判空间。</li>
+                    <li><strong>政策应对策略</strong> - 针对外用和口服制剂的不同审批部门，建议分别组建专门团队负责对接广东省局和国家局审评中心，提高注册效率。</li>
                 </ul>
+                
+                <div class="highlight">
+                    <div class="highlight-title">紧急行动项</div>
+                    <p>请相关部门在9月15日前完成以下工作：</p>
+                    <ol>
+                        <li>与华润置业对接，确认东亚工业大厦11楼和10楼的具体价格、面积和使用条件</li>
+                        <li>对明华工业大厦进行二次考察，评估其作为GMP厂房的适用性</li>
+                        <li>组建专门团队分别对接广东省局和国家局审评中心，了解具体注册要求</li>
+                    </ol>
+                </div>
             </div>
             
             <div class="signature">
