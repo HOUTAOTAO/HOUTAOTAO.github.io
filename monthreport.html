@@ -3,70 +3,253 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>濟歲堂月度進展公告</title>
+    <title>濟歲堂月度股東公告</title>
     <style>
-        /* 样式沿用周报风格，略作调整 */
-        body {
-            font-family: "Microsoft JhengHei", sans-serif;
-            background: #f5f7fa;
+        * {
+            box-sizing: border-box;
             margin: 0;
-            padding: 20px;
+            padding: 0;
+            font-family: "Microsoft JhengHei", "微軟正黑體", sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            padding: 0;
             display: flex;
             justify-content: center;
+            min-height: 100vh;
+            position: relative;
         }
+        
+        /* A4纸张样式 */
         .a4-container {
             width: 210mm;
+            min-height: 297mm;
             background: white;
-            box-shadow: 0 5px 25px rgba(0,0,0,0.15);
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
+            position: relative;
             padding: 0;
-            margin: 0 auto;
+            margin: 20px auto;
         }
-        .page-header, .page-footer {
-            padding: 15mm 20mm;
-            border-bottom: 2px solid #c33;
+        
+        /* 页眉样式 */
+        .page-header {
+            width: 100%;
+            height: 25mm;
+            background: white;
+            padding: 5mm 20mm;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            border-bottom: 2px solid #c33;
         }
+        
+        /* 页脚样式 */
         .page-footer {
+            width: 100%;
+            height: 15mm;
+            background: white;
+            padding: 0 20mm;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             border-top: 1px solid #ddd;
+        }
+        
+        .footer-content {
+            font-size: 10pt;
+            color: #666;
             text-align: center;
+        }
+        
+        /* 公司信息样式 */
+        .company-info {
+            flex: 1;
+        }
+        
+        .company-name {
+            font-size: 16pt;
+            font-weight: bold;
+            color: #a52a2a;
+        }
+        
+        .company-address {
             font-size: 10pt;
             color: #666;
         }
+        
+        /* Logo样式 */
+        .logo-container {
+            width: 50mm;
+            height: 15mm;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid transparent;
+            padding: 2px;
+        }
+        
+        .logo-container img {
+            max-height: 100%;
+            max-width: 100%;
+            object-fit: contain;
+        }
+        
+        /* 主要内容样式 */
         .content {
             padding: 20mm;
+            padding-top: 15mm;
+            padding-bottom: 15mm;
         }
+        
         .title {
             text-align: center;
-            color: #a52a2a;
-            margin-bottom: 20px;
             font-size: 18pt;
+            margin: 10mm 0 15mm;
+            color: #a52a2a;
+            position: relative;
         }
+        
+        .title::after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: 25%;
+            width: 50%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #c33, transparent);
+        }
+        
+        .greeting {
+            margin: 15px 0;
+            line-height: 1.8;
+        }
+        
+        /* 章节样式 */
         .section {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
-        .section h2 {
+        
+        .section-title {
             color: #a52a2a;
             border-left: 4px solid #a52a2a;
             padding-left: 10px;
+            margin-bottom: 15px;
         }
-        ul {
+        
+        /* 列表样式 */
+        .bullet-list {
+            list-style-type: none;
             padding-left: 20px;
         }
-        li {
-            margin-bottom: 8px;
+        
+        .bullet-list li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 15px;
         }
+        
+        .bullet-list li:before {
+            content: "•";
+            color: #a52a2a;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        
+        /* 结论部分 */
         .conclusion {
             background: #f0f7ff;
             padding: 15px;
             border-left: 4px solid #1a5fb4;
             margin-top: 20px;
         }
+        
+        .conclusion h3 {
+            color: #1a5fb4;
+            margin-bottom: 10px;
+        }
+        
+        /* 进度条样式 */
+        .progress-item {
+            margin: 15px 0;
+        }
+        
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 10pt;
+        }
+        
+        .progress-bar-container {
+            height: 12px;
+            background: #e0e0e0;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            border-radius: 6px;
+            transition: width 0.5s ease;
+        }
+        
+        .completed {
+            background: #4caf50;
+        }
+        
+        .in-progress {
+            background: #2196f3;
+        }
+        
+        .planned {
+            background: #ff9800;
+        }
+        
+        /* 签名部分 */
+        .signature {
+            margin-top: 20mm;
+            text-align: right;
+            padding-right: 20mm;
+        }
+        
+        .signature p {
+            margin: 5px 0;
+        }
+        
+        .signature .company {
+            font-weight: bold;
+            color: #a52a2a;
+        }
+        
+        .signature .date {
+            font-size: 10pt;
+            color: #666;
+        }
+        
+        /* 打印样式 */
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+                width: 210mm;
+                height: 297mm;
+            }
+            
+            .a4-container {
+                box-shadow: none;
+                margin: 0;
+                padding: 0;
+                width: 100%;
+                height: 100%;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="a4-container">
+        <!-- 页眉 -->
         <div class="page-header">
             <div class="company-info">
                 <div class="company-name">香港濟歲堂中藥廠有限公司</div>
@@ -76,36 +259,103 @@
                 <img src="logo.jpg" alt="濟歲堂標誌">
             </div>
         </div>
-
+        
+        <!-- 内容区域 -->
         <div class="content">
-            <h1 class="title">濟歲堂月度進展公告</h1>
-            <p class="date" style="text-align: center; color: #666;">2025年9月</p>
-
+            <h1 class="title">濟歲堂月度股東公告</h1>
+            <h2 style="text-align: center; margin-bottom: 20px; color: #555;">2025年9月</h2>
+            
+            <div class="greeting">
+                <p>尊敬的各位股東：</p>
+                <p>本月公司在大灣區藥品註冊政策研究、GMP廠房選址及批文管理等方面取得重要進展，現將相關情況彙報如下：</p>
+            </div>
+            
             <div class="section">
-                <h2>一、大湾区药品注册政策明确</h2>
+                <h2 class="section-title">一、大湾区药品注册政策明确</h2>
                 <p>根据药品大湾区分中心最新答复，以下关键点已明确：</p>
-                <ul>
+                <ul class="bullet-list">
                     <li><strong>产品要求</strong>：需在香港上市满15年，且每年均有销售记录。</li>
                     <li><strong>生产企业</strong>：必须为香港GMP持牌商，生产过程符合GMP要求。</li>
                     <li><strong>委托加工</strong>：目前前处理工序仍须在香港完成，国内委托尚未明确允许。</li>
                     <li><strong>注册流程</strong>：需通过国内代理人提交资料，并由产品责任公司承担法律责任。</li>
                 </ul>
             </div>
-
+            
             <div class="section">
-                <h2>二、GMP厂房选址进展</h2>
+                <h2 class="section-title">二、GMP厂房选址进展</h2>
                 <p>本月共筛选43处房源，现场查看17处，符合基本要求的房源如下：</p>
-                <ul>
-                    <li>重点考察区域：葵涌、沙田、柴湾、屯门等地。</li>
-                    <li>优选房源具备以下条件：层高≥4米、电力≥800A、承重≥200磅/平方英尺。</li>
-                    <li>部分房源可买卖，部分仅出租，需结合公司资金与扩展计划综合评估。</li>
+                <ul class="bullet-list">
+                    <li>重点考察区域：葵涌、沙田、柴湾、屯门等地</li>
+                    <li>优选房源具备以下条件：层高≥4米、电力≥800A、承重≥200磅/平方英尺</li>
+                    <li>部分房源可买卖，部分仅出租，需结合公司资金与扩展计划综合评估</li>
+                </ul>
+                
+                <h3 style="margin-top: 15px; color: #555;">厂房选址进度</h3>
+                <div class="progress-item">
+                    <div class="progress-label">
+                        <span>房源筛选与现场查看</span>
+                        <span>100%</span>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar completed" style="width: 100%"></div>
+                    </div>
+                </div>
+                
+                <div class="progress-item">
+                    <div class="progress-label">
+                        <span>技术参数评估</span>
+                        <span>80%</span>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar in-progress" style="width: 80%"></div>
+                    </div>
+                </div>
+                
+                <div class="progress-item">
+                    <div class="progress-label">
+                        <span>最终选址确定</span>
+                        <span>40%</span>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar in-progress" style="width: 40%"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">三、公司运营与批文管理</h2>
+                <ul class="bullet-list">
+                    <li>已完成深圳公司银行开户，正在设立财务系统</li>
+                    <li>千草堂等批文预付款流程已启动，合同正在回收中</li>
+                    <li>销售团队组建中，已启动招聘流程</li>
+                    <li>外包装设计方向已初步确定，即将与OEM工厂对接</li>
+                    <li>与奇靈製藥达成OEM合作意向，专注于口服品种生产</li>
                 </ul>
             </div>
-
-            <div class="section">
-                <h2>三、公司运营与批文管理</h2>
-                <ul>
-                    <li>已完成深圳公司银行开户，正在设立财务系统。</li>
-                    <li>千草堂等批文预付款流程已启动，合同正在回收中。</li>
-                    <li>销售团队组建中，已启动招聘流程。</li>
-                    <li.
+            
+            <div class="conclusion">
+                <h3>结论与建议</h3>
+                <ul class="bullet-list">
+                    <li>大湾区注册政策已明确，建议优先筛选符合15年上市要求的批文</li>
+                    <li>厂房选址需尽快确定，建议优先考虑可买卖且电力、层高符合GMP标准的房源</li>
+                    <li>建议加快批文收购与注册资料整理进度，以抢占政策窗口期</li>
+                    <li>团队与系统建设需同步推进，确保运营与生产无缝衔接</li>
+                </ul>
+            </div>
+            
+            <div class="signature">
+                <p>順頌商祺！</p>
+                <p class="company">香港濟歲堂中藥廠有限公司 管理團隊</p>
+                <p class="date">2025年9月30日</p>
+            </div>
+        </div>
+        
+        <!-- 页脚 -->
+        <div class="page-footer">
+            <div class="footer-content">
+                <p>機密文件 - 僅供股東參閱 | 第 1 頁，共 1 頁 | 更新日期：2025年9月30日</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
