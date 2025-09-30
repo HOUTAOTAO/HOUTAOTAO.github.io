@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>合同付款情况统计表</title>
+    <title>千草堂批文收购付款明细</title>
     <style>
         * {
             margin: 0;
@@ -18,7 +18,7 @@
             padding: 20px;
         }
         .container {
-            max-width: 1200px;
+            max-width: 1000px;
             margin: 0 auto;
             background: white;
             border-radius: 10px;
@@ -64,7 +64,6 @@
             font-size: 26px;
             font-weight: 700;
             margin: 10px 0;
-            color: #2980b9;
         }
         .amount.total {
             color: #27ae60;
@@ -75,12 +74,8 @@
         .amount.due {
             color: #e74c3c;
         }
-        .contract-section {
+        .content {
             padding: 25px;
-            border-bottom: 1px solid #eaeaea;
-        }
-        .contract-section:last-child {
-            border-bottom: none;
         }
         h2 {
             color: #2c3e50;
@@ -89,21 +84,10 @@
             border-bottom: 2px solid #3498db;
             font-size: 22px;
         }
-        .contract-info {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin-bottom: 25px;
-        }
-        .contract-detail {
-            background: #f8f9fa;
-            padding: 15px;
-            border-radius: 6px;
-        }
-        .contract-detail h4 {
+        h3 {
             color: #2c3e50;
-            margin-bottom: 10px;
-            font-size: 16px;
+            margin: 25px 0 15px;
+            font-size: 18px;
         }
         .payment-table {
             width: 100%;
@@ -128,13 +112,9 @@
         .payment-table tr:hover {
             background: #eef5ff;
         }
-        .status-paid {
-            color: #27ae60;
-            font-weight: 600;
-        }
-        .status-due {
-            color: #e74c3c;
-            font-weight: 600;
+        .highlight {
+            background-color: #e6f7ff !important;
+            font-weight: bold;
         }
         .note {
             background: #fff8e1;
@@ -156,9 +136,6 @@
             .summary {
                 grid-template-columns: 1fr;
             }
-            .contract-info {
-                grid-template-columns: 1fr;
-            }
             .payment-table {
                 display: block;
                 overflow-x: auto;
@@ -169,53 +146,38 @@
 <body>
     <div class="container">
         <header>
-            <h1>合同付款情况统计表</h1>
-            <div class="subtitle">基于合同文件整理的详细付款情况与尾款支付时间</div>
+            <h1>千草堂批文收购付款明细</h1>
+            <div class="subtitle">香港千草堂中药厂20个中成药批文收购总协议</div>
         </header>
         
         <div class="summary">
             <div class="summary-item">
-                <h3>总合同金额</h3>
-                <div class="amount total">12,500,000 港币</div>
-                <p>所有合同合计</p>
+                <h3>总协议金额</h3>
+                <div class="amount total">10,000,000 港币</div>
+                <p>20个中成药批文</p>
             </div>
             <div class="summary-item">
                 <h3>已付金额</h3>
-                <div class="amount paid">6,975,000 港币</div>
-                <p>占总金额 55.8%</p>
+                <div class="amount paid">5,500,000 港币</div>
+                <p>占总金额 55%</p>
             </div>
             <div class="summary-item">
-                <h3>未付/尾款金额</h3>
-                <div class="amount due">5,525,000 港币</div>
-                <p>占总金额 44.2%</p>
+                <h3>未付金额</h3>
+                <div class="amount due">4,500,000 港币</div>
+                <p>占总金额 45%</p>
             </div>
         </div>
         
-        <div class="contract-section">
-            <h2>香港千草堂中药厂 - 20个批文收购总协议</h2>
+        <div class="content">
+            <h2>已付款项明细 (5,500,000 港币)</h2>
             
-            <div class="contract-info">
-                <div class="contract-detail">
-                    <h4>合同基本信息</h4>
-                    <p><strong>总金额：</strong>10,000,000 港币</p>
-                    <p><strong>已付金额：</strong>5,500,000 港币</p>
-                    <p><strong>未付金额：</strong>4,500,000 港币</p>
-                </div>
-                <div class="contract-detail">
-                    <h4>尾款支付安排</h4>
-                    <p><strong>资料提报完成后：</strong>4,000,000 港币</p>
-                    <p><strong>批文转让完成后：</strong>500,000 港币</p>
-                </div>
-            </div>
-            
-            <h4>已付款明细</h4>
+            <h3>1. 周曦文个人账户收款 (1,000,000 港币)</h3>
             <table class="payment-table">
                 <thead>
                     <tr>
                         <th>付款日期</th>
                         <th>收款方</th>
                         <th>金额(港币)</th>
-                        <th>状态</th>
                         <th>备注</th>
                     </tr>
                 </thead>
@@ -224,69 +186,122 @@
                         <td>2025年6月10日</td>
                         <td>周曦文(个人账户)</td>
                         <td>10,000</td>
-                        <td class="status-paid">已支付</td>
                         <td>批文收购款</td>
                     </tr>
                     <tr>
                         <td>2025年6月11日</td>
                         <td>周曦文(个人账户)</td>
                         <td>490,000</td>
-                        <td class="status-paid">已支付</td>
                         <td>批文收购款</td>
                     </tr>
                     <tr>
                         <td>2025年6月26日</td>
                         <td>周曦文(个人账户)</td>
                         <td>200,000</td>
-                        <td class="status-paid">已支付</td>
                         <td>批文收购款</td>
                     </tr>
                     <tr>
                         <td>2025年6月27日</td>
                         <td>周曦文(个人账户)</td>
                         <td>300,000</td>
-                        <td class="status-paid">已支付</td>
                         <td>批文收购款</td>
                     </tr>
+                    <tr class="highlight">
+                        <td><strong>小计</strong></td>
+                        <td></td>
+                        <td><strong>1,000,000</strong></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3>2. 香港千草堂中药厂收款 (3,500,000 港币)</h3>
+            <table class="payment-table">
+                <thead>
+                    <tr>
+                        <th>付款日期</th>
+                        <th>收款方</th>
+                        <th>金额(港币)</th>
+                        <th>备注</th>
+                    </tr>
+                </thead>
+                <tbody>
                     <tr>
                         <td>2025年7月15日</td>
                         <td>香港千草堂中药厂</td>
                         <td>1,000,000</td>
-                        <td class="status-paid">已支付</td>
                         <td>批文收购款</td>
                     </tr>
                     <tr>
                         <td>2025年7月16日</td>
                         <td>香港千草堂中药厂</td>
                         <td>1,000,000</td>
-                        <td class="status-paid">已支付</td>
                         <td>批文收购款</td>
                     </tr>
                     <tr>
                         <td>2025年7月17日</td>
                         <td>香港千草堂中药厂</td>
                         <td>1,000,000</td>
-                        <td class="status-paid">已支付</td>
                         <td>批文收购款</td>
                     </tr>
                     <tr>
-                        <td>2025年7月25日</td>
-                        <td>香港博辰医药有限公司</td>
-                        <td>1,000,000</td>
-                        <td class="status-paid">已支付</td>
-                        <td>批文收购款</td>
+                        <td>2025年8月19日</td>
+                        <td>香港千草堂中药厂</td>
+                        <td>500,000</td>
+                        <td>批文预付款</td>
+                    </tr>
+                    <tr class="highlight">
+                        <td><strong>小计</strong></td>
+                        <td></td>
+                        <td><strong>3,500,000</strong></td>
+                        <td></td>
                     </tr>
                 </tbody>
             </table>
             
-            <h4>待付款明细</h4>
+            <h3>3. 香港博辰医药有限公司收款 (1,000,000 港币)</h3>
+            <table class="payment-table">
+                <thead>
+                    <tr>
+                        <th>付款日期</th>
+                        <th>收款方</th>
+                        <th>金额(港币)</th>
+                        <th>备注</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>2025年7月25日</td>
+                        <td>香港博辰医药有限公司</td>
+                        <td>1,000,000</td>
+                        <td>批文收购款</td>
+                    </tr>
+                    <tr class="highlight">
+                        <td><strong>小计</strong></td>
+                        <td></td>
+                        <td><strong>1,000,000</strong></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="note">
+                <p><strong>说明：</strong>根据"批文收购总协议"第四条，20个中成药批文收购总金额为1000万港币，分三个账户接收：</p>
+                <ul>
+                    <li>香港千草堂中药厂：800万港币</li>
+                    <li>香港博辰医药有限公司：100万港币</li>
+                    <li>周曦文个人账户：100万港币</li>
+                </ul>
+                <p>目前已支付总额550万港币，其中香港千草堂中药厂已收到350万港币，香港博辰医药有限公司已收到100万港币，周曦文个人账户已收到100万港币。</p>
+            </div>
+            
+            <h2>待付款项明细 (4,500,000 港币)</h2>
             <table class="payment-table">
                 <thead>
                     <tr>
                         <th>付款条件</th>
                         <th>收款方</th>
                         <th>金额(港币)</th>
-                        <th>状态</th>
                         <th>预计支付时间</th>
                     </tr>
                 </thead>
@@ -295,159 +310,22 @@
                         <td>资料提报完成后</td>
                         <td>香港千草堂中药厂</td>
                         <td>4,000,000</td>
-                        <td class="status-due">待支付</td>
                         <td>资料提报完成后</td>
                     </tr>
                     <tr>
                         <td>批文转让完成后</td>
                         <td>香港千草堂中药厂</td>
                         <td>500,000</td>
-                        <td class="status-due">待支付</td>
                         <td>批文转让完成后</td>
                     </tr>
-                </tbody>
-            </table>
-        </div>
-        
-        <div class="contract-section">
-            <h2>香港千草堂中药厂 - 4个单独批文转让协议</h2>
-            
-            <div class="contract-info">
-                <div class="contract-detail">
-                    <h4>合同基本信息</h4>
-                    <p><strong>总金额：</strong>1,000,000 港币</p>
-                    <p><strong>已付金额：</strong>500,000 港币</p>
-                    <p><strong>未付金额：</strong>500,000 港币</p>
-                    <p><strong>批文编号：</strong>HKC-14151, HKC-07765, HKC-07575, HKC-10181</p>
-                </div>
-                <div class="contract-detail">
-                    <h4>尾款支付安排</h4>
-                    <p>按各协议阶段支付：</p>
-                    <p>• 资料提交后支付40%</p>
-                    <p>• 批文转让后支付10%</p>
-                </div>
-            </div>
-            
-            <h4>已付款明细</h4>
-            <table class="payment-table">
-                <thead>
-                    <tr>
-                        <th>付款日期</th>
-                        <th>收款方</th>
-                        <th>金额(港币)</th>
-                        <th>状态</th>
-                        <th>备注</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>2025年8月19日</td>
-                        <td>香港千草堂中药厂</td>
-                        <td>500,000</td>
-                        <td class="status-paid">已支付</td>
-                        <td>4个批文首付款</td>
+                    <tr class="highlight">
+                        <td><strong>总计</strong></td>
+                        <td></td>
+                        <td><strong>4,500,000</strong></td>
+                        <td></td>
                     </tr>
                 </tbody>
             </table>
-            
-            <h4>待付款明细</h4>
-            <table class="payment-table">
-                <thead>
-                    <tr>
-                        <th>付款条件</th>
-                        <th>收款方</th>
-                        <th>金额(港币)</th>
-                        <th>状态</th>
-                        <th>预计支付时间</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>资料提交后</td>
-                        <td>香港千草堂中药厂</td>
-                        <td>400,000</td>
-                        <td class="status-due">待支付</td>
-                        <td>资料提交后</td>
-                    </tr>
-                    <tr>
-                        <td>批文转让后</td>
-                        <td>香港千草堂中药厂</td>
-                        <td>100,000</td>
-                        <td class="status-due">待支付</td>
-                        <td>批文转让后</td>
-                    </tr>
-                </tbody>
-            </table>
-            
-            <div class="note">
-                <p><strong>备注：</strong>这4个批文不在20个批文总协议内，为后续添加的单独协议。</p>
-            </div>
-        </div>
-        
-        <div class="contract-section">
-            <h2>香港回春堂中药厂 - 6个批文转让合同</h2>
-            
-            <div class="contract-info">
-                <div class="contract-detail">
-                    <h4>合同基本信息</h4>
-                    <p><strong>总金额：</strong>1,500,000 港币</p>
-                    <p><strong>已付金额：</strong>975,000 港币</p>
-                    <p><strong>未付金额：</strong>525,000 港币</p>
-                    <p><strong>合同编号：</strong>20240708, 20240707</p>
-                </div>
-                <div class="contract-detail">
-                    <h4>尾款支付安排</h4>
-                    <p>收到香港中醫藥管理委員會缴费单后14个工作日内支付</p>
-                </div>
-            </div>
-            
-            <h4>已付款明细</h4>
-            <table class="payment-table">
-                <thead>
-                    <tr>
-                        <th>付款日期</th>
-                        <th>收款方</th>
-                        <th>金额(港币)</th>
-                        <th>状态</th>
-                        <th>备注</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>2025年8月2日</td>
-                        <td>香港回春堂中药厂</td>
-                        <td>975,000</td>
-                        <td class="status-paid">已支付</td>
-                        <td>批文预付款</td>
-                    </tr>
-                </tbody>
-            </table>
-            
-            <h4>待付款明细</h4>
-            <table class="payment-table">
-                <thead>
-                    <tr>
-                        <th>付款条件</th>
-                        <th>收款方</th>
-                        <th>金额(港币)</th>
-                        <th>状态</th>
-                        <th>预计支付时间</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>收到缴费单后</td>
-                        <td>香港回春堂中药厂</td>
-                        <td>525,000</td>
-                        <td class="status-due">待支付</td>
-                        <td>收到缴费单后14个工作日内</td>
-                    </tr>
-                </tbody>
-            </table>
-            
-            <div class="note">
-                <p><strong>备注：</strong>合同签订日期为2025年7月23日，尾款支付时间取决于政府审批流程。</p>
-            </div>
         </div>
         
         <footer>
