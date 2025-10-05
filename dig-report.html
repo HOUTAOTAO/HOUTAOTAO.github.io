@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>X线影像报告单解读</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            padding: 30px;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #2c80b9;
+            padding-bottom: 20px;
+        }
+        h1 {
+            color: #2c80b9;
+            margin-bottom: 10px;
+        }
+        h2 {
+            color: #2c80b9;
+            margin: 20px 0 10px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #eee;
+        }
+        h3 {
+            color: #2c80b9;
+            margin: 15px 0 10px;
+        }
+        .section {
+            margin-bottom: 25px;
+            padding: 15px;
+            background: #f9f9f9;
+            border-radius: 5px;
+        }
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 15px 0;
+        }
+        .info-item {
+            display: flex;
+            flex-direction: column;
+        }
+        .info-label {
+            font-weight: bold;
+            color: #555;
+            margin-bottom: 5px;
+        }
+        .info-value {
+            color: #333;
+        }
+        .diagnosis {
+            background-color: #fff9e6;
+            border-left: 4px solid #ffcc00;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .cta {
+            background-color: #e6f7ff;
+            border: 1px solid #91d5ff;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .highlight {
+            background-color: #fff2e8;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+        .warning {
+            color: #d4380d;
+            font-weight: bold;
+        }
+        .footer {
+            margin-top: 30px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+            font-size: 0.9em;
+            color: #666;
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>X线影像报告单解读</h1>
+            <p>报告日期：2025-03-15</p>
+        </header>
+
+        <section class="section">
+            <h2>患者基本信息</h2>
+            <div class="info-grid">
+                <div class="info-item">
+                    <span class="info-label">姓名</span>
+                    <span class="info-value">侯静彦</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">性别</span>
+                    <span class="info-value">女</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">年龄</span>
+                    <span class="info-value">46岁</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">病人ID</span>
+                    <span class="info-value">0003984470</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">X光号</span>
+                    <span class="info-value">1413956</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">住院号</span>
+                    <span class="info-value">0000480517001</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">科别</span>
+                    <span class="info-value">消化内科</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">检查部位</span>
+                    <span class="info-value">胸部正位片（CR不含片）</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>影像描述与解读</h2>
+            
+            <h3>原始影像描述</h3>
+            <p>胸廓对称，双侧肺纹理增多，双肺中下野见多发斑片状、结节状高密度影。双肺门影未见异常，气管影居中。心影位置及大小形态未见异常。双侧脑面光滑，双肋脑角锐利。</p>
+            
+            <h3>术语解释与解读</h3>
+            <table>
+                <tr>
+                    <th>医学术语</th>
+                    <th>含义解释</th>
+                    <th>临床意义</th>
+                </tr>
+                <tr>
+                    <td>肺纹理增多</td>
+                    <td>肺部血管、支气管等结构在X光片上显示的影像增多、增粗</td>
+                    <td>可能由慢性支气管炎、长期吸烟或空气污染等因素引起，但也可能没有特殊临床意义</td>
+                </tr>
+                <tr>
+                    <td>双肺中下野多发斑片状、结节状高密度影</td>
+                    <td>双肺的中下部区域出现多个小片状和点状的白色影子</td>
+                    <td>这是报告中最关键的发现，需要进一步明确性质</td>
+                </tr>
+                <tr>
+                    <td>肺门影未见异常</td>
+                    <td>肺门区域（大血管和支气管进出肺的地方）正常</td>
+                    <td>排除了肺门区域的明显病变</td>
+                </tr>
+                <tr>
+                    <td>心影位置及大小形态未见异常</td>
+                    <td>心脏的位置、大小和形状正常</td>
+                    <td>排除了心脏明显增大或形态异常</td>
+                </tr>
+                <tr>
+                    <td>双侧脑面光滑，双肋脑角锐利</td>
+                    <td>横膈膜光滑，肋膈角（肺和胸壁交界处）清晰</td>
+                    <td>说明没有胸腔积液或胸膜粘连</td>
+                </tr>
+            </table>
+        </section>
+
+        <section class="section">
+            <h2>诊断意见</h2>
+            <div class="diagnosis">
+                <p><strong>原始诊断意见：</strong>双肺纹理增多，双肺中下野多发高密度影（考虑钙化灶可能），建议结合CT检查。</p>
+            </div>
+            
+            <h3>解读与分析</h3>
+            <p>这份报告提示患者的肺部存在一些异常阴影，医生初步考虑可能是<span class="highlight">钙化灶</span>。</p>
+            
+            <p><strong>钙化灶</strong>通常是肺部既往感染（如肺结核）愈合后留下的"疤痕"，大多数情况下是良性的、陈旧性的病灶。</p>
+            
+            <div class="cta">
+                <p class="warning">重要提醒：医生明确建议结合CT检查。</p>
+                <p>这是因为X光片是二维重叠影像，分辨率有限，无法精确判断这些影子的性质、具体形态和分布。CT扫描能提供更清晰、更详细的三维图像，对于明确这些影子到底是钙化灶、其他良性结节，还是需要警惕的病变至关重要。</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>医疗团队</h2>
+            <div class="info-grid">
+                <div class="info-item">
+                    <span class="info-label">报告医生</span>
+                    <span class="info-value">戴任丽, 任丽</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">审核医生</span>
+                    <span class="info-value">刘娅</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">报告日期</span>
+                    <span class="info-value">2025-03-15 10:48</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>下一步建议</h2>
+            <ol>
+                <li>立即携带这份报告去咨询您的临床医生（报告上写的是消化内科，但具体请以您就诊的科室为准）</li>
+                <li>医生会结合您的临床症状（是否有咳嗽、咳痰、胸痛、发烧等）、病史以及其他检查结果，来评估是否需要立即进行CT检查</li>
+                <li>请务必遵循医生的专业建议，完成进一步的检查</li>
+                <li>如果医生建议做CT检查，请尽快安排，以便明确诊断</li>
+            </ol>
+        </section>
+
+        <div class="footer">
+            <p>注：本检查结果仅反映受检者检查当时的情况，仅供临床医生诊断参考。（医生签名有效）</p>
+            <p>本解读旨在帮助理解医学术语，不能替代专业医疗建议。如有疑问，请咨询专业医生。</p>
+        </div>
+    </div>
+</body>
+</html>
