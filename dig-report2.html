@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CT影像报告单解读</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            padding: 30px;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #2c80b9;
+            padding-bottom: 20px;
+        }
+        h1 {
+            color: #2c80b9;
+            margin-bottom: 10px;
+        }
+        h2 {
+            color: #2c80b9;
+            margin: 20px 0 10px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #eee;
+        }
+        h3 {
+            color: #2c80b9;
+            margin: 15px 0 10px;
+        }
+        .section {
+            margin-bottom: 25px;
+            padding: 15px;
+            background: #f9f9f9;
+            border-radius: 5px;
+        }
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 15px 0;
+        }
+        .info-item {
+            display: flex;
+            flex-direction: column;
+        }
+        .info-label {
+            font-weight: bold;
+            color: #555;
+            margin-bottom: 5px;
+        }
+        .info-value {
+            color: #333;
+        }
+        .diagnosis {
+            background-color: #fff9e6;
+            border-left: 4px solid #ffcc00;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .cta {
+            background-color: #e6f7ff;
+            border: 1px solid #91d5ff;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .highlight {
+            background-color: #fff2e8;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+        .warning {
+            color: #d4380d;
+            font-weight: bold;
+        }
+        .footer {
+            margin-top: 30px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+            font-size: 0.9em;
+            color: #666;
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .diagnosis-item {
+            margin: 15px 0;
+            padding: 10px;
+            border-left: 3px solid #2c80b9;
+            background-color: #f0f8ff;
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>CT影像报告单解读</h1>
+            <p>检查日期：2025-03-16</p>
+        </header>
+
+        <section class="section">
+            <h2>患者基本信息</h2>
+            <div class="info-grid">
+                <div class="info-item">
+                    <span class="info-label">姓名</span>
+                    <span class="info-value">侯静彦</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">性别</span>
+                    <span class="info-value">女</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">年龄</span>
+                    <span class="info-value">46岁</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">病人ID</span>
+                    <span class="info-value">0003894470</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">CT号</span>
+                    <span class="info-value">G16198</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">住院号</span>
+                    <span class="info-value">000489517001</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">科别</span>
+                    <span class="info-value">消化内科</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">检查部位</span>
+                    <span class="info-value">CT胸部平扫+三维重建</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>影像描述与解读</h2>
+            
+            <h3>原始影像描述</h3>
+            <p>胸廓两侧对称，纵隔居中。气管、支气管通畅，两肺支气管血管共左行自然，两肺肋在数个小结节内，直径约2.4mm，余两肺少许条索状密度增高影。两肺门未见增大，肺门及纵隔未见肿大淋巴结。两侧胸腔未见异常形成影。心脏大小、形态未见异常。双瓣乳腺液在斑片状、结节状等化灶。</p>
+            <p>所以：双肾窦多发结节状高密度灶。肝左叶可见数个结节状低密度灶；脾脏可见一结节状稍低密度灶，直径约10mm，边缘较模糊。</p>
+            
+            <h3>术语解释与解读</h3>
+            <table>
+                <tr>
+                    <th>医学术语</th>
+                    <th>含义解释</th>
+                    <th>临床意义</th>
+                </tr>
+                <tr>
+                    <td>两肺数个小结节</td>
+                    <td>双肺发现多个直径约2.4mm的小点状阴影</td>
+                    <td>小结节非常小，多数情况下是良性的，但需要定期随访观察变化</td>
+                </tr>
+                <tr>
+                    <td>条索状密度增高影</td>
+                    <td>肺部出现的线条状高密度阴影</td>
+                    <td>通常是肺部陈旧性炎症或纤维化的表现，多为良性</td>
+                </tr>
+                <tr>
+                    <td>肺门及纵隔未见肿大淋巴结</td>
+                    <td>肺门和纵隔区域的淋巴结大小正常</td>
+                    <td>排除了淋巴结转移或炎症引起的淋巴结肿大</td>
+                </tr>
+                <tr>
+                    <td>双肾窦多发结节状高密度灶</td>
+                    <td>双侧肾脏集合系统区域发现多个高密度结节</td>
+                    <td>可能是钙化灶或小结石，需要进一步评估</td>
+                </tr>
+                <tr>
+                    <td>肝左叶、脾脏低密度结节</td>
+                    <td>肝脏左叶和脾脏出现密度较低的结节状病变</td>
+                    <td>性质不明确，可能是囊肿、血管瘤或其他病变，需要进一步检查</td>
+                </tr>
+            </table>
+        </section>
+
+        <section class="section">
+            <h2>诊断意见</h2>
+            <div class="diagnosis">
+                <p><strong>原始诊断意见：</strong></p>
+                <ol>
+                    <li>两肺个数小结节，符合Lung-RADS 2类（良性表现），请随诊复查；</li>
+                    <li>双肺少许纤维灶；</li>
+                    <li>双瓣乳腺多发钙化灶；</li>
+                    <li>所以：双肾多发结节；肝左叶、脾脏低密度结节，建议增强扫描。</li>
+                </ol>
+            </div>
+            
+            <h3>解读与分析</h3>
+            
+            <div class="diagnosis-item">
+                <h4>1. 肺部小结节 - Lung-RADS 2类</h4>
+                <p>Lung-RADS（肺部影像报告和数据系统）2类表示<strong>良性表现或良性生物学行为</strong>的结节。这类结节恶性概率极低（小于1%）。</p>
+                <p>直径2.4mm的结节属于<strong>微小结节</strong>，通常建议<strong>12个月后复查</strong>，观察是否有变化。</p>
+            </div>
+            
+            <div class="diagnosis-item">
+                <h4>2. 双肺纤维灶</h4>
+                <p>这是肺部<strong>陈旧性病变愈合后留下的"疤痕"</strong>，通常由既往的肺部感染（如肺炎、结核）引起，一般不需要特殊治疗。</p>
+            </div>
+            
+            <div class="diagnosis-item">
+                <h4>3. 双肾多发结节与肝脾低密度结节</h4>
+                <p>报告中发现了多个器官的结节性病变：</p>
+                <ul>
+                    <li><strong>双肾结节</strong>：可能是钙化灶或小结石</li>
+                    <li><strong>肝左叶低密度结节</strong>：性质不明确，可能是囊肿、血管瘤等</li>
+                    <li><strong>脾脏低密度结节</strong>：直径约10mm，边缘模糊，需要进一步明确性质</li>
+                </ul>
+            </div>
+            
+            <div class="cta">
+                <p class="warning">重要提醒：医生明确建议对肝脾低密度结节进行增强扫描。</p>
+                <p>增强CT扫描通过注射造影剂，可以更清楚地显示病变的血供情况，有助于明确这些结节的性质（是良性还是需要关注的病变）。</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>医疗团队</h2>
+            <div class="info-grid">
+                <div class="info-item">
+                    <span class="info-label">报告医生</span>
+                    <span class="info-value">潘伟</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">审核医生</span>
+                    <span class="info-value">刘娅</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">报告日期</span>
+                    <span class="info-value">2025-03-16 11:18</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>下一步建议</h2>
+            <ol>
+                <li>立即携带这份报告咨询消化内科医生，结合您的临床症状进行全面评估</li>
+                <li><strong>按照医生建议进行增强CT扫描</strong>，以明确肝、脾和肾脏结节的性质</li>
+                <li>对于肺部小结节，按照Lung-RADS指南，可能在12个月后需要复查CT</li>
+                <li>如果增强扫描结果异常，可能需要进一步检查（如MRI或穿刺活检）</li>
+                <li>请务必遵循医生的专业建议，完成所有必要的检查</li>
+            </ol>
+            
+            <div class="cta">
+                <h3>关于Lung-RADS分类系统的说明</h3>
+                <p>Lung-RADS是美国放射学院开发的标准化系统，用于评估肺部CT筛查中发现的结节：</p>
+                <ul>
+                    <li><strong>1类</strong>：阴性，无结节或确定为良性的结节</li>
+                    <li><strong>2类</strong>：良性表现，恶性概率＜1%</li>
+                    <li><strong>3类</strong>：可能良性，恶性概率1-2%，建议短期随访</li>
+                    <li><strong>4类</strong>：可疑恶性，恶性概率＞5%，需进一步检查</li>
+                </ul>
+                <p>您的报告为2类，属于低风险类别，但仍需按要求随访。</p>
+            </div>
+        </section>
+
+        <div class="footer">
+            <p>注：本检查结果仅反映受检者检查当时的情况，仅供临床医生诊断参考。（医生签名有效）</p>
+            <p>本解读旨在帮助理解医学术语，不能替代专业医疗建议。如有疑问，请咨询专业医生。</p>
+        </div>
+    </div>
+</body>
+</html>
