@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>樱花牌金装樱花之心丹 - 中医理论与产品宣讲</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: "Microsoft JhengHei", "微軟正黑體", sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        
+        /* A4纵向纸张样式 */
+        .a4-container {
+            width: 210mm;
+            min-height: 297mm;
+            background: white;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
+            position: relative;
+            padding: 0;
+            margin: 20px auto;
+        }
+        
+        /* 页眉样式 */
+        .page-header {
+            width: 100%;
+            height: 25mm;
+            background: white;
+            padding: 3mm 15mm;
+            display: flex;
+            align-items: center;
+            border-bottom: 2px solid #c33;
+            background: linear-gradient(to right, #fff, #fff9f9);
+        }
+        
+        /* 页脚样式 */
+        .page-footer {
+            width: 100%;
+            height: 12mm;
+            background: white;
+            padding: 0 15mm;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-top: 1px solid #ddd;
+        }
+        
+        .footer-content {
+            font-size: 9pt;
+            color: #666;
+            text-align: center;
+        }
+        
+        /* 公司信息样式 */
+        .company-info {
+            flex: 1;
+            margin-left: 5mm;
+        }
+        
+        .company-name {
+            font-size: 15pt;
+            font-weight: bold;
+            color: #a52a2a;
+        }
+        
+        .company-name-en {
+            font-size: 10pt;
+            color: #666;
+            margin-top: 2px;
+        }
+        
+        /* Logo样式 */
+        .logo-container {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #a52a2a;
+            padding: 2px;
+            border-radius: 5px;
+            background-color: #fff9f9;
+        }
+        
+        .logo-container img {
+            max-height: 100%;
+            max-width: 100%;
+            object-fit: contain;
+        }
+        
+        /* 主要内容样式 */
+        .content {
+            padding: 10mm;
+            padding-top: 8mm;
+            padding-bottom: 8mm;
+        }
+        
+        .title {
+            text-align: center;
+            font-size: 17pt;
+            margin: 5mm 0 8mm;
+            color: #a52a2a;
+            position: relative;
+        }
+        
+        .title::after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: 25%;
+            width: 50%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #c33, transparent);
+        }
+        
+        /* 产品信息样式 */
+        .product-info {
+            margin-bottom: 8mm;
+        }
+        
+        .product-name {
+            font-size: 16pt;
+            color: #a52a2a;
+            margin-bottom: 5mm;
+            text-align: center;
+            background-color: #fff9f9;
+            padding: 3mm;
+            border-radius: 5px;
+            border-left: 4px solid #a52a2a;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5mm;
+            margin-bottom: 5mm;
+        }
+        
+        .info-card {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 4mm;
+            background-color: #f9f9f9;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        .info-card h3 {
+            color: #a52a2a;
+            margin-bottom: 2mm;
+            font-size: 11pt;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 1mm;
+        }
+        
+        .info-card p {
+            font-size: 9.5pt;
+            line-height: 1.5;
+        }
+        
+        /* 中医理论样式 */
+        .tcm-theory {
+            background-color: #f9f5f0;
+            border: 1px solid #e6d6c5;
+            border-radius: 5px;
+            padding: 5mm;
+            margin: 5mm 0;
+        }
+        
+        .tcm-theory h3 {
+            color: #8b4513;
+            margin-bottom: 3mm;
+            text-align: center;
+            font-size: 12pt;
+        }
+        
+        .tcm-principle {
+            display: flex;
+            margin: 3mm 0;
+            align-items: center;
+        }
+        
+        .tcm-icon {
+            width: 40px;
+            height: 40px;
+            background-color: #8b4513;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 3mm;
+            flex-shrink: 0;
+            font-size: 10pt;
+        }
+        
+        .tcm-content {
+            flex: 1;
+        }
+        
+        /* 成分表格样式 */
+        .component-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 5mm 0;
+            font-size: 9pt;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        .component-table th, .component-table td {
+            border: 1px solid #ddd;
+            padding: 3mm;
+            text-align: left;
+            vertical-align: top;
+        }
+        
+        .component-table th {
+            background-color: #a52a2a;
+            color: white;
+            font-weight: normal;
+            width: 25%;
+        }
+        
+        .component-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        .role-tag {
+            display: inline-block;
+            padding: 1px 4px;
+            border-radius: 3px;
+            font-size: 7pt;
+            margin: 1px;
+        }
+        
+        .monarch {
+            background-color: #ffebee;
+            color: #c62828;
+            border: 1px solid #ef9a9a;
+        }
+        
+        .minister {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+            border: 1px solid #a5d6a7;
+        }
+        
+        .assistant {
+            background-color: #e3f2fd;
+            color: #1565c0;
+            border: 1px solid #90caf9;
+        }
+        
+        /* 症状列表样式 */
+        .symptoms-list {
+            columns: 2;
+            column-gap: 5mm;
+            margin: 3mm 0;
+        }
+        
+        .symptoms-list li {
+            margin-bottom: 2mm;
+            break-inside: avoid;
+            font-size: 9.5pt;
+            position: relative;
+            padding-left: 15px;
+        }
+        
+        .symptoms-list li:before {
+            content: "•";
+            color: #a52a2a;
+            position: absolute;
+            left: 0;
+        }
+        
+        /* 高亮框样式 */
+        .highlight-box {
+            background-color: #fff9f9;
+            border-left: 4px solid #a52a2a;
+            padding: 4mm;
+            margin: 4mm 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .highlight-box h3 {
+            color: #a52a2a;
+            margin-bottom: 2mm;
+        }
+        
+        /* 用法用量表格 */
+        .usage-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 3mm 0;
+            font-size: 9pt;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        .usage-table th, .usage-table td {
+            border: 1px solid #ddd;
+            padding: 2mm;
+            text-align: center;
+        }
+        
+        .usage-table th {
+            background-color: #f2f2f2;
+            font-weight: normal;
+        }
+        
+        /* 注意事项样式 */
+        .precautions {
+            margin: 4mm 0;
+        }
+        
+        .precautions ul {
+            margin-left: 5mm;
+        }
+        
+        .precautions li {
+            margin-bottom: 2mm;
+            font-size: 9.5pt;
+            line-height: 1.5;
+            position: relative;
+            padding-left: 15px;
+        }
+        
+        .precautions li:before {
+            content: "⚠";
+            color: #d32f2f;
+            position: absolute;
+            left: 0;
+        }
+        
+        /* 市场优势样式 */
+        .advantages-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3mm;
+            margin: 4mm 0;
+        }
+        
+        .advantage-card {
+            background-color: #f0f7ff;
+            border: 1px solid #bbdefb;
+            border-radius: 5px;
+            padding: 3mm;
+            text-align: center;
+        }
+        
+        .advantage-card h4 {
+            color: #1976d2;
+            margin-bottom: 2mm;
+            font-size: 10pt;
+        }
+        
+        /* 打印样式 */
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+                width: 210mm;
+                height: 297mm;
+            }
+            
+            .a4-container {
+                box-shadow: none;
+                margin: 0;
+                padding: 0;
+                width: 100%;
+                height: 100%;
+            }
+            
+            .page-header {
+                position: relative;
+                height: 18mm;
+            }
+            
+            .page-footer {
+                position: relative;
+                height: 10mm;
+            }
+            
+            .content {
+                padding: 10mm;
+                padding-top: 8mm;
+                padding-bottom: 8mm;
+            }
+            
+            .component-table th {
+                background-color: #a52a2a !important;
+                -webkit-print-color-adjust: exact;
+                color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="a4-container">
+        <!-- 页眉 -->
+        <div class="page-header">
+            <div class="logo-container">
+                <div style="width: 100%; height: 100%; background-color: #a52a2a; color: white; display: flex; justify-content: center; align-items: center; font-weight: bold; font-size: 10pt; border-radius: 3px;">
+                    樱花牌
+                </div>
+            </div>
+            <div class="company-info">
+                <div class="company-name">樱花牌金装樱花之心丹</div>
+                <div class="company-name-en">Sakura Heart Tonic Pills Gold [Sakura] - 中医理论与产品宣讲</div>
+            </div>
+        </div>
+        
+        <!-- 内容区域 -->
+        <div class="content">
+            <h1 class="title">中医理论与产品宣讲</h1>
+            
+            <div class="product-info">
+                <h2 class="product-name">金裝櫻花之心丹【櫻花牌】</h2>
+                
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h3>產品基本信息</h3>
+                        <p><strong>劑型：</strong>丸劑（水丸劑）</p>
+                        <p><strong>註冊編號：</strong>HKC-02829</p>
+                        <p><strong>有效期至：</strong>2028年5月4日</p>
+                        <p><strong>生產企業：</strong>香港千草堂中藥廠</p>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h3>產品規格</h3>
+                        <p>• 每盒1瓶，每瓶50粒，每粒0.015g</p>
+                        <p>• 每盒1瓶，每瓶100粒，每粒0.015g</p>
+                        <p>• 每盒1瓶，每瓶200粒，每粒0.015g</p>
+                        <p><strong>產品批號：</strong>FPF0024/FPF0025</p>
+                    </div>
+                </div>
+                
+                <div class="tcm-theory">
+                    <h3>中醫理論基礎</h3>
+                    
+                    <div class="tcm-principle">
+                        <div class="tcm-icon">心</div>
+                        <div class="tcm-content">
+                            <h4>心主血脈，心藏神</h4>
+                            <p>中醫認為"心為君主之官"，主司血液循環和精神意識。心氣不足則血行不暢，導致胸痹心痛；心血虧虛則心神不寧，出現心悸、失眠等症狀。</p>
+                        </div>
+                    </div>
+                    
+                    <div class="tcm-principle">
+                        <div class="tcm-icon">氣</div>
+                        <div class="tcm-content">
+                            <h4>氣為血之帥，血為氣之母</h4>
+                            <p>氣能生血、行血、攝血。氣虛則血行無力，導致血瘀；血虛則氣無所依附，導致氣虛。本品補氣活血，標本兼治。</p>
+                        </div>
+                    </div>
+                    
+                    <div class="tcm-principle">
+                        <div class="tcm-icon">陰陽</div>
+                        <div class="tcm-content">
+                            <h4>陰平陽秘，精神乃治</h4>
+                            <p>本品平衡心之陰陽，既用紅參、三七溫陽益氣，又用珍珠層粉、水牛角濃縮粉滋陰清熱，達到陰陽平衡的治療效果。</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="highlight-box">
+                    <h3>產品核心定位</h3>
+                    <p>專為心腦血管健康設計的中成藥，基於中醫"心主血脈"理論，補氣活血，養心通脈，行氣止痛。適用於因正氣虧虛、氣滯血瘀所致的多種症狀，體現中醫"治未病"與"整體觀念"的治療思想。</p>
+                </div>
+            </div>
+            
+            <div class="product-info">
+                <h3>產品處方與君臣佐使</h3>
+                <table class="component-table">
+                    <tr>
+                        <th>藥材名稱</th>
+                        <th>每10粒含量</th>
+                        <th>性味歸經</th>
+                        <th>功效與角色</th>
+                    </tr>
+                    <tr>
+                        <td>三七</td>
+                        <td>15.52mg</td>
+                        <td>甘、微苦，溫；歸肝、胃經</td>
+                        <td><span class="role-tag monarch">君藥</span> 活血祛瘀，通脈止痛，為方中主藥</td>
+                    </tr>
+                    <tr>
+                        <td>紅參</td>
+                        <td>34.53mg</td>
+                        <td>辛，熱；歸脾、肺、心經</td>
+                        <td><span class="role-tag minister">臣藥</span> 大補元氣，益氣行血，助君藥活血通脈</td>
+                    </tr>
+                    <tr>
+                        <td>人工牛黃</td>
+                        <td>17.51mg</td>
+                        <td>甘，涼；歸心、肝經</td>
+                        <td><span class="role-tag minister">臣藥</span> 清熱解毒，定驚安神，清心熱而寧心神</td>
+                    </tr>
+                    <tr>
+                        <td>冰片（合成龍腦）</td>
+                        <td>17.51mg</td>
+                        <td>辛、苦，微寒；歸心、脾、肺經</td>
+                        <td><span class="role-tag minister">臣藥</span> 開竅醒神，清熱止痛，助藥力上行入心</td>
+                    </tr>
+                    <tr>
+                        <td>安息香</td>
+                        <td>8.69mg</td>
+                        <td>辛、苦，平；歸心、肝、脾經</td>
+                        <td><span class="role-tag minister">臣藥</span> 開竅行氣活血，止痛，助君臣藥通脈止痛</td>
+                    </tr>
+                    <tr>
+                        <td>水牛角濃縮粉</td>
+                        <td>5.27mg</td>
+                        <td>苦，寒；歸心、肝經</td>
+                        <td><span class="role-tag minister">臣藥</span> 清熱涼血，解毒定驚，清心涼血而安神</td>
+                    </tr>
+                    <tr>
+                        <td>珍珠層粉</td>
+                        <td>34.88mg</td>
+                        <td>鹹，寒；歸心、肝經</td>
+                        <td><span class="role-tag assistant">佐使藥</span> 清熱安神，定驚明目，鎮心安神而定驚</td>
+                    </tr>
+                    <tr>
+                        <td>金箔</td>
+                        <td>2.21mg</td>
+                        <td>辛、苦，平；歸心、肝經</td>
+                        <td><span class="role-tag assistant">佐使藥</span> 鎮心安神，解毒，傳統珍貴藥材，鎮心定驚</td>
+                    </tr>
+                </table>
+                
+                <div class="highlight-box">
+                    <h4>方解</h4>
+                    <p>本方以三七為君，活血祛瘀，通脈止痛；紅參、人工牛黃、冰片、安息香、水牛角濃縮粉為臣，補氣行血，清熱解毒，開竅醒神；珍珠層粉、金箔為佐使，鎮心安神，定驚明目。諸藥合用，共奏補氣活血，養心通脈，行氣止痛之功。</p>
+                </div>
+            </div>
+            
+            <div class="product-info">
+                <h3>功能與主治</h3>
+                <p>補氣活血，養心通脈，行氣止痛。用於因正氣虧虛，氣滯血瘀所致的胸痹心痛、心悸、眩暈、胸腹不適、虛汗、食欲不振。</p>
+                
+                <h3 style="margin-top: 4mm;">適用症狀與中醫辨證</h3>
+                <ul class="symptoms-list">
+                    <li><strong>胸痹心痛</strong> - 因氣滯血瘀引起的胸部悶痛，屬中醫"胸痹"範疇</li>
+                    <li><strong>心悸</strong> - 心跳異常，心慌不安，屬"心悸"證，多因心氣虛、心血不足</li>
+                    <li><strong>眩暈</strong> - 頭暈眼花，站立不穩，多因氣血不能上榮頭目</li>
+                    <li><strong>胸腹不適</strong> - 胸部及腹部脹悶不適，屬"痞滿"證，氣機不暢所致</li>
+                    <li><strong>虛汗</strong> - 體虛導致的異常出汗，屬"自汗"或"盜汗"，衛表不固</li>
+                    <li><strong>食欲不振</strong> - 脾胃功能減弱，食欲下降，脾氣虛弱，運化無力</li>
+                    <li><strong>疲勞乏力</strong> - 常感疲倦，精力不足，氣虛不能充養周身</li>
+                    <li><strong>氣短</strong> - 呼吸短促，氣息不足，肺脾氣虛，宗氣不足</li>
+                </ul>
+                
+                <div class="tcm-theory" style="margin-top: 4mm;">
+                    <h3>中醫辨證要點</h3>
+                    <p>本品主要適用於<strong>氣虛血瘀證</strong>，臨床表現為：胸悶胸痛，心悸氣短，神疲乏力，面色淡白或晦暗，舌淡紫或有瘀斑，脈細澀或結代。</p>
+                </div>
+            </div>
+            
+            <div class="product-info">
+                <h3>用法用量</h3>
+                <table class="usage-table">
+                    <tr>
+                        <th>適用人群</th>
+                        <th>用法</th>
+                        <th>用量</th>
+                        <th>服用時間</th>
+                        <th>療程建議</th>
+                    </tr>
+                    <tr>
+                        <td>成人</td>
+                        <td>溫水送服</td>
+                        <td>每次1粒，每日2次</td>
+                        <td>早飯後、晚飯後</td>
+                        <td>4周為一療程，建議連續服用2-3療程</td>
+                    </tr>
+                </table>
+                
+                <div class="highlight-box">
+                    <h4>服用要點</h4>
+                    <p>飯後服用可減少對胃腸道的刺激，溫水送服有助於藥力發揮。根據中醫"子午流注"理論，早晚服藥順應人體氣血運行的節律，早晨陽氣初生，晚上陰氣漸盛，此時服藥有助於藥物更好地發揮作用。</p>
+                </div>
+            </div>
+            
+            <div class="product-info">
+                <h3>產品背書與質量保證</h3>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h3>官方認證</h3>
+                        <p>• 香港中成藥註冊編號 HKC-02829</p>
+                        <p>• 經香港特別行政區政府認證</p>
+                        <p>• 符合《中醫藥條例》規定</p>
+                        <p>• 有效期至2028年5月4日</p>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h3>質量檢測</h3>
+                        <p>• 通過國際權威檢測機構ALS Technichem全面檢測</p>
+                        <p>• 符合《中華人民共和國藥典》標準</p>
+                        <p>• 重金屬、農藥殘留、微生物限度檢測合格</p>
+                        <p>• 龍腦含量達標，質量穩定可控</p>
+                    </div>
+                </div>
+                
+                <div class="tcm-theory">
+                    <h3>傳統工藝與現代技術結合</h3>
+                    <p>本品採用傳統中藥製劑工藝，結合現代製藥技術，確保有效成分的穩定性和生物利用度。生產過程嚴格遵循GMP標準，實現了傳統中醫藥理論與現代質量控制體系的完美結合。</p>
+                </div>
+            </div>
+            
+            <div class="product-info precautions">
+                <h3>注意事項</h3>
+                <ul>
+                    <li>兒童、孕婦、可能懷孕及哺乳中的婦女及正接受醫藥治療的人士，應由醫生指示使用</li>
+                    <li>由於本劑藥性劇烈，須遵守用法和用量</li>
+                    <li>適宜吞服，不要放在口中咀嚼</li>
+                    <li>不得與其他強性藥物一起服用</li>
+                    <li>服用本劑後如有引起噁心等症狀，尤其是當此等症狀嚴重時，即停止服用</li>
+                    <li>服用本劑數日後，倘若症狀未見改善，即停止服用，然後與醫生或藥劑師商量</li>
+                    <li>對本品任何成分過敏者禁用，過敏體質者慎用</li>
+                </ul>
+            </div>
+            
+            <div class="product-info">
+                <h3>市場背景與產品優勢</h3>
+                <div class="highlight-box">
+                    <h4>心血管健康市場潛力巨大</h4>
+                    <p>隨著人口老齡化加劇和生活節奏加快，心血管疾病已成為全球主要的健康問題之一。中成藥在心血管領域的應用歷史悠久，消費者對天然、溫和的調理方式接受度越來越高。</p>
+                    
+                    <h4 style="margin-top: 3mm;">產品優勢：</h4>
+                    <div class="advantages-grid">
+                        <div class="advantage-card">
+                            <h4>理論基礎紮實</h4>
+                            <p>基於中醫氣血理論和心主血脈理論，組方嚴謹</p>
+                        </div>
+                        <div class="advantage-card">
+                            <h4>君臣佐使分明</h4>
+                            <p>八種藥材科學配伍，協同增效，標本兼治</p>
+                        </div>
+                        <div class="advantage-card">
+                            <h4>質量可控</h4>
+                            <p>現代檢測技術確保產品質量穩定可靠</p>
+                        </div>
+                        <div class="advantage-card">
+                            <h4>文化底蘊深厚</h4>
+                            <p>傳承中醫藥文化，融合傳統與現代</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="highlight-box" style="margin-top: 8mm; background-color: #f0f7ff; border-left-color: #1976d2;">
+                <h3 style="color: #1976d2;">總結</h3>
+                <p>櫻花牌金裝櫻花之心丹是一款基於中醫理論，專注於心腦血管健康的中成藥。產品以中醫"心主血脈"理論為指導，採用八種珍貴藥材科學配伍，君臣佐使分明，具有補氣活血、養心通脈、行氣止痛的功效。產品既傳承了中醫藥文化的精髓，又結合現代製藥技術，質量可控，療效確切，是心血管亞健康人群的理想選擇，體現了中醫"治未病"的預防醫學思想。</p>
+            </div>
+            
+            <div style="margin-top: 15px; padding: 12px; background: #f9f5f0; border-radius: 5px;">
+                <p style="text-align: center; font-size: 9pt; color: #666;">
+                    © 2025 香港千草堂中藥廠 | 產品宣講稿 - 中醫理論版<br>
+                    文件分發範圍：銷售部、市場部、產品部、醫學部
+                </p>
+            </div>
+        </div>
+        
+        <!-- 页脚 -->
+        <div class="page-footer">
+            <div class="footer-content">
+                <p>機密文件 - 僅供內部培訓使用 | 更新日期：2025年1月</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
