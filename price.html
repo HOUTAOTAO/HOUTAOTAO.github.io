@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>香港濟歲堂產品報價單</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: "Microsoft JhengHei", "微軟正黑體", sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        
+        /* A4横向纸张样式 */
+        .a4-landscape-container {
+            width: 297mm;
+            min-height: 210mm;
+            background: white;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
+            position: relative;
+            padding: 0;
+            margin: 20px auto;
+        }
+        
+        /* 页眉样式 */
+        .page-header {
+            width: 100%;
+            height: 20mm;
+            background: white;
+            padding: 3mm 15mm;
+            display: flex;
+            align-items: center;
+            border-bottom: 2px solid #c33;
+        }
+        
+        /* 页脚样式 */
+        .page-footer {
+            width: 100%;
+            height: 12mm;
+            background: white;
+            padding: 0 15mm;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-top: 1px solid #ddd;
+        }
+        
+        .footer-content {
+            font-size: 9pt;
+            color: #666;
+            text-align: center;
+        }
+        
+        /* 公司信息样式 */
+        .company-info {
+            flex: 1;
+            margin-left: 5mm;
+        }
+        
+        .company-name {
+            font-size: 15pt;
+            font-weight: bold;
+            color: #a52a2a;
+        }
+        
+        .company-name-en {
+            font-size: 10pt;
+            color: #666;
+            margin-top: 2px;
+        }
+        
+        /* Logo样式 */
+        .logo-container {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid transparent;
+            padding: 2px;
+        }
+        
+        .logo-container img {
+            max-height: 100%;
+            max-width: 100%;
+            object-fit: contain;
+        }
+        
+        /* 主要内容样式 */
+        .content {
+            padding: 10mm;
+            padding-top: 8mm;
+            padding-bottom: 8mm;
+        }
+        
+        .title {
+            text-align: center;
+            font-size: 17pt;
+            margin: 5mm 0 8mm;
+            color: #a52a2a;
+            position: relative;
+        }
+        
+        .title::after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: 25%;
+            width: 50%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #c33, transparent);
+        }
+        
+        .currency-info {
+            text-align: center;
+            margin-bottom: 10mm;
+            font-size: 10pt;
+            color: #666;
+        }
+        
+        /* 产品报价表格样式 */
+        .product-table-container {
+            width: 100%;
+            overflow-x: auto;
+            margin-top: 5mm;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 7.5pt;
+            table-layout: fixed;
+        }
+        
+        th, td {
+            border: 1px solid #ddd;
+            padding: 5px;
+            text-align: center;
+            vertical-align: middle;
+            word-wrap: break-word;
+        }
+        
+        th {
+            background-color: #a52a2a;
+            color: white;
+            font-weight: normal;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        .col-no { width: 4%; }
+        .col-name { width: 11%; }
+        .col-spec { width: 11%; }
+        .col-factory { width: 7%; }
+        .col-hk-price { width: 7%; }
+        .col-hk-super { width: 7%; }
+        .col-tianxiakang { width: 8%; }
+        .col-xiaoqiling { width: 8%; }
+        .col-notes { width: 17%; }
+        
+        /* 公司地址部分 */
+        .company-address {
+            margin-top: 15mm;
+            text-align: center;
+            font-size: 10pt;
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        /* 打印样式 */
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+                width: 297mm;
+                height: 210mm;
+            }
+            
+            .a4-landscape-container {
+                box-shadow: none;
+                margin: 0;
+                padding: 0;
+                width: 100%;
+                height: 100%;
+            }
+            
+            .page-header {
+                position: relative;
+                height: 18mm;
+            }
+            
+            .page-footer {
+                position: relative;
+                height: 10mm;
+            }
+            
+            .content {
+                padding: 10mm;
+                padding-top: 8mm;
+                padding-bottom: 8mm;
+            }
+            
+            th {
+                background-color: #a52a2a !important;
+                -webkit-print-color-adjust: exact;
+                color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="a4-landscape-container">
+        <!-- 页眉 -->
+        <div class="page-header">
+            <div class="logo-container">
+                <img src="logo.jpg" alt="濟歲堂標誌">
+            </div>
+            <div class="company-info">
+                <div class="company-name">香港济岁堂中药厂有限公司</div>
+                <div class="company-name-en">Hongkong Jisuitang Chinese Medicine Factory Limited</div>
+            </div>
+        </div>
+        
+        <!-- 内容区域 -->
+        <div class="content">
+            <h1 class="title">香港濟歲堂產品報價單</h1>
+            
+            <div class="currency-info">
+                币种：人民币 | 起订数量：量产——5万瓶/盒
+            </div>
+            
+            <div class="product-table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="col-no">優先生產</th>
+                            <th class="col-name">品名</th>
+                            <th class="col-spec">包裝規格</th>
+                            <th class="col-factory">香港工廠名稱</th>
+                            <th class="col-hk-price">香港數量價（RMB）</th>
+                            <th class="col-hk-super">香港超高价（RMB）</th>
+                            <th class="col-tianxiakang">安國市天下康致單價（RMB）</th>
+                            <th class="col-xiaoqiling">廣州小廚家致單價（RMB）</th>
+                            <th class="col-notes">備註</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>金裝櫻花之心丹</td>
+                            <td>每盒1瓶，每瓶100粒</td>
+                            <td>富灝</td>
+                            <td>0.414</td>
+                            <td>41.4</td>
+                            <td></td>
+                            <td>28.11</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>適糖健</td>
+                            <td>每盒1瓶，每瓶60粒</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>22.8</td>
+                            <td>6.59</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>康糖靈</td>
+                            <td>每盒1瓶，每瓶60粒</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>36</td>
+                            <td>8.36</td>
+                            <td>康糖疗7.2元</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>活肝素</td>
+                            <td>每盒1瓶，每瓶60粒</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>33</td>
+                            <td>6.52</td>
+                            <td>健肝灵10.5元</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>腦活素</td>
+                            <td>每盒1瓶，每瓶60粒</td>
+                            <td>富灝</td>
+                            <td>0.92</td>
+                            <td>55.2</td>
+                            <td>43.2</td>
+                            <td>23.8</td>
+                            <td>脑活素33.52元</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>烏絲生髮丸</td>
+                            <td>每盒1瓶，每瓶60粒</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>10.302</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>海狗丸（和汉堂）</td>
+                            <td>每盒1瓶，每瓶300粒</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>23</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td>海狗丸（千草堂）</td>
+                            <td>每盒1瓶，每瓶300粒</td>
+                            <td>富灝</td>
+                            <td>0.0767</td>
+                            <td>23</td>
+                            <td></td>
+                            <td>24.51</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td>濃縮整腸丸</td>
+                            <td>每盒1瓶，每瓶200粒</td>
+                            <td>富灝</td>
+                            <td>0.0644</td>
+                            <td>12.88</td>
+                            <td></td>
+                            <td>8.61</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td>抗骨靈</td>
+                            <td>每盒1瓶，每瓶150粒</td>
+                            <td>永康</td>
+                            <td>0.2944</td>
+                            <td>44.16</td>
+                            <td>105</td>
+                            <td>9.57</td>
+                            <td>骨痛消9.57元</td>
+                        </tr>
+                        <tr>
+                            <td>11</td>
+                            <td>喘咳治</td>
+                            <td>每盒1瓶，每瓶60粒</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>40.2</td>
+                            <td>11.08</td>
+                            <td>顺管灵11.08元</td>
+                        </tr>
+                        <tr>
+                            <td>12</td>
+                            <td>仁昌堂古方活絡油</td>
+                            <td>每盒1瓶，每瓶50毫升</td>
+                            <td></td>
+                            <td></td>
+                            <td>8.28</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>13</td>
+                            <td>柔潔絲特效暗瘡素</td>
+                            <td>每盒1支，每支18克</td>
+                            <td></td>
+                            <td></td>
+                            <td>8.28</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>14</td>
+                            <td>鼻敏清</td>
+                            <td>每盒1瓶，每瓶60粒</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>27</td>
+                            <td>9.39</td>
+                            <td>鼻敏清9.35元</td>
+                        </tr>
+                        <tr>
+                            <td>15</td>
+                            <td>增肥丸</td>
+                            <td>每盒1瓶，每瓶100粒</td>
+                            <td>成都明日</td>
+                            <td>0.0644</td>
+                            <td>6.44</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>16</td>
+                            <td>金裝白鳳丸</td>
+                            <td>每盒6小盒，每小盒1蠟殼丸</td>
+                            <td>富灝</td>
+                            <td>2.76</td>
+                            <td>16.56</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>17</td>
+                            <td>消石素丸</td>
+                            <td>每盒1瓶，每瓶60粒</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>24</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>18</td>
+                            <td>白殿風丸</td>
+                            <td>每盒1瓶，每瓶60粒</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>48</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>19</td>
+                            <td>絡痛消特效止痛摩擦膏</td>
+                            <td>每盒1支，每支30克</td>
+                            <td>回春堂</td>
+                            <td></td>
+                            <td>9.20</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>20</td>
+                            <td>燒燙靈高效能燙火軟膏</td>
+                            <td>每盒1支，每支18克</td>
+                            <td>回春堂</td>
+                            <td></td>
+                            <td>8.28</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>21</td>
+                            <td>強力感冒靈</td>
+                            <td>每盒1瓶，每瓶120粒</td>
+                            <td>富灝</td>
+                            <td>0.0917</td>
+                            <td>11.96</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>22</td>
+                            <td>威豪強力抗焱靈</td>
+                            <td>每盒2排，每排10粒</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>33</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>23</td>
+                            <td>六神丸</td>
+                            <td>每盒10小盒，每小盒1瓶，每瓶100粒</td>
+                            <td>富灝</td>
+                            <td>0.05336</td>
+                            <td>5.336</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>24</td>
+                            <td>通脈靈</td>
+                            <td>收購中；待更新</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>25</td>
+                            <td>風湿骨病（張）</td>
+                            <td>收購中；待更新</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>26</td>
+                            <td>強力舒筋活絡膏</td>
+                            <td>每盒2包，每包5張，每張7cm x 10cm</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>27</td>
+                            <td>五寶丸</td>
+                            <td>每盒12小盒，每小盒1瓶</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>28</td>
+                            <td>七厘散</td>
+                            <td>每盒10小盒，每小盒1瓶</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>29</td>
+                            <td>八寶驚風散</td>
+                            <td>每盒10小盒，每小盒1瓶</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>30</td>
+                            <td>猴棗散</td>
+                            <td>每盒10小盒，每小盒1瓶</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>31</td>
+                            <td>回春丹</td>
+                            <td>每盒10小盒，每小盒1瓶</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>32</td>
+                            <td>安宮牛黃丸1</td>
+                            <td>收購中；待更新</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>33</td>
+                            <td>安宮牛黃丸2</td>
+                            <td>收購中；待更新</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="company-address">
+                <p>香港新界葵涌华星街8号华达工业中心A座4楼12室</p>
+                <p>RM 412,4/F, BLK A,WAH TAT INDUSTRIAL CENTRE8-10 WAH SHING ST,KWAI CHUNG, NT</p>
+            </div>
+            
+            <div style="margin-top: 15px; padding: 12px; background: #f9f5f0; border-radius: 5px;">
+                <p style="text-align: center; font-size: 9pt; color: #666;">
+                    © 2025 香港济岁堂版权所有 | 产品报价单<br>
+                    文件分发范围：销售部、市场部、产品部、采购部
+                </p>
+            </div>
+        </div>
+        
+        <!-- 页脚 -->
+        <div class="page-footer">
+            <div class="footer-content">
+                <p>機密文件 - 僅供內部參考 | 更新日期：2025年10月15日</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
