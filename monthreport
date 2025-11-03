@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>濟歲堂工作月報</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: "Microsoft JhengHei", "微軟正黑體", sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            position: relative;
+        }
+        
+        /* A4纸张样式 */
+        .a4-container {
+            width: 210mm;
+            min-height: 297mm;
+            background: white;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
+            position: relative;
+            padding: 0;
+            margin: 20px auto;
+        }
+        
+        /* 页眉样式 - 非固定 */
+        .page-header {
+            width: 100%;
+            height: 25mm;
+            background: white;
+            padding: 5mm 20mm;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #c33;
+        }
+        
+        /* 页脚样式 - 非固定 */
+        .page-footer {
+            width: 100%;
+            height: 15mm;
+            background: white;
+            padding: 0 20mm;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-top: 1px solid #ddd;
+        }
+        
+        .footer-content {
+            font-size: 10pt;
+            color: #666;
+            text-align: center;
+        }
+        
+        /* 公司信息样式 */
+        .company-info {
+            flex: 1;
+        }
+        
+        .company-name {
+            font-size: 16pt;
+            font-weight: bold;
+            color: #a52a2a;
+        }
+        
+        .company-address {
+            font-size: 10pt;
+            color: #666;
+        }
+        
+        /* Logo样式 - 边框透明 */
+        .logo-container {
+            width: 50mm;
+            height: 15mm;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid transparent; /* 边框透明 */
+            padding: 2px;
+        }
+        
+        .logo-container img {
+            max-height: 100%;
+            max-width: 100%;
+            object-fit: contain;
+        }
+        
+        /* 主要内容样式 */
+        .content {
+            padding: 20mm;
+            padding-top: 15mm; /* 减少顶部内边距 */
+            padding-bottom: 15mm; /* 减少底部内边距 */
+        }
+        
+        .title {
+            text-align: center;
+            font-size: 18pt;
+            margin: 10mm 0 15mm;
+            color: #a52a2a;
+            position: relative;
+        }
+        
+        .title::after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: 25%;
+            width: 50%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #c33, transparent);
+        }
+        
+        .greeting {
+            margin: 15px 0;
+            line-height: 1.8;
+        }
+        
+        /* 表格样式 */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 10pt;
+        }
+        
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        th {
+            background-color: #a52a2a;
+            color: white;
+            font-weight: normal;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        /* 状态标签 */
+        .status {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+        
+        .completed {
+            background: #4caf50;
+            color: white;
+        }
+        
+        .in-progress {
+            background: #2196f3;
+            color: white;
+        }
+        
+        .planned {
+            background: #ff9800;
+            color: white;
+        }
+        
+        .urgent {
+            background: #f44336;
+            color: white;
+        }
+        
+        .not-started {
+            background: #9e9e9e;
+            color: white;
+        }
+        
+        /* 签名部分 */
+        .signature {
+            margin-top: 20mm;
+            text-align: right;
+            padding-right: 20mm;
+        }
+        
+        .signature p {
+            margin: 5px 0;
+        }
+        
+        .signature .company {
+            font-weight: bold;
+            color: #a52a2a;
+        }
+        
+        .signature .date {
+            font-size: 10pt;
+            color: #666;
+        }
+        
+        /* 分页控制 */
+        .page-break {
+            page-break-after: always;
+        }
+        
+        /* 打印样式 */
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+                width: 210mm;
+                height: 297mm;
+            }
+            
+            .a4-container {
+                box-shadow: none;
+                margin: 0;
+                padding: 0;
+                width: 100%;
+                height: 100%;
+            }
+            
+            /* 移除固定定位 */
+            .page-header {
+                position: relative;
+                height: 20mm;
+            }
+            
+            .page-footer {
+                position: relative;
+                height: 10mm;
+            }
+            
+            .content {
+                padding: 20mm;
+                padding-top: 15mm; /* 减少顶部内边距 */
+                padding-bottom: 15mm; /* 减少底部内边距 */
+            }
+            
+            /* 确保打印时背景色可见 */
+            th {
+                background-color: #a52a2a !important;
+                -webkit-print-color-adjust: exact;
+                color-adjust: exact;
+            }
+        }
+        
+        /* 自定义样式用于项目状态 */
+        .status-section {
+            margin-bottom: 10px;
+        }
+        
+        .status-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #a52a2a;
+        }
+        
+        ul {
+            margin: 5px 0;
+            padding-left: 20px;
+        }
+        
+        li {
+            margin-bottom: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="a4-container">
+        <!-- 普通页眉 -->
+        <div class="page-header">
+            <div class="company-info">
+                <div class="company-name">香港濟歲堂中藥廠有限公司</div>
+                <div class="company-address">地址：香港新界葵涌華星街8號華達工業中心A座4樓12室</div>
+            </div>
+            <div class="logo-container">
+                <img src="logo.jpg" alt="濟歲堂標誌">
+            </div>
+        </div>
+        
+        <!-- 内容区域 -->
+        <div class="content">
+            <h1 class="title">2025年10月香港濟歲中藥廠有限公司工作總結</h1>
+            <h2 style="text-align: center; margin-bottom: 20px; color: #555;"></h2>
+            
+            <div class="greeting">
+                <p>致各位股東和領導：</p>
+                <p>10月份工作圍繞工廠建設、批文採購、再註冊評估、轉廠價格、銷售資料準備及企業資質完善等核心事項穩步推進，現將本月工作進展彙報如下：</p>
+            </div>
+            
+            <h2>一、本月工作總結</h2>
+            <table>
+                <tr>
+                    <th width="20%">項目</th>
+                    <th width="80%">具體內容</th>
+                </tr>
+                <tr>
+                    <td>【建厂】工廠建設</td>
+                    <td>
+                        <div class="status-section">
+                            <div class="status-title">已完成：</div>
+                            <ul>
+                                <li>完成63個房源篩選</li>
+                                <li>對宏達工業中心11樓4個單位的尋廠審核</li>
+                            </ul>
+                        </div>
+                        <div class="status-section">
+                            <div class="status-title">進行中：</div>
+                            <ul>
+                                <li>價格談判：宏達工業中心11樓4個單位</li>
+                                <li>資料準備：包裝牌照申請中</li>
+                                <li>貸款中介建聯和貸款比例諮詢</li>
+                            </ul>
+                        </div>
+                        <div class="status-section">
+                            <div class="status-title">計劃完成：</div>
+                            <ul>
+                                <li>獲取更多房源信息</li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>【批文】採購</td>
+                    <td>
+                        <div class="status-section">
+                            <div class="status-title">已完成：</div>
+                            <ul>
+                                <li>永明海狗丸、通脈靈、風痛關刺靈三批文合同簽訂</li>
+                            </ul>
+                        </div>
+                        <div class="status-section">
+                            <div class="status-title">進行中：</div>
+                            <ul>
+                                <li>濟生堂和太和堂建聯收購洽談</li>
+                                <li>八味地黃丸批文購買或註冊</li>
+                                <li>協會加入（為獲取更多批文信息）</li>
+                            </ul>
+                        </div>
+                        <div class="status-section">
+                            <div class="status-title">計劃完成：</div>
+                            <ul>
+                                <li>太和堂目標批文搜集，尋找聯繫批文持有方聯繫方式</li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>【再註冊】評估</td>
+                    <td>
+                        <div class="status-section">
+                            <div class="status-title">已完成：</div>
+                            <ul>
+                                <li>【口服】【外用】政策咨詢</li>
+                            </ul>
+                        </div>
+                        <div class="status-section">
+                            <div class="status-title">進行中：</div>
+                            <ul>
+                                <li>再註冊批文市場調研口服6個，外用2個</li>
+                                <li>分析产品特性和竞品對維度对比，综合评估再注册和OTC的可行性</li>
+                            </ul>
+                        </div>
+                        <div class="status-section">
+                            <div class="status-title">計劃完成：</div>
+                            <ul>
+                                <li>規劃再註冊產品路徑</li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>【轉廠】價格</td>
+                    <td>
+                        <div class="status-section">
+                            <div class="status-title">已完成：</div>
+                            <ul>
+                                <li>已完成產品目錄初稿</li>
+                                <li>與粵港15家代工廠建聯</li>
+                                <li>23個品種，已有參考性的報價</li>
+                            </ul>
+                        </div>
+                        <div class="status-section">
+                            <div class="status-title">進行中--繼續詢價：</div>
+                            <ul>
+                                <li>拜訪小奇靈普寧工廠</li>
+                                <li>完善粵華其他產品報價</li>
+                            </ul>
+                        </div>
+                        <div class="status-section">
+                            <div class="status-title">計劃完成：</div>
+                            <ul>
+                                <li>11月7日前完成產品報價目錄表</li>
+                                 <li>完成產品成本預算表和市場渠道調研</li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>【轉商標】商標+包裝設計</td>
+                    <td>
+                        <div class="status-section">
+                            <div class="status-title">已完成：</div>
+                            <ul>
+                                <li>轉品牌法規調研（已經總結收集關鍵文件）</li>
+                                <li>批文數據庫（已完成，定期維護）</li>
+                            </ul>
+                        </div>
+                        <div class="status-section">
+                            <div class="status-title">進行中：</div>
+                            <ul>
+                                <li>對接設計人員設計外包裝（完成約50%）</li>
+                                <li>外觀設計（完成約50%）</li>
+                                <li>濟歲堂商標變更</li>
+                                <li>古法濟歲堂註冊成商標</li>
+                                <li>商標註冊</li>
+                            </ul>
+                        </div>
+                        <div class="status-section">
+                            <div class="status-title">計劃完成：</div>
+                            <ul>
+                                <li>說明書設計（待開始設計）</li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>牌照申請</td>
+                    <td>
+                        <div class="status-section">
+                            <div class="status-title">已完成：</div>
+                            <ul>
+                                <li>香港濟歲堂藥業有限公司已獲取批發商牌照（主體更名中，預計二月底完成）</li>
+                                <li>香港濟歲堂老藥鋪有限公司批發牌照申請中（預計二月底完成）</li>
+                            </ul>
+                        </div>
+                        <div class="status-section">
+                            <div class="status-title">進行中：</div>
+                            <ul>
+                                <li>香港濟歲堂中藥廠有限公司外包裝牌照申請中（預計三月底下證）</li>
+                                <li>關注上述牌照下證書時間</li>
+                            </ul>
+                        </div>
+                        <div class="status-section">
+                            <div class="status-title">計劃完成：</div>
+                            <ul>
+                                <li>香港環球中藥材有限公司申請批發商牌照</li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+
+            <div class="signature">
+                <p>順頌商祺！</p>
+                <p class="company">香港濟歲堂中藥廠有限公司</p>
+                <p class="date">2025年11月03日</p>
+            </div>
+        </div>
+        
+        <!-- 普通页脚 -->
+        <div class="page-footer">
+            <div class="footer-content">
+                <p>機密文件 - 僅限內部使用 | 第 1 頁，共 1 頁 | 更新日期：2025年11月03日</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
