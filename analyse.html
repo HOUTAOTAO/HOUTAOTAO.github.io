@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>产品报价分析报告</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+        body {
+            background-color: #f5f5f5;
+            padding: 20px;
+            color: #333;
+        }
+        .report-container {
+            max-width: 210mm;
+            min-height: 297mm;
+            margin: 0 auto;
+            background: white;
+            padding: 15mm;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #2c3e50;
+            padding-bottom: 15px;
+        }
+        .header h1 {
+            color: #2c3e50;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        .header p {
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+        .summary {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            border-left: 4px solid #3498db;
+        }
+        .summary h2 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        .summary p {
+            line-height: 1.6;
+            font-size: 14px;
+        }
+        .charts-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .chart-box {
+            width: 48%;
+            background: white;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 15px;
+        }
+        .chart-title {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-align: center;
+            color: #2c3e50;
+        }
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            font-size: 12px;
+        }
+        .data-table th, .data-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .data-table th {
+            background-color: #2c3e50;
+            color: white;
+            font-weight: bold;
+        }
+        .data-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .data-table tr:hover {
+            background-color: #f1f1f1;
+        }
+        .footer {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 12px;
+            color: #7f8c8d;
+            border-top: 1px solid #eee;
+            padding-top: 10px;
+        }
+        .highlight {
+            background-color: #fffacd;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="report-container">
+        <div class="header">
+            <h1>产品报价分析报告</h1>
+            <p>报价表-汇总数据分析 | 生成日期: <span id="currentDate"></span></p>
+        </div>
+        
+        <div class="summary">
+            <h2>核心结论</h2>
+            <p>基于对33种产品的报价分析，广州小奇灵和广州粤华为主要供应商选择，其中小奇灵在价格方面具有明显优势，粤华在工艺经验方面表现突出。具体来看：</p>
+            <ul>
+                <li><strong>供应商分布：</strong>广州小奇灵被选为11个产品的主要供应商，广州粤华为8个，富灝为3个，其余产品暂无明确供应商选择。</li>
+                <li><strong>价格优势：</strong>小奇灵在7个产品中因"价格优势"被选中，特别是在胶囊剂和丸剂产品中报价普遍较低。</li>
+                <li><strong>工艺经验：</strong>粤华在再注册产品和需要工艺摸索的产品中表现突出，被选为4个再注册产品的供应商。</li>
+                <li><strong>剂型分布：</strong>胶囊剂和丸剂是主要产品类型，分别占45.5%和36.4%，外用剂型目前供应商选择有限。</li>
+            </ul>
+        </div>
+        
+        <div class="charts-container">
+            <div class="chart-box">
+                <div class="chart-title">供应商选择分布</div>
+                <canvas id="supplierChart"></canvas>
+            </div>
+            <div class="chart-box">
+                <div class="chart-title">产品剂型分布</div>
+                <canvas id="dosageFormChart"></canvas>
+            </div>
+            <div class="chart-box">
+                <div class="chart-title">选择依据分析</div>
+                <canvas id="reasonChart"></canvas>
+            </div>
+            <div class="chart-box">
+                <div class="chart-title">价格对比示例(瓶单价 RMB)</div>
+                <canvas id="priceChart"></canvas>
+            </div>
+        </div>
+        
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>生产顺序</th>
+                    <th>产品名称</th>
+                    <th>剂型</th>
+                    <th>规格</th>
+                    <th>供应商选择</th>
+                    <th>选择依据</th>
+                    <th>瓶单价(RMB)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>金裝櫻花之心丹（再）</td>
+                    <td>丸劑</td>
+                    <td>每盒1瓶，每瓶100粒，每粒0.015g</td>
+                    <td>粤华</td>
+                    <td>多年生产该品经验</td>
+                    <td>29.66</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>適糖健</td>
+                    <td>膠囊劑</td>
+                    <td>每盒1瓶，每瓶60粒，每粒0.4g</td>
+                    <td>小奇灵</td>
+                    <td>工艺不完整，小奇摸索工艺有经验</td>
+                    <td>6.59</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>康糖靈（再）</td>
+                    <td>膠囊劑</td>
+                    <td>每盒1瓶，每瓶60粒，每粒0.4g</td>
+                    <td>粤华</td>
+                    <td>粤华为大湾区工厂，该品为再注册产品，可以让粤华先帮我们摸索工艺</td>
+                    <td>13.99</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>通脉灵</td>
+                    <td>丸劑</td>
+                    <td>每盒1瓶，每瓶60粒，每粒0.4g</td>
+                    <td>粤华</td>
+                    <td>粤华为大湾区工厂，该品为再注册产品，可以让粤华先帮我们摸索工艺</td>
+                    <td>14.88</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>活肝素</td>
+                    <td>膠囊劑</td>
+                    <td>每盒1瓶，每瓶60粒，每粒0.4g</td>
+                    <td>小奇灵</td>
+                    <td>明显价格优势</td>
+                    <td>6.52</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>腦活素</td>
+                    <td>膠囊劑</td>
+                    <td>每盒1瓶，每瓶60粒，每粒0.4g</td>
+                    <td>小奇灵</td>
+                    <td>明显价格优势</td>
+                    <td>23.8</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>烏絲生髮丸</td>
+                    <td>膠囊劑</td>
+                    <td>每盒1瓶，每瓶60粒，每粒0.4g</td>
+                    <td>小奇灵</td>
+                    <td>生产次序前</td>
+                    <td>10.302</td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>海狗丸（和汉堂）</td>
+                    <td>丸劑</td>
+                    <td>每盒1瓶，每瓶300粒，每粒0.25g</td>
+                    <td>小奇灵</td>
+                    <td>两个海狗丸各选一家，对比一下小试的能力和价格</td>
+                    <td>23.01</td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td>海狗丸（千草堂）</td>
+                    <td>丸劑</td>
+                    <td>每盒1瓶，每瓶300粒，每粒0.25g</td>
+                    <td>粤华</td>
+                    <td>两个海狗丸各选一家，对比一下小试的能力和价格</td>
+                    <td>34.75</td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td>濃縮整腸丸</td>
+                    <td>丸劑</td>
+                    <td>每盒1瓶，每瓶200粒，每粒0.125g</td>
+                    <td>小奇灵</td>
+                    <td>价格优势</td>
+                    <td>8.61</td>
+                </tr>
+                <tr>
+                    <td>11</td>
+                    <td>抗骨靈</td>
+                    <td>膠囊劑</td>
+                    <td>每盒1瓶，每瓶150粒，每粒0.4g</td>
+                    <td>小奇灵</td>
+                    <td>价格优势</td>
+                    <td>9.57</td>
+                </tr>
+                <tr>
+                    <td>12</td>
+                    <td>风痛关刺灵</td>
+                    <td>丸劑</td>
+                    <td>每盒1瓶，每瓶60粒，每粒0.4g</td>
+                    <td>小奇灵</td>
+                    <td>有生产过类似产品</td>
+                    <td>10.3</td>
+                </tr>
+                <tr>
+                    <td>13</td>
+                    <td>喘咳治</td>
+                    <td>膠囊劑</td>
+                    <td>每盒1瓶，每瓶60粒，每粒0.4g</td>
+                    <td>小奇灵</td>
+                    <td>有生产过类似产品</td>
+                    <td>8.1</td>
+                </tr>
+                <tr>
+                    <td>17</td>
+                    <td>鼻敏清</td>
+                    <td>膠囊劑</td>
+                    <td>每盒1瓶，每瓶60粒，每粒0.4g</td>
+                    <td>小奇灵</td>
+                    <td>价格优势</td>
+                    <td>9.39</td>
+                </tr>
+                <tr>
+                    <td>25</td>
+                    <td>強力感冒靈</td>
+                    <td>糖衣片</td>
+                    <td>每盒1瓶，每瓶120片，每片0.45g</td>
+                    <td>富灝</td>
+                    <td>价格优势</td>
+                    <td>11.96</td>
+                </tr>
+                <tr>
+                    <td>28</td>
+                    <td>六神丸</td>
+                    <td>丸劑</td>
+                    <td>每盒10小瓶，每瓶100粒</td>
+                    <td>富灝</td>
+                    <td>价格优势</td>
+                    <td>5.336</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div class="footer">
+            <p>报告生成基于报价表-汇总.xlsx数据 | 数据分析仅供参考</p>
+        </div>
+    </div>
+
+    <script>
+        // 设置当前日期
+        document.getElementById('currentDate').textContent = new Date().toLocaleDateString('zh-CN');
+        
+        // 供应商选择分布图表
+        const supplierCtx = document.getElementById('supplierChart').getContext('2d');
+        const supplierChart = new Chart(supplierCtx, {
+            type: 'pie',
+            data: {
+                labels: ['广州小奇灵', '广州粤华', '富灝', '未选择'],
+                datasets: [{
+                    data: [11, 8, 3, 11],
+                    backgroundColor: ['#3498db', '#2ecc71', '#e74c3c', '#95a5a6']
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'right',
+                    }
+                }
+            }
+        });
+        
+        // 产品剂型分布图表
+        const dosageFormCtx = document.getElementById('dosageFormChart').getContext('2d');
+        const dosageFormChart = new Chart(dosageFormCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['胶囊剂', '丸剂', '散剂', '软膏剂', '橡胶膏剂', '搽剂', '糖衣片'],
+                datasets: [{
+                    data: [15, 12, 4, 3, 1, 1, 1],
+                    backgroundColor: [
+                        '#3498db', '#2ecc71', '#e74c3c', '#f39c12', 
+                        '#9b59b6', '#1abc9c', '#d35400'
+                    ]
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'right',
+                    }
+                }
+            }
+        });
+        
+        // 选择依据分析图表
+        const reasonCtx = document.getElementById('reasonChart').getContext('2d');
+        const reasonChart = new Chart(reasonCtx, {
+            type: 'bar',
+            data: {
+                labels: ['价格优势', '工艺经验', '再注册产品', '对比小试', '生产次序', '类似产品经验'],
+                datasets: [{
+                    label: '选择依据频次',
+                    data: [7, 4, 4, 2, 1, 2],
+                    backgroundColor: '#3498db'
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            stepSize: 1
+                        }
+                    }
+                }
+            }
+        });
+        
+        // 价格对比示例图表
+        const priceCtx = document.getElementById('priceChart').getContext('2d');
+        const priceChart = new Chart(priceCtx, {
+            type: 'bar',
+            data: {
+                labels: ['金裝櫻花之心丹', '康糖靈', '活肝素', '腦活素', '海狗丸(千草堂)'],
+                datasets: [
+                    {
+                        label: '小奇灵报价',
+                        data: [28.11, 8.36, 6.52, 23.8, 24.51],
+                        backgroundColor: '#3498db'
+                    },
+                    {
+                        label: '粤华报价',
+                        data: [29.66, 13.99, 12.74, 34.85, 34.75],
+                        backgroundColor: '#2ecc71'
+                    },
+                    {
+                        label: '其他报价',
+                        data: [41.4, 20.13, 19.85, 55.2, 23],
+                        backgroundColor: '#e74c3c'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    x: {
+                        stacked: false,
+                    },
+                    y: {
+                        stacked: false,
+                        title: {
+                            display: true,
+                            text: '瓶单价 (RMB)'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
