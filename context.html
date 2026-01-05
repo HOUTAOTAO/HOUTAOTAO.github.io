@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
-<head>
-    <meta charset="UTF-8">
+<!-- saved from url=(0034)https://www.jisuitang.site/content -->
+<html lang="zh-Hant"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>香港濟歲堂产品目录</title>
     <style>
@@ -38,7 +38,6 @@
             background: white;
             padding: 3mm 15mm;
             display: flex;
-            justify-content: space-between;
             align-items: center;
             border-bottom: 2px solid #c33;
         }
@@ -64,6 +63,7 @@
         /* 公司信息样式 */
         .company-info {
             flex: 1;
+            margin-left: 5mm; /* 减少左边距，使公司名称更靠近logo */
         }
         
         .company-name {
@@ -72,15 +72,16 @@
             color: #a52a2a;
         }
         
-        .company-address {
-            font-size: 9pt;
+        .company-name-en {
+            font-size: 10pt;
             color: #666;
+            margin-top: 2px;
         }
         
-        /* Logo样式 */
+        /* Logo样式 - 放大1.2倍 */
         .logo-container {
-            width: 45mm;
-            height: 12mm;
+            width: 48px; /* 放大1.2倍，从40px变为48px */
+            height: 48px; /* 放大1.2倍，从40px变为48px */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -136,8 +137,8 @@
         th, td {
             border: 1px solid #ddd;
             padding: 6px;
-            text-align: left;
-            vertical-align: top;
+            text-align: center; /* 修改为居中显示 */
+            vertical-align: middle; /* 修改为垂直居中 */
             word-wrap: break-word;
         }
         
@@ -145,7 +146,6 @@
             background-color: #a52a2a;
             color: white;
             font-weight: normal;
-            text-align: center;
         }
         
         tr:nth-child(even) {
@@ -153,15 +153,13 @@
         }
         
         .col-no { width: 4%; }
-        .col-name { width: 12%; }
-        .col-type { width: 5%; }
-        .col-reg { width: 8%; }
-        .col-date { width: 7%; }
-        .col-years { width: 4%; }
-        .col-prescription { width: 15%; }
-        .col-usage { width: 12%; }
-        .col-spec { width: 13%; }
-        .col-function { width: 20%; }
+        .col-name { width: 15%; }
+        .col-type { width: 8%; }
+        .col-reg { width: 10%; }
+        .col-prescription { width: 20%; }
+        .col-usage { width: 14%; }
+        .col-spec { width: 15%; }
+        .col-function { width: 24%; }
         
         /* 分类标签 */
         .category-tag {
@@ -203,6 +201,15 @@
         .signature .date {
             font-size: 9pt;
             color: #666;
+        }
+        
+        /* 公司地址部分 */
+        .company-address {
+            margin-top: 15mm;
+            text-align: center;
+            font-size: 10pt;
+            color: #666;
+            line-height: 1.6;
         }
         
         /* 打印样式 */
@@ -261,12 +268,12 @@
     <div class="a4-landscape-container">
         <!-- 页眉 -->
         <div class="page-header">
+            <div class="logo-container">
+                <img src="./香港濟歲堂产品目录_files/logo.png" alt="濟歲堂標誌">
+            </div>
             <div class="company-info">
                 <div class="company-name">香港濟歲堂中藥廠有限公司</div>
-                <div class="company-address">地址：香港新界葵涌華星街8號華達工業中心A座4樓12室</div>
-            </div>
-            <div class="logo-container">
-                <img src="logo.jpg" alt="濟歲堂標誌">
+                <div class="company-name-en">Hongkong Jisuitang Chinese Medicine Factory Limited</div>
             </div>
         </div>
         
@@ -280,10 +287,8 @@
                         <tr>
                             <th class="col-no">編號</th>
                             <th class="col-name">品名</th>
-                            <th class="col-type">口服/外用</th>
+                            <th class="col-type">劑型</th>
                             <th class="col-reg">註冊證號</th>
-                            <th class="col-date">日期</th>
-                            <th class="col-years">年限</th>
                             <th class="col-prescription">處方</th>
                             <th class="col-usage">用法用量</th>
                             <th class="col-spec">規格</th>
@@ -294,22 +299,18 @@
                         <tr>
                             <td>1</td>
                             <td>金裝櫻花之心丹</td>
-                            <td><span class="category-tag oral-tag">口服</span></td>
+                            <td>丸劑</td>
                             <td>HKC-02829</td>
-                            <td>2008-03-31</td>
-                            <td>18</td>
                             <td>珍珠層粉、紅參、冰片(合成龍腦)、人工牛黃、三七、安息香、水牛角濃縮粉、金箔</td>
                             <td>成人每天服兩次,每次服一粒。早晚飯後用溫水送服</td>
                             <td>1. 每盒1瓶，每瓶50粒<br>2. 每盒1瓶，每瓶100粒<br>3. 每盒1瓶，每瓶200粒</td>
-                            <td>補氣活血，養心通脈,行氣止痛。用於因正氣虧虚，氣滞血瘀所致的心悸、眩暈、胸腹不適、虚汗、食欲不振等(詳見説明書)</td>
+                            <td>補氣活血，養心通脈,行氣止痛。用於因正氣虧虚，氣滞血瘀所致的心悸、眩暈、胸腹不適、虚汗、食欲不振</td>
                         </tr>
                         <tr>
                             <td>2</td>
                             <td>適糖健</td>
-                            <td><span class="category-tag oral-tag">口服</span></td>
+                            <td>膠囊劑</td>
                             <td>HKC-04076</td>
-                            <td>2008-12-19</td>
-                            <td>17</td>
                             <td>葛根、地黄、黄芪、天花粉、玉米鬚 、五味子、山藥</td>
                             <td>每次1-2粒，每日三次，温水送服或者遵照医嘱使用</td>
                             <td>1. 每盒1瓶，每瓶60粒<br>2. 每盒1瓶，每瓶150粒</td>
@@ -318,34 +319,28 @@
                         <tr>
                             <td>3</td>
                             <td>康糖靈</td>
-                            <td><span class="category-tag oral-tag">口服</span></td>
+                            <td>膠囊劑</td>
                             <td>HKC-12090</td>
-                            <td>2009-10-13</td>
-                            <td>16</td>
                             <td>黄芪、甘草、烏梅、天花粉、茯苓、葛根、灸黄芪 、麥冬、人参</td>
                             <td>成人及12岁以上人群，每日3次，每次2粒，饭后以温水送服；或遵照医师指示服用</td>
                             <td>每盒1瓶，每瓶60粒</td>
-                            <td>消渴病引起的 口乾舌燥、多食易飢、小便頻繁、頭暈眼花、耳鳴耳聾、潮熱、盜汗、大便乾結、腰腿酸軟</td>
+                            <td>大補元氣,生津止渴,益脾和胃,清熱解燥,補腎健脾。消渴病引起的口乾舌燥、多食易飢、小便頻繁、頭暈眼花、耳鳴耳聾、潮熱、盜汗、大便乾結、腰腿酸軟</td>
                         </tr>
                         <tr>
                             <td>4</td>
-                            <td>【德國華特莎博士】通脈靈</td>
-                            <td><span class="category-tag oral-tag">口服</span></td>
-                            <td>HKP-05665</td>
-                            <td>空</td>
-                            <td>空</td>
+                            <td>通脈靈</td>
+                            <td>膠囊劑</td>
+                            <td>HKC-05665</td>
                             <td>淫羊藿、熟地黃、續斷、丹參、杜仲、補骨脂、當歸木瓜、肉桂、木香、鬱金、醋乳香、醋沒藥、血竭、阿膠</td>
                             <td>口服，成人每日二次，每次一粒或按醫生指示</td>
-                            <td>空</td>
+                            <td>每盒1瓶，每瓶60粒</td>
                             <td>補益肝腎，強化筋骨，活血化瘀，舒筋活絡。半身不遂，手足拘攣，腰背疼痛，屬肝腎虧損，瘀血阻絡者</td>
                         </tr>
                         <tr>
                             <td>5</td>
                             <td>活肝素</td>
-                            <td><span class="category-tag oral-tag">口服</span></td>
+                            <td>膠囊劑</td>
                             <td>HKC-02321</td>
-                            <td>2011-12-14</td>
-                            <td>14</td>
                             <td>龍膽、澤瀉、地黃、柴胡、炙甘草、黃芩、車前子、梔子、當歸、川木通</td>
                             <td>溫水送服。成人每日服三次,每次服兩粒</td>
                             <td>每盒1瓶，每瓶60粒</td>
@@ -354,10 +349,8 @@
                         <tr>
                             <td>6</td>
                             <td>腦活素</td>
-                            <td><span class="category-tag oral-tag">口服</span></td>
+                            <td>膠囊劑</td>
                             <td>HKC-02324</td>
-                            <td>2011-12-14</td>
-                            <td>14</td>
                             <td>黨參、茯苓、龍骨、靈芝、紅參、五味子、麥冬、遠志(制)、石菖蒲、龜甲膠</td>
                             <td>温水送服。成人每日服两次，每次服两粒</td>
                             <td>1. 每盒1瓶，每瓶60粒<br>2. 每盒1瓶，每瓶150粒</td>
@@ -366,10 +359,8 @@
                         <tr>
                             <td>7</td>
                             <td>烏絲生髮丸</td>
-                            <td><span class="category-tag oral-tag">口服</span></td>
+                            <td>丸劑</td>
                             <td>HKC-07773</td>
-                            <td>2009-02-25</td>
-                            <td>17</td>
                             <td>黑芝麻、當歸、木瓜、熟地黃、丹參、桑椹、黨參、枸杞子、制何首烏、女貞子(鹽蒸)、川芎(酒蒸)、羌活</td>
                             <td>溫水送服。成人每日服一次,每次服兩粒。</td>
                             <td>每盒1瓶，每瓶60粒</td>
@@ -377,35 +368,29 @@
                         </tr>
                         <tr>
                             <td>8</td>
-                            <td>【日本和漢堂】海狗丸</td>
-                            <td><span class="category-tag oral-tag">口服</span></td>
-                            <td>HKP-12196</td>
-                            <td>空</td>
-                            <td>空</td>
+                            <td>海狗丸</td>
+                            <td>丸劑</td>
+                            <td>HKC-12196</td>
                             <td>遠志、甘草、山白芷、雞血藤、金櫻子、桃金娘果、牛大力、千斤拔、菟絲子、覆盆子、煆金礞石、小茴香、楮實子、鎖陽、肉蓯蓉、熟地黃、狗脊、骨碎補、蓮鬚、黨參、丁香、淫羊藿、雞睪丸、丹參、鹽補骨脂、狗鞭、人參</td>
                             <td>每天服兩次，每次服三至四粒</td>
-                            <td>空</td>
+                            <td>每盒1瓶，每瓶300粒</td>
                             <td>補腎壯陽，滋陰養血。陽痿早洩，精神疲勞，腰膝酸軟，屬腎陽不足，氣血虧虛者</td>
                         </tr>
                         <tr>
                             <td>9</td>
                             <td>海狗丸</td>
-                            <td><span class="category-tag oral-tag">口服</span></td>
+                            <td>丸劑</td>
                             <td>HKC-04310</td>
-                            <td>2008-03-31</td>
-                            <td>18</td>
                             <td>遠志、甘草、山白芷、雞血藤、金櫻子、菟絲子、楮實子、狗脊、丁香、崗稔子、牛大力、煅金礞石、肉蓯蓉、蓮鬚、千斤拔、覆盆子、鎖陽、骨碎補、淫羊藿、小茴香、熟地黃、黨參、雞睾丸、丹參、補骨脂、狗鞭、人參 </td>
                             <td>成人每日服2次,每次服4粒,溫開水送服</td>
                             <td>每盒1瓶，每瓶300粒</td>
-                            <td>補腎陽、益精髓。本方治症為腎陽不足，氣血虧虛所致的陽痿早泄，精神疲倦，腰膝酸軟、血虛萎黃、精關不固等症</td>
+                            <td>補腎陽、益精髓。本方治症為腎陽不足，氣血虧虛所致的陽痿早泄，精神疲倦，腰膝酸軟、血虚萎黃、精關不固等症</td>
                         </tr>
                         <tr>
                             <td>10</td>
                             <td>濃縮整腸丸</td>
-                            <td><span class="category-tag oral-tag">口服</span></td>
+                            <td>丸劑</td>
                             <td>HKC-07770</td>
-                            <td>2012-02-21</td>
-                            <td>14</td>
                             <td>廣藿香、紫蘇葉、白芷、炒白术、陳皮、茯苓、桔梗、甘草、大腹皮、大棗、生薑、薑半夏、薑厚樸</td>
                             <td>用溫水送服。成人：每日服三次，每次8小粒；三歲以上兒童：每日服三次，每次4小粒。如有需要或病情嚴重，請依照醫生指示</td>
                             <td>每盒1瓶，每瓶200粒</td>
@@ -414,10 +399,8 @@
                         <tr>
                             <td>11</td>
                             <td>抗骨靈</td>
-                            <td><span class="category-tag oral-tag">口服</span></td>
+                            <td>膠囊劑</td>
                             <td>HKC-02661</td>
-                            <td>2011-12-14</td>
-                            <td>14</td>
                             <td>赤芍、防己、 白芷、桃仁、紅花、防風、桂枝、海風藤、五加皮、威靈仙、續斷、 秦艽、 製草烏、千年健、獨活、骨碎補、桑寄生 、土茯苓、當歸</td>
                             <td>飯後溫開水送服。成人每日服三次,每次服兩粒。若病情嚴重,請依照醫生指示</td>
                             <td>1. 每盒1瓶，每瓶60粒<br>2. 每盒1瓶，每瓶100粒<br>3. 每盒1瓶，每瓶150粒</td>
@@ -426,22 +409,18 @@
                         <tr>
                             <td>12</td>
                             <td>風痛關刺靈</td>
-                            <td><span class="category-tag oral-tag">口服</span></td>
-                            <td>HKP-05652</td>
-                            <td>空</td>
-                            <td>空</td>
+                            <td>膠囊劑</td>
+                            <td>HKC-05652</td>
                             <td>赤芍、防己、白芷、桃仁、紅花、防風、桂枝、海風藤、五加皮、威靈仙續斷、秦艽、製、草烏、千年健、獨活、骨碎補、桑寄生、白土茯苓、當歸</td>
                             <td>每天服兩次，每次服三至四粒</td>
-                            <td>空</td>
+                            <td>每盒1瓶，每瓶60粒</td>
                             <td>袪風除濕，通經活絡，強筋健骨，通痹止痛。主治因肝腎不足、風寒濕邪而致的痹症。症見關節疼痛，腰酸背痛，四肢酸軟，腰肌勞損</td>
                         </tr>
                         <tr>
                             <td>13</td>
                             <td>喘咳治</td>
-                            <td><span class="category-tag oral-tag">口服</span></td>
+                            <td>膠囊劑</td>
                             <td>HKC-15747</td>
-                            <td>2011-12-14</td>
-                            <td>14</td>
                             <td>紫菀、百合、瓜蒌子、醋鱉甲、黃芩、炒苦杏仁、甘草、麥冬、麻黃、黃連、炒紫蘇了子、石膏、段石膏、合蚧</td>
                             <td>溫開水送服。成人每日三次,每次服2粒</td>
                             <td>每盒1瓶，每瓶60粒</td>
@@ -450,10 +429,8 @@
                         <tr>
                             <td>14</td>
                             <td>強力舒筋活絡膏</td>
-                            <td><span class="category-tag external-tag">外用</span></td>
+                            <td>贴膏劑</td>
                             <td>HKC-02013</td>
-                            <td>2008-03-31</td>
-                            <td>18</td>
                             <td>土鱉蟲、生草烏、馬錢子(炒)、大黃、降香、兩面針、黃芩、黃柏、虎杖、冰片(合成龍腦)、薄荷素油、樟腦、水楊酸甲酯、薄荷腦</td>
                             <td>只可外用。先洗净患处抹干。可将膏布剪成合适大小,撕去透明纸,贴于患处,用手按牢。每天一至两次，每次请勿贴超过8小时</td>
                             <td>每盒2包，每包5張，每張7cm x 10cm</td>
@@ -462,22 +439,18 @@
                         <tr>
                             <td>15</td>
                             <td>仁昌堂古方活絡油</td>
-                            <td><span class="category-tag external-tag">外用</span></td>
+                            <td>外用油劑</td>
                             <td>HKC-12950</td>
-                            <td>2012-04-12</td>
-                            <td>14</td>
                             <td>血竭、乳香、沒藥、花椒、丹參、大黃骨碎補、獨活、木香、白芷、川芎、三七、防風 當歸、延胡索、秦艽、羌活、川牛膝、紅花 甘草、威靈仙、烏藥、續斷、荊芥、伸筋草、冰片、樟腦(合成)、肉桂油、薄荷腦、水楊酸甲酯、松節油、桉油</td>
                             <td>搽適量活絡油於患處上,用拇指尖在患處最酸痛的部份,進行按壓15-20分鐘,力度由輕至重,以患者不過度痛楚為宜。每天按壓二至三次,直至痊癒</td>
                             <td>每盒1瓶，每瓶50毫升</td>
-                            <td>舒筋活络、祛风散瘀,主要用于治疗风湿骨痛、筋骨疼痛等</td>
+                            <td>行氣活血,化瘀止痛,祛風散寒,舒筋活絡。常用於各種肌肉痠痛,遠年風寒疼痛,游走風痛,關節腫痛,腰酸背痛,跌打舊患等症。</td>
                         </tr>
                         <tr>
                             <td>16</td>
                             <td>柔潔絲特效暗瘡素</td>
-                            <td><span class="category-tag external-tag">外用</span></td>
+                            <td>外用軟膏</td>
                             <td>HKC-12925</td>
-                            <td>2012-06-20</td>
-                            <td>13</td>
                             <td>爐甘石、硫黃、樟腦(合成)、冰片(合成龍腦)、薄荷腦</td>
                             <td>先將患處洗淨及拭乾後,搽適量藥膏於患處上,每日塗二至三次</td>
                             <td>每盒1支，每支18克</td>
@@ -486,10 +459,8 @@
                         <tr>
                             <td>17</td>
                             <td>鼻敏清</td>
-                            <td><span class="category-tag oral-tag">口服</span></td>
+                            <td>膠囊劑</td>
                             <td>HKC-07772</td>
-                            <td>2009-10-13</td>
-                            <td>16</td>
                             <td>辛夷、魚腥草、鵝不食草、甘草、防風、紫蘇葉、薄荷、廣藿香、山白芷、菊花、三丫苦、板藍根、蒼耳子</td>
                             <td>每日3次，每次2粒，溫開水送服</td>
                             <td>1. 每盒1瓶，每瓶60粒<br>2. 每盒1瓶，每瓶150粒</td>
@@ -498,11 +469,9 @@
                         <tr>
                             <td>18</td>
                             <td>增肥丸</td>
-                            <td><span class="category-tag oral-tag">口服</span></td>
+                            <td>丸劑</td>
                             <td>HKC-02656</td>
-                            <td>2008-03-31</td>
-                            <td>18</td>
-                            <td>白朮、山藥、黃芪、山楂、茯苓、陳皮、當歸、炒酸棗仁、麥芽、砂仁、遠志、人參、木香</td>
+                            <td>白朮、山藥、黃芩、山楂、茯苓、陳皮、當歸、炒酸棗仁、麥芽、砂仁、遠志、人參、木香</td>
                             <td>溫水口服，成人一日兩次，一次四粒。八歲以上至十五歲兒童份量減半（每日一次，一次兩粒）</td>
                             <td>每盒1瓶，每瓶100粒</td>
                             <td>健脾益氣，和胃止瀉，消積，促進食慾、增加體重。用於脾胃虛弱引起的食慾不振、消化不良，噁心嘔吐，腹痛便溏，不思飲食，體弱倦怠，心悸健忘，失眠多夢</td>
@@ -510,11 +479,9 @@
                         <tr>
                             <td>19</td>
                             <td>金裝白鳳丸</td>
-                            <td><span class="category-tag oral-tag">口服</span></td>
+                            <td>丸劑</td>
                             <td>HKC-04036</td>
-                            <td>2013-11-15</td>
-                            <td>12</td>
-                            <td>熟地黃、醋香附、黨參、黃芪、當歸、益母草、甘草、白朮、胡蘆巴、續斷、川芎、白芍、人參、鬱金、珍珠、烏骨雞、浙貝母、砂仁、鹿茸、燕窩</td>
+                            <td>熟地黃、醋香附、黨參、黃芩、當歸、益母草、甘草、白朮、胡蘆巴、續斷、川芎、白芍、人參、鬱金、珍珠、烏骨雞、浙貝母、砂仁、鹿茸、燕窩</td>
                             <td>用溫水送服，成人每日兩次，每次一丸</td>
                             <td>1. 每盒6小盒，每小盒1蠟殼丸，每蠟殼丸1塑膠丸<br>2. 每盒12小盒，每小盒1蠟殼丸，每蠟殼丸1塑膠丸</td>
                             <td>補氣養血，調經止帶，補腎助陽。主治氣血兩虧所致的月經不調，行經腹痛，崩漏帶下，少腹冷痛，體倦乏力，腰酸腿軟，產後虛弱等症</td>
@@ -522,10 +489,8 @@
                         <tr>
                             <td>20</td>
                             <td>消石素丸</td>
-                            <td><span class="category-tag oral-tag">口服</span></td>
+                            <td>丸劑</td>
                             <td>HKC-02040</td>
-                            <td>2009-06-30</td>
-                            <td>16</td>
                             <td>金錢草、茵陳、檳榔、大黃、郁金、黃芩 、木香、麩炒枳實、姜厚樸、芒硝</td>
                             <td>口服,成人每次1粒,每日兩次。</td>
                             <td>1. 每盒1瓶，每瓶60粒<br>2. 每盒1瓶，每瓶150粒</td>
@@ -534,10 +499,8 @@
                         <tr>
                             <td>21</td>
                             <td>白殿風丸</td>
-                            <td><span class="category-tag oral-tag">口服</span></td>
+                            <td>丸劑</td>
                             <td>HKC-15706</td>
-                            <td>2012-02-21</td>
-                            <td>14</td>
                             <td>蒺藜、靈芝、製何首烏、補骨脂、紫草、降香、丹參、紅花、牡丹皮、黃藥子、海螵蛸、甘草、蒼朮、龍膽</td>
                             <td>溫水送服·成人每日服兩次，每次服兩粒</td>
                             <td>每盒1瓶，每瓶60粒</td>
@@ -546,34 +509,28 @@
                         <tr>
                             <td>22</td>
                             <td>絡痛消特效止痛摩擦膏</td>
-                            <td><span class="category-tag external-tag">外用</span></td>
+                            <td>外用軟膏</td>
                             <td>HKC-12958</td>
-                            <td>2012-06-01</td>
-                            <td>13</td>
                             <td>水楊酸甲酯(冬綠油)、樟腦(合成)、薄荷腦、松節油、肉桂油、桉油</td>
                             <td>將適量藥膏塗於患處，並溫和地按摩，直至完全滲透，每日二至三次。若需要更顯著效果可於洗澡或熱敷患處後使用本品。(使用本品前必需拭乾患處)</td>
                             <td>每盒1支，每支30克</td>
-                            <td>通经活络、散寒除湿、消肿止痛的功效,对改善关节疼痛、关节麻木、身体寒凉有作用</td>
+                            <td>溫通血脈,散寒止痛,祛風除濕。減輕肌肉疼痛,風寒濕痺痛,關節腫痛及酸痛症狀,用於運動後肌肉疲勞,扭傷,腰背酸痛等。</td>
                         </tr>
                         <tr>
                             <td>23</td>
                             <td>燒燙靈高效能燙火軟膏</td>
-                            <td><span class="category-tag external-tag">外用</span></td>
+                            <td>外用軟膏</td>
                             <td>HKC-06979</td>
-                            <td>2012-01-06</td>
-                            <td>14</td>
                             <td>冰片(合成龍腦)、爐甘石、忍冬藤、地榆、黃連、虎杖、白及、甘草</td>
                             <td>先潔淨患處,將適量藥膏塗於患處上,每日三至四次</td>
                             <td>每盒1支，每支18克</td>
-                            <td>解毒瀉火，消腫生肌、涼血清熱，用於程度較輕的燒傷(l°或淺ⅡI°)、燙傷及太陽灼傷等症</td>
+                            <td>解毒瀉火，消腫生肌、涼血清熱。用於程度較輕的燒傷(l°或淺ⅡI°)、燙傷及太陽灼傷等症</td>
                         </tr>
                         <tr>
                             <td>24</td>
                             <td>五寶丸</td>
-                            <td><span class="category-tag oral-tag">口服</span></td>
+                            <td>丸劑</td>
                             <td>HKC-07536</td>
-                            <td>2009-02-25</td>
-                            <td>17</td>
                             <td>廣藿香、桔梗、麸炒白朮、薑厚樸、茯苓、紫蘇葉、白芷、大腹皮、大棗、生薑</td>
                             <td>用溫水送服。成人:每日服三次,每次服一至兩瓶;三歲或以上兒童:每日服兩次，每次服一瓶。如有需要或病情嚴重,請依照醫生指示</td>
                             <td>每盒12小盒，每小盒1瓶</td>
@@ -582,10 +539,8 @@
                         <tr>
                             <td>25</td>
                             <td>強力感冒靈</td>
-                            <td><span class="category-tag oral-tag">口服</span></td>
+                            <td>片劑</td>
                             <td>HKC-14151</td>
-                            <td>2014-03-18</td>
-                            <td>12</td>
                             <td>金銀花、連翹、薄荷、炒牛蒡子、桔梗、淡豆豉、甘草、荊芥、淡竹葉</td>
                             <td>溫開水送服，成人每日服三次， 每次服三片。十歲以上兒童每日服兩次，每次服兩片</td>
                             <td>每盒1瓶，每瓶120粒</td>
@@ -594,10 +549,8 @@
                         <tr>
                             <td>26</td>
                             <td>威豪強力抗焱靈</td>
-                            <td><span class="category-tag oral-tag">口服</span></td>
+                            <td>膠囊劑</td>
                             <td>HKC-07765</td>
-                            <td>2009-04-20</td>
-                            <td>16</td>
                             <td>穿心蓮、山芝麻</td>
                             <td>溫開水送服，成人每日服三次， 每次服1-2粒，飯後服</td>
                             <td>每盒2排，每排10粒</td>
@@ -606,95 +559,80 @@
                         <tr>
                             <td>27</td>
                             <td>七厘散</td>
-                            <td><span class="category-tag oral-tag">口服</span></td>
+                            <td>散劑</td>
                             <td>HKC-07575</td>
-                            <td>2012-02-21</td>
-                            <td>14</td>
                             <td>柴胡、前胡、冰片（合成龙脑) 、琥珀（水飞) 、桔梗、 苦杏仁(去油)、钩藤、姜半夏、薄荷、天麻(制)、茯苓、苍术(泡)、姜厚朴、防风、广藿香、僵蚕(制)、羌活、麦芽(炒)、陈皮、大腹皮、神曲、黄连、珍珠(水飞)、木香、甘草、桂枝</td>
                             <td>用暖水调和口服。初生至一个月内婴儿：每日一次，每次半樽。一个月至三岁婴儿：每日一次，每次一樽。三岁以上之小童：每日两次，每次两樽。或病情严重，请依照医生指示</td>
                             <td>每盒10小盒，每小盒1瓶</td>
-                            <td>方中重用血竭为君药，可活血止血，散瘀止痛，生肌敛疮。乳香、没药、红花功善活血止痛，祛瘀消肿；儿茶收敛止血，为臣药。冰片、麝香辛香走窜，能除瘀滞而止痛；朱砂清热解毒，镇心安神，尚可防腐，为佐药。诸药合用，共奏化瘀消肿，止痛止血之功效</td>
+                            <td>镇惊解热,祛风化痰,健脾。用于小儿外感风邪,惊风,咳嗽气喘,食滞呕吐,腹痛泄泻，呕吐痰涎，烦躁起急，睡卧不安，惊悸哭啼。</td>
                         </tr>
                         <tr>
                             <td>28</td>
                             <td>六神丸</td>
-                            <td><span class="category-tag oral-tag">口服</span></td>
+                            <td>丸劑</td>
                             <td>HKC-10181</td>
-                            <td>2013-12-09</td>
-                            <td>12</td>
                             <td>板藍根、人工牛黃、珍珠層粉、冰片(合成龍腦)、蟾酥</td>
                             <td>開水吞服,每日三次:1-2歲每次服2粒: 2歲以上至4歲每次服3-4粒: 4歲以上每次服8-9粒；成人每次服10粒</td>
                             <td>每盒10小盒，每小盒1瓶，每瓶100粒</td>
-                            <td>适用于咽喉肿痛、吞咽困难、扁桃体发炎、皮肤感染引起的肿块等情况</td>
+                            <td>清熱解毒,消腫止痛。用於爛喉丹痧,咽喉腫痛,喉風喉癰,乳蛾(單蛾、雙蛾),癰瘍疔瘡</td>
                         </tr>
                         <tr>
                             <td>29</td>
                             <td>八寶驚風散</td>
-                            <td><span class="category-tag oral-tag">口服</span></td>
+                            <td>散劑</td>
                             <td>HKC-10271</td>
-                            <td>2009-02-25</td>
-                            <td>17</td>
                             <td>柴胡、前胡、冰片(合成龍腦)、琥珀(水飛)、桔梗、苦杏仁(去油)、鈎藤、茯苓、防風、廣藿香、羌活、陳皮、神曲、珍珠(水飛)、甘草、桂枝</td>
-                            <td>用暖水调和口服。初生至一个月内婴儿:每日一次,每次半樽。一个月至三岁婴儿:每日一|次,每次一樽。三岁以上之小童:每日两次,每次两樽。或病情严重,请依照医生指示</td>
+                            <td>用暖水调和口服。初生至一个月内婴儿:每日一次,每次半樽。一个月至三岁婴儿:每日一次,每次一樽。三岁以上之小童:每日两次,每次两樽。或病情严重,请依照医生指示</td>
                             <td>每盒10小盒，每小盒1瓶</td>
                             <td>鎮驚安神,祛風解表,除痰止咳。主治小兒外感風寒,夜啼驚跳,睡眠不寧,痰涎壅盛，咳嗽氣喘，腸胃不適，食滞吐乳，腹痛泄瀉</td>
                         </tr>
                         <tr>
                             <td>30</td>
                             <td>猴棗散</td>
-                            <td><span class="category-tag oral-tag">口服</span></td>
+                            <td>散劑</td>
                             <td>HKC-05724</td>
-                            <td>2013-02-05</td>
-                            <td>13</td>
                             <td>柴胡、前胡、冰片、琥珀、苦杏仁、桔梗、鈎藤、茯苓、大腹皮、神曲、天麻、防風、羌活、厚樸、陳皮、麥芽、黃達、蒼术、清半夏、僵蠶、廣藿香、薄荷、珍珠、甘草、桂枝、燕窩、猴棗</td>
                             <td>半歲至一歲，每日服一次，每次半瓶，一歲以上至兩歲，每日服一次，每次服一瓶，兩歲以上小童，每日服一次，每次服兩瓶。用溫開水送服</td>
                             <td>每盒10小盒，每小盒1瓶</td>
-                            <td>猴棗散主治功能為清熱解毒，鎮驚開竅，用於治療小兒驚風、癲癇、中暑等症</td>
+                            <td>驅風除痰,清熱,止咳,定驚。小兒急慢驚風，咳嗽氣喘，痰涎壅盛。</td>
                         </tr>
                         <tr>
                             <td>31</td>
                             <td>回春丹</td>
-                            <td><span class="category-tag oral-tag">口服</span></td>
+                            <td>丸劑</td>
                             <td>HKC-05725</td>
-                            <td>2013-02-05</td>
-                            <td>13</td>
                             <td>柴胡、前胡、冰片、琥珀、苦杏仁、桔梗、鈎藤、茯苓、大腹皮、神曲、天麻、防風、羌活、厚樸、陳皮、麥芽、黃連、蒼术、清半夏、僵蠶、廣藿香、薄荷、珍珠、甘草、桂枝、燕窩</td>
                             <td>半歲至一歲，每日服一次,每次半瓶,一歲以上至兩歲，每日服一次，每次服一瓶,兩歲以上小童，每日服一次，每次服兩瓶。用溫開水送服</td>
                             <td>每盒10小盒，每小盒1瓶</td>
-                            <td>驅風，鎮驚，除痰，清熱，解表，止咳止嘔。嘔吐泄瀉,消化不良,感冒初起,小兒驚風,咳嗽痰多</td>
+                            <td>驅風,鎮驚,除痰,清熱,解表,止咳止嘔。 嘔吐泄瀉,消化不良,感冒初起,小兒驚風,咳嗽痰多</td>
                         </tr>
                         <tr>
                             <td>32</td>
                             <td>安宫牛黄丸1</td>
-                            <td><span class="category-tag oral-tag">口服</span></td>
-                            <td>注册中</td>
-                            <td>注册中</td>
-                            <td>空</td>
+                            <td>丸劑</td>
+                            <td>註冊中</td>
                             <td>牛黄、水牛角浓缩粉、麝香、珍珠、朱砂、雄黄、黄连、黄芩、栀子、郁金、冰片</td>
-                            <td>空</td>
-                            <td>空</td>
-                            <td>清热解毒、镇惊开窍等功效。可用于热病、邪入心包、高热惊厥、神昏谵语；中风昏迷及脑炎、脑膜炎、中毒性脑病、脑出血、败血症见上述证候者</td>
+                            <td>⼝服。⼀次2丸，⼀⽇1次；⼩⼉三歲以內⼀次1/2丸 ，四歲⾄六歲⼀次1丸，⼀⽇1次；或遵醫囑。</td>
+                            <td>每丸重1.5g</td>
+                            <td>清熱解毒、鎮驚開竅等功效。可⽤於熱病、邪入⼼包、⾼熱驚厥、神昏譫語；中⻛昏迷及腦炎、腦膜炎、中毒性腦病、腦出⾎、敗⾎症⻅上述證候者</td>
                         </tr>
                         <tr>
                             <td>33</td>
                             <td>安宫牛黄丸2</td>
-                            <td><span class="category-tag oral-tag">口服</span></td>
-                            <td>注册中</td>
-                            <td>注册中</td>
-                            <td>空</td>
+                            <td>丸劑</td>
+                            <td>註冊中</td>
                             <td>牛黄、水牛角浓缩粉、麝香、珍珠、朱砂、雄黄、黄连、黄芩、栀子、郁金、冰片</td>
-                            <td>空</td>
-                            <td>空</td>
-                            <td>清热解毒、镇惊开窍等功效。可用于热病、邪入心包、高热惊厥、神昏谵语；中风昏迷及脑炎、脑膜炎、中毒性脑病、脑出血、败血症见上述证候者</td>
+                            <td>⼝服。⼀次1丸，⼀⽇1次；⼩⼉三歲以內⼀次1/4丸，四歲⾄六歲⼀次1/2丸，⼀⽇1次；或遵醫囑。</td>
+                            <td>每丸重3g</td>
+                            <td>清熱解毒、鎮驚開竅等功效。可⽤於熱病、邪入⼼包、⾼熱驚厥、神昏譫語；中⻛昏迷及腦炎、腦膜炎、中毒性腦病、腦出⾎、敗⾎症⻅上述證候者</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
             
-            <div class="signature">
-                <p>順頌商祺！</p>
-                <p class="company">香港濟歲堂中藥廠有限公司</p>
-                <p class="date">2025年10月10日</p>
+            <div class="company-address">
+                <p>香港新界葵涌华星街8号华达工业中心A座4楼12室</p>
+                <p>RM 412,4/F, BLK A,WAH TAT INDUSTRIAL CENTRE8-10 WAH SHING ST,KWAI CHUNG, NT</p>
             </div>
             
             <div style="margin-top: 15px; padding: 12px; background: #f9f5f0; border-radius: 5px;">
@@ -708,9 +646,10 @@
         <!-- 页脚 -->
         <div class="page-footer">
             <div class="footer-content">
-                <p>機密文件 - 僅限內部使用 | 更新日期：2025年10月10日</p>
+                <p>機密文件 - 僅限內部使用 | 更新日期：2025年11月03日</p>
             </div>
         </div>
     </div>
-</body>
-</html>
+
+
+</body></html>
